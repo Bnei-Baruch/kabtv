@@ -1,5 +1,6 @@
-<a href="blalba">blabla</a>
-
-    <div ng-repeat="d in data">
-        <a href="{{d.url}}">{{d.caption}}</a>
-    </div>
+<header id="header">
+	<a href="./" class="logo"><img src="./images/kab_tv_Hebrew.gif"></a>
+	<nav ng-repeat="data in topMenuData">
+	    <a href="{{data.url}}">{{data.caption}}</a>
+	</nav>
+</header>

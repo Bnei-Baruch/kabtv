@@ -1,37 +1,39 @@
 kabtv = angular.module('kabtv', []);
 
-kabtv.directive("kabtvHeader", function () {
+kabtv.directive("kabtvHeader", ['getInitData', function (getInitData) {
     return {
-        scope: {},
+        templateUrl: 'views/header.html',
         controller: function ($scope) {
-            function getJson() {
-                return [
-                    {
-                        caption: 'link 1',
-                        url: 'http://blalba.com/1'
-                    },
-                    {
-                        caption: 'link 2',
-                        url: 'http://blalba.com/2'
-                    },
-                ];
-            }
-            $scope.data =  getJson();
+            $scope.topMenuData =  getInitData.dataList;
         },
-        templateUrl: 'views/header.html'
+    };
+}]);
+
+kabtv.directive("kabtvFooter", function (getInitData) {
+    return {
+        templateUrl: 'views/footer.html',
+        controller: function ($scope) {
+            $scope.footMenuData =  getInitData.dataList;
+        },
     };
 });
 
-kabtv.directive("kabtvFooter", function () {
+kabtv.directive("kabtvUpdates", function (getInitData) {
     return {
-        template: 'hello footer: {{ 8+8+8 }}'
+        templateUrl: 'views/updates.html',
+        controller: function ($scope) {
+            $scope.updatesData =  getInitData.dataList;
+        },
     };
 });
 
 
-kabtv.directive("kabtvTabs", function () {
+
+kabtv.directive("kabtvTabs", function (getInitData) {
     return {
-        template: 'tabs plugin here'
+        templateUrl: 'views/tabs.html',
+        controller: function ($scope) {
+        },
     };
 });
 
