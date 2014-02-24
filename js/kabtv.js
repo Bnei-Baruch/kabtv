@@ -2,7 +2,7 @@ kabtv = angular.module('kabtv', []);
 
 kabtv.directive("kabtvHeader", ['getInitData', function (getInitData) {
     return {
-        templateUrl: 'views/header.html',
+        templateUrl: './views/header.html',
         controller: function ($scope) {
             $scope.topMenuData =  getInitData.dataList;
         },
@@ -32,6 +32,16 @@ kabtv.directive("kabtvUpdates", function (getInitData) {
 kabtv.directive("kabtvTabs", function (getInitData) {
     return {
         templateUrl: 'views/tabs.html',
+        controller: function ($scope) {
+        },
+    };
+});
+
+
+
+kabtv.directive("kabtvPlayer", function (getInitData) {
+    return {
+        templateUrl: 'views/player.html',
         controller: function ($scope) {
         },
     };
