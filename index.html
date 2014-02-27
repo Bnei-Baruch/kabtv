@@ -14,12 +14,13 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
 
-    <link rel="stylesheet" href="css/kabtv.css">
+    <link rel="stylesheet" href="./css/cssreset-min.css">
+    <link rel="stylesheet" href="./css/kabtv.css">
 
     <!--<script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>-->
-    <script src="js/vendor/angular/angular.min.js"></script>
-    <script src="js/kabtv.js"></script>
-    <script src="js/services.js"></script>
+    <script src="./js/vendor/angular/angular.min.js"></script>
+    <script src="./js/directives.js"></script>
+    <script src="./js/services.js"></script>
 </head>
 <body>
 <!--[if lt IE 7]>
@@ -31,10 +32,10 @@
 <div class="container">
     <div kabtv-header></div>
     <div kabtv-nav></div>
-    <div class="content">
-        <div kabtv-vod></div>
-        <div kabtv-player></div>
-        <div kabtv-tabs></div>
+    <div class="content clearfix">
+        <div kabtv-vod class="aside toL">111</div>
+        <div kabtv-tabs class="aside toR">222</div>
+        <div kabtv-player class="mid"></div>
     </div>
     <div kabtv-footer></div>
 </div>
