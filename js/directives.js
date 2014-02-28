@@ -86,7 +86,7 @@ kabtv.directive("kabtvPlayer", function (getVideoAudio, $compile) {
                     player.src = $scope.data.audio;
                 };
                 player = $compile(angular.element(player))($scope);
-                var $el = angular.element(document.querySelector('#id'));
+                var $el = angular.element(document.querySelector('#player'));
                 $el.html('');
                 $el.append(player);
 
