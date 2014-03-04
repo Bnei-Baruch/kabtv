@@ -1,0 +1,16 @@
+<div ng-repeat="item in clipList" class="item">
+	<div ng-click = "runVideo(item.content.url)"  class="cont clearfix">
+		<img src="{{item.content.img.url}}" title="{{item.content.img.title}}" class="toR">
+		<h5>{{item.content.text.title}}</h5>
+		<p>{{item.content.text.text}}</p>
+	</div>
+	<div class="clipIcons">
+		<a href="{{}}" class="sendIcon clipIcon">
+					<img src="{{item.clipList .src}}" title="{{item.sendIcon.title}}">
+		</a>
+		<a href="{{item.downloadIcon.url}}" class="downloadIcon clipIcon">
+			<img src="{{item.downloadIcon.img.src}}" title="{{item.downloadIcon.img.title}}">{{item.clipData.size}}
+		</a>
+	</div>
+	<div class="clipData">{{item.clipData.length}}</div>
+</div>

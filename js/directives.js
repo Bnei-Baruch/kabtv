@@ -1,14 +1,20 @@
-kabtv = angular.module('kabtv', []).value('langVal', "Hebrew");
+kabtv = angular.module('kabtv', []);
 
-kabtv.directive("kabtvHeader", ['getInitData', function (getInitData, langVal) {
+kabtv.value('pageSettings', {langVal: "Hebrew", dir: "rtl"});
+
+kabtv.controller("kabTvCtrl", ['$scope','pageSettings', function($scope, pageSettings) {
+    $scope.dir = pageSettings.dir;
+}]);
+
+kabtv.directive("kabtvHeader", ['getInitData','pageSettings', function (getInitData) {
     return {
         templateUrl: './views/header.html',
-        controller: function ($scope, langVal) {
+        controller: function ($scope, pageSettings) {
             $scope.topMenuData =  getInitData.dataList;
-            langVal =  getInitData.lang;
-            $scope.lang =  langVal;
+            pageSettings.langVal =  getInitData.lang;
+            $scope.lang =  pageSettings.langVal;
             $scope.currentLang = function(lang) {
-                var lang =  (langVal == lang) ? "select": "";
+                var lang =  (pageSettings.langVal == lang) ? "select": "";
                 return lang;
             };
                 
@@ -48,15 +54,6 @@ kabtv.directive("kabtvTabs", function (getInitData) {
 
 
 
-/*kabtv.directive("kabtvPlayer", function () {
-    return {
-        templateUrl: 'views/player.html',
-        controller: function ($scope) {
-            
-        },
-    };
-});*/
-
 kabtv.directive("kabtvPlayer", function (getVideoAudio, $compile) {
     return {
         replace: true,
@@ -66,7 +63,10 @@ kabtv.directive("kabtvPlayer", function (getVideoAudio, $compile) {
             $scope.isVideo = false;
             var promise = getVideoAudio.audio();
             promise.then(function(d){
-                $scope.data = {"audio": "http://icecast.kab.tv/radiozohar2014.mp3", "video": "http://streams.kab.tv/heb.asx"};
+                $scope.data = {
+                    "audio": "http://files.kabbalahmedia.info/audio/heb_o_rav_bs-akdama-zohar_2014-02-28_lesson.mp3", 
+                    "video": "http://files.kabbalahmedia.info/files/heb_o_rav_bs-akdama-zohar_2014-02-28_lesson.mp4"
+                };
             });
             $scope.playCont = $scope.data.audio;
             $scope.switchVideoAudio = function (isVideo) {
@@ -77,18 +77,16 @@ kabtv.directive("kabtvPlayer", function (getVideoAudio, $compile) {
 
             $scope.$watch('isVideo', function (newVal, oldVal) {
                 if (newVal == oldVal) return;
-                var player = null;
+                var options = {};
+
                 if (newVal) {
-                    player = document.createElement('video');
-                    player.poster = $scope.data.video;
+                    options = {file: $scope.data.video, width: "100%"};
                 } else {
-                    player = document.createElement('audio');
-                    player.src = $scope.data.audio;
+                    options = {file: $scope.data.audio, height: 30, width: "100%"};
                 };
-                player = $compile(angular.element(player))($scope);
                 var $el = angular.element(document.querySelector('#player'));
                 $el.html('');
-                $el.append(player);
+                jwplayer("player").setup(options);
 
             });
         }
@@ -96,3 +94,12 @@ kabtv.directive("kabtvPlayer", function (getVideoAudio, $compile) {
 });
 
 
+
+kabtv.directive("kabtvClipList", function (getInitData) {
+    return {
+        templateUrl: 'views/cliplist.html',
+        controller: function ($scope) {
+            $scope.clipList =  getInitData.clipList;
+        },
+    };
+});
