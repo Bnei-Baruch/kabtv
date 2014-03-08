@@ -1,7 +1,7 @@
 <div class="clearfix">
-	<div class="tabs">
-		<div ng-click="switchVideoAudio(true)" class="{{isVideo? '':'select';}} tabBtn">video</div>
-		<div ng-click="switchVideoAudio(false)" class="{{isVideo? 'select': '';}} tabBtn">audio</div>
+	<div class="tabs" ng-hide = "isClip">
+		<div ng-click="switchVideoAudio(true)" class="tabBtn {{isVideo? 'select': '';}}">video</div>
+		<div ng-click="switchVideoAudio(false)" class="{{isVideo? '':'select';}} tabBtn">audio</div>
 	</div>
 	<div id="player"></div>
 </div>

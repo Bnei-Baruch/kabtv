@@ -21,10 +21,12 @@
     <script src="./js/vendor/angular/angular.min.js"></script>
     <script src="http://jwpsrv.com/library/ElAvGDL5EeKp9yIACp8kUw.js"></script>
 
-    <script src="./js/directives.js"></script>
+    <script src="./js/module.js"></script>
     <script src="./js/services.js"></script>
+    <script src="./js/directives.js"></script>
+    <script src="./js/controllers.js"></script>
 </head>
-<body class="{{dir}}" ng-controller="kabTvCtrl">
+<body class="{{dir}}" ng-controller="kabTvLoadCtrl">
 <!--[if lt IE 7]>
 <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
     your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to
@@ -32,7 +34,7 @@
 <![endif]-->
 
 <div class="container">
-    <div kabtv-header></div>
+    <div kabtv-header></div> 
     <div kabtv-nav></div>
     <div class="content clearfix">
         <div kabtv-clip-list class="aside toR clipList clearfix">111</div>
