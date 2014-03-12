@@ -9,18 +9,12 @@ kabtv.service('getTabsIframe', ['$http', function ($http) {
     return $http.get('./json/tabsiframe.json');
 }]);
 
-<<<<<<< HEAD
-kabtv.service('getClipList', ['$http', function ($http) {
-    return $http.get('./json/cliplist.json');
-}]);
 
-=======
 kabtv.service('setClipListes', ['$http', function ($http) {
     return $http.get('./json/cliplistes.json');
 }]);
 
 
->>>>>>> player bugs
 kabtv.service('getFooterData', ['$http', function ($http) {
     return $http.get('./json/footer.json');
 }]);
