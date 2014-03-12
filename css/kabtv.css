@@ -1,10 +1,79 @@
-.container {
-    width: 980px;
-    height: 100%;
-    margin: 0 auto;
-    border: 1px solid black;
-}
+html, body{min-height: 100%; height: 100%; }
+body{background-color: #00145E; font: normal normal 12px Arial, sans-serif; color: #FFF; dir=""}
+.toL{float: left;}
+.toR{float: right;}
+.rtl{direction: rtl;}
+.rtl .toL{float: right;}
+.rtl .toR{float: left;}
+a,a:visited{color:#69B7FF;text-decoration:none;}
+a:hover{text-decoration:underline;}
 
-.content {
-    border: 1px solid black;
-}
+.clearfix:before, .clearfix:after {content:"";display:table;}
+.clearfix:after {clear:both;}
+/* For IE 6/7 (trigger hasLayout) */
+.clearfix {zoom:1;}
+
+/*TABS*/
+.tabs{}
+.tabBtn{display: inline-block; font: 13px/20px Arial; background-color: #000078; color: #FFF; cursor: pointer; padding: 0 10px; margin: 0 2px;}
+.tabBtn.select{background-color: #000;}
+.tabBtn:first-child{margin-left: 0;}
+.rtl .tabBtn:first-child{margin-right: 0;}
+.content .tabBtn{}
+
+
+/*header*/
+#header{}
+#header .tree{display: block;}
+#header .whiteWrappwer{background-color: #FFF; height: 50px}
+
+.headLangNav{display: block;text-align: center;}
+.headLangNav a{display: inline-block; padding: 0 10px; border-left: 1px solid #00145E; color: #000;line-height: 14px;margin: 14px 0 0; padding: 0 10px 2px;}
+.headLangNav a:first-child{border-left: 0 none;}
+.headLangNav a.select{color: #D32020;}
+.rtl .headLangNav a{border-left: 0 none;border-right: 1px solid #00145E;}
+.rtl .headLangNav a:first-child{border-right: 0 none;}
+
+.headLinksNav{display: block; padding: 5px 0; text-align: center;}
+.headLinksNav a{display: inline-block; margin: 0 10px; }
+
+
+/*CONTENT*/
+.container {width: 980px;height: 100%;margin: 0 auto;position: relative;}
+
+.content {background-color: #000C37; padding: 20px 0; position: absolute; top: 80px; bottom: 30px; left: 0; width: 100%;}
+.content .mid{margin: 0 265px; background-color: #384B92;padding: 20px 10px; min-height: 300px;	}
+<<<<<<< HEAD
+=======
+
+.backToOnLine{display: inline-block;padding: 0 25px 0 0;background-color: #FFA200;color: #000;}
+.clipInfo{}
+>>>>>>> player bugs
+
+/*Clip aside*/
+.content .aside{width: 265px; box-sizing: border-box; -moz-box-sizing: border-box; height: 100%;padding: 0 10px;box-sizing: border-box;}
+.clipList{overflow: auto; height: 100%;}
+.clipList .item{border-bottom: 1px solid #4EA9FF; padding: 10px 0;}
+.clipList .cont{cursor: pointer;}
+.clipList .cont:hover {opacity: 0.8;}
+.clipList .cont img{ margin: 3px 10px 5px 0;}
+.rtl .clipList .cont img{ margin: 3px 0 5px 10px;}
+.clipList .cont h5{color: #D32020;}
+.clipList .clipIcons{text-align: left; margin: 0 2px; }
+.clipList .clipData {text-align: right;color: #4EA9FF;}
+
+/*tabs aside*/
+
+#asideTabIframe{width: 100%; height: 100%; position: relative;}
+#asideTabIframe .tabBtn{font-size: 11px; margin: 0 1px;padding: 5px;background-color: #384B92;color: #FFA200;}
+#asideTabIframe .tabBtn.select{margin-top: -1px;padding-bottom: 6px;background-color: #DFE7F2;color: #000;}
+<<<<<<< HEAD
+#asideTabIframe .forIframe{top: 33px; left: 0; right: 0; bottom: 0;position: absolute;}
+=======
+#asideTabIframe .forIframe{top: 32px; left: 0; right: 0; bottom: 0;position: absolute;}
+>>>>>>> player bugs
+#asideTabIframe iframe{width: 100%; height: 100%;}
+
+.selectTag{line-height: 20px; display: block;width: 100%;}
+/*FOOTER*/
+.footer{position: absolute;bottom: 0; left: 0; width: 100%; height: 30px;}

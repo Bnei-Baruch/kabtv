@@ -1,0 +1,27 @@
+{
+    "lang": "Hebrew",
+    "dir": "rtl",
+    "defaultTab": 0,
+    "data": [
+        {
+            "id": "updates",
+            "title": "עדכונים",
+            "url": "http://kab.tv/tv/vod/ads/get_all_by_language?lang=Hebrew"      
+        },
+        {
+            "id": "schedule",
+            "title": "לוח שידורים",
+            "url": "http://kab.tv/tvlist_gen.php?lang=Hebrew"
+        },
+        {
+            "id": "questions",
+            "title": "שאלות",
+            "url": "http://kab.tv/q.php?lang=Hebrew"
+        },
+        {
+            "id": "sketches",
+            "title": "שרטוטים",
+            "url": "http://www.kab.tv/classboard/classboard.php?lang=Hebrew"
+        }
+    ]
+}

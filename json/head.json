@@ -1,0 +1,29 @@
+{
+    "lang": "Hebrew",
+    "dir": "rtl",
+    "headLinks": [
+        {
+            "caption": "Israelsite",
+            "url": "http: //kab.co.il/",
+            "title": "TV in Portuguese"
+        },
+        {
+            "caption": "Blog",
+            "url": "http: //laitman.ru/",
+            "title": "TV in German"
+        }
+    ],
+     "headNav": [
+        {
+            "caption": "Português",
+            "url": "http: //kab.tv/por/",
+            "title": "TV in Portuguese",
+            "lang": "Hebrew"
+        },
+        {
+            "caption": "Deutsch",
+            "url": "http: //kab.tv/ger/",
+            "title": "TV in German"
+        }
+    ]
+}

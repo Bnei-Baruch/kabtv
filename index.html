@@ -14,14 +14,19 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
 
-    <link rel="stylesheet" href="css/kabtv.css">
+    <link rel="stylesheet" href="./css/cssreset-min.css">
+    <link rel="stylesheet" href="./css/kabtv.css">
 
     <!--<script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>-->
-    <script src="js/vendor/angular/angular.min.js"></script>
-    <script src="js/kabtv.js"></script>
-    <script src="js/services.js"></script>
+    <script src="./js/vendor/angular/angular.min.js"></script>
+    <script src="http://jwpsrv.com/library/ElAvGDL5EeKp9yIACp8kUw.js"></script>
+
+    <script src="./js/module.js"></script>
+    <script src="./js/services.js"></script>
+    <script src="./js/directives.js"></script>
+    <script src="./js/controllers.js"></script>
 </head>
-<body>
+<body class="{{dir}}" ng-controller="kabTvLoadCtrl">
 <!--[if lt IE 7]>
 <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
     your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to
@@ -29,15 +34,14 @@
 <![endif]-->
 
 <div class="container">
-    <div kabtv-header></div>
+    <div kabtv-header></div> 
     <div kabtv-nav></div>
-    <div class="content">
-        <div kabtv-vod></div>
-        <div kabtv-player></div>
-        <div kabtv-tabs></div>
+    <div class="content clearfix">
+        <div kabtv-clip-list class="aside toR clipList clearfix">111</div>
+        <div kabtv-tabs class="aside toL clearfix">222</div>
+        <div kabtv-player class="mid"></div>
     </div>
-    <div kabtv-footer></div>
+    <div kabtv-footer class="footer"></div>
 </div>
-
 </body>
 </html>
