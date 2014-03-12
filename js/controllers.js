@@ -5,9 +5,12 @@ function kabTvLoadCtrl ($scope,  getInitData, pageSettings) {
     	pageSettings.langVal =  res.data.lang;
         
     });
-
+    $scope.showDialogSendToFriends = false;
 	$scope.$on("toget: switch to clip", function (e, clipData) {
-	    $scope.$broadcast("todo: switch to clip", clipData);
+        $scope.$broadcast("todo: switch to clip", clipData);
+    });
+    $scope.$on("show: send to friends", function (e, clipData) {
+        $scope.showDialogSendToFriends = true;
 	});
 
 }
@@ -182,6 +185,9 @@ kabtvPlayerCtrl.$inject = ["$scope", "getVideoAudio"];
 function kabtvClipListCtrl ( $scope, $http, setClipListes) {
     $scope.$http = $http;
     $scope.selectedClipList = null;
+    $scope.sendToFriends = function () {
+        $scope.$emit("show: send to friends", "clipData");
+    };
 
     setClipListes.then(function (res) {
         $scope.clipListes =  res.data.data;
@@ -192,6 +198,12 @@ function kabtvClipListCtrl ( $scope, $http, setClipListes) {
     }
 }
 kabtvClipListCtrl.$inject = ["$scope", "$http", "setClipListes"];
+
+
+function sendToFriendsCtrl ( $scope, $http) {
+    $scope.showDialog = false;
+}
+sendToFriendsCtrl.$inject = ["$scope", "$http"];
 
 
 

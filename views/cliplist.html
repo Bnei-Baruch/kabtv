@@ -10,9 +10,9 @@
 			<p>{{item.text.text}}</p>
 		</div>
 		<div class="clipIcons">
-			<a href="{{item.sendIcon.url}}" class="sendIcon clipIcon">
+			<span class="sendIcon clipIcon" ng-click="sendToFriends()">
 				<img src="{{item.sendIcon.src}}" title="{{item.sendIcon.title}}">
-			</a>
+			</span>
 			<a href="{{item.downloadIcon.url}}" class="downloadIcon clipIcon">
 				<img src="{{item.downloadIcon.img.src}}" title="{{item.downloadIcon.img.title}}"  class="toR">{{item.clipData.size}}
 			</a>

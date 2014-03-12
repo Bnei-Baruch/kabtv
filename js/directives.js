@@ -74,3 +74,17 @@ kabtv.directive("kabtvClipList", function ( ) {
         }
     };
 });
+
+kabtv.directive("kabtvSendToFriends", function ( ) {
+    return {
+        templateUrl: 'views/sendToFriends.html',
+        scope: {'showDialog': '=showDialogSendToFriends'},
+        controller: sendToFriendsCtrl,
+        link: function ($scope, el, attrs) {
+           /*$scope.$watch('', function (newVal, oldVal) {
+                if (newVal == null) return;
+                $scope.showDialog  = true;
+            }); */
+        }
+    };
+});
