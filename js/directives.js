@@ -51,6 +51,10 @@ kabtv.directive("kabtvPlayer", function () {
                 $scope.setPlayer(src);
             });
 
+<<<<<<< HEAD
+=======
+            $scope.setPlayer();
+>>>>>>> player bugs
         }
     };
 });
@@ -61,6 +65,18 @@ kabtv.directive("kabtvClipList", function ( ) {
     return {
         scope: {},
         templateUrl: 'views/cliplist.html',
+<<<<<<< HEAD
         controller: kabtvClipListCtrl
+=======
+        controller: kabtvClipListCtrl,
+        link: function ($scope, el, attrs) {
+            $scope.$watch('selectedClipList', function (newVal, oldVal) {
+                if (newVal == null) return;
+                $scope.$http.get(newVal.url).then(function(res){
+                    $scope.clipList =  res.data.data;
+                });
+            });
+        }
+>>>>>>> player bugs
     };
 });

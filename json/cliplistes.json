@@ -1,0 +1,14 @@
+{
+    "lang": "Hebrew",
+    "dir": "rtl",
+    "data": [
+        {
+            "title": "clips 0",
+            "url": "./json/cliplist0.json"
+        },
+        {
+            "title": "clips 1",
+            "url": "./json/cliplist1.json"
+        }
+    ]
+}

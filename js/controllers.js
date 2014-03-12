@@ -53,7 +53,11 @@ kabtvTabsCtrl.$inject = ["$scope", "getTabsIframe"];
 
 
 function kabtvPlayerCtrl ($scope, getVideoAudio) {
+<<<<<<< HEAD
     $scope.isVideo = false;
+=======
+    $scope.isVideo = true;
+>>>>>>> player bugs
     var promise = getVideoAudio.audio();
     promise.then(function(d){
         $scope.data = {
@@ -176,15 +180,39 @@ function kabtvPlayerCtrl ($scope, getVideoAudio) {
 }
 kabtvPlayerCtrl.$inject = ["$scope", "getVideoAudio"];
 
+<<<<<<< HEAD
 function kabtvClipListCtrl ( $scope, getClipList) {
     getClipList.then(function (res) {
         $scope.clipList =  res.data.data;
     });
+=======
+
+
+
+
+function kabtvClipListCtrl ( $scope, $http, setClipListes) {
+    $scope.$http = $http;
+    $scope.selectedClipList = null;
+
+    setClipListes.then(function (res) {
+        $scope.clipListes =  res.data.data;
+    }); 
+   
+>>>>>>> player bugs
     $scope.runClip = function (clipData) {
         $scope.$emit("toget: switch to clip", clipData);
     }
 }
+<<<<<<< HEAD
 kabtvClipListCtrl.$inject = ["$scope", "getClipList"];
+=======
+kabtvClipListCtrl.$inject = ["$scope", "$http", "setClipListes"];
+
+
+
+
+
+>>>>>>> player bugs
 
 /*footer controllers*/
 function kabtvFooterCtrl ($scope, getFooterData) {

@@ -43,6 +43,12 @@ a:hover{text-decoration:underline;}
 
 .content {background-color: #000C37; padding: 20px 0; position: absolute; top: 80px; bottom: 30px; left: 0; width: 100%;}
 .content .mid{margin: 0 265px; background-color: #384B92;padding: 20px 10px; min-height: 300px;	}
+<<<<<<< HEAD
+=======
+
+.backToOnLine{display: inline-block;padding: 0 25px 0 0;background-color: #FFA200;color: #000;}
+.clipInfo{}
+>>>>>>> player bugs
 
 /*Clip aside*/
 .content .aside{width: 265px; box-sizing: border-box; -moz-box-sizing: border-box; height: 100%;padding: 0 10px;box-sizing: border-box;}
@@ -61,8 +67,13 @@ a:hover{text-decoration:underline;}
 #asideTabIframe{width: 100%; height: 100%; position: relative;}
 #asideTabIframe .tabBtn{font-size: 11px; margin: 0 1px;padding: 5px;background-color: #384B92;color: #FFA200;}
 #asideTabIframe .tabBtn.select{margin-top: -1px;padding-bottom: 6px;background-color: #DFE7F2;color: #000;}
+<<<<<<< HEAD
 #asideTabIframe .forIframe{top: 33px; left: 0; right: 0; bottom: 0;position: absolute;}
+=======
+#asideTabIframe .forIframe{top: 32px; left: 0; right: 0; bottom: 0;position: absolute;}
+>>>>>>> player bugs
 #asideTabIframe iframe{width: 100%; height: 100%;}
 
+.selectTag{line-height: 20px; display: block;width: 100%;}
 /*FOOTER*/
 .footer{position: absolute;bottom: 0; left: 0; width: 100%; height: 30px;}
