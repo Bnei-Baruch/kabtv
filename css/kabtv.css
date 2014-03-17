@@ -13,6 +13,13 @@ a:hover{text-decoration:underline;}
 /* For IE 6/7 (trigger hasLayout) */
 .clearfix {zoom:1;}
 
+.disableSelect {-webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;}
+
+/*BUTTONS*/
+.btn{background-color: #555; border-radius: 5px; padding: 3px 10px; display: inline-block;}
+.btn:hover{background-color: #0D3AE0;}
+.close-X{background-color: #00145E; font: bold 12px/20px Arial; border-radius: 50%; padding: 0px;box-sizing: border-box; height: 20px; width: 20px; cursor: pointer;}
+
 /*TABS*/
 .tabs{}
 .tabBtn{display: inline-block; font: 13px/20px Arial; background-color: #000078; color: #FFF; cursor: pointer; padding: 0 10px; margin: 0 2px;}
@@ -22,7 +29,11 @@ a:hover{text-decoration:underline;}
 .content .tabBtn{}
 
 /*DIALOG*/
-.dialog{position: absolute; top: 0; bottom: 0; left: 0; right: 0; background-color: red; z-index: 10;}
+.dialog{position: fixed; top: 0; left: 0; height: 100%; width: 100%; background-color: rgba(0,0,0,0.4); z-index: 10;text-align: center;}
+.dialog .valign{display: inline-block;}
+.dialog .valign .window{display: inline-block; min-height: 200px; min-width: 200px; background-color: #FFF;vertical-align: middle; position: relative;}
+.dialog .close-X{position: absolute; top: 10px; right: 10px;}
+.rtl .dialog .close-X{right: auto; left: 10px}
 
 /*header*/
 #header{}

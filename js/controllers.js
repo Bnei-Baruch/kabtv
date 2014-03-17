@@ -1,14 +1,11 @@
 function kabTvLoadCtrl ($scope,  getInitData, pageSettings) {
-    getInitData.then(function (res) {
-    	$scope.dir = res.data.dir;
-    	pageSettings.dir = res.data.dir;
-    	pageSettings.langVal =  res.data.lang;
+    getInitData.then(function (reqData) {
+    	$scope.dir = reqData.data.dir;
+    	pageSettings.dir = reqData.data.dir;
+    	pageSettings.langVal =  reqData.data.lang;
         
     });
     $scope.showDialogSendToFriends = false;
-	$scope.$on("toget: switch to clip", function (e, clipData) {
-        $scope.$broadcast("todo: switch to clip", clipData);
-    });
     $scope.$on("show: send to friends", function (e, clipData) {
         $scope.showDialogSendToFriends = true;
 	});
@@ -18,10 +15,10 @@ kabTvLoadCtrl.$inject = ["$scope", "getInitData", "pageSettings"];
 
 
 function kabtvHeaderCtrl ($scope, getHeadData, pageSettings) {
-    getHeadData.then(function (res) {
-        $scope.lang =  res.data.lang;
-        $scope.topMenuData =  res.data.headNav;
-        $scope.linksList = res.data.headLinks;
+    getHeadData.then(function (reqData) {
+        $scope.lang =  reqData.data.lang;
+        $scope.topMenuData =  reqData.data.headNav;
+        $scope.linksList = reqData.data.headLinks;
     });
     $scope.currentLang = function(lang) {
         var lang =  (pageSettings.langVal == lang) ? "select": "";
@@ -35,10 +32,10 @@ kabtvHeaderCtrl.$inject = ["$scope", "getHeadData", "pageSettings"];
 
 
 function kabtvTabsCtrl ($scope, getTabsIframe) {
-    getTabsIframe.then(function(res){
-        $scope.tabs = res.data.data;
-        $scope.switchTab(res.data.data[res.data.defaultTab]);
-        $scope.currentTab = res.data.defaultTab;
+    getTabsIframe.then(function(reqData){
+        $scope.tabs = reqData.data.data;
+        $scope.switchTab(reqData.data.data[reqData.data.defaultTab]);
+        $scope.currentTab = reqData.data.defaultTab;
     });
     var $el = angular.element(document.querySelector('#asideTabIframe .forIframe'));
     $scope.switchTab = function (item, index){
@@ -55,38 +52,47 @@ kabtvTabsCtrl.$inject = ["$scope", "getTabsIframe"];
 
 
 
-function kabtvPlayerCtrl ($scope, getVideoAudio) {
+function kabtvPlayerCtrl ($scope, getOnlineMedia) {
 
     $scope.isVideo = true;
-    var promise = getVideoAudio.audio();
-    promise.then(function(d){
-        $scope.data = {
-            "audio": "http://files.kabbalahmedia.info/audio/heb_o_rav_bs-akdama-zohar_2014-02-28_lesson.mp3", 
-            "video": "http://files.kabbalahmedia.info/files/heb_o_rav_bs-akdama-zohar_2014-02-28_lesson.mp4"
-        };   
+    var promise = getOnlineMedia;
+    var currentLang;
+    promise.then(function(reqData){
+        currentLang = reqData.data.defaultLang;
+        $scope.payerData = reqData.data.data;
+        $scope.setPlayer(); 
     });
-    $scope.playCont = $scope.data.audio;
     $scope.switchVideoAudio = function (isVideo) {
         $scope.isVideo = isVideo;
     };
 
-    $scope.setPlayer = function (src) {
+    $scope.switchPlayerLang = function (lang) {
+        // if (reqData.data[lang]) {};
+        currentLang = lang;
+        $scope.setPlayer(); 
+    };
+
+    $scope.setPlayer = function (playObj) {
         var options = {};
-        if ($scope.isVideo || $scope.isClip) {
-            options = {file: src, width: "100%"};
-        } else {
-            options = {file: src, height: 30, width: "100%"};
+        if ($scope.isClip) {
+            options = {file: playObj.src, width: "100%"};
+        } else if ($scope.isVideo) {
+            if (typeof playObj === "undefined") playObj = $scope.payerData[currentLang].video;
+            options = {file: playObj.src, width: "100%"};
+        }
+        if (!$scope.isVideo) {
+            if (typeof playObj === "undefined") playObj = $scope.payerData[currentLang].audio;
+            options = {file: playObj.src, height: 30, width: "100%"};
         };
 
         var $el = angular.element(document.querySelector('#player'));
         $el.html('');
-        var mediaType = "WMV";
-    	switch (mediaType) {
-    		case "MP4": 
+    	switch (playObj.playerType) {
+    		case "JWPlayer": 
     			jwplayer("player").setup(options);
     			return;
-			case "WMV":
-    			$el.append(getWMVPlayer(src));
+			case "WMVPlayer":
+    			$el.append(getWMVPlayer(playObj.src));
     			return;
     	}
     }
@@ -178,30 +184,35 @@ function kabtvPlayerCtrl ($scope, getVideoAudio) {
 		return contObj;
     }
 }
-kabtvPlayerCtrl.$inject = ["$scope", "getVideoAudio"];
+kabtvPlayerCtrl.$inject = ["$scope", "getOnlineMedia"];
 
 
 
-function kabtvClipListCtrl ( $scope, $http, setClipListes) {
+function kabtvClipListCtrl ( $scope, $rootScope, $http, setClipListes) {
     $scope.$http = $http;
     $scope.selectedClipList = null;
     $scope.sendToFriends = function () {
         $scope.$emit("show: send to friends", "clipData");
     };
 
-    setClipListes.then(function (res) {
-        $scope.clipListes =  res.data.data;
+    setClipListes.then(function (reqData) {
+        $scope.clipListes =  reqData.data.data;
+        $scope.selectedClipList = reqData.data.data[reqData.data.default];
     }); 
    
     $scope.runClip = function (clipData) {
-        $scope.$emit("toget: switch to clip", clipData);
+        /*$rootscope.$emit("toget: switch to clip", clipData);*/
+        $rootScope.$broadcast("action: switch to clip", clipData);
     }
 }
-kabtvClipListCtrl.$inject = ["$scope", "$http", "setClipListes"];
+kabtvClipListCtrl.$inject = ["$scope", "$rootScope", "$http", "setClipListes"];
 
 
 function sendToFriendsCtrl ( $scope, $http) {
     $scope.showDialog = false;
+    $scope.closeWindow = function () {
+        $scope.showDialog = false;
+    }
 }
 sendToFriendsCtrl.$inject = ["$scope", "$http"];
 
@@ -209,8 +220,8 @@ sendToFriendsCtrl.$inject = ["$scope", "$http"];
 
 /*footer controllers*/
 function kabtvFooterCtrl ($scope, getFooterData) {
-    getFooterData.then(function (res) {
-        $scope.footMenuData =  res.data.data;
+    getFooterData.then(function (reqData) {
+        $scope.footMenuData =  reqData.data.data;
     });
 }
 kabtvFooterCtrl.$inject = ["$scope", "getFooterData"];

@@ -1,0 +1,27 @@
+{
+	"defaultLang": "heb",
+	"data": {
+		"heb": {
+			"title": "עברית",
+		    "audio": {
+		        "src": "mms://wms1.nl.kab.tv/radioheb",
+		        "playerType": "JWPlayer"
+		    },
+		    "video": {
+		        "src": "http://streams.kab.tv/heb.asx",
+		        "playerType": "WMVPlayer"
+		    }
+		},
+		"eng": {
+			"title": "אנגלית",
+		    "audio": {
+		        "src": "mms://wms1.nl.kab.tv/radioeng",
+		        "playerType": "JWPlayer"
+		    },
+		    "video": {
+		        "src": "http://streams.kab.tv/eng.asx",
+		        "playerType": "WMVPlayer"
+		    }
+		}
+	}
+}

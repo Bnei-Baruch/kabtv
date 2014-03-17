@@ -20,22 +20,6 @@ kabtv.service('getFooterData', ['$http', function ($http) {
 }]);
 
 
-
-
-
-kabtv.factory('getVideoAudio', function($http) {
-  var myService = {
-    video: function() {
-      var promise = $http.get('./test.json').then(function (response) {
-        return response.data;
-      });
-      return promise;
-    },
-    audio: function() {
-      //var promise = $http.get('./test.json');
-      
-      return {then: function (callback){callback();}};
-    }
-  };
-  return myService;
+kabtv.service('getOnlineMedia', function($http) {
+  return $http.get('./json/onlineMedia.json');
 });

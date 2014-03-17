@@ -36,23 +36,15 @@ kabtv.directive("kabtvPlayer", function () {
         templateUrl: 'views/player.html',
         controller: kabtvPlayerCtrl,
         link: function ($scope, el, attrs) {
-            $scope.$on("todo: switch to clip", function (e, data) {
+            $scope.$on("action: switch to clip", function (e, data) {
                 $scope.isClip = true;
-                $scope.setPlayer (data.downloadIcon.url);
+                $scope.clipData = data;
+                $scope.setPlayer ({src: data.downloadIcon.url, playerType: "JWPlayer"});
             });
             $scope.$watch('isVideo', function (newVal, oldVal) {
                 if (newVal == oldVal) return;
-                var src;
-                if (newVal) {
-                    src = $scope.data.video;
-                } else {
-                    src = $scope.data.audio;
-                };
-                $scope.setPlayer(src);
+                $scope.setPlayer();
             });
-
-
-            $scope.setPlayer();
         }
     };
 });
@@ -78,7 +70,7 @@ kabtv.directive("kabtvClipList", function ( ) {
 kabtv.directive("kabtvSendToFriends", function ( ) {
     return {
         templateUrl: 'views/sendToFriends.html',
-        scope: {'showDialog': '=showDialogSendToFriends'},
+        scope: {'showDialog': '=ngShow'},
         controller: sendToFriendsCtrl,
         link: function ($scope, el, attrs) {
            /*$scope.$watch('', function (newVal, oldVal) {
