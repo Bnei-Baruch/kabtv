@@ -39,12 +39,23 @@ kabtv.directive("kabtvPlayer", function () {
             $scope.$on("action: switch to clip", function (e, data) {
                 $scope.isClip = true;
                 $scope.clipData = data;
-                $scope.setPlayer ({src: data.downloadIcon.url, playerType: "JWPlayer"});
+                $scope.setPlayer ({src: data.downloadIcon.url, streamType: "WMV"});
             });
             $scope.$watch('isVideo', function (newVal, oldVal) {
                 if (newVal == oldVal) return;
                 $scope.setPlayer();
             });
+        }
+    };
+});
+
+kabtv.directive("kabtvAudioPlayer", function () {
+    return {
+        replace: true,
+        scope: {'audioSrc': "=dataSrc"},
+        templateUrl: 'views/audioPlayer.html',
+        controller: kabtvAudioPlayerCtrl,
+        link: function ($scope, el, attrs) {
         }
     };
 });

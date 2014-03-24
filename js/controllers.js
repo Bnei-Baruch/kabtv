@@ -40,10 +40,9 @@ function kabtvTabsCtrl ($scope, getTabsIframe) {
     var $el = angular.element(document.querySelector('#asideTabIframe .forIframe'));
     $scope.switchTab = function (item, index){
         $scope.currentTab = index;
-        var iFrame = angular.element("<iframe>").attr({
-            "frameborder": 0,
-            "src": item.url
-        });
+        var attrebuts = {"frameborder": 0,"src": item.url};
+        if (item.id == "questions") {attrebuts.scrolling = "no"};
+        var iFrame = angular.element("<iframe>").attr(attrebuts);
         $el.html('');
         $el.append(iFrame);
     }
@@ -51,8 +50,37 @@ function kabtvTabsCtrl ($scope, getTabsIframe) {
 kabtvTabsCtrl.$inject = ["$scope", "getTabsIframe"];
 
 
+function kabtvAudioPlayerCtrl ($scope) {
+    var noScopeObj = {};
+    noScopeObj.soundPlayer = soundManager.createSound({ 
+      url: $scope.audioSrc, 
+      autoPlay: true
+    }); 
 
-function kabtvPlayerCtrl ($scope, getOnlineMedia) {
+    $scope.isPlay = true;
+    $scope.isMute = false;
+    $scope.toggleMute = function () {
+        $scope.isMute = !$scope.isMute;
+        if ($scope.isMute) {
+            $scope.muteOnOff = "off";
+            noScopeObj.soundPlayer.mute();
+        }else{
+            $scope.muteOnOff = "on";
+            noScopeObj.soundPlayer.unmute();
+        }
+    };
+    $scope.togglePlay = function () {
+        $scope.isPlay = !$scope.isPlay;
+        $scope.playOnOff = ($scope.isPlay) ? "on": "off"; 
+    };
+    
+   function setAudioPlayer(){
+    };
+};
+kabtvAudioPlayerCtrl.$inject = ["$scope"];
+
+
+function kabtvPlayerCtrl ($scope, $compile, getOnlineMedia) {
 
     $scope.isVideo = true;
     var promise = getOnlineMedia;
@@ -87,15 +115,25 @@ function kabtvPlayerCtrl ($scope, getOnlineMedia) {
 
         var $el = angular.element(document.querySelector('#player'));
         $el.html('');
-    	switch (playObj.playerType) {
-    		case "JWPlayer": 
-    			jwplayer("player").setup(options);
+    	switch (playObj.streamType) {
+    		case "HLS":
+                options.autostart = true;
+                $el.append('<div id="jwPlayerCont">');
+    			jwplayer("jwPlayerCont").setup(options);
     			return;
-			case "WMVPlayer":
-    			$el.append(getWMVPlayer(playObj.src));
-    			return;
-    	}
+			case "WMV":
+                $el.append(getWMVPlayer(playObj.src));
+                return;
+            case "icecast":
+                $el.append(getAudioPlayer(playObj.src));
+        };
+
+        function getAudioPlayer(src){
+            var player = $compile( "<div kabtv-audio-player  data-src = "+src+">" )( $scope );
+            return player;
+        };
     }
+ 
     function getWMVPlayer (src){
     	var param = [];
     	var contObj = angular.element("<object>").attr({
@@ -184,7 +222,7 @@ function kabtvPlayerCtrl ($scope, getOnlineMedia) {
 		return contObj;
     }
 }
-kabtvPlayerCtrl.$inject = ["$scope", "getOnlineMedia"];
+kabtvPlayerCtrl.$inject = ["$scope", "$compile", "getOnlineMedia"];
 
 
 
