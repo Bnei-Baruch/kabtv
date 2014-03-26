@@ -9,39 +9,17 @@ kabtv.service('getTabsIframe', ['$http', function ($http) {
     return $http.get('./json/tabsiframe.json');
 }]);
 
-<<<<<<< HEAD
-kabtv.service('getClipList', ['$http', function ($http) {
-    return $http.get('./json/cliplist.json');
-}]);
 
-=======
 kabtv.service('setClipListes', ['$http', function ($http) {
     return $http.get('./json/cliplistes.json');
 }]);
 
 
->>>>>>> player bugs
 kabtv.service('getFooterData', ['$http', function ($http) {
     return $http.get('./json/footer.json');
 }]);
 
 
-
-
-
-kabtv.factory('getVideoAudio', function($http) {
-  var myService = {
-    video: function() {
-      var promise = $http.get('./test.json').then(function (response) {
-        return response.data;
-      });
-      return promise;
-    },
-    audio: function() {
-      //var promise = $http.get('./test.json');
-      
-      return {then: function (callback){callback();}};
-    }
-  };
-  return myService;
+kabtv.service('getOnlineMedia', function($http) {
+  return $http.get('./json/onlineMedia.json');
 });

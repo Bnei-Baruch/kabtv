@@ -17,14 +17,16 @@
     <link rel="stylesheet" href="./css/cssreset-min.css">
     <link rel="stylesheet" href="./css/kabtv.css">
 
-    <!--<script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>-->
-    <script src="./js/vendor/angular/angular.min.js"></script>
+    <!--<script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+    <script src="./js/vendor/jQuery.jPlayer.2.5.0/jquery.jplayer.min.js">-->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js"></script>
     <script src="http://jwpsrv.com/library/ElAvGDL5EeKp9yIACp8kUw.js"></script>
+    <script src="./js/vendor/soundmanager2-nodebug-jsmin.js"></script>
 
     <script src="./js/module.js"></script>
     <script src="./js/services.js"></script>
-    <script src="./js/directives.js"></script>
     <script src="./js/controllers.js"></script>
+    <script src="./js/directives.js"></script>
 </head>
 <body class="{{dir}}" ng-controller="kabTvLoadCtrl">
 <!--[if lt IE 7]>
@@ -32,7 +34,7 @@
     your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to
     improve your experience.</p>
 <![endif]-->
-
+<div kabtv-send-to-friends ng-show = "showDialogSendToFriends" class="dialog dialogSendToFriends"></div>
 <div class="container">
     <div kabtv-header></div> 
     <div kabtv-nav></div>

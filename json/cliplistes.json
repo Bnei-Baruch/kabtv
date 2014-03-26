@@ -1,6 +1,7 @@
 {
     "lang": "Hebrew",
     "dir": "rtl",
+    "default": 0,
     "data": [
         {
             "title": "clips 0",

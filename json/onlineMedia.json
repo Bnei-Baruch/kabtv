@@ -1,0 +1,27 @@
+{
+	"defaultLang": "heb",
+	"data": {
+		"heb": {
+			"title": "עברית",
+		    "audio": {
+		        "src": "http://icecast.kab.tv/radiozohar2014.mp3",
+		        "streamType": "icecast"
+		    },
+		    "video": {
+		        "src": "http://edge1.il.kab.tv/rtplive/tv66-heb-high.stream/playlist.m3u8",
+		        "streamType": "HLS"
+		    }
+		},
+		"eng": {
+			"title": "אנגלית",
+		    "audio": {
+		        "src": "http://icecast.kab.tv/radiozohar2014.mp3",
+		        "streamType": "icecast"
+		    },
+		    "video": {
+		        "src": "http://streams.kab.tv/eng.asx",
+		        "streamType": "WMV"
+		    }
+		}
+	}
+}

@@ -1,20 +1,4 @@
-<<<<<<< HEAD
-<div ng-repeat="item in clipList" class="item">
-	<div ng-click = "runClip(item)"  class="cont clearfix">
-		<img src="{{item.content.img.url}}" title="{{item.content.img.title}}" class="toL">
-		<h5>{{item.text.title}}</h5>
-		<p>{{item.text.text}}</p>
-	</div>
-	<div class="clipIcons">
-		<a href="{{item.sendIcon.url}}" class="sendIcon clipIcon">
-			<img src="{{item.sendIcon.src}}" title="{{item.sendIcon.title}}">
-		</a>
-		<a href="{{item.downloadIcon.url}}" class="downloadIcon clipIcon">
-			<img src="{{item.downloadIcon.img.src}}" title="{{item.downloadIcon.img.title}}"  class="toR">{{item.clipData.size}}
-		</a>
-	</div>
-	<div class="clipData">{{item.clipData.length}}</div>
-=======
+
 <div>
 	<select ng-model="selectedClipList" ng-options="item.title for item in clipListes" class="selectTag">
 	  <option value="" ng-hide="{{selectedClipList.title == item.title}}">{{selectedClipList.title}}</option>
@@ -26,14 +10,13 @@
 			<p>{{item.text.text}}</p>
 		</div>
 		<div class="clipIcons">
-			<a href="{{item.sendIcon.url}}" class="sendIcon clipIcon">
+			<span class="sendIcon clipIcon" ng-click="sendToFriends()">
 				<img src="{{item.sendIcon.src}}" title="{{item.sendIcon.title}}">
-			</a>
+			</span>
 			<a href="{{item.downloadIcon.url}}" class="downloadIcon clipIcon">
 				<img src="{{item.downloadIcon.img.src}}" title="{{item.downloadIcon.img.title}}"  class="toR">{{item.clipData.size}}
 			</a>
 		</div>
 		<div class="clipData">{{item.clipData.length}}</div>
 	</div>
->>>>>>> player bugs
 </div>

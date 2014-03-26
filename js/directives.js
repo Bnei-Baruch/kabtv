@@ -36,25 +36,26 @@ kabtv.directive("kabtvPlayer", function () {
         templateUrl: 'views/player.html',
         controller: kabtvPlayerCtrl,
         link: function ($scope, el, attrs) {
-            $scope.$on("todo: switch to clip", function (e, data) {
+            $scope.$on("action: switch to clip", function (e, data) {
                 $scope.isClip = true;
-                $scope.setPlayer (data.downloadIcon.url);
+                $scope.clipData = data;
+                $scope.setPlayer ({src: data.downloadIcon.url, streamType: "WMV"});
             });
             $scope.$watch('isVideo', function (newVal, oldVal) {
                 if (newVal == oldVal) return;
-                var src;
-                if (newVal) {
-                    src = $scope.data.video;
-                } else {
-                    src = $scope.data.audio;
-                };
-                $scope.setPlayer(src);
+                $scope.setPlayer();
             });
+        }
+    };
+});
 
-<<<<<<< HEAD
-=======
-            $scope.setPlayer();
->>>>>>> player bugs
+kabtv.directive("kabtvAudioPlayer", function () {
+    return {
+        replace: true,
+        scope: {'audioSrc': "=dataSrc"},
+        templateUrl: 'views/audioPlayer.html',
+        controller: kabtvAudioPlayerCtrl,
+        link: function ($scope, el, attrs) {
         }
     };
 });
@@ -65,9 +66,6 @@ kabtv.directive("kabtvClipList", function ( ) {
     return {
         scope: {},
         templateUrl: 'views/cliplist.html',
-<<<<<<< HEAD
-        controller: kabtvClipListCtrl
-=======
         controller: kabtvClipListCtrl,
         link: function ($scope, el, attrs) {
             $scope.$watch('selectedClipList', function (newVal, oldVal) {
@@ -77,6 +75,19 @@ kabtv.directive("kabtvClipList", function ( ) {
                 });
             });
         }
->>>>>>> player bugs
+    };
+});
+
+kabtv.directive("kabtvSendToFriends", function ( ) {
+    return {
+        templateUrl: 'views/sendToFriends.html',
+        scope: {'showDialog': '=ngShow'},
+        controller: sendToFriendsCtrl,
+        link: function ($scope, el, attrs) {
+           /*$scope.$watch('', function (newVal, oldVal) {
+                if (newVal == null) return;
+                $scope.showDialog  = true;
+            }); */
+        }
     };
 });

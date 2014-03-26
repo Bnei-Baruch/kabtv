@@ -1,5 +1,5 @@
 html, body{min-height: 100%; height: 100%; }
-body{background-color: #00145E; font: normal normal 12px Arial, sans-serif; color: #FFF; dir=""}
+body{background-color: #00145E; font: normal normal 12px Arial, sans-serif; color: #FFF; padding-top: 10px; dir=""}
 .toL{float: left;}
 .toR{float: right;}
 .rtl{direction: rtl;}
@@ -13,6 +13,13 @@ a:hover{text-decoration:underline;}
 /* For IE 6/7 (trigger hasLayout) */
 .clearfix {zoom:1;}
 
+.disableSelect {-webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;}
+
+/*BUTTONS*/
+.btn{background-color: #555; border-radius: 5px; padding: 3px 10px; display: inline-block;}
+.btn:hover{background-color: #0D3AE0;}
+.close-X{background-color: #00145E; font: bold 12px/20px Arial; border-radius: 50%; padding: 0px;box-sizing: border-box; height: 20px; width: 20px; cursor: pointer;}
+
 /*TABS*/
 .tabs{}
 .tabBtn{display: inline-block; font: 13px/20px Arial; background-color: #000078; color: #FFF; cursor: pointer; padding: 0 10px; margin: 0 2px;}
@@ -21,6 +28,12 @@ a:hover{text-decoration:underline;}
 .rtl .tabBtn:first-child{margin-right: 0;}
 .content .tabBtn{}
 
+/*DIALOG*/
+.dialog{position: fixed; top: 0; left: 0; height: 100%; width: 100%; background-color: rgba(0,0,0,0.4); z-index: 10;text-align: center;}
+.dialog .valign{display: inline-block;}
+.dialog .valign .window{display: inline-block; min-height: 200px; min-width: 200px; background-color: #FFF;vertical-align: middle; position: relative;}
+.dialog .close-X{position: absolute; top: 10px; right: 10px;}
+.rtl .dialog .close-X{right: auto; left: 10px}
 
 /*header*/
 #header{}
@@ -35,7 +48,7 @@ a:hover{text-decoration:underline;}
 .rtl .headLangNav a:first-child{border-right: 0 none;}
 
 .headLinksNav{display: block; padding: 5px 0; text-align: center;}
-.headLinksNav a{display: inline-block; margin: 0 10px; }
+.headLinksNav a{display: inline-block; margin: 0 5px 0 0; color:#FFF;}
 
 
 /*CONTENT*/
@@ -43,15 +56,17 @@ a:hover{text-decoration:underline;}
 
 .content {background-color: #000C37; padding: 20px 0; position: absolute; top: 80px; bottom: 30px; left: 0; width: 100%;}
 .content .mid{margin: 0 265px; background-color: #384B92;padding: 20px 10px; min-height: 300px;	}
-<<<<<<< HEAD
-=======
 
 .backToOnLine{display: inline-block;padding: 0 25px 0 0;background-color: #FFA200;color: #000;}
 .clipInfo{}
->>>>>>> player bugs
+
+.audioPlayer{display: block; background-color: rgba(0,0,0, 0.5); padding: 5px 10px;}
+.audioPlayer .play, .audioPlayer .mute{display: inline-block; margin: 0 5px; padding: 5px;}
+.audioPlayer .play.off, .audioPlayer .mute.off{background-color: red;}
 
 /*Clip aside*/
-.content .aside{width: 265px; box-sizing: border-box; -moz-box-sizing: border-box; height: 100%;padding: 0 10px;box-sizing: border-box;}
+.content .aside{width: 265px; box-sizing: border-box; -moz-box-sizing: border-box; height: 100%;padding: 0;box-sizing: border-box;}
+.content .aside.toR{padding: 0 10px;}
 .clipList{overflow: auto; height: 100%;}
 .clipList .item{border-bottom: 1px solid #4EA9FF; padding: 10px 0;}
 .clipList .cont{cursor: pointer;}
@@ -67,13 +82,15 @@ a:hover{text-decoration:underline;}
 #asideTabIframe{width: 100%; height: 100%; position: relative;}
 #asideTabIframe .tabBtn{font-size: 11px; margin: 0 1px;padding: 5px;background-color: #384B92;color: #FFA200;}
 #asideTabIframe .tabBtn.select{margin-top: -1px;padding-bottom: 6px;background-color: #DFE7F2;color: #000;}
-<<<<<<< HEAD
-#asideTabIframe .forIframe{top: 33px; left: 0; right: 0; bottom: 0;position: absolute;}
-=======
+
 #asideTabIframe .forIframe{top: 32px; left: 0; right: 0; bottom: 0;position: absolute;}
->>>>>>> player bugs
 #asideTabIframe iframe{width: 100%; height: 100%;}
 
 .selectTag{line-height: 20px; display: block;width: 100%;}
 /*FOOTER*/
-.footer{position: absolute;bottom: 0; left: 0; width: 100%; height: 30px;}
+.footer{position: absolute;bottom: 0; left: 0; width: 100%; height: 30px;background-color: #000078;padding:10px 0 0 0;}
+.footer a {color:#FFF;font-size: x-small;}
+.langs {margin:5px 5px 5px 0;}
+.playerPanel {padding:5px 0;}
+.playerPanel .clipTitle {color:#FFA302;}
+.ng-scope {display: inline; margin: 5px 5px 5px 0;}
