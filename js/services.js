@@ -1,8 +1,19 @@
 kabtv.service('getInitData', ['$http', 'pageSettings', function ($http, pageSettings) {
     return $http.get('./json/onload.json');
 }]);
-kabtv.service('getHeadData', ['$http', function ($http) {
-    return $http.get('./json/head.json');
+kabtv.service('getHeadData', ['$http', 'pageSettings', function ($http, pageSettings) {
+    return $http.jsonp('http://api.kab.tv/api/nav_links', 
+    	{
+    		responseType: 'json', 
+    		params: {
+    			'lang': pageSettings.langVal, 
+    			'placeholder': 'navbar'
+    		},
+    		 headers: {
+		        'Content-Type': 'application/json'
+		    }
+    	}
+	);
 }]);
 
 kabtv.service('getTabsIframe', ['$http', function ($http) {

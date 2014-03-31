@@ -17,7 +17,7 @@ kabTvLoadCtrl.$inject = ["$scope", "getInitData", "pageSettings"];
 function kabtvHeaderCtrl ($scope, getHeadData, pageSettings) {
     getHeadData.then(function (reqData) {
         $scope.lang =  reqData.data.lang;
-        $scope.topMenuData =  reqData.data.headNav;
+        //$scope.topMenuData =  reqData.data.headNav;
         $scope.linksList = reqData.data.headLinks;
     });
     $scope.currentLang = function(lang) {
@@ -52,7 +52,7 @@ kabtvTabsCtrl.$inject = ["$scope", "getTabsIframe"];
 
 function kabtvAudioPlayerCtrl ($scope) {
     var noScopeObj = {};
-    noScopeObj.soundPlayer = soundManager.createSound({ 
+    $scope.soundPlayer = soundManager.createSound({ 
       url: $scope.audioSrc, 
       autoPlay: true
     }); 
@@ -63,17 +63,19 @@ function kabtvAudioPlayerCtrl ($scope) {
         $scope.isMute = !$scope.isMute;
         if ($scope.isMute) {
             $scope.muteOnOff = "off";
-            noScopeObj.soundPlayer.mute();
+            $scope.soundPlayer.mute();
         }else{
             $scope.muteOnOff = "on";
-            noScopeObj.soundPlayer.unmute();
+            $scope.soundPlayer.unmute();
         }
     };
     $scope.togglePlay = function () {
         $scope.isPlay = !$scope.isPlay;
         $scope.playOnOff = ($scope.isPlay) ? "on": "off"; 
     };
-    
+    $scope.setDestroy = function(){
+        noScopeObj.destruct();
+    }
    function setAudioPlayer(){
     };
 };
@@ -107,8 +109,7 @@ function kabtvPlayerCtrl ($scope, $compile, getOnlineMedia) {
         } else if ($scope.isVideo) {
             if (typeof playObj === "undefined") playObj = $scope.payerData[currentLang].video;
             options = {file: playObj.src, width: "100%"};
-        }
-        if (!$scope.isVideo) {
+        } else if (!$scope.isVideo) {
             if (typeof playObj === "undefined") playObj = $scope.payerData[currentLang].audio;
             options = {file: playObj.src, height: 30, width: "100%"};
         };
