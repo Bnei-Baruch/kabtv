@@ -51,14 +51,10 @@ kabtv.directive("kabtvPlayer", function () {
 
 kabtv.directive("kabtvAudioPlayer", function () {
     return {
-       // replace: true,
-        scope: {'audioObj': "=dataSrc"},
+        replace: true,
         templateUrl: 'views/audioPlayer.html',
         controller: kabtvAudioPlayerCtrl,
         link: function ($scope, el, attrs) {
-            $scope.$on('$destroy', function(){
-                $scope.setDestroy();
-            });
         }
     };
 });

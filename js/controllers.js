@@ -50,36 +50,50 @@ function kabtvTabsCtrl ($scope, getTabsIframe) {
 kabtvTabsCtrl.$inject = ["$scope", "getTabsIframe"];
 
 
-function kabtvAudioPlayerCtrl ($scope) {
-    var noScopeObj = {};
-    $scope.soundPlayer = soundManager.createSound({ 
-      url: $scope.audioSrc, 
-      autoPlay: true
-    }); 
+function kabtvAudioPlayerCtrl ($scope, $element, pageSettings) {
+ 
 
-    $scope.isPlay = true;
+    $scope.isPlay = false;
     $scope.isMute = false;
     $scope.toggleMute = function () {
         $scope.isMute = !$scope.isMute;
         if ($scope.isMute) {
             $scope.muteOnOff = "off";
-            $scope.soundPlayer.mute();
+            pageSettings.audioPlayer.mute();
         }else{
             $scope.muteOnOff = "on";
-            $scope.soundPlayer.unmute();
+            pageSettings.audioPlayer.unmute();
         }
     };
     $scope.togglePlay = function () {
         $scope.isPlay = !$scope.isPlay;
-        $scope.playOnOff = ($scope.isPlay) ? "on": "off"; 
+         if ($scope.isPlay) {
+            $scope.playOnOff = "off";
+            pageSettings.audioPlayer.play();
+        }else{
+            $scope.playOnOff = "on";
+            pageSettings.audioPlayer.stop();
+        }
     };
-    $scope.setDestroy = function(){
-        noScopeObj.destruct();
-    }
-   function setAudioPlayer(){
+
+
+   if (pageSettings.audioPlayer === null) {
+        pageSettings.audioPlayer = soundManager.createSound({ 
+          url: $scope.audioSrc, 
+          autoPlay: false
+        }); 
+        $scope.togglePlay();
+    } else {
+        pageSettings.audioPlayer.url = $scope.audioSrc;
+        $scope.isPlay = false;
+        $scope.togglePlay();
     };
+
+    $element.bind('$destroy', function(){
+        pageSettings.audioPlayer.stop();
+    });
 };
-kabtvAudioPlayerCtrl.$inject = ["$scope"];
+kabtvAudioPlayerCtrl.$inject = ["$scope", "$element", "pageSettings"];
 
 
 function kabtvPlayerCtrl ($scope, $compile, getOnlineMedia) {
@@ -130,7 +144,8 @@ function kabtvPlayerCtrl ($scope, $compile, getOnlineMedia) {
         };
 
         function getAudioPlayer(src){
-            var player = $compile( "<div kabtv-audio-player  data-src = "+src+">" )( $scope );
+            $scope.audioSrc = src;
+            var player = $compile( '<div kabtv-audio-player>' )( $scope );
             return player;
         };
     }
