@@ -81,6 +81,7 @@ a:hover{text-decoration:underline;}
 .clipList .cont h5{color: #D32020;}
 .clipList .clipIcons{text-align: left; margin: 0 2px; }
 .clipList .clipData {text-align: right;color: #4EA9FF;}
+.clipList .clipImage {width:70px; height:70px;}
 
 /*tabs aside*/
 
@@ -99,3 +100,4 @@ a:hover{text-decoration:underline;}
 .playerPanel {padding:5px 0;}
 .playerPanel .clipTitle {color:#FFA302;}
 .ng-scope {display: inline; margin: 5px 5px 5px 0;}
+.clipListContainer {position:absolute; overflow:auto; top:45px; bottom:10px;padding: 0 15px 0 0;width: 239px;}
