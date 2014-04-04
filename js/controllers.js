@@ -54,9 +54,13 @@ function kabtvTabsCtrl ($scope, getTabsIframe) {
         $scope.currentTab = index;
         var attrebuts = {"frameborder": 0,"src": item.url};
         if (item.id == "questions") {attrebuts.scrolling = "no"};
-        var iFrame = angular.element("<iframe>").attr(attrebuts);
+        var setHtml = angular.element("<iframe>").attr(attrebuts);
+
+        if (item.id == "updates") {
+            setHtml = angular.element("<div kabtv-updates>");
+        };
         $el.html('');
-        $el.append(iFrame);
+        $el.append(setHtml);
     }
 }
 kabtvTabsCtrl.$inject = ["$scope", "getTabsIframe"];
