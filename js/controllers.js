@@ -1,24 +1,29 @@
-function kabTvLoadCtrl ($scope,  getInitData, pageSettings) {
+function kabTvOnLoadCtrl ($scope,  getInitData, pageSettings) {
     getInitData.then(function (reqData) {
-    	$scope.dir = reqData.data.dir;
-    	pageSettings.dir = reqData.data.dir;
-    	pageSettings.Lang =  setLang();
         
     });
     $scope.showDialogSendToFriends = false;
     $scope.$on("show: send to friends", function (e, clipData) {
         $scope.showDialogSendToFriends = true;
-	});
-    $scope.Lang = setLang();
+    });
+    
+    $scope.Lang = pageSettings.Lang =  setLang();
+    $scope.dir = pageSettings.dir = setDir();
 
     function setLang () {
         var url = window.location.href.split("//")[1];
-        var lang = url.split("/")[1];
-        return lang;
+        var lang = url.split("/")[1].toUpperCase();
+      //  return lang;
+       return "HEB";
     };
+    function setDir() {
+        var dir = ($scope.Lang == "HEB") ? "rtl" : "ltr";
+        return dir;
+    };
+    var a = 2;
 
 }
-kabTvLoadCtrl.$inject = ["$scope", "getInitData", "pageSettings"];
+kabTvOnLoadCtrl.$inject = ["$scope", "getInitData", "pageSettings"];
 
 
 function kabtvHeaderCtrl ($scope, getHeadData, pageSettings) {

@@ -1,6 +1,13 @@
-kabtv.directive("kabtvHeader", function (pageSettings) {
+kabtv.directive("kabtvOnload", function (pageSettings) {
     return {
         scope: {},
+        templateUrl: './views/onload.html',
+        controller: kabTvOnLoadCtrl
+    };
+});
+
+kabtv.directive("kabtvHeader", function (pageSettings) {
+    return {
         templateUrl: './views/header.html',
         controller: kabtvHeaderCtrl
     };
