@@ -6,7 +6,7 @@ kabtv.service('getHeadData', ['$http', 'pageSettings', function ($http, pageSett
     	{
     		responseType: 'json', 
     		params: {
-    			'lang': pageSettings.langVal, 
+    			'lang': pageSettings.Lang, 
     			'placeholder': 'navbar'
     		},
     		 headers: {
@@ -26,7 +26,7 @@ kabtv.service('setClipListes', ['$http', 'pageSettings', function ($http, pageSe
     	{
     		responseType: 'json', 
     		params: {
-    			'lang': pageSettings.langVal
+    			'lang': pageSettings.Lang
     		},
     		 headers: {
 		        'Content-Type': 'application/json'
