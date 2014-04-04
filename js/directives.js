@@ -61,7 +61,7 @@ kabtv.directive("kabtvAudioPlayer", function () {
 
 
 
-kabtv.directive("kabtvClipList", function ( ) {
+kabtv.directive("kabtvClipList", function ( setClipList ) {
     return {
         scope: {},
         templateUrl: 'views/cliplist.html',
@@ -69,9 +69,11 @@ kabtv.directive("kabtvClipList", function ( ) {
         link: function ($scope, el, attrs) {
             $scope.$watch('selectedClipList', function (newVal, oldVal) {
                 if (newVal == null) return;
-                $scope.$http.get(newVal.url).then(function(res){
-                    $scope.clipList =  res.data.data;
+                setClipList(newVal.id).then(function(res){
+                    $scope.clipList =  res.data;
                 });
+
+
             });
         }
     };

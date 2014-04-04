@@ -23,9 +23,9 @@ kabTvLoadCtrl.$inject = ["$scope", "getInitData", "pageSettings"];
 
 function kabtvHeaderCtrl ($scope, getHeadData, pageSettings) {
     getHeadData.then(function (reqData) {
-        $scope.lang =  reqData.data.lang;
+        //$scope.lang =  reqData.data.lang;
         //$scope.topMenuData =  reqData.data.headNav;
-        $scope.linksList = reqData.data.headLinks;
+        $scope.linksList = reqData.data;
     });
     $scope.currentLang = function(lang) {
         var lang =  (pageSettings.langVal == lang) ? "select": "";
@@ -257,8 +257,8 @@ function kabtvClipListCtrl ( $scope, $rootScope, $http, setClipListes) {
     };
 
     setClipListes.then(function (reqData) {
-        $scope.clipListes =  reqData.data.data;
-        $scope.selectedClipList = reqData.data.data[reqData.data.default];
+        $scope.clipListes =  reqData.data;
+        $scope.selectedClipList = reqData.data[0];
     }); 
    
     $scope.runClip = function (clipData) {
@@ -266,8 +266,7 @@ function kabtvClipListCtrl ( $scope, $rootScope, $http, setClipListes) {
         $rootScope.$broadcast("action: switch to clip", clipData);
     }
 }
-kabtvClipListCtrl.$inject = ["$scope", "$rootScope", "$http", "setClipListes"];
-
+kabtvClipListCtrl.$inject = ["$scope", "$rootScope", "$http", "setClipListes", "pageSettings"];
 
 function sendToFriendsCtrl ( $scope, $http) {
     $scope.showDialog = false;
