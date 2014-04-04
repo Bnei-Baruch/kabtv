@@ -286,7 +286,7 @@ sendToFriendsCtrl.$inject = ["$scope", "$http"];
 /*footer controllers*/
 function kabtvFooterCtrl ($scope, getFooterData) {
     getFooterData.then(function (reqData) {
-        $scope.footMenuData =  reqData.data.data;
+        $scope.footMenuData =  reqData.data;
     });
 }
 kabtvFooterCtrl.$inject = ["$scope", "getFooterData"];

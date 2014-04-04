@@ -46,7 +46,7 @@ kabtv.directive("kabtvPlayer", function () {
             $scope.$on("action: switch to clip", function (e, data) {
                 $scope.isClip = true;
                 $scope.clipData = data;
-                $scope.setPlayer ({src: data.downloadIcon.url, streamType: "WMV"});
+                $scope.setPlayer ({src: data.play_url, streamType: data.content_type});
             });
             $scope.$watch('isVideo', function (newVal, oldVal) {
                 if (newVal == oldVal) return;

@@ -58,8 +58,19 @@ kabtv.service('setClipList', ['$http', 'pageSettings', function ($http, pageSett
 
 
 
-kabtv.service('getFooterData', ['$http', function ($http) {
-    return $http.get('./json/footer.json');
+kabtv.service('getFooterData', ['$http', 'pageSettings', function ($http, pageSettings) {
+   return $http.get('http://api.kab.tv/api/nav_links', 
+        {
+            responseType: 'json', 
+            params: {
+                'lang': pageSettings.Lang, 
+                'placeholder': 'footer'
+            },
+             headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+    );
 }]);
 
 

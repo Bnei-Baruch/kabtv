@@ -9,10 +9,10 @@
 		<span ng-repeat="(lang, item) in payerData" class="langs {{(currentLang == lang) ? 'selected': '';}}" ng-click="switchPlayerLang(lang)">{{item.title}}</span>
 	</div>
 	<div ng-show = "isClip" class="playerPanel">
-		<span class="clipTitle">{{clipData.text.title}}</span>
+		<span class="clipTitle">{{clipData.title}}</span>
 		<a href="{{clipData.downloadIcon.url}}" class="downloadIcon clipIconBig">
-			<img src="{{clipData.downloadIcon.img.src}}" title="{{clipData.downloadIcon.img.title}}">{{clipData.clipData.size}}
+			<img src="images/save.gif" title="הורד קובץ">{{clipData.size}}
 		</a>		
-		<p>{{clipData.text.text}}</p>
+		<p>{{clipData.description}}</p>
 	</div>
 </div>
