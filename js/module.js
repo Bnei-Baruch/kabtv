@@ -1,2 +1,2 @@
 var kabtv = angular.module('kabtv', []);
-kabtv.value('pageSettings', {langVal: "HEB", dir: "rtl", audioPlayer: null});
+kabtv.value('pageSettings', {Lang: "HEB", dir: "rtl", audioPlayer: null});

@@ -2,13 +2,20 @@ function kabTvLoadCtrl ($scope,  getInitData, pageSettings) {
     getInitData.then(function (reqData) {
     	$scope.dir = reqData.data.dir;
     	pageSettings.dir = reqData.data.dir;
-    	pageSettings.langVal =  reqData.data.lang;
+    	pageSettings.Lang =  setLang();
         
     });
     $scope.showDialogSendToFriends = false;
     $scope.$on("show: send to friends", function (e, clipData) {
         $scope.showDialogSendToFriends = true;
 	});
+    $scope.Lang = setLang();
+
+    function setLang () {
+        var url = window.location.href.split("//")[1];
+        var lang = url.split("/")[1];
+        return lang;
+    };
 
 }
 kabTvLoadCtrl.$inject = ["$scope", "getInitData", "pageSettings"];
