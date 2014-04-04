@@ -79,7 +79,7 @@ a:hover{text-decoration:underline;}
 .clipList .cont:hover {opacity: 0.8;}
 .clipList .cont img{ margin: 3px 10px 5px 0;}
 .rtl .clipList .cont img{ margin: 3px 0 5px 10px;}
-.clipList .cont h5{color: #D32020;}
+.clipList .cont h5{color: #FFA302;}
 .clipList .clipIcons{text-align: left; margin: 0 2px; }
 .clipList .clipData {text-align: right;color: #4EA9FF;}
 .clipList .clipImage {width:70px; height:70px;}
