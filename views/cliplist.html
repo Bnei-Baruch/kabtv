@@ -1,22 +1,25 @@
 
 <div>
-	<select ng-model="selectedClipList" ng-options="item.title for item in clipListes" class="selectTag">
-	  <option value="" ng-hide="{{selectedClipList.title == item.title}}">{{selectedClipList.title}}</option>
+	<select ng-model="selectedClipList" ng-options="item.name for item in clipListes" class="selectTag">
+	  <option value="" ng-hide="{{selectedClipList.id == item.id}}">{{selectedClipList.title}}</option>
 	</select>
-	<div ng-repeat="item in clipList" class="item">
-		<div ng-click = "runClip(item)"  class="cont clearfix">
-			<img src="{{item.content.img.url}}" title="{{item.content.img.title}}" class="toL">
-			<h5>{{item.text.title}}</h5>
-			<p>{{item.text.text}}</p>
+	<div class="clipListContainer">
+		<div ng-repeat="item in clipList" class="item">
+			<div ng-click = "runClip(item)"  class="cont clearfix">
+				<img src="{{item.image_url}}" title="{{item.title}}" class="clipImage toL" />
+				<h5>{{item.title}}</h5>
+				<p>{{item.description}}</p>
+			</div> 
+			<div class="clipIcons">
+				<span class="sendIcon clipIcon" ng-click="sendToFriends()">
+					<img src="images/send.gif" title="שלח/י לחבר" />
+				</span>
+				<a href="{{item.download_url}}" class="downloadIcon clipIcon">
+					<img src="images/save.gif" title="הורד קובץ" class="toR"/>
+					{{item.size}}
+				</a>
+			</div>
+			<div class="clipData">{{item.duration}}</div>
 		</div>
-		<div class="clipIcons">
-			<span class="sendIcon clipIcon" ng-click="sendToFriends()">
-				<img src="{{item.sendIcon.src}}" title="{{item.sendIcon.title}}">
-			</span>
-			<a href="{{item.downloadIcon.url}}" class="downloadIcon clipIcon">
-				<img src="{{item.downloadIcon.img.src}}" title="{{item.downloadIcon.img.title}}"  class="toR">{{item.clipData.size}}
-			</a>
-		</div>
-		<div class="clipData">{{item.clipData.length}}</div>
 	</div>
 </div>

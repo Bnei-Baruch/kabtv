@@ -1,6 +1,13 @@
-kabtv.directive("kabtvHeader", function (pageSettings) {
+kabtv.directive("kabtvOnload", function (pageSettings) {
     return {
         scope: {},
+        templateUrl: './views/onload.html',
+        controller: kabTvOnLoadCtrl
+    };
+});
+
+kabtv.directive("kabtvHeader", function (pageSettings) {
+    return {
         templateUrl: './views/header.html',
         controller: kabtvHeaderCtrl
     };
@@ -39,7 +46,7 @@ kabtv.directive("kabtvPlayer", function () {
             $scope.$on("action: switch to clip", function (e, data) {
                 $scope.isClip = true;
                 $scope.clipData = data;
-                $scope.setPlayer ({src: data.downloadIcon.url, streamType: "WMV"});
+                $scope.setPlayer ({src: data.play_url, streamType: data.content_type});
             });
             $scope.$watch('isVideo', function (newVal, oldVal) {
                 if (newVal == oldVal) return;
@@ -52,7 +59,6 @@ kabtv.directive("kabtvPlayer", function () {
 kabtv.directive("kabtvAudioPlayer", function () {
     return {
         replace: true,
-        scope: {'audioSrc': "=dataSrc"},
         templateUrl: 'views/audioPlayer.html',
         controller: kabtvAudioPlayerCtrl,
         link: function ($scope, el, attrs) {
@@ -62,7 +68,7 @@ kabtv.directive("kabtvAudioPlayer", function () {
 
 
 
-kabtv.directive("kabtvClipList", function ( ) {
+kabtv.directive("kabtvClipList", function ( setClipList ) {
     return {
         scope: {},
         templateUrl: 'views/cliplist.html',
@@ -70,9 +76,11 @@ kabtv.directive("kabtvClipList", function ( ) {
         link: function ($scope, el, attrs) {
             $scope.$watch('selectedClipList', function (newVal, oldVal) {
                 if (newVal == null) return;
-                $scope.$http.get(newVal.url).then(function(res){
-                    $scope.clipList =  res.data.data;
+                setClipList(newVal.id).then(function(res){
+                    $scope.clipList =  res.data;
                 });
+
+
             });
         }
     };

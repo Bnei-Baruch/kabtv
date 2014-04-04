@@ -1,24 +1,36 @@
-function kabTvLoadCtrl ($scope,  getInitData, pageSettings) {
+function kabTvOnLoadCtrl ($scope,  getInitData, pageSettings) {
     getInitData.then(function (reqData) {
-    	$scope.dir = reqData.data.dir;
-    	pageSettings.dir = reqData.data.dir;
-    	pageSettings.langVal =  reqData.data.lang;
         
     });
     $scope.showDialogSendToFriends = false;
     $scope.$on("show: send to friends", function (e, clipData) {
         $scope.showDialogSendToFriends = true;
-	});
+    });
+    
+    $scope.Lang = pageSettings.Lang =  setLang();
+    $scope.dir = pageSettings.dir = setDir();
+
+    function setLang () {
+        var url = window.location.href.split("//")[1];
+        var lang = url.split("/")[1].toUpperCase();
+      //  return lang;
+       return "HEB";
+    };
+    function setDir() {
+        var dir = ($scope.Lang == "HEB") ? "rtl" : "ltr";
+        return dir;
+    };
+    var a = 2;
 
 }
-kabTvLoadCtrl.$inject = ["$scope", "getInitData", "pageSettings"];
+kabTvOnLoadCtrl.$inject = ["$scope", "getInitData", "pageSettings"];
 
 
 function kabtvHeaderCtrl ($scope, getHeadData, pageSettings) {
     getHeadData.then(function (reqData) {
-        $scope.lang =  reqData.data.lang;
-        $scope.topMenuData =  reqData.data.headNav;
-        $scope.linksList = reqData.data.headLinks;
+        //$scope.lang =  reqData.data.lang;
+        //$scope.topMenuData =  reqData.data.headNav;
+        $scope.linksList = reqData.data;
     });
     $scope.currentLang = function(lang) {
         var lang =  (pageSettings.langVal == lang) ? "select": "";
@@ -50,34 +62,50 @@ function kabtvTabsCtrl ($scope, getTabsIframe) {
 kabtvTabsCtrl.$inject = ["$scope", "getTabsIframe"];
 
 
-function kabtvAudioPlayerCtrl ($scope) {
-    var noScopeObj = {};
-    noScopeObj.soundPlayer = soundManager.createSound({ 
-      url: $scope.audioSrc, 
-      autoPlay: true
-    }); 
+function kabtvAudioPlayerCtrl ($scope, $element, pageSettings) {
+ 
 
-    $scope.isPlay = true;
+    $scope.isPlay = false;
     $scope.isMute = false;
     $scope.toggleMute = function () {
         $scope.isMute = !$scope.isMute;
         if ($scope.isMute) {
             $scope.muteOnOff = "off";
-            noScopeObj.soundPlayer.mute();
+            pageSettings.audioPlayer.mute();
         }else{
             $scope.muteOnOff = "on";
-            noScopeObj.soundPlayer.unmute();
+            pageSettings.audioPlayer.unmute();
         }
     };
     $scope.togglePlay = function () {
         $scope.isPlay = !$scope.isPlay;
-        $scope.playOnOff = ($scope.isPlay) ? "on": "off"; 
+         if ($scope.isPlay) {
+            $scope.playOnOff = "off";
+            pageSettings.audioPlayer.play();
+        }else{
+            $scope.playOnOff = "on";
+            pageSettings.audioPlayer.stop();
+        }
     };
-    
-   function setAudioPlayer(){
+
+
+   if (pageSettings.audioPlayer === null) {
+        pageSettings.audioPlayer = soundManager.createSound({ 
+          url: $scope.audioSrc, 
+          autoPlay: false
+        }); 
+        $scope.togglePlay();
+    } else {
+        pageSettings.audioPlayer.url = $scope.audioSrc;
+        $scope.isPlay = false;
+        $scope.togglePlay();
     };
+
+    $element.bind('$destroy', function(){
+        pageSettings.audioPlayer.stop();
+    });
 };
-kabtvAudioPlayerCtrl.$inject = ["$scope"];
+kabtvAudioPlayerCtrl.$inject = ["$scope", "$element", "pageSettings"];
 
 
 function kabtvPlayerCtrl ($scope, $compile, getOnlineMedia) {
@@ -107,8 +135,7 @@ function kabtvPlayerCtrl ($scope, $compile, getOnlineMedia) {
         } else if ($scope.isVideo) {
             if (typeof playObj === "undefined") playObj = $scope.payerData[currentLang].video;
             options = {file: playObj.src, width: "100%"};
-        }
-        if (!$scope.isVideo) {
+        } else if (!$scope.isVideo) {
             if (typeof playObj === "undefined") playObj = $scope.payerData[currentLang].audio;
             options = {file: playObj.src, height: 30, width: "100%"};
         };
@@ -129,7 +156,8 @@ function kabtvPlayerCtrl ($scope, $compile, getOnlineMedia) {
         };
 
         function getAudioPlayer(src){
-            var player = $compile( "<div kabtv-audio-player  data-src = "+src+">" )( $scope );
+            $scope.audioSrc = src;
+            var player = $compile( '<div kabtv-audio-player>' )( $scope );
             return player;
         };
     }
@@ -234,8 +262,8 @@ function kabtvClipListCtrl ( $scope, $rootScope, $http, setClipListes) {
     };
 
     setClipListes.then(function (reqData) {
-        $scope.clipListes =  reqData.data.data;
-        $scope.selectedClipList = reqData.data.data[reqData.data.default];
+        $scope.clipListes =  reqData.data;
+        $scope.selectedClipList = reqData.data[0];
     }); 
    
     $scope.runClip = function (clipData) {
@@ -243,8 +271,7 @@ function kabtvClipListCtrl ( $scope, $rootScope, $http, setClipListes) {
         $rootScope.$broadcast("action: switch to clip", clipData);
     }
 }
-kabtvClipListCtrl.$inject = ["$scope", "$rootScope", "$http", "setClipListes"];
-
+kabtvClipListCtrl.$inject = ["$scope", "$rootScope", "$http", "setClipListes", "pageSettings"];
 
 function sendToFriendsCtrl ( $scope, $http) {
     $scope.showDialog = false;
@@ -259,7 +286,7 @@ sendToFriendsCtrl.$inject = ["$scope", "$http"];
 /*footer controllers*/
 function kabtvFooterCtrl ($scope, getFooterData) {
     getFooterData.then(function (reqData) {
-        $scope.footMenuData =  reqData.data.data;
+        $scope.footMenuData =  reqData.data;
     });
 }
 kabtvFooterCtrl.$inject = ["$scope", "getFooterData"];
