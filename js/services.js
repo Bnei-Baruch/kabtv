@@ -20,7 +20,6 @@ kabtv.service('getTabsIframe', ['$http', function ($http) {
     return $http.get('./json/tabsiframe.json');
 }]);
 
-
 kabtv.service('setClipListes', ['$http', 'pageSettings', function ($http, pageSettings) {
  	return $http.get('http://api.kab.tv/api/categories', 
     	{
@@ -77,3 +76,34 @@ kabtv.service('getFooterData', ['$http', 'pageSettings', function ($http, pageSe
 kabtv.service('getOnlineMedia', function($http) {
   return $http.get('./json/onlineMedia.json');
 });
+
+/*kabtv.service('getOnlineMedia', ['$http', 'pageSettings', function ($http, pageSettings) {
+    return $http.get('http://api.kab.tv/api/streams', 
+        {
+            responseType: 'json', 
+            params: {
+                'lang': pageSettings.Lang
+            },
+             headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+    );
+
+}]);
+*/
+
+kabtv.service('getUpdates', ['$http', 'pageSettings', function ($http, pageSettings) {
+    return $http.get('http://api.kab.tv/api/updates', 
+        {
+            responseType: 'json', 
+            params: {
+                'lang': pageSettings.Lang
+            },
+             headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+    );
+
+}]);
