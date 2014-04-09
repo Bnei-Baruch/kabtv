@@ -23,9 +23,7 @@ kabtv.directive("kabtvFooter", function () {
 kabtv.directive("kabtvUpdates", function (getInitData) {
     return {
         templateUrl: 'views/updates.html',
-        controller: function ($scope) {
-            $scope.updatesData =  getInitData.dataList;
-        },
+        controller: kabtvUpdatesCtrl,
     };
 });
 
@@ -91,11 +89,6 @@ kabtv.directive("kabtvSendToFriends", function ( ) {
         templateUrl: 'views/sendToFriends.html',
         scope: {'showDialog': '=ngShow'},
         controller: sendToFriendsCtrl,
-        link: function ($scope, el, attrs) {
-           /*$scope.$watch('', function (newVal, oldVal) {
-                if (newVal == null) return;
-                $scope.showDialog  = true;
-            }); */
-        }
+        link: function ($scope, el, attrs) {}
     };
 });

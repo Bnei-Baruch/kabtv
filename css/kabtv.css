@@ -30,9 +30,9 @@ a:hover{text-decoration:underline;}
 .content .tabBtn{}
 
 /*DIALOG*/
-.dialog{position: fixed; top: 0; left: 0; height: 100%; width: 100%; background-color: rgba(0,0,0,0.4); z-index: 10;text-align: center;}
-.dialog .valign{display: inline-block;}
-.dialog .valign .window{display: inline-block; min-height: 200px; min-width: 200px; background-color: #FFF;vertical-align: middle; position: relative;}
+.dialog{position: fixed; top: 0; left: 0; height: 100%; width: 100%; background-color: rgba(0,0,0,0.4); z-index: 10;text-align: center; display: table;}
+.dialog .valign{display: table-cell;vertical-align: middle;}
+.dialog .valign .window{display: inline-block; min-height: 200px; min-width: 200px; background-color: #FFF; position: relative; padding: 20px; border-radius: 5px;}
 .dialog .close-X{position: absolute; top: 10px; right: 10px;}
 .rtl .dialog .close-X{right: auto; left: 10px}
 

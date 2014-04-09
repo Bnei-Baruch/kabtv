@@ -43,10 +43,10 @@ kabtvHeaderCtrl.$inject = ["$scope", "getHeadData", "pageSettings"];
 /*content controllers*/
 
 
-function kabtvTabsCtrl ($scope, getTabsIframe) {
+function kabtvTabsCtrl ($scope, getTabsIframe, $compile) {
     getTabsIframe.then(function(reqData){
         $scope.tabs = reqData.data.data;
-        $scope.switchTab(reqData.data.data[reqData.data.defaultTab]);
+        $scope.switchTab(reqData.data.data[1]);
         $scope.currentTab = reqData.data.defaultTab;
     });
     var $el = angular.element(document.querySelector('#asideTabIframe .forIframe'));
@@ -57,13 +57,23 @@ function kabtvTabsCtrl ($scope, getTabsIframe) {
         var setHtml = angular.element("<iframe>").attr(attrebuts);
 
         if (item.id == "updates") {
-            setHtml = angular.element("<div kabtv-updates>");
+            setHtml = $compile(angular.element("<div kabtv-updates>"))($scope);
         };
         $el.html('');
         $el.append(setHtml);
     }
 }
-kabtvTabsCtrl.$inject = ["$scope", "getTabsIframe"];
+kabtvTabsCtrl.$inject = ["$scope", "getTabsIframe", "$compile"];
+
+
+
+function kabtvUpdatesCtrl ($scope, getUpdates) {
+    getUpdates.then(function(reqData){
+        $scope.tabs = reqData.data.data;
+    });
+ 
+}
+kabtvUpdatesCtrl.$inject = ["$scope", "getUpdates"];
 
 
 function kabtvAudioPlayerCtrl ($scope, $element, pageSettings) {
@@ -282,8 +292,18 @@ function sendToFriendsCtrl ( $scope, $http) {
     $scope.closeWindow = function () {
         $scope.showDialog = false;
     }
+    $scope.sendData = {
+        sendTo: "111",
+        email: "111",
+        sendTo: "111",
+        message: "111"
+
+    }
+    $scope.submit = function () {
+
+    }
 }
-sendToFriendsCtrl.$inject = ["$scope", "$http"];
+sendToFriendsCtrl.$inject = ["$scope", "$http", "sendToFriends"];
 
 
 

@@ -1,9 +1,16 @@
 <div class="valign">
 	<div class="window">
 		<div ng-click="closeWindow()" class="btn close-X disableSelect">X</div>
-		<form>
+		<h2>TItle</h2>
+		<form  ng-submit="submit()">
 			<ul>
-				<li></li>
+				<li>send  to: <input type="email" ng-model="sendData.sendTo" required="" /></li>
+				<li>name: <input type="text" ng-model="sendData.name" /></li>
+				<li>email: <input type="email" ng-model="sendData.email"  required="" /></li>
+				<li>message: 
+					<textarea ng-model="sendData.message"></textarea>
+				</li>
+				<li><input type="submit" id="submit" value="Submit" /></li>
 			</ul>
 		</form>
 	</div>
