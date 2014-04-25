@@ -129,7 +129,7 @@ function kabtvPlayerCtrl ($scope, $compile, getOnlineMedia) {
     var currentLang;
     promise.then(function(reqData){
         currentLang = reqData.data.defaultLang;
-        $scope.payerData = reqData.data.data;
+        $scope.payerData = reqData.data;
         $scope.setPlayer(); 
     });
     $scope.switchVideoAudio = function (isVideo) {
@@ -309,8 +309,15 @@ sendToFriendsCtrl.$inject = ["$scope", "$http", "sendToFriends"];
 
 /*footer controllers*/
 function kabtvFooterCtrl ($scope, getFooterData) {
-    getFooterData.then(function (reqData) {
+     function callback (reqData) {
         $scope.footMenuData =  reqData.data;
-    });
-}
+     }  
+     function callbackError (reqData) {
+        $scope.footMenuData =  reqData.data;
+     }
+
+     getFooterData.then(function(d){
+        var a = d;
+     });
+ }
 kabtvFooterCtrl.$inject = ["$scope", "getFooterData"];

@@ -10,7 +10,7 @@ kabtv.service('getHeadData', ['$http', 'pageSettings', function ($http, pageSett
     			'placeholder': 'navbar'
     		},
     		 headers: {
-		        'Content-Type': 'application/json'
+		        'Accept': 'application/json'
 		    }
     	}
 	);
@@ -20,24 +20,6 @@ kabtv.service('getTabsIframe', ['$http', function ($http) {
     return $http.get('./json/tabsiframe.json');
 }]);
 
-<<<<<<< HEAD
-kabtv.service('getUpdates', ['$http', 'pageSettings', function ($http, pageSettings) {
-        return $http.get('http://api.kab.tv/api/updates', 
-        {
-            responseType: 'json', 
-            params: {
-                'lang': pageSettings.Lang
-            },
-             headers: {
-                'Content-Type': 'application/json'
-            }
-        }
-    );
-}]);
-
-
-=======
->>>>>>> fbf049d6219eae0bcbc43d8272002496f6b60cd4
 kabtv.service('setClipListes', ['$http', 'pageSettings', function ($http, pageSettings) {
  	return $http.get('http://api.kab.tv/api/categories', 
     	{
@@ -46,7 +28,7 @@ kabtv.service('setClipListes', ['$http', 'pageSettings', function ($http, pageSe
     			'lang': pageSettings.Lang
     		},
     		 headers: {
-		        'Content-Type': 'application/json'
+		        'Accept': 'application/json'
 		    }
     	}
 	);
@@ -62,7 +44,7 @@ kabtv.service('setClipList', ['$http', 'pageSettings', function ($http, pageSett
                 {
                     responseType: 'json', 
                      headers: {
-                        'Content-Type': 'application/json'
+                        'Accept': 'application/json'
                     }
                 }
             )
@@ -74,20 +56,16 @@ kabtv.service('setClipList', ['$http', 'pageSettings', function ($http, pageSett
 
 
 
-
 kabtv.service('getFooterData', ['$http', 'pageSettings', function ($http, pageSettings) {
-   return $http.get('http://api.kab.tv/api/nav_links', 
-        {
-            responseType: 'json', 
-            params: {
-                'lang': pageSettings.Lang, 
-                'placeholder': 'footer'
-            },
-             headers: {
-                'Content-Type': 'application/json'
+
+    return $http.get('http://api.kab.tv/api/nav_links', {
+        params: {
+               'callback': 'JSON_CALLBACK',
+                'lang': "HEB",//pageSettings.Lang, 
+                'placeholder': 'footer',
             }
-        }
-    );
+        });
+   
 }]);
 
 
@@ -107,7 +85,7 @@ kabtv.service('getOnlineMedia', ['$http', 'pageSettings', function ($http, pageS
                 'lang': pageSettings.Lang
             },
              headers: {
-                'Content-Type': 'application/json'
+                'Accept': 'application/json'
             }
         }
     );
@@ -122,7 +100,7 @@ kabtv.service('getUpdates', ['$http', 'pageSettings', function ($http, pageSetti
                 'lang': pageSettings.Lang
             },
              headers: {
-                'Content-Type': 'application/json'
+                'Accept': 'application/json'
             }
         }
     );
