@@ -7,6 +7,9 @@
 		</nav>
 	</div>
 	<nav class="headLinksNav">
-		<a ng-repeat="data in linksList" href="{{data.url}}" title="{{data.title}}">{{data.caption}}</a>
+		<span ng-repeat="data in linksList"> 
+			<a href="{{data.url}}" title="{{data.title}}">{{data.caption}}</a>
+			<span ng-if="!$last">&nbsp;|</span>
+		</span>
 	</nav>
 </header>
