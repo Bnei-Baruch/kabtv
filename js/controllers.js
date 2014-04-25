@@ -127,6 +127,7 @@ function kabtvPlayerCtrl ($scope, $compile, getOnlineMedia) {
     $scope.isVideo = true;
     var promise = getOnlineMedia;
     var currentLang;
+    var defaultLangList = ['HEB','RUS','ENG','SPA','GER'];
     promise.then(function(reqData){
         currentLang = reqData.data.defaultLang;
         $scope.payerData = reqData.data;
@@ -145,29 +146,42 @@ function kabtvPlayerCtrl ($scope, $compile, getOnlineMedia) {
     $scope.setPlayer = function (playObj) {
         var options = {};
         if ($scope.isClip) {
-            options = {file: playObj.src, width: "100%"};
+            options = {file: playObj.url, width: "100%"};
         } else if ($scope.isVideo) {
-            if (typeof playObj === "undefined") playObj = $scope.payerData[currentLang].video;
-            options = {file: playObj.src, width: "100%"};
+            if (typeof playObj === "undefined") playObj = getPlayerData($scope.payerData, 'video');
+            options = {file: playObj.url, width: "100%"};
         } else if (!$scope.isVideo) {
-            if (typeof playObj === "undefined") playObj = $scope.payerData[currentLang].audio;
-            options = {file: playObj.src, height: 30, width: "100%"};
+            if (typeof playObj === "undefined") playObj = getPlayerData($scope.payerData, 'audio');
+            options = {file: playObj.url, height: 30, width: "100%"};
         };
 
         var $el = angular.element(document.querySelector('#player'));
         $el.html('');
-    	switch (playObj.streamType) {
-    		case "HLS":
+    	switch (playObj.format.toLowerCase()) {
+    		case "hls":
                 options.autostart = true;
                 $el.append('<div id="jwPlayerCont">');
     			jwplayer("jwPlayerCont").setup(options);
     			return;
-			case "WMV":
-                $el.append(getWMVPlayer(playObj.src));
+			case "wmv":
+                $el.append(getWMVPlayer(playObj.url));
                 return;
             case "icecast":
-                $el.append(getAudioPlayer(playObj.src));
+                $el.append(getAudioPlayer(playObj.url));
         };
+
+        function getPlayerData(playerList, meaidType)
+        {
+            if (!playerList) return null;
+            for (i=0; i<playerList.length; i++)
+            {
+                playerData = playerList[i];
+                if (playerData.media_type == meaidType && 
+                    (currentLang == null || playerData.language.toLowerCase() == currentLang.toLowerCase()))
+                    return playerData;
+            }
+            return null;
+        }
 
         function getAudioPlayer(src){
             $scope.audioSrc = src;

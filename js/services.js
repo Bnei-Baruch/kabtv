@@ -82,7 +82,7 @@ kabtv.service('getOnlineMedia', ['$http', 'pageSettings', function ($http, pageS
         {
             responseType: 'json', 
             params: {
-                'lang': pageSettings.Lang
+                /*'lang': pageSettings.Lang*/
             },
              headers: {
                 'Accept': 'application/json'
