@@ -44,7 +44,7 @@ kabtv.directive("kabtvPlayer", function () {
             $scope.$on("action: switch to clip", function (e, data) {
                 $scope.isClip = true;
                 $scope.clipData = data;
-                $scope.setPlayer ({src: data.play_url, streamType: data.content_type});
+                $scope.setPlayer ({url: data.play_url, format: data.content_type});
             });
             $scope.$watch('isVideo', function (newVal, oldVal) {
                 if (newVal == oldVal) return;
@@ -69,6 +69,7 @@ kabtv.directive("kabtvAudioPlayer", function () {
 kabtv.directive("kabtvClipList", function ( setClipList ) {
     return {
         scope: {},
+        replace: true,
         templateUrl: 'views/cliplist.html',
         controller: kabtvClipListCtrl,
         link: function ($scope, el, attrs) {

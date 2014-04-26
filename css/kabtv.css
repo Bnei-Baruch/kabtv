@@ -71,10 +71,11 @@ a:hover{text-decoration:underline;}
 .audioPlayer .mute.off{background-position: -33px -25px;}
 
 /*Clip aside*/
+.clipListContainer {position:absolute; overflow-y: auto; overflow-x: hidden; top:45px; bottom:10px;padding: 0 15px 0 0;width: 245px;box-sizing: border-box;}
 .content .aside{width: 265px; box-sizing: border-box; -moz-box-sizing: border-box; height: 100%;padding: 0;box-sizing: border-box;}
 .content .aside.toR{padding: 0 10px;}
 .clipList{overflow: auto; height: 100%;}
-.clipList .item{border-bottom: 1px solid #4EA9FF; padding: 10px 0;}
+.clipList .item{border-bottom: 1px solid #4EA9FF; margin: 10px auto; width: 210px;}
 .clipList .cont{cursor: pointer;}
 .clipList .cont:hover {opacity: 0.8;}
 .clipList .cont img{ margin: 3px 10px 5px 0;}
@@ -83,6 +84,9 @@ a:hover{text-decoration:underline;}
 .clipList .clipIcons{text-align: left; margin: 0 2px; }
 .clipList .clipData {text-align: right;color: #4EA9FF;}
 .clipList .clipImage {width:70px; height:70px;}
+
+.playerPanel {padding:5px 0;}
+.playerPanel .clipTitle {color:#FFA302;}
 
 /*tabs aside*/
 
@@ -99,6 +103,3 @@ a:hover{text-decoration:underline;}
 .footer a {color:#FFF;font-size: x-small; margin-left: 3px; border-left: 1px solid #FFF; padding-left: 3px; display: inline-block; line-height: 12px;}
 .footer a:last-child {border-left: 0 none;}
 .langs {margin:5px 5px 5px 0;}
-.playerPanel {padding:5px 0;}
-.playerPanel .clipTitle {color:#FFA302;}
-.clipListContainer {position:absolute; overflow:auto; top:45px; bottom:10px;padding: 0 15px 0 0;width: 239px;}
