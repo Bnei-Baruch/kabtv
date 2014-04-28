@@ -30,7 +30,6 @@ kabTvOnLoadCtrl.$inject = ["$scope", "getInitData", "pageSettings"];
 
 function kabtvHeaderCtrl ($scope, getHeadData, pageSettings) {
     getHeadData.then(function (reqData) {
-        //$scope.lang =  reqData.data.lang;
         $scope.topMenuData =  pageSettings.topMenuData;
         $scope.linksList = reqData.data;
     });

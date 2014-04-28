@@ -1,14 +1,44 @@
 {
     "topMenuData": [
         {
-            "caption": "Português",
-            "url": "http: //kab.tv/por/",
-            "title": "TV in Portuguese"
+            "caption": "English",
+            "url": "./eng/",
+            "title": "TV in English"
+        },
+        {
+            "caption": "Русский",
+            "url": "./rus/",
+            "title": "TV in Russian"
+        },
+        {
+            "caption": "Español",
+            "url": "./spa/",
+            "title": "TV in Spanish"
         },
         {
             "caption": "Deutsch",
-            "url": "http: //kab.tv/ger/",
+            "url": "./ger/",
             "title": "TV in German"
+        },
+        {
+            "caption": "Français",
+            "url": "./fre/",
+            "title": "TV in French"
+        },
+        {
+            "caption": "Português",
+            "url": "./por/",
+            "title": "TV in Portuguese"
+        },
+        {
+            "caption": "Italiano",
+            "url": "./ita/",
+            "title": "TV in Italian"
+        },
+        {
+            "caption": "עברית",
+            "url": "./heb/",
+            "title": "TV in Hebrew"
         }
     ]
 }
