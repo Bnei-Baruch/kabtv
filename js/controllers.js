@@ -1,6 +1,6 @@
 function kabTvOnLoadCtrl ($scope,  getInitData, pageSettings) {
     getInitData.then(function (reqData) {
-        
+        pageSettings.topMenuData = reqData.data.topMenuData;
     });
     $scope.showDialogSendToFriends = false;
     $scope.$on("show: send to friends", function (e, clipData) {
@@ -20,7 +20,9 @@ function kabTvOnLoadCtrl ($scope,  getInitData, pageSettings) {
         var dir = ($scope.Lang == "HEB") ? "rtl" : "ltr";
         return dir;
     };
-    var a = 2;
+    function getTopMenuData (){
+
+    }
 
 }
 kabTvOnLoadCtrl.$inject = ["$scope", "getInitData", "pageSettings"];
@@ -28,8 +30,7 @@ kabTvOnLoadCtrl.$inject = ["$scope", "getInitData", "pageSettings"];
 
 function kabtvHeaderCtrl ($scope, getHeadData, pageSettings) {
     getHeadData.then(function (reqData) {
-        //$scope.lang =  reqData.data.lang;
-        //$scope.topMenuData =  reqData.data.headNav;
+        $scope.topMenuData =  pageSettings.topMenuData;
         $scope.linksList = reqData.data;
     });
     $scope.currentLang = function(lang) {
@@ -43,10 +44,10 @@ kabtvHeaderCtrl.$inject = ["$scope", "getHeadData", "pageSettings"];
 /*content controllers*/
 
 
-function kabtvTabsCtrl ($scope, getTabsIframe) {
+function kabtvTabsCtrl ($scope, getTabsIframe, $compile) {
     getTabsIframe.then(function(reqData){
         $scope.tabs = reqData.data.data;
-        $scope.switchTab(reqData.data.data[reqData.data.defaultTab]);
+        $scope.switchTab(reqData.data.data[1]);
         $scope.currentTab = reqData.data.defaultTab;
     });
     var $el = angular.element(document.querySelector('#asideTabIframe .forIframe'));
@@ -54,12 +55,26 @@ function kabtvTabsCtrl ($scope, getTabsIframe) {
         $scope.currentTab = index;
         var attrebuts = {"frameborder": 0,"src": item.url};
         if (item.id == "questions") {attrebuts.scrolling = "no"};
-        var iFrame = angular.element("<iframe>").attr(attrebuts);
+        var setHtml = angular.element("<iframe>").attr(attrebuts);
+
+        if (item.id == "updates") {
+            setHtml = $compile(angular.element("<div kabtv-updates>"))($scope);
+        };
         $el.html('');
-        $el.append(iFrame);
+        $el.append(setHtml);
     }
 }
-kabtvTabsCtrl.$inject = ["$scope", "getTabsIframe"];
+kabtvTabsCtrl.$inject = ["$scope", "getTabsIframe", "$compile"];
+
+
+
+function kabtvUpdatesCtrl ($scope, getUpdates) {
+    getUpdates.then(function(reqData){
+        $scope.tabs = reqData.data.data;
+    });
+ 
+}
+kabtvUpdatesCtrl.$inject = ["$scope", "getUpdates"];
 
 
 function kabtvAudioPlayerCtrl ($scope, $element, pageSettings) {
@@ -81,19 +96,20 @@ function kabtvAudioPlayerCtrl ($scope, $element, pageSettings) {
         $scope.isPlay = !$scope.isPlay;
          if ($scope.isPlay) {
             $scope.playOnOff = "off";
-            pageSettings.audioPlayer.play();
+            pageSettings.audioPlayer = soundManager.createSound({ 
+              url: $scope.audioSrc, 
+              autoPlay: true
+            }); 
+           // pageSettings.audioPlayer.play();
         }else{
             $scope.playOnOff = "on";
-            pageSettings.audioPlayer.stop();
+           // pageSettings.audioPlayer.stop();
+           pageSettings.audioPlayer.destruct();
         }
     };
 
 
    if (pageSettings.audioPlayer === null) {
-        pageSettings.audioPlayer = soundManager.createSound({ 
-          url: $scope.audioSrc, 
-          autoPlay: false
-        }); 
         $scope.togglePlay();
     } else {
         pageSettings.audioPlayer.url = $scope.audioSrc;
@@ -108,14 +124,15 @@ function kabtvAudioPlayerCtrl ($scope, $element, pageSettings) {
 kabtvAudioPlayerCtrl.$inject = ["$scope", "$element", "pageSettings"];
 
 
-function kabtvPlayerCtrl ($scope, $compile, getOnlineMedia) {
+function kabtvPlayerCtrl ($scope, $compile, getOnlineMedia, getWMVPlayer) {
 
     $scope.isVideo = true;
     var promise = getOnlineMedia;
     var currentLang;
+    var defaultLangList = ['HEB','RUS','ENG','SPA','GER'];
     promise.then(function(reqData){
         currentLang = reqData.data.defaultLang;
-        $scope.payerData = reqData.data.data;
+        $scope.payerData = reqData.data;
         $scope.setPlayer(); 
     });
     $scope.switchVideoAudio = function (isVideo) {
@@ -131,29 +148,42 @@ function kabtvPlayerCtrl ($scope, $compile, getOnlineMedia) {
     $scope.setPlayer = function (playObj) {
         var options = {};
         if ($scope.isClip) {
-            options = {file: playObj.src, width: "100%"};
+            options = {file: playObj.url, width: "100%"};
         } else if ($scope.isVideo) {
-            if (typeof playObj === "undefined") playObj = $scope.payerData[currentLang].video;
-            options = {file: playObj.src, width: "100%"};
+            if (typeof playObj === "undefined") playObj = getPlayerData($scope.payerData, 'video');
+            options = {file: playObj.url, width: "100%"};
         } else if (!$scope.isVideo) {
-            if (typeof playObj === "undefined") playObj = $scope.payerData[currentLang].audio;
-            options = {file: playObj.src, height: 30, width: "100%"};
+            if (typeof playObj === "undefined") playObj = getPlayerData($scope.payerData, 'audio');
+            options = {file: playObj.url, height: 30, width: "100%"};
         };
 
         var $el = angular.element(document.querySelector('#player'));
-        $el.html('');
-    	switch (playObj.streamType) {
-    		case "HLS":
+        $el[0].innerHTML = '';
+    	switch (playObj.format.toLowerCase()) {
+    		case "hls":
                 options.autostart = true;
                 $el.append('<div id="jwPlayerCont">');
     			jwplayer("jwPlayerCont").setup(options);
     			return;
-			case "WMV":
-                $el.append(getWMVPlayer(playObj.src));
+			case "wmv":
+                $el.append(getWMVPlayer(playObj.url));
                 return;
             case "icecast":
-                $el.append(getAudioPlayer(playObj.src));
+                $el.append(getAudioPlayer(playObj.url));
         };
+
+        function getPlayerData(playerList, meaidType)
+        {
+            if (!playerList) return null;
+            for (i=0; i<playerList.length; i++)
+            {
+                playerData = playerList[i];
+                if (playerData.media_type == meaidType && 
+                    (currentLang == null || playerData.language.toLowerCase() == currentLang.toLowerCase()))
+                    return playerData;
+            }
+            return null;
+        }
 
         function getAudioPlayer(src){
             $scope.audioSrc = src;
@@ -161,96 +191,8 @@ function kabtvPlayerCtrl ($scope, $compile, getOnlineMedia) {
             return player;
         };
     }
- 
-    function getWMVPlayer (src){
-    	var param = [];
-    	var contObj = angular.element("<object>").attr({
-    		type: "application/x-ms-wmp",
-    		name: "player",
-    		width: "100%",
-    		height: "305"
-    	});
-
-    	param[0] = angular.element("<param>").attr({
-    		name: "balance",
-    		value: false
-    	}); 
-    	param[1] = angular.element("<param>").attr({
-    		name: "src",
-    		value: src
-    	}); 
-    	param[2] = angular.element("<param>").attr({
-			name: "autostart",
-			value: "true"
-    	}); 
-    	param[3] = angular.element("<param>").attr({
-    		name: "src",
-    		value: src
-    	}); 
-    	param[4] = angular.element("<param>").attr({
-    		 name: "volume",
-    		 value: "50"
-    	}); 
-    	param[5] = angular.element("<param>").attr({
-    		name: "uiMode",
-    		value: "full"
-    	}); 
-    	param[6] = angular.element("<param>").attr({
-    		name: "animationAtStart",
-    		value: "true"
-    	}); 
-    	param[7] = angular.element("<param>").attr({
-    		name: "controller",
-    		value: "true"
-    	});
-    	param[8] = angular.element("<param>").attr({
-    		name: "showDisplay",
-    		value: "false"
-    	});
-    	param[9] = angular.element("<param>").attr({
-    		name: "ShowAudioControls",
-    		value: true
-    	});
-    	param[10] = angular.element("<param>").attr({
-    		name: "ShowPositionControls",
-    		value: false
-    	});
-    	param[11] = angular.element("<param>").attr({
-    		name: "transparentAtStart",
-    		value: false
-    	});
-    	param[12] = angular.element("<param>").attr({
-    		name: "ShowControls",
-    		value: true
-    	});
-    	param[13] = angular.element("<param>").attr({
-    		name: "ShowStatusBar",
-    		value: true
-    	}); 
-    	param[14] = angular.element("<param>").attr({
-    		name: "ShowTracker",
-    		value: false
-    	}); 
-    	param[15] = angular.element("<param>").attr({
-    		name: "ClickToPlay",
-    		value: false
-    	}); 
-    	param[16] = angular.element("<param>").attr({
-    		name: "DisplayBackColor",
-    		value: "#000000"
-    	}); 
-    	param[17] = angular.element("<param>").attr({
-    		name: "DisplayForeColor",
-    		value: "#ffffff"
-    	}); 
-		// contObj.append([param[0], param[1]]);
-		for (var i = 0; i < param.length; i++) {
-				contObj.append(param[i]);
-		};
-		return contObj;
-    }
-}
-kabtvPlayerCtrl.$inject = ["$scope", "$compile", "getOnlineMedia"];
+ }
+kabtvPlayerCtrl.$inject = ["$scope", "$compile", "getOnlineMedia", "getWMVPlayer"];
 
 
 
@@ -273,20 +215,36 @@ function kabtvClipListCtrl ( $scope, $rootScope, $http, setClipListes) {
 }
 kabtvClipListCtrl.$inject = ["$scope", "$rootScope", "$http", "setClipListes", "pageSettings"];
 
-function sendToFriendsCtrl ( $scope, $http) {
+function sendToFriendsCtrl ( $scope, $http, setSendToFriend) {
     $scope.showDialog = false;
     $scope.closeWindow = function () {
         $scope.showDialog = false;
     }
+    $scope.sendData = {
+        to: "111",
+        email: "111",
+        sendTo: "111",
+        message: "111"
+
+    }
+    $scope.sendToFriendSubmit = function () {
+        setSendToFriend($scope.sendData)
+        .success(function(data, status, headers, config){
+            $scope.closeWindow();
+        })
+        .error(function(data, status, headers, config) {
+            alert("Error");
+        });
+    }
 }
-sendToFriendsCtrl.$inject = ["$scope", "$http"];
+sendToFriendsCtrl.$inject = ["$scope", "$http", "setSendToFriend"];
 
 
 
 /*footer controllers*/
 function kabtvFooterCtrl ($scope, getFooterData) {
-    getFooterData.then(function (reqData) {
+     getFooterData.then(function(reqData){
         $scope.footMenuData =  reqData.data;
-    });
-}
+     });
+ }
 kabtvFooterCtrl.$inject = ["$scope", "getFooterData"];

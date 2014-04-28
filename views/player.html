@@ -6,7 +6,7 @@
 	</div>
 	<div id="player" ng-hide = "showDialogSendToFriends"></div>
 	<div ng-hide = "isClip" class="playerPanel">
-		<span ng-repeat="(lang, item) in payerData" class="langs {{(currentLang == lang) ? 'selected': '';}}" ng-click="switchPlayerLang(lang)">{{item.title}}</span>
+		<a ng-repeat="item in payerData" class="langs {{(Lang == item.language) ? 'selected': '';}}" ng-click="switchPlayerLang(item.language)">{{item.language}}</a>
 	</div>
 	<div ng-show = "isClip" class="playerPanel">
 		<span class="clipTitle">{{clipData.title}}</span>

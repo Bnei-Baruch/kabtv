@@ -30,12 +30,17 @@ a:hover{text-decoration:underline;}
 .content .tabBtn{}
 
 /*DIALOG*/
-.dialog{position: fixed; top: 0; left: 0; height: 100%; width: 100%; background-color: rgba(0,0,0,0.4); z-index: 10;text-align: center;}
-.dialog .valign{display: inline-block;}
-.dialog .valign .window{display: inline-block; min-height: 200px; min-width: 200px; background-color: #FFF;vertical-align: middle; position: relative;}
+.dialog{position: fixed; top: 0; left: 0; height: 100%; width: 100%; background-color: rgba(0,0,0,0.5); z-index: 10;text-align: center; display: table;}
+.dialog .valign{display: table-cell;vertical-align: middle;}
+.dialog .valign .window{display: inline-block; min-height: 200px; min-width: 200px; background-color: #FFF; position: relative; padding: 20px; border-radius: 5px;}
 .dialog .close-X{position: absolute; top: 10px; right: 10px;}
 .rtl .dialog .close-X{right: auto; left: 10px}
 
+.dialogSendToFriends form{text-align: right;}
+.dialogSendToFriends label{display: block; color: #000;}
+.dialogSendToFriends li{display: block;margin: 5px 0;}
+.dialogSendToFriends input, .dialogSendToFriends textarea{display: block; width: 100%}
+.dialogSendToFriends .submit{width: auto;}
 /*header*/
 #header{}
 #header .tree{display: block;}
@@ -71,10 +76,11 @@ a:hover{text-decoration:underline;}
 .audioPlayer .mute.off{background-position: -33px -25px;}
 
 /*Clip aside*/
+.clipListContainer {position:absolute; overflow-y: auto; overflow-x: hidden; top:45px; bottom:10px;padding: 0 15px 0 0;width: 245px;box-sizing: border-box;}
 .content .aside{width: 265px; box-sizing: border-box; -moz-box-sizing: border-box; height: 100%;padding: 0;box-sizing: border-box;}
 .content .aside.toR{padding: 0 10px;}
 .clipList{overflow: auto; height: 100%;}
-.clipList .item{border-bottom: 1px solid #4EA9FF; padding: 10px 0;}
+.clipList .item{border-bottom: 1px solid #4EA9FF; margin: 10px auto; width: 210px;}
 .clipList .cont{cursor: pointer;}
 .clipList .cont:hover {opacity: 0.8;}
 .clipList .cont img{ margin: 3px 10px 5px 0;}
@@ -83,6 +89,9 @@ a:hover{text-decoration:underline;}
 .clipList .clipIcons{text-align: left; margin: 0 2px; }
 .clipList .clipData {text-align: right;color: #4EA9FF;}
 .clipList .clipImage {width:70px; height:70px;}
+
+.playerPanel {padding:5px 0;}
+.playerPanel .clipTitle {color:#FFA302;}
 
 /*tabs aside*/
 
@@ -96,9 +105,6 @@ a:hover{text-decoration:underline;}
 .selectTag{line-height: 20px; display: block;width: 100%;}
 /*FOOTER*/
 .footer{position: absolute;bottom: -10px; left: 0; width: 100%; height: 30px;background-color: #000078;padding:10px 0 0 0;}
-.footer a {color:#FFF;font-size: x-small; margin-left: 3px; border-left: 1px solid #FFF; padding-left: 3px;}
+.footer a {color:#FFF;font-size: x-small; margin-left: 3px; border-left: 1px solid #FFF; padding-left: 3px; display: inline-block; line-height: 12px;}
 .footer a:last-child {border-left: 0 none;}
 .langs {margin:5px 5px 5px 0;}
-.playerPanel {padding:5px 0;}
-.playerPanel .clipTitle {color:#FFA302;}
-.clipListContainer {position:absolute; overflow:auto; top:45px; bottom:10px;padding: 0 15px 0 0;width: 239px;}
