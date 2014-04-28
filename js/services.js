@@ -54,8 +54,6 @@ kabtv.service('setClipList', ['$http', 'pageSettings', function ($http, pageSett
 
 }]);
 
-
-
 kabtv.service('getFooterData', ['$http', 'pageSettings', function ($http, pageSettings) {
 
     return $http.get('http://api.kab.tv/api/nav_links', {
@@ -68,15 +66,13 @@ kabtv.service('getFooterData', ['$http', 'pageSettings', function ($http, pageSe
    
 }]);
 
-
-
-kabtv.service('sendToFriends', function($http) {
-/*    function sendPromise (params) {
-        $http.
-        return ;
+kabtv.service('setSendToFriend', function($http) {
+    var _sendPromise = function (params) {
+        return $http.post('http://api.kab.tv/api/send_to_friend', params);
     }
-  return sendPromise;*/
+    return _sendPromise;
 });
+
 kabtv.service('getOnlineMedia', ['$http', 'pageSettings', function ($http, pageSettings) {
     return $http.get('http://api.kab.tv/api/streams', 
         {
@@ -106,7 +102,6 @@ kabtv.service('getUpdates', ['$http', 'pageSettings', function ($http, pageSetti
     );
 
 }]);
-
 
 kabtv.service('getWMVPlayer', ['detectIE', function (detectIE) {
     var _getWMVPlayer = function  (src) {

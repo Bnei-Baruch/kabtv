@@ -2,15 +2,25 @@
 	<div class="window">
 		<div ng-click="closeWindow()" class="btn close-X disableSelect">X</div>
 		<h2>TItle</h2>
-		<form  ng-submit="submit()">
+		<form  ng-submit="sendToFriendSubmit()">
 			<ul>
-				<li>send  to: <input type="email" ng-model="sendData.sendTo" required="" /></li>
-				<li>name: <input type="text" ng-model="sendData.name" /></li>
-				<li>email: <input type="email" ng-model="sendData.email"  required="" /></li>
-				<li>message: 
-					<textarea ng-model="sendData.message"></textarea>
+				<li>
+					<label>send  to:</label>
+					<input type="email" ng-model="sendData.to" required="" />
 				</li>
-				<li><input type="submit" id="submit" value="Submit" /></li>
+				<li>
+					<label>name:</label>
+					<input type="text" ng-model="sendData.name" />
+				</li>
+				<li>
+					<label>email:</label>
+					<input type="email" ng-model="sendData.email"  required="" />
+				</li>
+				<li>
+					<label>message:</label> 
+					<textarea ng-model="sendData.message"  required="" ></textarea>
+				</li>
+				<li><input type="submit" value="Submit" class="toRs submit"/></li>
 			</ul>
 		</form>
 	</div>

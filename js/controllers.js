@@ -216,23 +216,29 @@ function kabtvClipListCtrl ( $scope, $rootScope, $http, setClipListes) {
 }
 kabtvClipListCtrl.$inject = ["$scope", "$rootScope", "$http", "setClipListes", "pageSettings"];
 
-function sendToFriendsCtrl ( $scope, $http) {
+function sendToFriendsCtrl ( $scope, $http, setSendToFriend) {
     $scope.showDialog = false;
     $scope.closeWindow = function () {
         $scope.showDialog = false;
     }
     $scope.sendData = {
-        sendTo: "111",
+        to: "111",
         email: "111",
         sendTo: "111",
         message: "111"
 
     }
-    $scope.submit = function () {
-
+    $scope.sendToFriendSubmit = function () {
+        setSendToFriend($scope.sendData)
+        .success(function(data, status, headers, config){
+            $scope.closeWindow();
+        })
+        .error(function(data, status, headers, config) {
+            alert("Error");
+        });
     }
 }
-sendToFriendsCtrl.$inject = ["$scope", "$http", "sendToFriends"];
+sendToFriendsCtrl.$inject = ["$scope", "$http", "setSendToFriend"];
 
 
 

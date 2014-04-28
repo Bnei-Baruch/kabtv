@@ -30,12 +30,17 @@ a:hover{text-decoration:underline;}
 .content .tabBtn{}
 
 /*DIALOG*/
-.dialog{position: fixed; top: 0; left: 0; height: 100%; width: 100%; background-color: rgba(0,0,0,0.4); z-index: 10;text-align: center; display: table;}
+.dialog{position: fixed; top: 0; left: 0; height: 100%; width: 100%; background-color: rgba(0,0,0,0.5); z-index: 10;text-align: center; display: table;}
 .dialog .valign{display: table-cell;vertical-align: middle;}
 .dialog .valign .window{display: inline-block; min-height: 200px; min-width: 200px; background-color: #FFF; position: relative; padding: 20px; border-radius: 5px;}
 .dialog .close-X{position: absolute; top: 10px; right: 10px;}
 .rtl .dialog .close-X{right: auto; left: 10px}
 
+.dialogSendToFriends form{text-align: right;}
+.dialogSendToFriends label{display: block; color: #000;}
+.dialogSendToFriends li{display: block;margin: 5px 0;}
+.dialogSendToFriends input, .dialogSendToFriends textarea{display: block; width: 100%}
+.dialogSendToFriends .submit{width: auto;}
 /*header*/
 #header{}
 #header .tree{display: block;}
