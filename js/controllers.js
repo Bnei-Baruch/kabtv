@@ -34,7 +34,7 @@ function kabtvHeaderCtrl ($scope, getHeadData, pageSettings) {
         $scope.linksList = reqData.data;
     });
     $scope.currentLang = function(lang) {
-        var lang =  (pageSettings.langVal == lang) ? "select": "";
+        var lang =  (pageSettings.Lang == lang) ? "select": "";
         return lang;
     };
 }
