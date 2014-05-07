@@ -57,9 +57,9 @@ function kabtvTabsCtrl ($scope, getTabsIframe, $compile) {
         if (item.id == "questions") {attrebuts.scrolling = "no"};
         var setHtml = angular.element("<iframe>").attr(attrebuts);
 
-        if (item.id == "updates") {
+        /*if (item.id == "updates") {
             setHtml = $compile(angular.element("<div kabtv-updates>"))($scope);
-        };
+        };*/
         $el.html('');
         $el.append(setHtml);
     }
@@ -129,12 +129,21 @@ function kabtvPlayerCtrl ($scope, $compile, getOnlineMedia, getWMVPlayer) {
     $scope.isVideo = true;
     var promise = getOnlineMedia;
     var currentLang;
-    var defaultLangList = ['HEB','RUS','ENG','SPA','GER'];
     promise.then(function(reqData){
         currentLang = reqData.data.defaultLang;
         $scope.payerData = reqData.data;
         $scope.setPlayer(); 
     });
+    $scope.videoFilter = function(item) {
+        return (($scope.isVideo && item.media_type == 'video' ||
+                 !$scope.isVideo && item.media_type == 'audio') &&
+                (item.language == 'HEB' ||
+                item.language == 'RUS' ||
+                item.language == 'ENG' ||
+                item.language == 'SPA' ||
+                item.language == 'GER'));
+    }
+
     $scope.switchVideoAudio = function (isVideo) {
         $scope.isVideo = isVideo;
     };
