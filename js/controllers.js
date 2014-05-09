@@ -1,4 +1,7 @@
-function kabTvOnLoadCtrl ($scope,  getInitData, pageSettings) {
+function kabTvOnLoadCtrl ($scope, $timeout, getInitData, pageSettings) {
+    var helpImageBase = 'http://live.kab.tv/button.php?image=tech';
+    
+
     getInitData.then(function (reqData) {
         pageSettings.topMenuData = reqData.data.topMenuData;
     });
@@ -9,6 +12,7 @@ function kabTvOnLoadCtrl ($scope,  getInitData, pageSettings) {
     
     $scope.Lang = pageSettings.Lang =  setLang();
     $scope.dir = pageSettings.dir = setDir();
+    $scope.helpImage = '';
 
     function setLang () {
         var url = window.location.href.split("//")[1];
@@ -21,11 +25,23 @@ function kabTvOnLoadCtrl ($scope,  getInitData, pageSettings) {
         return dir;
     };
     function getTopMenuData (){
-
     }
-
+    function getHelpLang(){
+        switch ($scope.Lang)
+        {
+            case 'HEB': return 'he';
+            case 'RUS': return 'ru';
+        }
+        return 'en';
+    }
+    function helpImageUpdate(){
+        var date = new Date();
+        $scope.helpImage = helpImageBase + '&lang=' +  getHelpLang() + '&' + '&time=' + date.getTime();
+        $timeout(helpImageUpdate, 60000);
+    }
+    helpImageUpdate();
 }
-kabTvOnLoadCtrl.$inject = ["$scope", "getInitData", "pageSettings"];
+kabTvOnLoadCtrl.$inject = ["$scope", "$timeout", "getInitData", "pageSettings"];
 
 
 function kabtvHeaderCtrl ($scope, getHeadData, pageSettings) {
