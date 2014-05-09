@@ -47,7 +47,7 @@ kabtvHeaderCtrl.$inject = ["$scope", "getHeadData", "pageSettings"];
 function kabtvTabsCtrl ($scope, getTabsIframe, $compile) {
     getTabsIframe.then(function(reqData){
         $scope.tabs = reqData.data.data;
-        $scope.switchTab(reqData.data.data[1]);
+        $scope.switchTab(reqData.data.data[0]);
         $scope.currentTab = reqData.data.defaultTab;
     });
     var $el = angular.element(document.querySelector('#asideTabIframe .forIframe'));
@@ -100,10 +100,8 @@ function kabtvAudioPlayerCtrl ($scope, $element, pageSettings) {
               url: $scope.audioSrc, 
               autoPlay: true
             }); 
-           // pageSettings.audioPlayer.play();
         }else{
             $scope.playOnOff = "on";
-           // pageSettings.audioPlayer.stop();
            pageSettings.audioPlayer.destruct();
         }
     };
@@ -124,7 +122,7 @@ function kabtvAudioPlayerCtrl ($scope, $element, pageSettings) {
 kabtvAudioPlayerCtrl.$inject = ["$scope", "$element", "pageSettings"];
 
 
-function kabtvPlayerCtrl ($scope, $compile, getOnlineMedia, getWMVPlayer) {
+function kabtvPlayerCtrl ($scope, $compile, getOnlineMedia, getWMVPlayer, pageSettings) {
 
     $scope.isVideo = true;
     var promise = getOnlineMedia;
@@ -149,7 +147,6 @@ function kabtvPlayerCtrl ($scope, $compile, getOnlineMedia, getWMVPlayer) {
     };
 
     $scope.switchPlayerLang = function (lang) {
-        // if (reqData.data[lang]) {};
         currentLang = lang;
         $scope.setPlayer(); 
     };
@@ -166,6 +163,9 @@ function kabtvPlayerCtrl ($scope, $compile, getOnlineMedia, getWMVPlayer) {
             options = {file: playObj.url, height: 30, width: "100%"};
         };
 
+        if (pageSettings.audioPlayer != null) {
+            pageSettings.audioPlayer.destruct();            
+        };
         var $el = angular.element(document.querySelector('#player'));
         $el[0].innerHTML = '';
     	switch (playObj.format.toLowerCase()) {
@@ -201,7 +201,7 @@ function kabtvPlayerCtrl ($scope, $compile, getOnlineMedia, getWMVPlayer) {
         };
     }
  }
-kabtvPlayerCtrl.$inject = ["$scope", "$compile", "getOnlineMedia", "getWMVPlayer"];
+kabtvPlayerCtrl.$inject = ["$scope", "$compile", "getOnlineMedia", "getWMVPlayer", "pageSettings"];
 
 
 
