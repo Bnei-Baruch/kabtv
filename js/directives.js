@@ -84,12 +84,3 @@ kabtv.directive("kabtvClipList", function ( setClipList ) {
         }
     };
 });
-
-kabtv.directive("kabtvSendToFriends", function ( ) {
-    return {
-        templateUrl: 'views/sendToFriends.html',
-        scope: {'showDialog': '=ngShow'},
-        controller: sendToFriendsCtrl,
-        link: function ($scope, el, attrs) {}
-    };
-});

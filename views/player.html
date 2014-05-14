@@ -1,23 +1,29 @@
 <div class="clearfix">
 	<div class="backToOnLine" ng-show = "isClip" ng-click="isClip = false; setPlayer()">back to online</div>
-	<div class="tabs" ng-hide = "isClip">
+
+    <div class="tabs" ng-hide = "isClip">
 		<div ng-click="switchVideoAudio(true)" class="tabBtn {{isVideo? 'select': '';}}">video</div>
 		<div ng-click="switchVideoAudio(false)" class="{{isVideo? '':'select';}} tabBtn">audio</div>
 	</div>
-	<div id="player" ng-hide = "showDialogSendToFriends"></div>
-	<div ng-hide = "isClip" class="playerPanel">
+
+	<div id="player"></div>
+
+    <div ng-hide = "isClip" class="playerPanel">
 		<a ng-repeat="item in payerData" class="langs {{(Lang == item.language) ? 'selected': '';}}" ng-click="switchPlayerLang(item.language)">{{item.language}}</a>
 	</div>
-	<div ng-show = "isClip" class="playerPanel">
-		<span class="clipTitle">{{clipData.title}}</span>
 
-		<a href="{{clipData.download_url}}" class="downloadIcon clipIconBig">
-			<img src="images/save.gif"> הורד קובץ
-		</a>
+    <div ng-show = "isClip" class="playerPanel">
+		<span class="clipTitle">{{clipData.title}}</span>
 
 		<p>{{clipData.description}}</p>
 
         <br/>
+
+        <p>
+            <a href="{{clipData.download_url}}" class="downloadIcon clipIconBig">
+                <img src="images/save.gif"> הורד קובץ
+            </a>
+        </p>
 
         <!-- AddThis Button BEGIN -->
         <div id="addthis-toolbox"

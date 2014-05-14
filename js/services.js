@@ -66,13 +66,6 @@ kabtv.service('getFooterData', ['$http', 'pageSettings', function ($http, pageSe
    
 }]);
 
-kabtv.service('setSendToFriend', function($http) {
-    var _sendPromise = function (params) {
-        return $http.post('http://api.kab.tv/api/send_to_friend', params);
-    }
-    return _sendPromise;
-});
-
 kabtv.service('getOnlineMedia', ['$http', 'pageSettings', function ($http, pageSettings) {
     return $http.get('http://api.kab.tv/api/streams', 
         {
