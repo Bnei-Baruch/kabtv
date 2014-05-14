@@ -141,6 +141,8 @@ kabtvAudioPlayerCtrl.$inject = ["$scope", "$element", "pageSettings"];
 function kabtvPlayerCtrl ($scope, $compile, getOnlineMedia, getWMVPlayer, pageSettings) {
 
     $scope.isVideo = true;
+    $scope.playObj = null;
+    $scope.showFullScreen = false;
     var promise = getOnlineMedia;
     var currentLang;
     promise.then(function(reqData){
@@ -167,6 +169,20 @@ function kabtvPlayerCtrl ($scope, $compile, getOnlineMedia, getWMVPlayer, pageSe
         $scope.setPlayer(); 
     };
 
+    $scope.gofs = function() {
+        if ($scope.playObj == null || $scope.playObj.format.toLowerCase() != 'wmv')
+            return;
+        var fs_str = 'ESC ליציאה ממצב "מסך מלא" לחץ על';
+        var nofs_str = 'נא להפעיל נגנ ע"מ לצפותו במסך מלא';
+        var player = document.getElementById("playerObj");
+        if (player && player.playState == 3) {
+           alert(fs_str);
+           player.fullScreen = true;
+        } else {
+           alert(nofs_str);
+        }
+    };
+
     $scope.setPlayer = function (playObj) {
         var options = {};
         if ($scope.isClip) {
@@ -178,7 +194,7 @@ function kabtvPlayerCtrl ($scope, $compile, getOnlineMedia, getWMVPlayer, pageSe
             if (typeof playObj === "undefined") playObj = getPlayerData($scope.payerData, 'audio');
             options = {file: playObj.url, height: 30, width: "100%"};
         };
-
+        $scope.playObj = playObj;
         if (pageSettings.audioPlayer != null) {
             pageSettings.audioPlayer.destruct();            
         };
@@ -189,12 +205,15 @@ function kabtvPlayerCtrl ($scope, $compile, getOnlineMedia, getWMVPlayer, pageSe
                 options.autostart = true;
                 $el.append('<div id="jwPlayerCont">');
     			jwplayer("jwPlayerCont").setup(options);
+                $scope.showFullScreen = false;
     			return;
 			case "wmv":
                 $el.append(getWMVPlayer(playObj.url));
+                $scope.showFullScreen = true;
                 return;
             case "icecast":
                 $el.append(getAudioPlayer(playObj.url));
+                $scope.showFullScreen = false;
         };
 
         function getPlayerData(playerList, meaidType)

@@ -108,7 +108,8 @@ kabtv.service('getWMVPlayer', ['detectIE', function (detectIE) {
         var param = [];
         var contObj = angular.element("<object>").attr({
             type: "application/x-ms-wmp",
-            name: "player",
+            id: "playerObj",
+            name: "playerObj",
             width: "100%",
             height: "305"
         });

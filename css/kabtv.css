@@ -88,9 +88,11 @@ a:hover{text-decoration:underline;}
 .clipList .clipData {text-align: right;color: #4EA9FF;}
 .clipList .clipImage {width:70px; height:70px;}
 
-.playerPanel {padding:5px 0;}
+.playerPanel {padding:5px 0;float:right;}
 .playerPanel .clipTitle {color:#FFA302;}
-
+.playerPanel a{cursor: pointer;}
+.playerDescription {border-top: 1px solid #C6D8F2;}
+.fullScreenButton {cursor: pointer;}
 /*tabs aside*/
 
 #asideTabIframe{width: 100%; height: 100%; position: relative;}
@@ -112,3 +114,9 @@ font: normal normal 12px Arial,sans-serif;
 color: blue;
 text-decoration: underline;
 }
+.fullScreenButton {
+color: #4EA8FE;
+padding: 5px 5px 5px 0;
+float: left;
+}
+
