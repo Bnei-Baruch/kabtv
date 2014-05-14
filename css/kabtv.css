@@ -5,6 +5,10 @@ body{background-color: #00145E; font: normal normal 12px Arial, sans-serif; colo
 .rtl{direction: rtl;}
 .rtl .toL{float: right;}
 .rtl .toR{float: left;}
+.textToR{text-align: right;}
+.textToL{text-align: left;}
+.rtl .textToR{text-align: left;}
+.rtl .textToL{text-align: right;}
 a,a:visited{color:#69B7FF;text-decoration:none;}
 a:hover{text-decoration:underline;}
 
@@ -41,6 +45,7 @@ a:hover{text-decoration:underline;}
 .dialogSendToFriends li{display: block;margin: 5px 0;}
 .dialogSendToFriends input, .dialogSendToFriends textarea{display: block; width: 100%}
 .dialogSendToFriends .submit{width: auto;}
+
 /*header*/
 #header{}
 #header .tree{display: block;}
@@ -92,6 +97,10 @@ a:hover{text-decoration:underline;}
 
 .playerPanel {padding:5px 0;}
 .playerPanel .clipTitle {color:#FFA302;}
+
+#asideTabIframe .updates .item{padding: 10px; border-bottom: 1px solid #2B64A7;}
+#asideTabIframe .updates .item h5{color: #FFD800; font-size: 18px;}
+#asideTabIframe .updates .item .url{margin: 5px 0;display: block;}
 
 /*tabs aside*/
 

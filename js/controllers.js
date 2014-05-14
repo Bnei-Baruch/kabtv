@@ -47,8 +47,7 @@ kabtvHeaderCtrl.$inject = ["$scope", "getHeadData", "pageSettings"];
 function kabtvTabsCtrl ($scope, getTabsIframe, $compile) {
     getTabsIframe.then(function(reqData){
         $scope.tabs = reqData.data.data;
-        $scope.switchTab(reqData.data.data[1]);
-        $scope.currentTab = reqData.data.defaultTab;
+        $scope.switchTab(reqData.data.data[0], 0);
     });
     var $el = angular.element(document.querySelector('#asideTabIframe .forIframe'));
     $scope.switchTab = function (item, index){
@@ -58,7 +57,7 @@ function kabtvTabsCtrl ($scope, getTabsIframe, $compile) {
         var setHtml = angular.element("<iframe>").attr(attrebuts);
 
         if (item.id == "updates") {
-            setHtml = $compile(angular.element("<div kabtv-updates>"))($scope);
+            setHtml = $compile(angular.element("<div kabtv-updates class='updates'>"))($scope);
         };
         $el.html('');
         $el.append(setHtml);
@@ -70,7 +69,7 @@ kabtvTabsCtrl.$inject = ["$scope", "getTabsIframe", "$compile"];
 
 function kabtvUpdatesCtrl ($scope, getUpdates) {
     getUpdates.then(function(reqData){
-        $scope.tabs = reqData.data.data;
+        $scope.updatesData = reqData.data;
     });
  
 }
@@ -124,7 +123,7 @@ function kabtvAudioPlayerCtrl ($scope, $element, pageSettings) {
 kabtvAudioPlayerCtrl.$inject = ["$scope", "$element", "pageSettings"];
 
 
-function kabtvPlayerCtrl ($scope, $compile, getOnlineMedia, getWMVPlayer) {
+function kabtvPlayerCtrl ($scope, $compile, getOnlineMedia, getWMVPlayer, pageSettings) {
 
     $scope.isVideo = true;
     var promise = getOnlineMedia;
@@ -158,6 +157,7 @@ function kabtvPlayerCtrl ($scope, $compile, getOnlineMedia, getWMVPlayer) {
         };
 
         var $el = angular.element(document.querySelector('#player'));
+        //pageSettings.audioPlayer.destruct();
         $el[0].innerHTML = '';
     	switch (playObj.format.toLowerCase()) {
     		case "hls":
@@ -192,7 +192,7 @@ function kabtvPlayerCtrl ($scope, $compile, getOnlineMedia, getWMVPlayer) {
         };
     }
  }
-kabtvPlayerCtrl.$inject = ["$scope", "$compile", "getOnlineMedia", "getWMVPlayer"];
+kabtvPlayerCtrl.$inject = ["$scope", "$compile", "getOnlineMedia", "getWMVPlayer", "pageSettings"];
 
 
 
