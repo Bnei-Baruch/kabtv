@@ -209,7 +209,12 @@ function kabtvClipListCtrl ( $scope, $rootScope, $http, setClipListes) {
     }); 
    
     $scope.runClip = function (clipData) {
-        /*$rootscope.$emit("toget: switch to clip", clipData);*/
+        addthis_share.url = "http://kab.tv/vod?id=" + clipData.id;
+        addthis_share.title = clipData.title;
+        addthis_share.description = clipData.description;
+        addthis_share.email_vars = {description: clipData.description};
+        addthis.init();
+        addthis.toolbox('#addthis-toolbox');
         $rootScope.$broadcast("action: switch to clip", clipData);
     }
 }

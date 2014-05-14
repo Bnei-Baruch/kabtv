@@ -10,9 +10,25 @@
 	</div>
 	<div ng-show = "isClip" class="playerPanel">
 		<span class="clipTitle">{{clipData.title}}</span>
-		<a href="{{clipData.downloadIcon.url}}" class="downloadIcon clipIconBig">
-			<img src="images/save.gif" title="הורד קובץ">{{clipData.size}}
-		</a>		
+
+		<a href="{{clipData.download_url}}" class="downloadIcon clipIconBig">
+			<img src="images/save.gif"> הורד קובץ
+		</a>
+
 		<p>{{clipData.description}}</p>
+
+        <br/>
+
+        <!-- AddThis Button BEGIN -->
+        <div id="addthis-toolbox"
+             class="addthis_toolbox addthis_default_style addthis_16x16_style">
+            <a class="addthis_button_facebook"></a>
+            <a class="addthis_button_twitter"></a>
+            <a class="addthis_button_google_plusone_share"></a>
+            <a class="addthis_button_email"></a>
+            <a class="addthis_counter addthis_bubble_style"></a>
+        </div>
+        <!-- AddThis Button END -->
+
 	</div>
 </div>
