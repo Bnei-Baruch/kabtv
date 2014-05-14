@@ -38,12 +38,10 @@ a:hover{text-decoration:underline;}
 #header .tree{display: block;}
 #header .whiteWrappwer{background-color: #FFF; height: 50px}
 
-.headLangNav{display: block;text-align: center;}
-.headLangNav a{display: inline-block; padding: 0 10px; border-left: 1px solid #00145E; color: #000;line-height: 14px;margin: 14px 0 0; padding: 0 10px 2px;}
-.headLangNav a:first-child{border-left: 0 none;}
-.headLangNav a.select{color: #D32020;}
-.rtl .headLangNav a{border-left: 0 none;border-right: 1px solid #00145E;}
-.rtl .headLangNav a:first-child{border-right: 0 none;}
+.headLangNav{display: block;text-align: center;float:left; padding-left: 40px;}
+.headLangNav a{display: inline-block; border-right: 1px solid #00145E; color: #000;line-height: 14px;margin: 14px 0 0; padding: 0 4px 2px 4px;font-weight: bold;}
+.headLangNav a:first-child{border-right: 0 none; padding-left: 4px;padding-right: 4px;font-weight: bold;}
+.headLangNav a.select {color:#D32020;}
 
 .headLinksNav{display: block; padding: 5px 0; text-align: center;}
 .headLinksNav a{display: inline-block; margin: 0 5px 0 0; color:#FFF;}
@@ -104,3 +102,9 @@ a:hover{text-decoration:underline;}
 .footer a {color:#FFF;font-size: x-small; margin-left: 3px; border-left: 1px solid #FFF; padding-left: 3px; display: inline-block; line-height: 12px;}
 .footer a:last-child {border-left: 0 none;}
 .langs {margin:5px 5px 5px 0;}
+#help-e {
+float:left;
+font: normal normal 12px Arial,sans-serif;
+color: blue;
+text-decoration: underline;
+}

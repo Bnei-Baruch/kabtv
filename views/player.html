@@ -5,11 +5,9 @@
 		<div ng-click="switchVideoAudio(true)" class="tabBtn {{isVideo? 'select': '';}}">video</div>
 		<div ng-click="switchVideoAudio(false)" class="{{isVideo? '':'select';}} tabBtn">audio</div>
 	</div>
-
 	<div id="player"></div>
-
-    <div ng-hide = "isClip" class="playerPanel">
-		<a ng-repeat="item in payerData" class="langs {{(Lang == item.language) ? 'selected': '';}}" ng-click="switchPlayerLang(item.language)">{{item.language}}</a>
+	<div ng-hide = "isClip" class="playerPanel">
+		<a  ng-repeat="item in payerData | filter:videoFilter" class="langs {{(Lang == item.language) ? 'selected': '';}}" ng-click="switchPlayerLang(item.language)">{{item.language}}</a>
 	</div>
 
     <div ng-show = "isClip" class="playerPanel">

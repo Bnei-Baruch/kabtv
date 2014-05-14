@@ -109,6 +109,18 @@ kabtv.service('getWMVPlayer', ['detectIE', function (detectIE) {
         if (detectIE()) {
             contObj.attr({ classid: "CLSID:6BF52A52-394A-11d3-B153-00C04F79FAA6"});
         };
+        // param.push(
+        //     angular.element("<param>").attr({
+        //         name: "src",
+        //         value: src
+        //     })
+        // );
+        param.push(
+            angular.element("<param>").attr({
+                name: "URL",
+                value: src
+            })
+        );/*
         param.push(
             angular.element("<param>").attr({
                 name: "balance",
@@ -117,22 +129,12 @@ kabtv.service('getWMVPlayer', ['detectIE', function (detectIE) {
         ); 
         param.push(
             angular.element("<param>").attr({
-                name: "src",
-                value: src
-            })
-        );
-        param.push(
-            angular.element("<param>").attr({
                 name: "autostart",
                 value: "true"
             })
         );
-        param.push(
-            angular.element("<param>").attr({
-                name: "URL",
-                value: src
-            })
-        );
+        
+        
         param.push(
             angular.element("<param>").attr({
                  name: "volume",
@@ -140,7 +142,7 @@ kabtv.service('getWMVPlayer', ['detectIE', function (detectIE) {
             })
         );
         param.push(
-            angular.element("<param>").attr({
+            angular.element("<param>").attr({   
                 name: "uiMode",
                 value: "full"
             })
@@ -148,7 +150,7 @@ kabtv.service('getWMVPlayer', ['detectIE', function (detectIE) {
         param.push(
             angular.element("<param>").attr({
                 name: "animationAtStart",
-                value: "true"
+                value: "false"
             })
         );
         param.push(
@@ -216,7 +218,7 @@ kabtv.service('getWMVPlayer', ['detectIE', function (detectIE) {
                 name: "DisplayForeColor",
                 value: "#ffffff"
             })
-        );
+        );*/
         // contObj.append([param[0], param[1]]);
         for (var i = 0; i < param.length; i++) {
                 contObj.append(param[i]);
