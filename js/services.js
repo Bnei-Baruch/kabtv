@@ -103,12 +103,13 @@ kabtv.service('getUpdates', ['$http', 'pageSettings', function ($http, pageSetti
 
 }]);
 
-kabtv.service('getWMVPlayer', ['detectIE', function (detectIE) {
+kabtv.service('getWMVPlayer', ['detectIE','pageSettings', function (detectIE, pageSettings) {
     var _getWMVPlayer = function  (src) {
         var param = [];
         var contObj = angular.element("<object>").attr({
             type: "application/x-ms-wmp",
-            name: "player",
+            id: "playerObj",
+            name: "playerObj",
             width: "100%",
             height: "305"
         });
@@ -118,20 +119,8 @@ kabtv.service('getWMVPlayer', ['detectIE', function (detectIE) {
         };
         param.push(
             angular.element("<param>").attr({
-                name: "balance",
-                value: false
-            })
-        ); 
-        param.push(
-            angular.element("<param>").attr({
                 name: "src",
                 value: src
-            })
-        );
-        param.push(
-            angular.element("<param>").attr({
-                name: "autostart",
-                value: "true"
             })
         );
         param.push(
@@ -142,12 +131,32 @@ kabtv.service('getWMVPlayer', ['detectIE', function (detectIE) {
         );
         param.push(
             angular.element("<param>").attr({
+                name: "controller",
+                value: "true"
+            })
+        );
+        param.push(
+            angular.element("<param>").attr({
+                name: "balance",
+                value: false
+            })
+        ); 
+        param.push(
+            angular.element("<param>").attr({
+                name: "autostart",
+                value: "true"
+            })
+        );
+        
+        
+        param.push(
+            angular.element("<param>").attr({
                  name: "volume",
                  value: "50"
             })
         );
         param.push(
-            angular.element("<param>").attr({
+            angular.element("<param>").attr({   
                 name: "uiMode",
                 value: "full"
             })
@@ -155,13 +164,7 @@ kabtv.service('getWMVPlayer', ['detectIE', function (detectIE) {
         param.push(
             angular.element("<param>").attr({
                 name: "animationAtStart",
-                value: "true"
-            })
-        );
-        param.push(
-            angular.element("<param>").attr({
-                name: "controller",
-                value: "true"
+                value: "false"
             })
         );
         param.push(
@@ -224,10 +227,11 @@ kabtv.service('getWMVPlayer', ['detectIE', function (detectIE) {
                 value: "#ffffff"
             })
         );
-        // contObj.append([param[0], param[1]]);
+        
         for (var i = 0; i < param.length; i++) {
                 contObj.append(param[i]);
         };
+        pageSettings.WMVPlayer = contObj;
         return contObj;
     }
     return _getWMVPlayer;
