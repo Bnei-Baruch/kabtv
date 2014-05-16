@@ -137,10 +137,11 @@ function kabtvAudioPlayerCtrl ($scope, $element, pageSettings) {
 kabtvAudioPlayerCtrl.$inject = ["$scope", "$element", "pageSettings"];
 
 
-function kabtvPlayerCtrl ($scope, $compile, getOnlineMedia, getWMVPlayer, pageSettings) {
+function kabtvPlayerCtrl ($scope, $timeout, $compile, getOnlineMedia, getWMVPlayer, pageSettings) {
     $scope.isVideo = true;
     $scope.playObj = null;
     $scope.showFullScreen = false;
+    $scope.broadcastTime = '';
     var promise = getOnlineMedia;
     var currentLang;
     promise.then(function(reqData){
@@ -220,6 +221,7 @@ function kabtvPlayerCtrl ($scope, $compile, getOnlineMedia, getWMVPlayer, pageSe
                 $scope.showFullScreen = false;
                 break;
         };
+        showTime();
 
         function getPlayerData(playerList, meaidType)
         {
@@ -238,10 +240,30 @@ function kabtvPlayerCtrl ($scope, $compile, getOnlineMedia, getWMVPlayer, pageSe
             $scope.audioSrc = src;
             var player = $compile( '<div kabtv-audio-player>' )( $scope );
             return player;
-        };
+        }
+
+        function showTime () {
+            if ($scope.isClip)
+             return;
+
+            var off = parseInt(10800000);
+            var d = new Date();
+            var localTime = d.getTime();
+            var localOffset = d.getTimezoneOffset() * 60000;
+            var Jerusalem = localTime + localOffset + off;
+
+            var nowtime = new Date(Jerusalem);
+            var nowtimeHours = nowtime.getHours();
+            var nowtimeMinutes = nowtime.getMinutes();
+
+            if (parseInt(nowtimeHours) <= 9) { var nowtimeHours = "0" + nowtimeHours }
+            if (parseInt(nowtimeMinutes) <= 9) { var nowtimeMinutes = "0" + nowtimeMinutes }
+            $scope.broadcastTime = nowtimeHours + ":" + nowtimeMinutes;
+            $timeout(showTime, 30000);
+        }
     }
  }
-kabtvPlayerCtrl.$inject = ["$scope", "$compile", "getOnlineMedia", "getWMVPlayer", "pageSettings"];
+kabtvPlayerCtrl.$inject = ["$scope", "$timeout", "$compile", "getOnlineMedia", "getWMVPlayer", "pageSettings"];
 
 
 
