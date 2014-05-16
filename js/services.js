@@ -96,7 +96,7 @@ kabtv.service('getUpdates', ['$http', 'pageSettings', function ($http, pageSetti
 
 }]);
 
-kabtv.service('getWMVPlayer', ['detectIE', function (detectIE) {
+kabtv.service('getWMVPlayer', ['detectIE','pageSettings', function (detectIE, pageSettings) {
     var _getWMVPlayer = function  (src) {
         var param = [];
         var contObj = angular.element("<object>").attr({
@@ -110,18 +110,24 @@ kabtv.service('getWMVPlayer', ['detectIE', function (detectIE) {
         if (detectIE()) {
             contObj.attr({ classid: "CLSID:6BF52A52-394A-11d3-B153-00C04F79FAA6"});
         };
-        // param.push(
-        //     angular.element("<param>").attr({
-        //         name: "src",
-        //         value: src
-        //     })
-        // );
+        param.push(
+            angular.element("<param>").attr({
+                name: "src",
+                value: src
+            })
+        );
         param.push(
             angular.element("<param>").attr({
                 name: "URL",
                 value: src
             })
-        );/*
+        );
+        param.push(
+            angular.element("<param>").attr({
+                name: "controller",
+                value: "true"
+            })
+        );
         param.push(
             angular.element("<param>").attr({
                 name: "balance",
@@ -152,12 +158,6 @@ kabtv.service('getWMVPlayer', ['detectIE', function (detectIE) {
             angular.element("<param>").attr({
                 name: "animationAtStart",
                 value: "false"
-            })
-        );
-        param.push(
-            angular.element("<param>").attr({
-                name: "controller",
-                value: "true"
             })
         );
         param.push(
@@ -219,11 +219,12 @@ kabtv.service('getWMVPlayer', ['detectIE', function (detectIE) {
                 name: "DisplayForeColor",
                 value: "#ffffff"
             })
-        );*/
-        // contObj.append([param[0], param[1]]);
+        );
+        
         for (var i = 0; i < param.length; i++) {
                 contObj.append(param[i]);
         };
+        pageSettings.WMVPlayer = contObj;
         return contObj;
     }
     return _getWMVPlayer;

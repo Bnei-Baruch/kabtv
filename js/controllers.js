@@ -1,4 +1,4 @@
-function kabTvOnLoadCtrl ($scope, $timeout, getInitData, pageSettings) {
+function kabTvOnLoadCtrl ($scope, $timeout, getInitData, pageSettings, detectIE) {
     var helpImageBase = 'http://live.kab.tv/button.php?image=tech';
     
 
@@ -10,6 +10,7 @@ function kabTvOnLoadCtrl ($scope, $timeout, getInitData, pageSettings) {
         $scope.showDialogSendToFriends = true;
     });
     
+    pageSettings.detectIE = detectIE();
     $scope.Lang = pageSettings.Lang =  setLang();
     $scope.dir = pageSettings.dir = setDir();
     $scope.helpImage = '';
@@ -41,7 +42,7 @@ function kabTvOnLoadCtrl ($scope, $timeout, getInitData, pageSettings) {
     }
     helpImageUpdate();
 }
-kabTvOnLoadCtrl.$inject = ["$scope", "$timeout", "getInitData", "pageSettings"];
+kabTvOnLoadCtrl.$inject = ["$scope", "$timeout", "getInitData", "pageSettings", "detectIE"];
 
 
 function kabtvHeaderCtrl ($scope, getHeadData, pageSettings) {
@@ -94,8 +95,6 @@ kabtvUpdatesCtrl.$inject = ["$scope", "getUpdates"];
 
 
 function kabtvAudioPlayerCtrl ($scope, $element, pageSettings) {
- 
-
     $scope.isPlay = false;
     $scope.isMute = false;
     $scope.toggleMute = function () {
@@ -139,7 +138,6 @@ kabtvAudioPlayerCtrl.$inject = ["$scope", "$element", "pageSettings"];
 
 
 function kabtvPlayerCtrl ($scope, $compile, getOnlineMedia, getWMVPlayer, pageSettings) {
-
     $scope.isVideo = true;
     $scope.playObj = null;
     $scope.showFullScreen = false;
@@ -174,7 +172,7 @@ function kabtvPlayerCtrl ($scope, $compile, getOnlineMedia, getWMVPlayer, pageSe
             return;
         var fs_str = 'ESC ליציאה ממצב "מסך מלא" לחץ על';
         var nofs_str = 'נא להפעיל נגנ ע"מ לצפותו במסך מלא';
-        var player = document.getElementById("playerObj");
+        var player = pageSettings.WMVPlayer[0];
         if (player && player.playState == 3) {
            alert(fs_str);
            player.fullScreen = true;
@@ -199,21 +197,28 @@ function kabtvPlayerCtrl ($scope, $compile, getOnlineMedia, getWMVPlayer, pageSe
             pageSettings.audioPlayer.destruct();            
         };
         var $el = angular.element(document.querySelector('#player'));
-        $el[0].innerHTML = '';
     	switch (playObj.format.toLowerCase()) {
     		case "hls":
+                $el.empty();
                 options.autostart = true;
                 $el.append('<div id="jwPlayerCont">');
     			jwplayer("jwPlayerCont").setup(options);
                 $scope.showFullScreen = false;
-    			return;
+    			break;
 			case "wmv":
-                $el.append(getWMVPlayer(playObj.url));
+                if (pageSettings.WMVPlayer == null || !pageSettings.detectIE) {
+                    $el.empty();
+                    $el.append(getWMVPlayer(playObj.url));
+                } else {
+                    pageSettings.WMVPlayer[0].object.URL = playObj.url;
+                }
                 $scope.showFullScreen = true;
-                return;
-            case "icecast":
+                break;
+            case "icecast":       
+                $el.empty();
                 $el.append(getAudioPlayer(playObj.url));
                 $scope.showFullScreen = false;
+                break;
         };
 
         function getPlayerData(playerList, meaidType)
