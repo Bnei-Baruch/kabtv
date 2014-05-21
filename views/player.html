@@ -1,8 +1,9 @@
 <div class="clearfix">
 	<div class="backToOnLine" ng-show = "isClip" ng-click="isClip = false; setPlayer()">back to online</div>
-	<div class="tabs" ng-hide = "isClip">
+	<div class="tabs" ng-hide = "isClip">		
 		<div ng-click="switchVideoAudio(true)" class="tabBtn {{isVideo? 'select': '';}}">video</div>
 		<div ng-click="switchVideoAudio(false)" class="{{isVideo? '':'select';}} tabBtn">audio</div>
+		<div class="broadcastTime">שעת שידור {{broadcastTime}} (זמן ירושלים)</div>
 	</div>
 	<div id="player" ng-hide = "showDialogSendToFriends"></div>
 	<a ng-show="showFullScreen" class="fullScreenButton" ng-click="gofs()"><img src="images/fs.gif" alt="למסך מלא" width="14" height="14"/> למסך מלא</a>
