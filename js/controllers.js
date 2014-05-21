@@ -137,7 +137,7 @@ function kabtvAudioPlayerCtrl ($scope, $element, pageSettings) {
 kabtvAudioPlayerCtrl.$inject = ["$scope", "$element", "pageSettings"];
 
 
-function kabtvPlayerCtrl ($scope, $compile, getOnlineMedia, getWMVPlayer, pageSettings) {
+function kabtvPlayerCtrl ($scope, $compile, getOnlineMedia, getWMVPlayer, pageSettings, $location) {
     $scope.isVideo = true;
     $scope.playObj = null;
     $scope.showFullScreen = false;
@@ -213,6 +213,7 @@ function kabtvPlayerCtrl ($scope, $compile, getOnlineMedia, getWMVPlayer, pageSe
                     pageSettings.WMVPlayer[0].object.URL = playObj.url;
                 }
                 $scope.showFullScreen = true;
+                $location.path('/clip/'+playObj.url);
                 break;
             case "icecast":       
                 $el.empty();
@@ -241,7 +242,7 @@ function kabtvPlayerCtrl ($scope, $compile, getOnlineMedia, getWMVPlayer, pageSe
         };
     }
  }
-kabtvPlayerCtrl.$inject = ["$scope", "$compile", "getOnlineMedia", "getWMVPlayer", "pageSettings"];
+kabtvPlayerCtrl.$inject = ["$scope", "$compile", "getOnlineMedia", "getWMVPlayer", "pageSettings", "$location"];
 
 
 
