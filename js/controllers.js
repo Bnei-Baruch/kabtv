@@ -28,10 +28,11 @@ function kabTvOnLoadCtrl ($scope, $timeout, getInitData, pageSettings, detectIE)
     function getTopMenuData (){
     }
     function getHelpLang(){
-        switch ($scope.Lang)
+        switch ($scope.Lang.toLowerCase())
         {
-            case 'HEB': return 'he';
-            case 'RUS': return 'ru';
+            case 'heb': return 'he';
+            case 'rus': return 'ru';
+            case 'spa': return 'es';
         }
         return 'en';
     }
