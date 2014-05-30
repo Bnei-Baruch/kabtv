@@ -54,6 +54,22 @@ kabtv.service('setClipList', ['$http', 'pageSettings', function ($http, pageSett
 
 }]);
 
+kabtv.service('getClipById', ['$http', function ($http) {
+    var getClipById = function (id) {
+        return  (
+            $http.get('http://api.kab.tv/api/vod_media/' + id, 
+                {
+                    responseType: 'json', 
+                     headers: {
+                        'Accept': 'application/json'
+                    }
+                }
+            )
+        );
+    }
+    return getClipById;
+
+}]);
 kabtv.service('getFooterData', ['$http', 'pageSettings', function ($http, pageSettings) {
 
     return $http.get('http://api.kab.tv/api/nav_links', {
