@@ -1,0 +1,11 @@
+{
+    "SITE_TITLE": "english site title",
+    "SITE_DESCRIPTION": "english site description",
+    "SITE_KEYWORDS": "english site keywords",
+
+    "PLAYER_BACK_TO_LIVE": "back to online",
+    "PLAYER_FULLSCREEN": "Go Fullscreen",
+    "PLAYER_BROADCAST_TIME": "Broadcast Time {{time}} (Jerusalem Time)",
+
+    "VOD_DOWNLOAD": "Download File"
+}

@@ -16,14 +16,14 @@ kabtv.directive("kabtvHeader", function (pageSettings) {
 kabtv.directive("kabtvFooter", function () {
     return {
         templateUrl: 'views/footer.html',
-        controller: kabtvFooterCtrl,
+        controller: kabtvFooterCtrl
     };
 });
 
 kabtv.directive("kabtvUpdates", function (getInitData) {
     return {
         templateUrl: 'views/updates.html',
-        controller: kabtvUpdatesCtrl,
+        controller: kabtvUpdatesCtrl
     };
 });
 
@@ -31,7 +31,7 @@ kabtv.directive("kabtvTabs", function (getInitData) {
     return {
         scope: {},
         templateUrl: 'views/tabs.html',
-        controller: kabtvTabsCtrl,
+        controller: kabtvTabsCtrl
     };
 });
 
@@ -78,8 +78,6 @@ kabtv.directive("kabtvClipList", function ( setClipList ) {
                 setClipList(newVal.id).then(function(res){
                     $scope.clipList =  res.data;
                 });
-
-
             });
         }
     };

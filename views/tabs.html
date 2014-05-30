@@ -1,5 +1,9 @@
 <div class="tabs" id="asideTabIframe">
-	<div class="tabBtn {{currentTab == $index? 'select': '';}}" ng-repeat="item in tabs" ng-click="switchTab(item,  $index)">{{item.title}}</div>
+	<div class="tabBtn {{currentTab == $index? 'select': '';}}"
+         ng-repeat="item in tabs"
+         ng-click="switchTab(item,  $index)">
+        {{item.title}}
+    </div>
     <!-- 
     <div kabtv-schedule></div>
     <div kabtv-questions></div>
