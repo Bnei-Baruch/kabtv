@@ -10,6 +10,7 @@ function kabTvOnLoadCtrl ($scope, $timeout, $translate, getInitData, pageSetting
     });
     
     $scope.Lang = pageSettings.Lang =  getLang();
+    $scope.LangFullname = pageSettings.LangFullname =  getLangFullname();
     $scope.dir = pageSettings.dir = getDir();
     $scope.locale = pageSettings.locale = getLocale();
     $translate.use($scope.locale);
@@ -20,6 +21,20 @@ function kabTvOnLoadCtrl ($scope, $timeout, $translate, getInitData, pageSetting
     function getLang () {
         var lang = window.location.pathname.split("/")[1] || 'HEB';
         return lang.toUpperCase();
+    }
+
+    function getLangFullname() {
+        switch ($scope.Lang) {
+            case 'HEB': return 'Hebrew';
+            case 'ENG': return 'English';
+            case 'RUS': return 'Russian';
+            case 'SPA': return 'Spanish';
+            case 'GER': return 'German';
+            case 'ITA': return 'Italian';
+            case 'FRE': return 'French';
+            case 'POR': return 'Portuguese';
+            default: return 'Hebrew';
+        }
     }
 
     function getDir() {
@@ -75,33 +90,31 @@ kabtvHeaderCtrl.$inject = ["$scope", "getHeadData", "pageSettings"];
 /*content controllers*/
 
 
-function kabtvTabsCtrl ($scope, getTabsIframe, $compile) {
-    getTabsIframe.then(function(reqData){
-        $scope.tabs = reqData.data.data;
-        $scope.switchTab(reqData.data.data[0]);
-        $scope.currentTab = reqData.data.defaultTab;
-    });
-    var $el = angular.element(document.querySelector('#asideTabIframe .forIframe'));
-    $scope.switchTab = function (item, index){
-        $scope.currentTab = index;
-        var attrebuts = {"frameborder": 0,"src": item.url};
-        if (item.id == "questions") {attrebuts.scrolling = "no"};
-        var setHtml = angular.element("<iframe>").attr(attrebuts);
+function kabtvTabsCtrl ($scope, $sce) {
+    $scope.tabs = ["TAB_UPDATES", "TAB_SCHEDULE", "TAB_QUESTIONS", "TAB_SKETCHES"];
+    $scope.tabUrls = {
+        "TAB_SCHEDULE": "http://kab.tv/tvlist_gen.php",
+        "TAB_QUESTIONS": "http://kab.tv/q.php",
+        "TAB_SKETCHES": "http://www.kab.tv/classboard/classboard.php"
+    };
 
-        /*if (item.id == "updates") {
-            setHtml = $compile(angular.element("<div kabtv-updates>"))($scope);
-        };*/
-        $el.html('');
-        $el.append(setHtml);
+    $scope.currentTab = $scope.tabs[0];
+
+    $scope.switchTab = function (item){
+        $scope.currentTab = item;
+        var url = $scope.tabUrls[$scope.currentTab];
+        if (url) {
+            $scope.currentTabUrl = $sce.trustAsResourceUrl(url + '?lang=' + $scope.$parent.LangFullname);
+        }
     }
 }
-kabtvTabsCtrl.$inject = ["$scope", "getTabsIframe", "$compile"];
+kabtvTabsCtrl.$inject = ["$scope", "$sce"];
 
 
 
 function kabtvUpdatesCtrl ($scope, getUpdates) {
     getUpdates.then(function(reqData){
-        $scope.tabs = reqData.data.data;
+        $scope.updates = reqData.data;
     });
  
 }

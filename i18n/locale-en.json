@@ -7,5 +7,10 @@
     "PLAYER_FULLSCREEN": "Go Fullscreen",
     "PLAYER_BROADCAST_TIME": "Broadcast Time {{time}} (Jerusalem Time)",
 
-    "VOD_DOWNLOAD": "Download File"
+    "VOD_DOWNLOAD": "Download File",
+
+    "TAB_UPDATES": "Updates",
+    "TAB_SCHEDULE": "Schedule",
+    "TAB_QUESTIONS": "Questions",
+    "TAB_SKETCHES": "Sketches"
 }

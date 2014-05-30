@@ -7,5 +7,11 @@
     "PLAYER_FULLSCREEN": "למסך מלא",
     "PLAYER_BROADCAST_TIME": "שעת שידור {{time}} (זמן ירושלים)",
 
-    "VOD_DOWNLOAD": "הורד קובץ"
+    "VOD_DOWNLOAD": "הורד קובץ",
+
+    "TAB_UPDATES": "עדכונים",
+    "TAB_SCHEDULE": "לוח זמנים",
+    "TAB_QUESTIONS": "שאלות",
+    "TAB_SKETCHES": "שרטוטים"
+
 }
