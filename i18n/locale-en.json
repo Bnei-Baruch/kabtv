@@ -8,6 +8,8 @@
     "PLAYER_BROADCAST_TIME": "Broadcast Time {{time}} (Jerusalem Time)",
     "PLAYER_VIDEO": "Video",
     "PLAYER_AUDIO": "Audio",
+    "PLAYER_EXIT_FULLSCREEN": "Press ESC to exit full screen",
+    "PLAYER_NO_FULLSCREEN": "Please start player before going full screen",
 
     "VOD_DOWNLOAD": "Download File",
 

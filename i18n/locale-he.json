@@ -8,6 +8,8 @@
     "PLAYER_BROADCAST_TIME": "שעת שידור {{time}} (זמן ירושלים)",
     "PLAYER_VIDEO": "וידאו",
     "PLAYER_AUDIO": "אודיו",
+    "PLAYER_EXIT_FULLSCREEN": "ESC ליציאה ממצב \"מסך מלא\" לחץ על",
+    "PLAYER_NO_FULLSCREEN": "נא להפעיל נגן ע\"מ לצפותו במסך מלא",
 
     "VOD_DOWNLOAD": "הורד קובץ",
 

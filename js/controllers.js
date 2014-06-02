@@ -1,3 +1,5 @@
+'use strict';
+
 function kabTvOnLoadCtrl($scope, $timeout, $translate, getInitData, pageSettings, detectIE) {
     var helpImageBase = 'http://live.kab.tv/button.php?image=tech';
 
@@ -184,7 +186,8 @@ function kabtvAudioPlayerCtrl($scope, $element, pageSettings) {
 kabtvAudioPlayerCtrl.$inject = ["$scope", "$element", "pageSettings"];
 
 
-function kabtvPlayerCtrl($scope, $timeout, $compile, getOnlineMedia, getWMVPlayer, pageSettings, getClipById, $location, $routeParams) {
+function kabtvPlayerCtrl($scope, $timeout, $compile, getOnlineMedia, getWMVPlayer,
+                         pageSettings, getClipById, $location, $routeParams, $translate) {
     $scope.isVideo = true;
     $scope.playObj = null;//TODO: make this local
     $scope.showFullScreen = false;
@@ -245,7 +248,7 @@ function kabtvPlayerCtrl($scope, $timeout, $compile, getOnlineMedia, getWMVPlaye
     function getPlayerData(playerList, meaidType) {
         if (!playerList) return null;
         var mediaType = (typeof $routeParams.isVideo == "undefined" || $routeParams.isVideo) ? "video" : "audio";
-        for (i = 0; i < playerList.length; i++) {
+        for (var i = 0; i < playerList.length; i++) {
             var playerData = playerList[i];
             if (playerData.media_type == mediaType &&
                 (currentLang == null || playerData.language.toLowerCase() == currentLang.toLowerCase()))
@@ -301,8 +304,8 @@ function kabtvPlayerCtrl($scope, $timeout, $compile, getOnlineMedia, getWMVPlaye
     $scope.gofs = function () {
         if ($scope.playObj == null || $scope.playObj.format.toLowerCase() != 'wmv')
             return;
-        var fs_str = 'ESC ליציאה ממצב "מסך מלא" לחץ על';
-        var nofs_str = 'נא להפעיל נגנ ע"מ לצפותו במסך מלא';
+        var fs_str = $translate.instant('PLAYER_EXIT_FULLSCREEN');
+        var nofs_str = $translate.instant('PLAYER_NO_FULLSCREEN');
         var player = pageSettings.WMVPlayer[0];
         if (player && player.playState == 3) {
             alert(fs_str);
@@ -322,7 +325,8 @@ function kabtvPlayerCtrl($scope, $timeout, $compile, getOnlineMedia, getWMVPlaye
     }
 }
 
-kabtvPlayerCtrl.$inject = ["$scope", "$timeout", "$compile", "getOnlineMedia", "getWMVPlayer", "pageSettings", "getClipById", "$location", "$routeParams"];
+kabtvPlayerCtrl.$inject = ["$scope", "$timeout", "$compile", "getOnlineMedia",
+    "getWMVPlayer", "pageSettings", "getClipById", "$location", "$routeParams", "$translate"];
 
 function kabtvClipListCtrl($scope, $rootScope, $http, setClipListes, $location) {
     $scope.$http = $http;

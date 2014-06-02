@@ -35,25 +35,6 @@ kabtv.directive("kabtvTabs", function (getInitData) {
     };
 });
 
-kabtv.directive("kabtvPlayer", function () {
-    return {
-        replace: true,
-        templateUrl: 'views/player.html',
-        controller: kabtvPlayerCtrl,
-        link: function ($scope, el, attrs) {
-            $scope.$on("action: switch to clip", function (e, data) {
-                $scope.isClip = true;
-                $scope.clipData = data;
-                $scope.setPlayer ({url: data.play_url, format: data.content_type});
-            });
-            $scope.$watch('isVideo', function (newVal, oldVal) {
-                if (newVal == oldVal) return;
-                $scope.setPlayer();
-            });
-        }
-    };
-});
-
 kabtv.directive("kabtvAudioPlayer", function () {
     return {
         replace: true,
@@ -63,8 +44,6 @@ kabtv.directive("kabtvAudioPlayer", function () {
         }
     };
 });
-
-
 
 kabtv.directive("kabtvClipList", function ( setClipList ) {
     return {
