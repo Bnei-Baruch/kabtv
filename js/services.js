@@ -1,3 +1,5 @@
+'use strict';
+
 kabtv.service('getInitData', ['$http', 'pageSettings', function ($http, pageSettings) {
     return $http.get('./js/onload.json');
 }]);
@@ -15,10 +17,6 @@ kabtv.service('getHeadData', ['$http', 'pageSettings', function ($http, pageSett
 		    }
     	}
 	);
-}]);
-
-kabtv.service('getTabsIframe', ['$http', function ($http) {
-    return $http.get('./json/tabsiframe.json');
 }]);
 
 kabtv.service('setClipListes', ['$http', 'pageSettings', function ($http, pageSettings) {
@@ -54,23 +52,21 @@ kabtv.service('setClipList', ['$http', 'pageSettings', function ($http, pageSett
 }]);
 
 kabtv.service('getClipById', ['$http', function ($http) {
-    var getClipById = function (id) {
+    return function (id) {
         return  (
-            $http.get('http://api.kab.tv/api/vod_media/' + id, 
+            $http.get('http://api.kab.tv/api/vod_media/' + id,
                 {
-                    responseType: 'json', 
+                    responseType: 'json',
                      headers: {
                         'Accept': 'application/json'
                     }
                 }
             )
         );
-    }
-    return getClipById;
+    };
 
 }]);
 kabtv.service('getFooterData', ['$http', 'pageSettings', function ($http, pageSettings) {
-
     return $http.get('http://api.kab.tv/api/nav_links', {
         params: {
                'callback': 'JSON_CALLBACK',
@@ -78,7 +74,6 @@ kabtv.service('getFooterData', ['$http', 'pageSettings', function ($http, pageSe
                 'placeholder': 'footer'
             }
         });
-   
 }]);
 
 kabtv.service('setSendToFriend', function($http) {
@@ -91,10 +86,7 @@ kabtv.service('getOnlineMedia', ['$http', 'pageSettings', function ($http, pageS
     return $http.get('http://api.kab.tv/api/streams', 
         {
             responseType: 'json', 
-            params: {
-                /*'lang': pageSettings.Lang*/
-            },
-             headers: {
+            headers: {
                 'Accept': 'application/json'
             }
         }

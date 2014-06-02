@@ -1,3 +1,5 @@
+'use strict';
+
 var kabtv = angular.module('kabtv', ['ngRoute', 'pascalprecht.translate']);
 
 kabtv.value('pageSettings', {

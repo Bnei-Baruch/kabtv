@@ -1,3 +1,5 @@
+'use strict';
+
 kabtv.directive("kabtvOnload", function (pageSettings) {
     return {
         scope: {},
