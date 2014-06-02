@@ -1,0 +1,12 @@
+<div class="clearfix">
+	<div class="tabs">		
+		<div ng-click="switchVideoAudio(true)" class="tabBtn {{isVideo? 'select': '';}}">video</div>
+		<div ng-click="switchVideoAudio(false)" class="{{isVideo? '':'select';}} tabBtn">audio</div>
+		<div class="broadcastTime">שעת שידור {{broadcastTime}} (זמן ירושלים)</div>
+	</div>
+	<div id="player" ng-hide = "showDialogSendToFriends"></div>
+	<a ng-show="showFullScreen" class="fullScreenButton" ng-click="gofs()"><img src="images/fs.gif" alt="למסך מלא" width="14" height="14"/> למסך מלא</a>
+	<div class="playerPanel">
+		<a  ng-repeat="item in playerData | filter:videoFilter" class="langs {{(Lang == item.language) ? 'selected': '';}}" ng-click="switchPlayerLang(item.language)">{{item.language}}</a>
+	</div>
+</div>

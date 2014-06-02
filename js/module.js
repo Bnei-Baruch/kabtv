@@ -19,10 +19,16 @@ kabtv.config(['$translateProvider', function ($translateProvider) {
 }]);
 
 kabtv.config(function($routeProvider) {
-    $routeProvider
-        .when('/',{
-            templateUrl: "./index.html",
-            //controller
-        })
-
+	$routeProvider
+	///stream
+	.when('/stream',{
+		controller: "kabtvPlayerCtrl",
+		templateUrl: "views/playerStream.html",
+	})
+	///clip 
+	.when('/clip',{
+		controller: "kabtvPlayerCtrl",
+		templateUrl: "views/playerClip.html"
+	})
+	.otherwise({redirectTo:'/stream'})
 });

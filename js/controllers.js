@@ -164,36 +164,122 @@ function kabtvAudioPlayerCtrl ($scope, $element, pageSettings) {
 kabtvAudioPlayerCtrl.$inject = ["$scope", "$element", "pageSettings"];
 
 
-function kabtvPlayerCtrl ($scope, $timeout, $compile, getOnlineMedia, getWMVPlayer, pageSettings, $location) {
+function kabtvPlayerCtrl ($scope, $timeout, $compile, getOnlineMedia, getWMVPlayer, pageSettings, getClipById, $location, $routeParams) {
     $scope.isVideo = true;
-    $scope.playObj = null;
+    $scope.playObj = null;//TODO: make this local
     $scope.showFullScreen = false;
     $scope.broadcastTime = '';
-    var promise = getOnlineMedia;
-    var currentLang;
-    promise.then(function(reqData){
-        currentLang = reqData.data.defaultLang;
-        $scope.payerData = reqData.data;
-        $scope.setPlayer(); 
-    });
-    $scope.videoFilter = function(item) {
-        return (($scope.isVideo && item.media_type == 'video' ||
-                 !$scope.isVideo && item.media_type == 'audio') &&
-                (item.language == 'HEB' ||
-                item.language == 'RUS' ||
-                item.language == 'ENG' ||
-                item.language == 'SPA' ||
-                item.language == 'GER'));
+    var currentLang, playObj;
+
+
+
+    currentLang = ($routeParams.mediaLang)? $routeParams.mediaLang: $scope.Lang;
+    if ($location.$$path == "/clip") {
+        getClipById($routeParams.mediaId).then(
+            function (reqData) {
+                $scope.playerData = reqData.data;
+                setPlayer({url: reqData.data.play_url, format: reqData.data.content_type , width: "100%"});
+        });
+     } else {
+        getOnlineMedia.then(function(reqData){
+            $scope.playerData = reqData.data;
+            var playObj = getPlayerData(reqData.data);
+            var options = {url: playObj.url, width: "100%", format: playObj.format};
+            setPlayer(options); 
+        });
+    };
+
+
+    function setPlayer (playObj) {
+        $scope.playObj = playObj;
+        if (pageSettings.audioPlayer != null) {
+            pageSettings.audioPlayer.destruct();            
+        };
+        var $el = angular.element(document.querySelector('#player'));
+
+    	switch (playObj.format.toLowerCase()) {
+    		case "hls":
+                $el.empty();
+                playObj.autostart = true;
+                $el.append('<div id="jwPlayerCont">');
+    			jwplayer("jwPlayerCont").setup(playObj);
+                $scope.showFullScreen = false;
+    			break;
+			case "wmv":
+                if (pageSettings.WMVPlayer == null || !pageSettings.detectIE) {
+                    $el.empty();
+                    $el.append(getWMVPlayer(playObj.url));
+                } else {
+                    pageSettings.WMVPlayer[0].object.URL = playObj.url;
+                }
+                $scope.showFullScreen = true;
+                break;
+            case "icecast":       
+                $el.empty();
+                $el.append(getAudioPlayer(playObj.url));
+                $scope.showFullScreen = false;
+                break;
+        }
+    }
+    showTime();
+
+    function getPlayerData(playerList, meaidType)
+    {
+        if (!playerList) return null;
+        var mediaType = (typeof $routeParams.isVideo == "undefined" || $routeParams.isVideo) ? "video": "audio";
+        for (i=0; i<playerList.length; i++)
+        {
+            var playerData = playerList[i];
+            if (playerData.media_type == mediaType && 
+                (currentLang == null || playerData.language.toLowerCase() == currentLang.toLowerCase()))
+                return playerData;
+        }
+        return null;
     }
 
+    function getAudioPlayer(src){
+        $scope.audioSrc = src;
+        var player = $compile( '<div kabtv-audio-player>' )( $scope );
+        return player;
+    }
+
+
+
+
     $scope.switchVideoAudio = function (isVideo) {
-        $scope.isVideo = isVideo;
+        $location.path('stream/');
+        $location.search({"mediaLang": currentLang, "isVideo": isVideo});
     };
 
     $scope.switchPlayerLang = function (lang) {
-        currentLang = lang;
-        $scope.setPlayer(); 
+       currentLang = lang;
+        $location.search({"mediaLang": lang, "isVideo": $scope.isVideo});
     };
+     $scope.getStream = function () {
+        $location.path('stream/');
+        $location.search({"mediaLang": currentLang, "isVideo": $scope.isVideo});
+     }
+
+
+    function showTime () {
+        if ($scope.isClip)
+         return;
+
+        var off = parseInt(10800000);
+        var d = new Date();
+        var localTime = d.getTime();
+        var localOffset = d.getTimezoneOffset() * 60000;
+        var Jerusalem = localTime + localOffset + off;
+
+        var nowtime = new Date(Jerusalem);
+        var nowtimeHours = nowtime.getHours();
+        var nowtimeMinutes = nowtime.getMinutes();
+
+        if (parseInt(nowtimeHours) <= 9) { var nowtimeHours = "0" + nowtimeHours }
+        if (parseInt(nowtimeMinutes) <= 9) { var nowtimeMinutes = "0" + nowtimeMinutes }
+        $scope.broadcastTime = nowtimeHours + ":" + nowtimeMinutes;
+        $timeout(showTime, 30000);
+    }
 
     $scope.gofs = function() {
         if ($scope.playObj == null || $scope.playObj.format.toLowerCase() != 'wmv')
@@ -208,93 +294,20 @@ function kabtvPlayerCtrl ($scope, $timeout, $compile, getOnlineMedia, getWMVPlay
            alert(nofs_str);
         }
     };
-
-    $scope.setPlayer = function (playObj) {
-        var options = {};
-        if ($scope.isClip) {
-            options = {file: playObj.url, width: "100%"};
-        } else if ($scope.isVideo) {
-            if (typeof playObj === "undefined") playObj = getPlayerData($scope.payerData, 'video');
-            options = {file: playObj.url, width: "100%"};
-        } else if (!$scope.isVideo) {
-            if (typeof playObj === "undefined") playObj = getPlayerData($scope.payerData, 'audio');
-            options = {file: playObj.url, height: 30, width: "100%"};
-        };
-        $scope.playObj = playObj;
-        if (pageSettings.audioPlayer != null) {
-            pageSettings.audioPlayer.destruct();            
-        };
-        var $el = angular.element(document.querySelector('#player'));
-    	switch (playObj.format.toLowerCase()) {
-    		case "hls":
-                $el.empty();
-                options.autostart = true;
-                $el.append('<div id="jwPlayerCont">');
-    			jwplayer("jwPlayerCont").setup(options);
-                $scope.showFullScreen = false;
-    			break;
-			case "wmv":
-                if (pageSettings.WMVPlayer == null || !pageSettings.detectIE) {
-                    $el.empty();
-                    $el.append(getWMVPlayer(playObj.url));
-                } else {
-                    pageSettings.WMVPlayer[0].object.URL = playObj.url;
-                }
-                $scope.showFullScreen = true;
-                $location.path('/clip/'+playObj.url);
-                break;
-            case "icecast":       
-                $el.empty();
-                $el.append(getAudioPlayer(playObj.url));
-                $scope.showFullScreen = false;
-                break;
-        };
-        showTime();
-
-        function getPlayerData(playerList, meaidType)
-        {
-            if (!playerList) return null;
-            for (i=0; i<playerList.length; i++)
-            {
-                playerData = playerList[i];
-                if (playerData.media_type == meaidType && 
-                    (currentLang == null || playerData.language.toLowerCase() == currentLang.toLowerCase()))
-                    return playerData;
-            }
-            return null;
-        }
-
-        function getAudioPlayer(src){
-            $scope.audioSrc = src;
-            var player = $compile( '<div kabtv-audio-player>' )( $scope );
-            return player;
-        }
-
-        function showTime () {
-            if ($scope.isClip)
-             return;
-
-            var off = parseInt(10800000);
-            var d = new Date();
-            var localTime = d.getTime();
-            var localOffset = d.getTimezoneOffset() * 60000;
-            var Jerusalem = localTime + localOffset + off;
-
-            var nowtime = new Date(Jerusalem);
-            var nowtimeHours = nowtime.getHours();
-            var nowtimeMinutes = nowtime.getMinutes();
-
-            if (parseInt(nowtimeHours) <= 9) { var nowtimeHours = "0" + nowtimeHours }
-            if (parseInt(nowtimeMinutes) <= 9) { var nowtimeMinutes = "0" + nowtimeMinutes }
-            $scope.broadcastTime = nowtimeHours + ":" + nowtimeMinutes;
-            $timeout(showTime, 30000);
-        }
+    $scope.videoFilter = function(item) {
+        return (($scope.isVideo && item.media_type == 'video' ||
+            !$scope.isVideo && item.media_type == 'audio') &&
+            (item.language == 'HEB' ||
+            item.language == 'RUS' ||
+            item.language == 'ENG' ||
+            item.language == 'SPA' ||
+            item.language == 'GER'));
     }
  }
 
-kabtvPlayerCtrl.$inject = ["$scope", "$timeout", "$compile", "getOnlineMedia", "getWMVPlayer", "pageSettings", "$location"];
+kabtvPlayerCtrl.$inject = ["$scope", "$timeout", "$compile", "getOnlineMedia", "getWMVPlayer", "pageSettings", "getClipById", "$location", "$routeParams"];
 
-function kabtvClipListCtrl ( $scope, $rootScope, $http, setClipListes) {
+function kabtvClipListCtrl ( $scope, $rootScope, $http, setClipListes, $location) {
     $scope.$http = $http;
     $scope.selectedClipList = null;
     $scope.sendToFriends = function () {
@@ -307,11 +320,11 @@ function kabtvClipListCtrl ( $scope, $rootScope, $http, setClipListes) {
     }); 
    
     $scope.runClip = function (clipData) {
-        /*$rootscope.$emit("toget: switch to clip", clipData);*/
-        $rootScope.$broadcast("action: switch to clip", clipData);
+        $location.path('clip/');
+        $location.search({"mediaId": clipData.id});
     }
 }
-kabtvClipListCtrl.$inject = ["$scope", "$rootScope", "$http", "setClipListes", "pageSettings"];
+kabtvClipListCtrl.$inject = ["$scope", "$rootScope", "$http", "setClipListes", "$location"];
 
 function sendToFriendsCtrl ( $scope, $http, setSendToFriend) {
     $scope.showDialog = false;
