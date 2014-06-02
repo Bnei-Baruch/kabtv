@@ -1,6 +1,6 @@
-function kabTvOnLoadCtrl ($scope, $timeout, $translate, getInitData, pageSettings, detectIE) {
+function kabTvOnLoadCtrl($scope, $timeout, $translate, getInitData, pageSettings, detectIE) {
     var helpImageBase = 'http://live.kab.tv/button.php?image=tech';
-    
+
     getInitData.then(function (reqData) {
         pageSettings.topMenuData = reqData.data.topMenuData;
     });
@@ -8,9 +8,9 @@ function kabTvOnLoadCtrl ($scope, $timeout, $translate, getInitData, pageSetting
     $scope.$on("show: send to friends", function (e, clipData) {
         $scope.showDialogSendToFriends = true;
     });
-    
-    $scope.Lang = pageSettings.Lang =  getLang();
-    $scope.LangFullname = pageSettings.LangFullname =  getLangFullname();
+
+    $scope.Lang = pageSettings.Lang = getLang();
+    $scope.LangFullname = pageSettings.LangFullname = getLangFullname();
     $scope.dir = pageSettings.dir = getDir();
     $scope.locale = pageSettings.locale = getLocale();
     $translate.use($scope.locale);
@@ -18,22 +18,31 @@ function kabTvOnLoadCtrl ($scope, $timeout, $translate, getInitData, pageSetting
     pageSettings.detectIE = detectIE();
     $scope.helpImage = '';
 
-    function getLang () {
+    function getLang() {
         var lang = window.location.pathname.split("/")[1] || 'HEB';
         return lang.toUpperCase();
     }
 
     function getLangFullname() {
         switch ($scope.Lang) {
-            case 'HEB': return 'Hebrew';
-            case 'ENG': return 'English';
-            case 'RUS': return 'Russian';
-            case 'SPA': return 'Spanish';
-            case 'GER': return 'German';
-            case 'ITA': return 'Italian';
-            case 'FRE': return 'French';
-            case 'POR': return 'Portuguese';
-            default: return 'Hebrew';
+            case 'HEB':
+                return 'Hebrew';
+            case 'ENG':
+                return 'English';
+            case 'RUS':
+                return 'Russian';
+            case 'SPA':
+                return 'Spanish';
+            case 'GER':
+                return 'German';
+            case 'ITA':
+                return 'Italian';
+            case 'FRE':
+                return 'French';
+            case 'POR':
+                return 'Portuguese';
+            default:
+                return 'Hebrew';
         }
     }
 
@@ -43,45 +52,57 @@ function kabTvOnLoadCtrl ($scope, $timeout, $translate, getInitData, pageSetting
 
     function getLocale() {
         switch ($scope.Lang) {
-            case 'HEB': return 'he';
-            case 'ENG': return 'en';
-            case 'RUS': return 'ru';
-            case 'SPA': return 'es';
-            case 'GER': return 'de';
-            case 'ITA': return 'it';
-            case 'FRE': return 'fr';
-            case 'POR': return 'pt';
-            default: return 'he';
+            case 'HEB':
+                return 'he';
+            case 'ENG':
+                return 'en';
+            case 'RUS':
+                return 'ru';
+            case 'SPA':
+                return 'es';
+            case 'GER':
+                return 'de';
+            case 'ITA':
+                return 'it';
+            case 'FRE':
+                return 'fr';
+            case 'POR':
+                return 'pt';
+            default:
+                return 'he';
         }
     }
 
-    function getHelpLang(){
-        switch ($scope.Lang.toLowerCase())
-        {
-            case 'heb': return 'he';
-            case 'rus': return 'ru';
-            case 'spa': return 'es';
+    function getHelpLang() {
+        switch ($scope.Lang.toLowerCase()) {
+            case 'heb':
+                return 'he';
+            case 'rus':
+                return 'ru';
+            case 'spa':
+                return 'es';
         }
         return 'en';
     }
 
-    function helpImageUpdate(){
+    function helpImageUpdate() {
         var date = new Date();
-        $scope.helpImage = helpImageBase + '&lang=' +  getHelpLang() + '&' + '&time=' + date.getTime();
+        $scope.helpImage = helpImageBase + '&lang=' + getHelpLang() + '&' + '&time=' + date.getTime();
         $timeout(helpImageUpdate, 60000);
     }
+
     helpImageUpdate();
 }
 kabTvOnLoadCtrl.$inject = ["$scope", "$timeout", "$translate", "getInitData", "pageSettings", "detectIE"];
 
 
-function kabtvHeaderCtrl ($scope, getHeadData, pageSettings) {
+function kabtvHeaderCtrl($scope, getHeadData, pageSettings) {
     getHeadData.then(function (reqData) {
-        $scope.topMenuData =  pageSettings.topMenuData;
+        $scope.topMenuData = pageSettings.topMenuData;
         $scope.linksList = reqData.data;
     });
-    $scope.currentLang = function(lang) {
-        return (pageSettings.Lang == lang) ? "select": "";
+    $scope.currentLang = function (lang) {
+        return (pageSettings.Lang == lang) ? "select" : "";
     };
 }
 kabtvHeaderCtrl.$inject = ["$scope", "getHeadData", "pageSettings"];
@@ -90,7 +111,7 @@ kabtvHeaderCtrl.$inject = ["$scope", "getHeadData", "pageSettings"];
 /*content controllers*/
 
 
-function kabtvTabsCtrl ($scope, $sce) {
+function kabtvTabsCtrl($scope, $sce) {
     $scope.tabs = ["TAB_UPDATES", "TAB_SCHEDULE", "TAB_QUESTIONS", "TAB_SKETCHES"];
     $scope.tabUrls = {
         "TAB_SCHEDULE": "http://kab.tv/tvlist_gen.php",
@@ -100,7 +121,7 @@ function kabtvTabsCtrl ($scope, $sce) {
 
     $scope.currentTab = $scope.tabs[0];
 
-    $scope.switchTab = function (item){
+    $scope.switchTab = function (item) {
         $scope.currentTab = item;
         var url = $scope.tabUrls[$scope.currentTab];
         if (url) {
@@ -111,17 +132,16 @@ function kabtvTabsCtrl ($scope, $sce) {
 kabtvTabsCtrl.$inject = ["$scope", "$sce"];
 
 
-
-function kabtvUpdatesCtrl ($scope, getUpdates) {
-    getUpdates.then(function(reqData){
+function kabtvUpdatesCtrl($scope, getUpdates) {
+    getUpdates.then(function (reqData) {
         $scope.updates = reqData.data;
     });
- 
+
 }
 kabtvUpdatesCtrl.$inject = ["$scope", "getUpdates"];
 
 
-function kabtvAudioPlayerCtrl ($scope, $element, pageSettings) {
+function kabtvAudioPlayerCtrl($scope, $element, pageSettings) {
     $scope.isPlay = false;
     $scope.isMute = false;
     $scope.toggleMute = function () {
@@ -129,42 +149,42 @@ function kabtvAudioPlayerCtrl ($scope, $element, pageSettings) {
         if ($scope.isMute) {
             $scope.muteOnOff = "off";
             pageSettings.audioPlayer.mute();
-        }else{
+        } else {
             $scope.muteOnOff = "on";
             pageSettings.audioPlayer.unmute();
         }
     };
     $scope.togglePlay = function () {
         $scope.isPlay = !$scope.isPlay;
-         if ($scope.isPlay) {
+        if ($scope.isPlay) {
             $scope.playOnOff = "off";
-            pageSettings.audioPlayer = soundManager.createSound({ 
-              url: $scope.audioSrc, 
-              autoPlay: true
-            }); 
-        }else{
+            pageSettings.audioPlayer = soundManager.createSound({
+                url: $scope.audioSrc,
+                autoPlay: true
+            });
+        } else {
             $scope.playOnOff = "on";
-           pageSettings.audioPlayer.destruct();
+            pageSettings.audioPlayer.destruct();
         }
     };
 
 
-   if (pageSettings.audioPlayer === null) {
+    if (pageSettings.audioPlayer === null) {
         $scope.togglePlay();
     } else {
         pageSettings.audioPlayer.url = $scope.audioSrc;
         $scope.isPlay = false;
         $scope.togglePlay();
-    };
+    }
 
-    $element.bind('$destroy', function(){
+    $element.bind('$destroy', function () {
         pageSettings.audioPlayer.stop();
     });
-};
+}
 kabtvAudioPlayerCtrl.$inject = ["$scope", "$element", "pageSettings"];
 
 
-function kabtvPlayerCtrl ($scope, $timeout, $compile, getOnlineMedia, getWMVPlayer, pageSettings, getClipById, $location, $routeParams) {
+function kabtvPlayerCtrl($scope, $timeout, $compile, getOnlineMedia, getWMVPlayer, pageSettings, getClipById, $location, $routeParams) {
     $scope.isVideo = true;
     $scope.playObj = null;//TODO: make this local
     $scope.showFullScreen = false;
@@ -172,40 +192,38 @@ function kabtvPlayerCtrl ($scope, $timeout, $compile, getOnlineMedia, getWMVPlay
     var currentLang, playObj;
 
 
-
-    currentLang = ($routeParams.mediaLang)? $routeParams.mediaLang: $scope.Lang;
+    currentLang = ($routeParams.mediaLang) ? $routeParams.mediaLang : $scope.Lang;
     if ($location.$$path == "/clip") {
         getClipById($routeParams.mediaId).then(
             function (reqData) {
                 $scope.playerData = reqData.data;
-                setPlayer({url: reqData.data.play_url, format: reqData.data.content_type , width: "100%"});
-        });
-     } else {
-        getOnlineMedia.then(function(reqData){
+                setPlayer({url: reqData.data.play_url, format: reqData.data.content_type, width: "100%"});
+            });
+    } else {
+        getOnlineMedia.then(function (reqData) {
             $scope.playerData = reqData.data;
             var playObj = getPlayerData(reqData.data);
             var options = {url: playObj.url, width: "100%", format: playObj.format};
-            setPlayer(options); 
+            setPlayer(options);
         });
-    };
+    }
 
-
-    function setPlayer (playObj) {
+    function setPlayer(playObj) {
         $scope.playObj = playObj;
         if (pageSettings.audioPlayer != null) {
-            pageSettings.audioPlayer.destruct();            
-        };
+            pageSettings.audioPlayer.destruct();
+        }
         var $el = angular.element(document.querySelector('#player'));
 
-    	switch (playObj.format.toLowerCase()) {
-    		case "hls":
+        switch (playObj.format.toLowerCase()) {
+            case "hls":
                 $el.empty();
                 playObj.autostart = true;
                 $el.append('<div id="jwPlayerCont">');
-    			jwplayer("jwPlayerCont").setup(playObj);
+                jwplayer("jwPlayerCont").setup(playObj);
                 $scope.showFullScreen = false;
-    			break;
-			case "wmv":
+                break;
+            case "wmv":
                 if (pageSettings.WMVPlayer == null || !pageSettings.detectIE) {
                     $el.empty();
                     $el.append(getWMVPlayer(playObj.url));
@@ -214,37 +232,32 @@ function kabtvPlayerCtrl ($scope, $timeout, $compile, getOnlineMedia, getWMVPlay
                 }
                 $scope.showFullScreen = true;
                 break;
-            case "icecast":       
+            case "icecast":
                 $el.empty();
                 $el.append(getAudioPlayer(playObj.url));
                 $scope.showFullScreen = false;
                 break;
         }
     }
+
     showTime();
 
-    function getPlayerData(playerList, meaidType)
-    {
+    function getPlayerData(playerList, meaidType) {
         if (!playerList) return null;
-        var mediaType = (typeof $routeParams.isVideo == "undefined" || $routeParams.isVideo) ? "video": "audio";
-        for (i=0; i<playerList.length; i++)
-        {
+        var mediaType = (typeof $routeParams.isVideo == "undefined" || $routeParams.isVideo) ? "video" : "audio";
+        for (i = 0; i < playerList.length; i++) {
             var playerData = playerList[i];
-            if (playerData.media_type == mediaType && 
+            if (playerData.media_type == mediaType &&
                 (currentLang == null || playerData.language.toLowerCase() == currentLang.toLowerCase()))
                 return playerData;
         }
         return null;
     }
 
-    function getAudioPlayer(src){
+    function getAudioPlayer(src) {
         $scope.audioSrc = src;
-        var player = $compile( '<div kabtv-audio-player>' )( $scope );
-        return player;
+        return $compile('<div kabtv-audio-player>')($scope);
     }
-
-
-
 
     $scope.switchVideoAudio = function (isVideo) {
         $location.path('stream/');
@@ -252,18 +265,18 @@ function kabtvPlayerCtrl ($scope, $timeout, $compile, getOnlineMedia, getWMVPlay
     };
 
     $scope.switchPlayerLang = function (lang) {
-       currentLang = lang;
+        currentLang = lang;
         $location.search({"mediaLang": lang, "isVideo": $scope.isVideo});
     };
-     $scope.getStream = function () {
+
+    $scope.getStream = function () {
         $location.path('stream/');
         $location.search({"mediaLang": currentLang, "isVideo": $scope.isVideo});
-     }
+    };
 
-
-    function showTime () {
+    function showTime() {
         if ($scope.isClip)
-         return;
+            return;
 
         var off = parseInt(10800000);
         var d = new Date();
@@ -275,39 +288,43 @@ function kabtvPlayerCtrl ($scope, $timeout, $compile, getOnlineMedia, getWMVPlay
         var nowtimeHours = nowtime.getHours();
         var nowtimeMinutes = nowtime.getMinutes();
 
-        if (parseInt(nowtimeHours) <= 9) { var nowtimeHours = "0" + nowtimeHours }
-        if (parseInt(nowtimeMinutes) <= 9) { var nowtimeMinutes = "0" + nowtimeMinutes }
+        if (parseInt(nowtimeHours) <= 9) {
+            nowtimeHours = "0" + nowtimeHours
+        }
+        if (parseInt(nowtimeMinutes) <= 9) {
+            nowtimeMinutes = "0" + nowtimeMinutes
+        }
         $scope.broadcastTime = nowtimeHours + ":" + nowtimeMinutes;
         $timeout(showTime, 30000);
     }
 
-    $scope.gofs = function() {
+    $scope.gofs = function () {
         if ($scope.playObj == null || $scope.playObj.format.toLowerCase() != 'wmv')
             return;
         var fs_str = 'ESC ליציאה ממצב "מסך מלא" לחץ על';
         var nofs_str = 'נא להפעיל נגנ ע"מ לצפותו במסך מלא';
         var player = pageSettings.WMVPlayer[0];
         if (player && player.playState == 3) {
-           alert(fs_str);
-           player.fullScreen = true;
+            alert(fs_str);
+            player.fullScreen = true;
         } else {
-           alert(nofs_str);
+            alert(nofs_str);
         }
     };
-    $scope.videoFilter = function(item) {
+    $scope.videoFilter = function (item) {
         return (($scope.isVideo && item.media_type == 'video' ||
             !$scope.isVideo && item.media_type == 'audio') &&
             (item.language == 'HEB' ||
-            item.language == 'RUS' ||
-            item.language == 'ENG' ||
-            item.language == 'SPA' ||
-            item.language == 'GER'));
+                item.language == 'RUS' ||
+                item.language == 'ENG' ||
+                item.language == 'SPA' ||
+                item.language == 'GER'));
     }
- }
+}
 
 kabtvPlayerCtrl.$inject = ["$scope", "$timeout", "$compile", "getOnlineMedia", "getWMVPlayer", "pageSettings", "getClipById", "$location", "$routeParams"];
 
-function kabtvClipListCtrl ( $scope, $rootScope, $http, setClipListes, $location) {
+function kabtvClipListCtrl($scope, $rootScope, $http, setClipListes, $location) {
     $scope.$http = $http;
     $scope.selectedClipList = null;
     $scope.sendToFriends = function () {
@@ -315,10 +332,10 @@ function kabtvClipListCtrl ( $scope, $rootScope, $http, setClipListes, $location
     };
 
     setClipListes.then(function (reqData) {
-        $scope.clipListes =  reqData.data;
+        $scope.clipListes = reqData.data;
         $scope.selectedClipList = reqData.data[0];
-    }); 
-   
+    });
+
     $scope.runClip = function (clipData) {
         $location.path('clip/');
         $location.search({"mediaId": clipData.id});
@@ -326,36 +343,35 @@ function kabtvClipListCtrl ( $scope, $rootScope, $http, setClipListes, $location
 }
 kabtvClipListCtrl.$inject = ["$scope", "$rootScope", "$http", "setClipListes", "$location"];
 
-function sendToFriendsCtrl ( $scope, $http, setSendToFriend) {
+function sendToFriendsCtrl($scope, $http, setSendToFriend) {
     $scope.showDialog = false;
     $scope.closeWindow = function () {
         $scope.showDialog = false;
-    }
+    };
     $scope.sendData = {
         to: "111",
         email: "111",
         sendTo: "111",
         message: "111"
 
-    }
+    };
     $scope.sendToFriendSubmit = function () {
         setSendToFriend($scope.sendData)
-        .success(function(data, status, headers, config){
-            $scope.closeWindow();
-        })
-        .error(function(data, status, headers, config) {
-            alert("Error");
-        });
+            .success(function (data, status, headers, config) {
+                $scope.closeWindow();
+            })
+            .error(function (data, status, headers, config) {
+                alert("Error");
+            });
     }
 }
 sendToFriendsCtrl.$inject = ["$scope", "$http", "setSendToFriend"];
 
 
-
 /*footer controllers*/
-function kabtvFooterCtrl ($scope, getFooterData) {
-     getFooterData.then(function(reqData){
-        $scope.footMenuData =  reqData.data;
-     });
- }
+function kabtvFooterCtrl($scope, getFooterData) {
+    getFooterData.then(function (reqData) {
+        $scope.footMenuData = reqData.data;
+    });
+}
 kabtvFooterCtrl.$inject = ["$scope", "getFooterData"];

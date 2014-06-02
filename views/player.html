@@ -3,8 +3,12 @@
         {{ 'PLAYER_BACK_TO_LIVE' | translate}}
     </div>
 	<div class="tabs" ng-hide = "isClip">
-		<div ng-click="switchVideoAudio(true)" class="tabBtn {{isVideo? 'select': '';}}">video</div>
-		<div ng-click="switchVideoAudio(false)" class="{{isVideo? '':'select';}} tabBtn">audio</div>
+		<div ng-click="switchVideoAudio(true)" class="tabBtn {{isVideo? 'select': '';}}">
+            video
+        </div>
+		<div ng-click="switchVideoAudio(false)" class="{{isVideo? '':'select';}} tabBtn">
+            audio
+        </div>
 		<div class="broadcastTime" translate="PLAYER_BROADCAST_TIME" translate-value-time="{{broadcastTime}}"></div>
 	</div>
 	<div id="player" ng-hide = "showDialogSendToFriends"></div>

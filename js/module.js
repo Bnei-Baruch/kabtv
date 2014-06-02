@@ -23,7 +23,7 @@ kabtv.config(function($routeProvider) {
 	///stream
 	.when('/stream',{
 		controller: "kabtvPlayerCtrl",
-		templateUrl: "views/playerStream.html",
+		templateUrl: "views/playerStream.html"
 	})
 	///clip 
 	.when('/clip',{

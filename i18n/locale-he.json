@@ -6,6 +6,8 @@
     "PLAYER_BACK_TO_LIVE": "חזרה לשידור ישיר",
     "PLAYER_FULLSCREEN": "למסך מלא",
     "PLAYER_BROADCAST_TIME": "שעת שידור {{time}} (זמן ירושלים)",
+    "PLAYER_VIDEO": "וידאו",
+    "PLAYER_AUDIO": "אודיו",
 
     "VOD_DOWNLOAD": "הורד קובץ",
 

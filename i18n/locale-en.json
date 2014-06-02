@@ -6,6 +6,8 @@
     "PLAYER_BACK_TO_LIVE": "back to online",
     "PLAYER_FULLSCREEN": "Go Fullscreen",
     "PLAYER_BROADCAST_TIME": "Broadcast Time {{time}} (Jerusalem Time)",
+    "PLAYER_VIDEO": "Video",
+    "PLAYER_AUDIO": "Audio",
 
     "VOD_DOWNLOAD": "Download File",
 
