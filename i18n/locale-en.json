@@ -1,0 +1,20 @@
+{
+    "SITE_TITLE": "english site title",
+    "SITE_DESCRIPTION": "english site description",
+    "SITE_KEYWORDS": "english site keywords",
+
+    "PLAYER_BACK_TO_LIVE": "back to online",
+    "PLAYER_FULLSCREEN": "Go Fullscreen",
+    "PLAYER_BROADCAST_TIME": "Broadcast Time {{time}} (Jerusalem Time)",
+    "PLAYER_VIDEO": "Video",
+    "PLAYER_AUDIO": "Audio",
+    "PLAYER_EXIT_FULLSCREEN": "Press ESC to exit full screen",
+    "PLAYER_NO_FULLSCREEN": "Please start player before going full screen",
+
+    "VOD_DOWNLOAD": "Download File",
+
+    "TAB_UPDATES": "Updates",
+    "TAB_SCHEDULE": "Schedule",
+    "TAB_QUESTIONS": "Questions",
+    "TAB_SKETCHES": "Sketches"
+}

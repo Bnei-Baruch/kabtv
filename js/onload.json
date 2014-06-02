@@ -2,49 +2,49 @@
     "topMenuData": [
         {
             "caption": "English",
-            "url": "./eng/",
+            "url": "eng",
             "title": "TV in English",
             "language": "ENG"
         },
         {
             "caption": "Русский",
-            "url": "./rus/",
+            "url": "rus",
             "title": "TV in Russian",
             "language": "RUS"
         },
         {
             "caption": "Español",
-            "url": "./spa/",
+            "url": "spa",
             "title": "TV in Spanish",
             "language": "SPA"
         },
         {
             "caption": "Deutsch",
-            "url": "./ger/",
+            "url": "ger",
             "title": "TV in German",
             "language": "GER"
         },
         {
             "caption": "Français",
-            "url": "./fre/",
+            "url": "fre",
             "title": "TV in French",
             "language": "FRE"
         },
         {
             "caption": "Português",
-            "url": "./por/",
+            "url": "por",
             "title": "TV in Portuguese",
             "language": "POR"
         },
         {
             "caption": "Italiano",
-            "url": "./ita/",
+            "url": "ita",
             "title": "TV in Italian",
             "language": "ITA"
         },
         {
             "caption": "עברית",
-            "url": "./heb/",
+            "url": "heb",
             "title": "TV in Hebrew",
             "language": "HEB"
         }

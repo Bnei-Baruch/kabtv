@@ -1,3 +1,5 @@
+'use strict';
+
 kabtv.directive("kabtvOnload", function (pageSettings) {
     return {
         scope: {},
@@ -16,14 +18,14 @@ kabtv.directive("kabtvHeader", function (pageSettings) {
 kabtv.directive("kabtvFooter", function () {
     return {
         templateUrl: 'views/footer.html',
-        controller: kabtvFooterCtrl,
+        controller: kabtvFooterCtrl
     };
 });
 
 kabtv.directive("kabtvUpdates", function (getInitData) {
     return {
         templateUrl: 'views/updates.html',
-        controller: kabtvUpdatesCtrl,
+        controller: kabtvUpdatesCtrl
     };
 });
 
@@ -31,26 +33,7 @@ kabtv.directive("kabtvTabs", function (getInitData) {
     return {
         scope: {},
         templateUrl: 'views/tabs.html',
-        controller: kabtvTabsCtrl,
-    };
-});
-
-kabtv.directive("kabtvPlayer", function () {
-    return {
-        replace: true,
-        templateUrl: 'views/player.html',
-        controller: kabtvPlayerCtrl,
-        link: function ($scope, el, attrs) {
-            $scope.$on("action: switch to clip", function (e, data) {
-                $scope.isClip = true;
-                $scope.clipData = data;
-                $scope.setPlayer ({url: data.play_url, format: data.content_type});
-            });
-            $scope.$watch('isVideo', function (newVal, oldVal) {
-                if (newVal == oldVal) return;
-                $scope.setPlayer();
-            });
-        }
+        controller: kabtvTabsCtrl
     };
 });
 
@@ -64,8 +47,6 @@ kabtv.directive("kabtvAudioPlayer", function () {
     };
 });
 
-
-
 kabtv.directive("kabtvClipList", function ( setClipList ) {
     return {
         scope: {},
@@ -78,8 +59,6 @@ kabtv.directive("kabtvClipList", function ( setClipList ) {
                 setClipList(newVal.id).then(function(res){
                     $scope.clipList =  res.data;
                 });
-
-
             });
         }
     };

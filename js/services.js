@@ -1,6 +1,9 @@
+'use strict';
+
 kabtv.service('getInitData', ['$http', 'pageSettings', function ($http, pageSettings) {
     return $http.get('./js/onload.json');
 }]);
+
 kabtv.service('getHeadData', ['$http', 'pageSettings', function ($http, pageSettings) {
     return $http.get('http://api.kab.tv/api/nav_links', 
     	{
@@ -14,10 +17,6 @@ kabtv.service('getHeadData', ['$http', 'pageSettings', function ($http, pageSett
 		    }
     	}
 	);
-}]);
-
-kabtv.service('getTabsIframe', ['$http', function ($http) {
-    return $http.get('./json/tabsiframe.json');
 }]);
 
 kabtv.service('setClipListes', ['$http', 'pageSettings', function ($http, pageSettings) {
@@ -34,8 +33,6 @@ kabtv.service('setClipListes', ['$http', 'pageSettings', function ($http, pageSe
 	);
 
 }]);
-
-
 
 kabtv.service('setClipList', ['$http', 'pageSettings', function ($http, pageSettings) {
     function setClipList (id) {
@@ -54,26 +51,36 @@ kabtv.service('setClipList', ['$http', 'pageSettings', function ($http, pageSett
 
 }]);
 
-kabtv.service('getFooterData', ['$http', 'pageSettings', function ($http, pageSettings) {
+kabtv.service('getClipById', ['$http', function ($http) {
+    return function (id) {
+        return  (
+            $http.get('http://api.kab.tv/api/vod_media/' + id,
+                {
+                    responseType: 'json',
+                     headers: {
+                        'Accept': 'application/json'
+                    }
+                }
+            )
+        );
+    };
 
+}]);
+kabtv.service('getFooterData', ['$http', 'pageSettings', function ($http, pageSettings) {
     return $http.get('http://api.kab.tv/api/nav_links', {
         params: {
                'callback': 'JSON_CALLBACK',
                 'lang': pageSettings.Lang, 
-                'placeholder': 'footer',
+                'placeholder': 'footer'
             }
         });
-   
 }]);
 
 kabtv.service('getOnlineMedia', ['$http', 'pageSettings', function ($http, pageSettings) {
     return $http.get('http://api.kab.tv/api/streams', 
         {
             responseType: 'json', 
-            params: {
-                /*'lang': pageSettings.Lang*/
-            },
-             headers: {
+            headers: {
                 'Accept': 'application/json'
             }
         }
@@ -97,7 +104,7 @@ kabtv.service('getUpdates', ['$http', 'pageSettings', function ($http, pageSetti
 }]);
 
 kabtv.service('getWMVPlayer', ['detectIE','pageSettings', function (detectIE, pageSettings) {
-    var _getWMVPlayer = function  (src) {
+    return function (src) {
         var param = [];
         var contObj = angular.element("<object>").attr({
             type: "application/x-ms-wmp",
@@ -109,7 +116,7 @@ kabtv.service('getWMVPlayer', ['detectIE','pageSettings', function (detectIE, pa
 
         if (detectIE()) {
             contObj.attr({ classid: "CLSID:6BF52A52-394A-11d3-B153-00C04F79FAA6"});
-        };
+        }
         param.push(
             angular.element("<param>").attr({
                 name: "src",
@@ -133,23 +140,23 @@ kabtv.service('getWMVPlayer', ['detectIE','pageSettings', function (detectIE, pa
                 name: "balance",
                 value: false
             })
-        ); 
+        );
         param.push(
             angular.element("<param>").attr({
                 name: "autostart",
                 value: "true"
             })
         );
-        
-        
+
+
         param.push(
             angular.element("<param>").attr({
-                 name: "volume",
-                 value: "50"
+                name: "volume",
+                value: "50"
             })
         );
         param.push(
-            angular.element("<param>").attr({   
+            angular.element("<param>").attr({
                 name: "uiMode",
                 value: "full"
             })
@@ -220,18 +227,17 @@ kabtv.service('getWMVPlayer', ['detectIE','pageSettings', function (detectIE, pa
                 value: "#ffffff"
             })
         );
-        
+
         for (var i = 0; i < param.length; i++) {
-                contObj.append(param[i]);
-        };
+            contObj.append(param[i]);
+        }
         pageSettings.WMVPlayer = contObj;
         return contObj;
-    }
-    return _getWMVPlayer;
+    };
 }]);
 
 kabtv.service("detectIE", function () {
-    var _detectIE = function () {
+    return function () {
         var ua = window.navigator.userAgent;
         var msie = ua.indexOf('MSIE ');
         var trident = ua.indexOf('Trident/');
@@ -249,6 +255,5 @@ kabtv.service("detectIE", function () {
 
         // other browser
         return false;
-    }
-    return _detectIE;
-})
+    };
+});

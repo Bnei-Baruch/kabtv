@@ -1,0 +1,35 @@
+<div class="clearfix">
+	<div class="backToOnLine" ng-click="getStream()">
+        {{ 'PLAYER_BACK_TO_LIVE' | translate}}
+    </div>
+
+    <div id="player"></div>
+
+	<a ng-show="showFullScreen" class="fullScreenButton" ng-click="gofs()">
+        <img src="images/fs.gif" alt="{{ 'PLAYER_FULLSCREEN' | translate}}" width="14" height="14"/>
+        {{ 'PLAYER_FULLSCREEN' | translate}}
+    </a>
+
+    <div class="playerPanel playerDescription">
+		<span class="clipTitle">{{playerData.title}}</span>
+		<p>{{playerData.description}}</p>
+        <br/>
+        <p>
+            <a ng-href="{{playerData.download_url}}" class="downloadIcon clipIconBig">
+                <img src="images/save.gif" title="{{ 'VOD_DOWNLOAD' | translate}}">
+                {{playerData.size}}
+            </a>
+        </p>
+
+        <!-- AddThis Button BEGIN -->
+        <div id="addthis-toolbox"
+             class="addthis_toolbox addthis_default_style addthis_16x16_style">
+            <a class="addthis_button_facebook"></a>
+            <a class="addthis_button_twitter"></a>
+            <a class="addthis_button_google_plusone_share"></a>
+            <a class="addthis_button_email"></a>
+            <a class="addthis_counter addthis_bubble_style"></a>
+        </div>
+        <!-- AddThis Button END -->
+	</div>
+</div>
