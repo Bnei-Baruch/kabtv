@@ -102,3 +102,5 @@ a:hover{text-decoration:underline;}
 .fullScreenButton {color: #4EA8FE;padding: 5px 5px 5px 0;float: left;}
 .broadcastTime {display: inline-block;height: 18px;margin: 0 70px;color: #FFA200;font-weight: bold;padding: 0 0 0 10px;text-align: center;}
 
+#clip-save-button {float: right}
+#addthis-toolbox {float: left}
