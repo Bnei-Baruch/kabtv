@@ -266,7 +266,7 @@ function kabtvPlayerCtrl($scope, $timeout, $compile, getOnlineMedia, getWMVPlaye
         for (var i = 0; i < playerList.length; i++) {
             var playerData = playerList[i];
             if (playerData.media_type == mediaType &&
-                (currentLang == null || playerData.language.toLowerCase() == currentLang.toLowerCase()))
+                (currentLang == null || playerData.language.toLowerCase() == "heb"))
                 return playerData;
         }
         return null;
