@@ -104,8 +104,9 @@ NAV a:first-child {
 #asideTabIframe{width: 100%; height: 100%; position: relative;}
 #asideTabIframe .tabBtn{font-size: 11px; margin: 0 1px;padding: 5px;background-color: #384B92;color: #FFA200;}
 #asideTabIframe .tabBtn.select{margin-top: -1px;padding-bottom: 6px;background-color: #DFE7F2;color: #000;}
-#asideTabIframe .forIframe{top: 32px; left: 0; right: 0; bottom: 0;position: absolute;}
+#asideTabIframe .forIframe{top: 32px; left: 0; right: 0; bottom: 0;position: absolute;overflow: auto;}
 #asideTabIframe iframe{width: 100%; height: 100%;}
+#asideTabIframe .updates {overflow: auto;}/*todo: must do for all tabs when we start use not iframes*/
 #asideTabIframe .updates .item{padding: 10px; border-bottom: 1px solid #2B64A7;}
 #asideTabIframe .updates .item h5{color: #FFD800; font-size: 18px;}
 #asideTabIframe .updates .item .url{margin: 5px 0;display: block;}

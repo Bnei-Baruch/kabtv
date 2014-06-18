@@ -130,13 +130,22 @@ function kabtvTabsCtrl($scope, $sce) {
 kabtvTabsCtrl.$inject = ["$scope", "$sce"];
 
 
-function kabtvUpdatesCtrl($scope, getUpdates) {
+function kabtvUpdatesCtrl($scope, $sce, getUpdates) {
     getUpdates.then(function (reqData) {
-        $scope.updates = reqData.data;
+        var updates = [];
+        reqData.data.forEach(function(update) {
+            updates.push({
+                'title': $sce.trustAsHtml(update.title),
+                'description': $sce.trustAsHtml(update.description),
+                'url_caption': $sce.trustAsHtml(update.url_caption),
+                'url': $sce.trustAsHtml(update.url)
+            });
+        });
+        $scope.updates = updates;
     });
 
 }
-kabtvUpdatesCtrl.$inject = ["$scope", "getUpdates"];
+kabtvUpdatesCtrl.$inject = ["$scope", "$sce", "getUpdates"];
 
 
 function kabtvAudioPlayerCtrl($scope, $element, pageSettings) {
@@ -258,7 +267,7 @@ function kabtvPlayerCtrl($scope, $timeout, $compile, getOnlineMedia, getWMVPlaye
         for (var i = 0; i < playerList.length; i++) {
             var playerData = playerList[i];
             if (playerData.media_type == mediaType &&
-                (currentLang == null || playerData.language.toLowerCase() == currentLang.toLowerCase()))
+                (currentLang == null || playerData.language.toLowerCase() == "heb"))
                 return playerData;
         }
         return null;
