@@ -197,11 +197,17 @@ function kabtvPlayerCtrl($scope, $timeout, $compile, getOnlineMedia, getWMVPlaye
             function (reqData) {
                 $scope.playerData = reqData.data;
                 setPlayer({url: reqData.data.play_url, format: reqData.data.content_type, width: "100%"});
-//                addthis.init();
-//                addthis.toolbox(angular.element(document.querySelector('#addthis-toolbox')), {}, {
-//                    title : $scope.playerData.title,
-//                    description : $scope.playerData.description
-//                });
+                var config = {
+                    data_track_addressbar: false,
+                    data_track_clickback: false
+                };
+                var share = {
+                    title: $scope.playerData.title,
+                    description: $scope.playerData.description,
+                    email_vars: {description: $scope.playerData.description}
+                };
+                addthis.init();
+                addthis.toolbox('#addthis-toolbox', config, share);
             });
     } else {
         getOnlineMedia.then(function (reqData) {
@@ -339,13 +345,8 @@ function kabtvClipListCtrl($scope, $rootScope, $http, setClipListes, $location) 
     });
 
     $scope.runClip = function (clipData) {
-//        addthis_share.title = clipData.title;
-//        addthis_share.description = clipData.description;
-//        addthis_share.email_vars = {description: clipData.description};
-//        addthis.init();
-//        addthis.toolbox('#addthis-toolbox');
         $location.path('clip/');
-        $location.search({"mediaId": clipData.id});        
+        $location.search({"mediaId": clipData.id});
     }
 }
 kabtvClipListCtrl.$inject = ["$scope", "$rootScope", "$http", "setClipListes", "$location"];
