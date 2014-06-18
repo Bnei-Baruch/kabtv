@@ -12,7 +12,7 @@ a:hover{text-decoration:underline;}
 .clearfix:after {clear:both;}
 /* For IE 6/7 (trigger hasLayout) */
 .clearfix {zoom:1;}
-
+#help-e .ltr {float:right;}
 .disableSelect {-webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;}
 
 /*BUTTONS*/
@@ -34,14 +34,32 @@ a:hover{text-decoration:underline;}
 #header .tree{display: block;}
 #header .whiteWrappwer{background-color: #FFF; height: 50px}
 
-.headLangNav{display: block;text-align: center;float:left; padding-left: 40px;}
-.headLangNav a{display: inline-block; border-right: 1px solid #00145E; color: #000;line-height: 14px;margin: 14px 0 0; padding: 0 4px 2px 4px;font-weight: bold;}
-.headLangNav a:first-child{border-right: 0 none; padding-left: 4px;padding-right: 4px;font-weight: bold;}
+.headLangNav{display: block;text-align: center; padding-left: 40px; color: #00145E;}
+.headLangNav a{display: inline-block; color: #000;line-height: 14px;margin: 14px 0 0; font-weight: bold;}
+.headLangNav a:first-child{padding-left: 2px;padding-right: 2px;font-weight: bold;}
 .headLangNav a.select {color:#D32020;}
 
 .headLinksNav{display: block; padding: 5px 0; text-align: center;}
-.headLinksNav a{display: inline-block; margin: 0 5px 0 0; color:#FFF;}
+.headLinksNav a{display: inline-block; color:#FFF; }
 
+NAV a {
+	border-left: 0 none;
+	border-right: 1px solid black;
+	border-right-color: inherit;
+	padding: 0 3px;
+}
+
+NAV .rtl a {
+	border-left: 1px solid black;
+	border-left-color: inherit;
+	border-right: 0 none;
+}
+
+
+NAV a:first-child {
+	border-left: 0 none;
+	border-right: 0 none;
+}
 
 /*CONTENT*/
 .container {width: 980px;height: 100%;margin: 0 auto;position: relative; min-height: 500px;}
@@ -98,7 +116,8 @@ a:hover{text-decoration:underline;}
 .footer a {color:#FFF;font-size: x-small; margin-left: 3px; border-left: 1px solid #FFF; padding-left: 3px; display: inline-block; line-height: 12px;}
 .footer a:last-child {border-left: 0 none;}
 .langs {margin:5px 5px 5px 0;}
-#help-e {float:left;font: normal normal 12px Arial,sans-serif;color: blue;text-decoration: underline;}
+#help-e {font: normal normal 12px Arial,sans-serif;color: blue;text-decoration: underline;}
+
 .fullScreenButton {color: #4EA8FE;padding: 5px 5px 5px 0;float: left;}
 .broadcastTime {display: inline-block;height: 18px;margin: 0 70px;color: #FFA200;font-weight: bold;padding: 0 0 0 10px;text-align: center;}
 
