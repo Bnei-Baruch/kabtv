@@ -137,7 +137,8 @@ function kabtvUpdatesCtrl($scope, $sce, getUpdates) {
             updates.push({
                 'title': $sce.trustAsHtml(update.title),
                 'description': $sce.trustAsHtml(update.description),
-                'url_caption': $sce.trustAsHtml(update.url_caption)
+                'url_caption': $sce.trustAsHtml(update.url_caption),
+                'url': $sce.trustAsHtml(update.url)
             });
         });
         $scope.updates = updates;
