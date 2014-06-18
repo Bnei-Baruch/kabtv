@@ -130,13 +130,21 @@ function kabtvTabsCtrl($scope, $sce) {
 kabtvTabsCtrl.$inject = ["$scope", "$sce"];
 
 
-function kabtvUpdatesCtrl($scope, getUpdates) {
+function kabtvUpdatesCtrl($scope, $sce, getUpdates) {
     getUpdates.then(function (reqData) {
-        $scope.updates = reqData.data;
+        var updates = [];
+        reqData.data.forEach(function(update) {
+            updates.push({
+                'title': $sce.trustAsHtml(update.title),
+                'description': $sce.trustAsHtml(update.description),
+                'url_caption': $sce.trustAsHtml(update.url_caption)
+            });
+        });
+        $scope.updates = updates;
     });
 
 }
-kabtvUpdatesCtrl.$inject = ["$scope", "getUpdates"];
+kabtvUpdatesCtrl.$inject = ["$scope", "$sce", "getUpdates"];
 
 
 function kabtvAudioPlayerCtrl($scope, $element, pageSettings) {
