@@ -5,23 +5,20 @@
 
     <div id="player"></div>
 
-	<a ng-show="showFullScreen" class="fullScreenButton" ng-click="gofs()">
+	<a ng-show="showFullScreen" class="textToRight fullScreenButton" ng-click="gofs()">
         <img src="images/fs.gif" alt="{{ 'PLAYER_FULLSCREEN' | translate}}" width="14" height="14"/>
         {{ 'PLAYER_FULLSCREEN' | translate}}
     </a>
 
     <div class="playerPanel playerDescription">
 		<span class="clipTitle">{{playerData.title}}</span>
+        <div id="clip-save-button">
+            <a ng-href="{{playerData.download_url}}" class="downloadIcon clipIconBig">
+                <img src="images/save-big.gif" title="{{ 'VOD_DOWNLOAD' | translate}}">{{ 'VOD_DOWNLOAD' | translate}}</a>
+        </div>
 		<p>{{playerData.description}}</p>
         <br/>
 
-
-        <div id="clip-save-button">
-            <a ng-href="{{playerData.download_url}}" class="downloadIcon clipIconBig">
-                <img src="images/save.gif" title="{{ 'VOD_DOWNLOAD' | translate}}">
-                {{playerData.size}}
-            </a>
-        </div>
 
         <!-- AddThis Button BEGIN -->
         <div id="addthis-toolbox"

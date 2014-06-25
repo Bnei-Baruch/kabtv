@@ -5,6 +5,11 @@ body{background-color: #00145E; font: normal normal 12px Arial, sans-serif; colo
 .rtl{direction: rtl;}
 .rtl .toL{float: right;}
 .rtl .toR{float: left;}
+
+.textToRight{text-align: right;}
+.textToLeft(text-align: left;)
+.rtl .textToRight{text-align: left;}
+.rtl .textToLeft{text-align: right;}
 a,a:visited{color:#69B7FF;text-decoration:none;}
 a:hover{text-decoration:underline;}
 
@@ -67,7 +72,7 @@ NAV a:first-child {
 .content {background-color: #000C37; padding: 20px 0; position: absolute; top: 80px; bottom: 30px; left: 0; width: 100%;}
 .content .mid{margin: 0 265px; background-color: #384B92;padding: 20px 10px; min-height: 300px;	}
 
-.backToOnLine{display: inline-block;padding: 0 25px 0 0;background-color: #FFA200;color: #000;}
+.backToOnLine{display: inline-block;padding: 0 25px 0 0;background-color: #FFA200;color: #000;cursor: pointer;}
 .clipInfo{}
 
 .audioPlayer{display: block; background-color: rgba(0,0,0, 0.5); padding: 5px 10px;}
@@ -94,11 +99,10 @@ NAV a:first-child {
 .clipList .clipData {text-align: right;color: #4EA9FF;}
 .clipList .clipImage {width:70px; height:70px;}
 
-.playerPanel {padding:5px 0;float:right;}
+.playerPanel {padding:5px 0;}
 .playerPanel .clipTitle {color:#FFA302;}
 .playerPanel a{cursor: pointer;}
 .playerDescription {border-top: 1px solid #C6D8F2;}
-.fullScreenButton {cursor: pointer;}
 /*tabs aside*/
 
 #asideTabIframe{width: 100%; height: 100%; position: relative;}
@@ -118,8 +122,9 @@ NAV a:first-child {
 .langs {margin:5px 5px 5px 0;}
 #help-e {font: normal normal 12px Arial,sans-serif;color: blue;text-decoration: underline;}
 
-.fullScreenButton {color: #4EA8FE;padding: 5px 5px 5px 0;float: left;}
-.broadcastTime {display: inline-block;height: 18px;margin: 0 70px;color: #FFA200;font-weight: bold;padding: 0 0 0 10px;text-align: center;}
+.fullScreenButton {color: #4EA8FE;padding: 5px 5px 5px 0;cursor: pointer;
+display: block;}
+.broadcastTime {display: inline;height: 18px;margin: 0 30px;color: #FFA200;font-weight: bold;text-align: center;}
 
-#clip-save-button {float: right}
+#clip-save-button {display:inline;padding:0 5px;}
 #addthis-toolbox {float: left}
