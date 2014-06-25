@@ -1,0 +1,20 @@
+{
+    "SITE_TITLE": "Kab.tv - Internationale Akademie der Kabbalah",
+    "SITE_DESCRIPTION": "Die Internationale Akademie der Kabbalah, unter der Leitung von Prof. Michael Laitman, heißt alle Zuhörer und Zuschauer herzlich willkommen! Die Lektionen sind in Video- und Audioformat übersetzt, samt Abbildungen sowie der Möglichkeit, online Fragen zu stellen und Antworten zu erhalten. Portal der Kabbalah in 22 Sprachen. Media Archiv (Video, Audio, Foto)",
+    "SITE_KEYWORDS": "Kabbalah, Kabbalah Heute, TV, live Übertragung, Bnei Baruch, Wissenschaft der Kabbalah, Lektionen von Kabbalah",
+
+    "PLAYER_BACK_TO_LIVE": "Live Übertragung von Kabbalah-TV",
+    "PLAYER_FULLSCREEN": "Vollbild",
+    "PLAYER_BROADCAST_TIME": "Übertragungszeit {{time}} (Jerusalem Zeit)",
+    "PLAYER_VIDEO": "Video",
+    "PLAYER_AUDIO": "Audio",
+    "PLAYER_EXIT_FULLSCREEN": "Um den Vollbildmodus zu verlassen, drücken Sie ESC",
+    "PLAYER_NO_FULLSCREEN": "Bitte starten Sie den Player zuerst",
+
+    "VOD_DOWNLOAD": "Runterladen",
+
+    "TAB_UPDATES": "Promo",
+    "TAB_SCHEDULE": "Programm",
+    "TAB_QUESTIONS": "Fragen",
+    "TAB_SKETCHES": "Zeichnungen"
+}
