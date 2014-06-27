@@ -1,0 +1,4 @@
+# Every robot is permitted to visit everywhere
+
+User-agent: *
+
