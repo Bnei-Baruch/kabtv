@@ -233,11 +233,12 @@ function kabtvPlayerCtrl($scope, $timeout, $compile, getOnlineMedia, getWMVPlaye
         var $el = angular.element(document.querySelector('#player'));
 
         switch (playObj.format.toLowerCase()) {
-            case "flv":
+            case "hls":
                 $el.empty();
                 $el.append('<div id="jwPlayerCont">');
                 jwplayer("jwPlayerCont").setup({
                     file: playObj.url,
+                    type:'hls',
                     autostart: true,
                     width: "100%"
                 });
