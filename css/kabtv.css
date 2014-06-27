@@ -39,27 +39,31 @@ a:hover{text-decoration:underline;}
 #header .tree{display: block;}
 #header .whiteWrappwer{background-color: #FFF; height: 50px}
 
-.headLangNav{display: block;text-align: center; padding-left: 40px; color: #00145E;}
+.headLangNav {display: block;text-align: center; padding-left: 40px; color: #00145E;}
 .headLangNav a{display: inline-block; color: #000;line-height: 14px;margin: 14px 0 0; font-weight: bold;}
 .headLangNav a:first-child{padding-left: 2px;padding-right: 2px;font-weight: bold;}
 .headLangNav a.select {color:#D32020;}
 
+
 .headLinksNav{display: block; padding: 5px 0; text-align: center;}
 .headLinksNav a{display: inline-block; color:#FFF; }
 
-NAV a {
+.rtl NAV a {
 	border-left: 0 none;
 	border-right: 1px solid black;
 	border-right-color: inherit;
+}
+
+.ltr NAV a {
+	border-left: 1px solid black;
+	border-right: 0 none;
+	border-left-color: inherit;
+}
+
+NAV a {
+
 	padding: 0 3px;
 }
-
-NAV .rtl a {
-	border-left: 1px solid black;
-	border-left-color: inherit;
-	border-right: 0 none;
-}
-
 
 NAV a:first-child {
 	border-left: 0 none;

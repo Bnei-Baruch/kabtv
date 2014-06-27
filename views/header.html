@@ -12,13 +12,13 @@
 			</a>
 			<!-- / mibew button -->
 		</div>
-		<nav class="headLangNav rtl">
+		<nav class="headLangNav">
 		    <a ng-repeat="data in topMenuData" ng-href="{{data.url}}" ng-class="currentLang(data.language)">
                 {{data.caption}}
             </a>
 		</nav>
 	</div>
-	<nav class="headLinksNav rtl">
+	<nav class="headLinksNav">
 		<a ng-repeat="data in linksList" ng-href="{{data.url}}" title="{{data.title}}">
 			{{data.caption}}
 		</a>
