@@ -197,10 +197,9 @@ function kabtvPlayerCtrl($scope, $timeout, $compile, getOnlineMedia, getWMVPlaye
     $scope.playObj = null;
     $scope.showFullScreen = false;
     $scope.broadcastTime = '';
-    var currentLang, playObj;
 
+    var currentLang = ($routeParams.mediaLang) ? $routeParams.mediaLang : $scope.Lang;
 
-    currentLang = ($routeParams.mediaLang) ? $routeParams.mediaLang : $scope.Lang;
     if ($location.$$path == "/clip") {
         getClipById($routeParams.mediaId).then(
             function (reqData) {
@@ -222,8 +221,7 @@ function kabtvPlayerCtrl($scope, $timeout, $compile, getOnlineMedia, getWMVPlaye
         getOnlineMedia.then(function (reqData) {
             $scope.playerData = reqData.data;
             var playObj = getPlayerData(reqData.data);
-            var options = {url: playObj.url, width: "100%", format: playObj.format};
-            setPlayer(options);
+            setPlayer({url: playObj.url, width: "100%", format: playObj.format});
         });
     }
 
@@ -235,11 +233,14 @@ function kabtvPlayerCtrl($scope, $timeout, $compile, getOnlineMedia, getWMVPlaye
         var $el = angular.element(document.querySelector('#player'));
 
         switch (playObj.format.toLowerCase()) {
-            case "hls":
+            case "flv":
                 $el.empty();
-                playObj.autostart = true;
                 $el.append('<div id="jwPlayerCont">');
-                jwplayer("jwPlayerCont").setup(playObj);
+                jwplayer("jwPlayerCont").setup({
+                    file: playObj.url,
+                    autostart: true,
+                    width: "100%"
+                });
                 $scope.showFullScreen = false;
                 break;
             case "wmv":
@@ -256,6 +257,8 @@ function kabtvPlayerCtrl($scope, $timeout, $compile, getOnlineMedia, getWMVPlaye
                 $el.append(getAudioPlayer(playObj.url));
                 $scope.showFullScreen = false;
                 break;
+            default:
+                console.error('unknown media type: ' + playObj.format.toLowerCase());
         }
     }
 
@@ -267,7 +270,7 @@ function kabtvPlayerCtrl($scope, $timeout, $compile, getOnlineMedia, getWMVPlaye
         for (var i = 0; i < playerList.length; i++) {
             var playerData = playerList[i];
             if (playerData.media_type == mediaType &&
-                (currentLang == null || playerData.language.toLowerCase() == "heb"))
+                (currentLang.toLowerCase() == playerData.language.toLowerCase()))
                 return playerData;
         }
         return null;
