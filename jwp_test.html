@@ -15,7 +15,20 @@
     <script src="http://jwpsrv.com/library/ElAvGDL5EeKp9yIACp8kUw.js"></script>
     <script type="text/javascript">
         jwplayer("jwPlayerCont").setup({
-            file: 'rtmp://edge1.il.kab.tv/rtplive/tv66-heb-high.stream',
+            playlist: [{
+                sources: [
+                    {
+                        type:'hls',
+                        file: 'http://edge1.il.kab.tv/rtplive/tv66-heb-high.stream/playlist.m3u8',
+                        default: true
+                    },
+                    {
+                        type:'flash',
+                        file: 'rtmp://edge1.il.kab.tv/rtplive/tv66-heb-high.stream'
+                    }
+                ]
+            }],
+            autostart: true,
             height: 360,
             width: 640
         });
