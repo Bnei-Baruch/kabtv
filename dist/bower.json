@@ -13,6 +13,12 @@
         "soundmanager": "GaiaMagic/bower-soundmanager"
     },
     "exportsOverride": {
+        "angular": {
+            "js": "**/*.js"
+        },
+        "modernizr": {
+            "js": "modernizr.js"
+        },
         "*": {
             "js": "**/*.js",
             "css": "**/*.css"
