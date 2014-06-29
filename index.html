@@ -11,21 +11,31 @@
     <meta name="keywords" content="{{ 'SITE_KEYWORDS' | translate}}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="favicon.ico" type="image/x-icon" rel="icon"/>
+
+    <!-- build:css css/kabtv.min.css -->
     <link type="text/css" rel="stylesheet" media="all" href="css/cssreset-min.css">
     <link type="text/css" rel="stylesheet" media="all" href="css/kabtv.css">
-    <script type="text/javascript" src="js/vendor/modernizr-2.6.2.min.js"></script>
+    <!-- endbuild -->
+
+    <!-- build:js js/kabtv-head.min.js -->
+    <script type="text/javascript" src="lib/js/modernizr/modernizr.js"></script>
+    <!-- endbuild -->
 </head>
 <body kabtv-onload>
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js"></script>
-    <script type="text/javascript" src="https://code.angularjs.org/1.2.14/angular-route.min.js"></script>
     <script type="text/javascript" src="http://jwpsrv.com/library/ElAvGDL5EeKp9yIACp8kUw.js"></script>
-    <script type="text/javascript" src="js/vendor/soundmanager2-nodebug-jsmin.js"></script>
-    <script type="text/javascript" src="js/vendor/angular-translate.min.js"></script>
-    <script type="text/javascript" src="js/vendor/angular-translate-loader-static-files.min.js"></script>
+
+    <!-- build:js js/kabtv.min.js -->
+    <script type="text/javascript" src="lib/js/angular/angular.min.js"></script>
+    <script type="text/javascript" src="lib/js/angular-route/angular-route.min.js"></script>
+    <script type="text/javascript" src="lib/js/angular-translate/angular-translate.min.js"></script>
+    <script type="text/javascript" src="lib/js/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
+    <script type="text/javascript" src="lib/js/soundmanager/soundmanager2-nodebug-jsmin.js"></script>
     <script type="text/javascript" src="js/module.js"></script>
     <script type="text/javascript" src="js/services.js"></script>
     <script type="text/javascript" src="js/controllers.js"></script>
     <script type="text/javascript" src="js/directives.js"></script>
+    <!-- endbuild -->
+
     <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5369cd60201a7122"></script>
 </body>
 </html>

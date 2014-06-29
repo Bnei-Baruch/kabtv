@@ -1,0 +1,5 @@
+<div ng-repeat="update in updates" class="item claerfix">
+    <h5 ng-bind-html="update.title"></h5>
+    <div class="description" ng-bind-html="update.description"></div>
+    <a ng-href="{{update.url}}" class="url textToR" ng-bind-html="update.url_caption"></a>
+</div>

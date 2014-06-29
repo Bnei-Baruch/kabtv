@@ -1,0 +1,21 @@
+{
+    "name": "kabtv",
+    "description": "Bnei-Baruch live tv channel and VOD library",
+    "version": "1.0.0",
+    "homepage": "https://github.com/bnei-baruch/kabtv",
+    "private": true,
+    "dependencies": {
+        "angular": "1.2.x",
+        "angular-route": "1.2.x",
+        "modernizr": "~2.6.2",
+        "angular-translate": "~2.1.0",
+        "angular-translate-loader-static-files": "~2.1.0",
+        "soundmanager": "GaiaMagic/bower-soundmanager"
+    },
+    "exportsOverride": {
+        "*": {
+            "js": "**/*.js",
+            "css": "**/*.css"
+        }
+    }
+}

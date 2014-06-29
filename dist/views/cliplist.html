@@ -1,0 +1,15 @@
+<div>
+	<select ng-model="selectedClipList" ng-options="item.name for item in clipListes" class="selectTag">
+	  <option value="" ng-hide="selectedClipList.id == item.id">{{selectedClipList.title}}</option>
+	</select>
+	<div class="clipListContainer">
+		<div ng-repeat="item in clipList" class="item">
+			<div ng-click = "runClip(item)" class="cont clearfix">
+				<img ng-src="{{item.image_url}}" title="{{item.title}}" class="clipImage toL" />
+				<h5>{{item.title}}</h5>
+				<p>{{item.description}}</p>
+			</div>
+			<div class="clipData">{{item.duration}}</div>
+		</div>
+	</div>
+</div>

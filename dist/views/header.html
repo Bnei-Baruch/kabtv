@@ -1,0 +1,26 @@
+<header id="header">
+	<div class="tree toL"><img src="./images/tree.gif"></div>
+	<div class="whiteWrappwer">
+		<a href="./" class="logoTop toL">
+            <img ng-src="./images/kab_tv_{{Lang.toLowerCase()}}.gif">
+        </a>
+		<div id="help-e" class="toR">
+			<!-- mibew button -->
+			<a href="http://live.kab.tv/client.php?locale=he&style=silver_he&group=3" target="_blank" 
+				onclick="if(navigator.userAgent.toLowerCase().indexOf('opera') != -1 && window.event.preventDefault) window.event.preventDefault();this.newWindow = window.open('http://live.kab.tv/client.php?locale=he&style=silver_he&group=3&url='+escape(document.location.href)+'&referrer='+escape(document.referrer), 'mibew', 'toolbar=0,scrollbars=0,location=0,status=1,menubar=0,width=640,height=480,resizable=1');this.newWindow.focus();this.newWindow.opener=window;return false;">
+				<img ng-src="{{helpImage}}" border="0" width="226" height="50" />
+			</a>
+			<!-- / mibew button -->
+		</div>
+		<nav class="headLangNav">
+		    <a ng-repeat="data in topMenuData" ng-href="{{data.url}}" ng-class="currentLang(data.language)">
+                {{data.caption}}
+            </a>
+		</nav>
+	</div>
+	<nav class="headLinksNav">
+		<a ng-repeat="data in linksList" ng-href="{{data.url}}" title="{{data.title}}">
+			{{data.caption}}
+		</a>
+	</nav>
+</header>

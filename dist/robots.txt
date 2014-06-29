@@ -1,0 +1,6 @@
+# Every robot is permitted to visit everywhere
+
+User-agent: *
+
+Sitemap: http://kab.tv/sitemap.xml.gz
+

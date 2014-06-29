@@ -1,0 +1,13 @@
+<div class="tabs" id="asideTabIframe">
+	<div ng-repeat="item in tabs"
+         class="tabBtn {{currentTab == item ? 'select': '';}}"
+         ng-click="switchTab(item)">
+        {{item | translate}}
+    </div>
+    <div ng-switch="currentTab" class="forIframe">
+        <div kabtv-updates ng-switch-when="TAB_UPDATES"  class="updates"></div>
+        <iframe ng-switch-when="TAB_SCHEDULE" ng-src="{{currentTabUrl}}" frameborder="0"></iframe>
+        <iframe ng-switch-when="TAB_QUESTIONS" ng-src="{{currentTabUrl}}" frameborder="0" scrolling = "no"></iframe>
+        <iframe ng-switch-when="TAB_SKETCHES" ng-src="{{currentTabUrl}}" frameborder="0"></iframe>
+    </div>
+</div>
