@@ -1,6 +1,6 @@
 'use strict';
 
-kabtv.directive("kabtvOnload", function (pageSettings) {
+kabtv.directive("kabtvOnload", function () {
     return {
         scope: {},
         templateUrl: './views/onload.html',
@@ -8,7 +8,7 @@ kabtv.directive("kabtvOnload", function (pageSettings) {
     };
 });
 
-kabtv.directive("kabtvHeader", function (pageSettings) {
+kabtv.directive("kabtvHeader", function () {
     return {
         templateUrl: './views/header.html',
         controller: kabtvHeaderCtrl
@@ -22,14 +22,14 @@ kabtv.directive("kabtvFooter", function () {
     };
 });
 
-kabtv.directive("kabtvUpdates", function (getInitData) {
+kabtv.directive("kabtvUpdates", function () {
     return {
         templateUrl: 'views/updates.html',
         controller: kabtvUpdatesCtrl
     };
 });
 
-kabtv.directive("kabtvTabs", function (getInitData) {
+kabtv.directive("kabtvTabs", function () {
     return {
         scope: {},
         templateUrl: 'views/tabs.html',

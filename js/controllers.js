@@ -1,11 +1,9 @@
 'use strict';
 
-function kabTvOnLoadCtrl($scope, $timeout, $translate, getInitData, pageSettings, detectIE) {
+function kabTvOnLoadCtrl($scope, $timeout, $translate, initData, pageSettings, detectIE) {
     var helpImageBase = 'http://live.kab.tv/button.php?image=tech';
 
-    getInitData.then(function (reqData) {
-        pageSettings.topMenuData = reqData.data.topMenuData;
-    });
+    pageSettings.topMenuData = initData.topMenuData;
 
     $scope.Lang = pageSettings.Lang = getLang();
     $scope.LangFullname = pageSettings.LangFullname = getLangFullname();
@@ -91,7 +89,7 @@ function kabTvOnLoadCtrl($scope, $timeout, $translate, getInitData, pageSettings
 
     helpImageUpdate();
 }
-kabTvOnLoadCtrl.$inject = ["$scope", "$timeout", "$translate", "getInitData", "pageSettings", "detectIE"];
+kabTvOnLoadCtrl.$inject = ["$scope", "$timeout", "$translate", "initData", "pageSettings", "detectIE"];
 
 
 function kabtvHeaderCtrl($scope, getHeadData, pageSettings) {

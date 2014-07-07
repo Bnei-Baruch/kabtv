@@ -1,8 +1,59 @@
 'use strict';
 
-kabtv.service('getInitData', ['$http', 'pageSettings', function ($http, pageSettings) {
-    return $http.get('./js/onload.json');
-}]);
+kabtv.service('initData', function () {
+    return {
+        "topMenuData": [
+            {
+                "caption": "English",
+                "url": "eng",
+                "title": "TV in English",
+                "language": "ENG"
+            },
+            {
+                "caption": "Русский",
+                "url": "rus",
+                "title": "TV in Russian",
+                "language": "RUS"
+            },
+            {
+                "caption": "Español",
+                "url": "spa",
+                "title": "TV in Spanish",
+                "language": "SPA"
+            },
+            {
+                "caption": "Deutsch",
+                "url": "ger",
+                "title": "TV in German",
+                "language": "GER"
+            },
+            {
+                "caption": "Français",
+                "url": "fre",
+                "title": "TV in French",
+                "language": "FRE"
+            },
+            {
+                "caption": "Português",
+                "url": "por",
+                "title": "TV in Portuguese",
+                "language": "POR"
+            },
+            {
+                "caption": "Italiano",
+                "url": "ita",
+                "title": "TV in Italian",
+                "language": "ITA"
+            },
+            {
+                "caption": "עברית",
+                "url": "heb",
+                "title": "TV in Hebrew",
+                "language": "HEB"
+            }
+        ]
+    };
+});
 
 kabtv.service('getHeadData', ['$http', 'pageSettings', function ($http, pageSettings) {
     return $http.get('http://api.kab.tv/api/nav_links', 
