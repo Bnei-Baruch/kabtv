@@ -67,11 +67,15 @@ kabtv.service('getClipById', ['$http', function ($http) {
 
 }]);
 kabtv.service('getFooterData', ['$http', 'pageSettings', function ($http, pageSettings) {
-    return $http.get('http://api.kab.tv/api/nav_links', {
-        params: {
-               'callback': 'JSON_CALLBACK',
-                'lang': pageSettings.Lang, 
+    return $http.get('http://api.kab.tv/api/nav_links',
+        {
+            responseType: 'json',
+            params: {
+                'lang': pageSettings.Lang,
                 'placeholder': 'footer'
+            },
+            headers: {
+                'Accept': 'application/json'
             }
         });
 }]);
