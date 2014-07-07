@@ -9,7 +9,9 @@ kabtv.value('pageSettings', {
     audioPlayer: null,
     WMVPlayer: null,
     topMenuData: null,
-    detectIE: null});
+    detectIE: null,
+    isKabFM: true
+});
 
 kabtv.config(['$translateProvider', function ($translateProvider) {
     $translateProvider
