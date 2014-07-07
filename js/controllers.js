@@ -17,7 +17,7 @@ function kabTvOnLoadCtrl($scope, $timeout, $translate, getInitData, pageSettings
     $scope.helpImage = '';
 
     function getLang() {
-        var lang = /*window.location.pathname.split("/")[1] ||*/ 'HEB';
+        var lang = window.location.pathname.split("/")[1] || 'HEB';
         return lang.toUpperCase();
     }
 
