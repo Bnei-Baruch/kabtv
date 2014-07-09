@@ -1,0 +1,13 @@
+{
+  "name": "soundmanager",
+  "homepage": "https://github.com/GaiaMagic/bower-soundmanager",
+  "_release": "be8b5f918e",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "be8b5f918e2debc08f6d31c7cb9959ad5b955de1"
+  },
+  "_source": "git://github.com/GaiaMagic/bower-soundmanager.git",
+  "_target": "*",
+  "_originalSource": "GaiaMagic/bower-soundmanager"
+}

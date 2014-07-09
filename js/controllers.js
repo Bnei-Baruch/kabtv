@@ -164,7 +164,7 @@ function kabtvAudioPlayerCtrl($scope, $element, pageSettings) {
         if ($scope.isPlay) {
             $scope.playOnOff = "off";
             soundManager.setup({
-                'url': "lib/js/soundmanager/swf",
+                'url': "lib/soundmanager/swf",
                 'onready': function() {
                     pageSettings.audioPlayer = soundManager.createSound({
                         'id': "kabtvAudioPlayer",

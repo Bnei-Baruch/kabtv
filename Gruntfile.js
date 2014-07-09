@@ -7,11 +7,11 @@ module.exports = function (grunt) {
             install: {
                 options: {
                     targetDir: './lib',
-                    layout: 'byType',
+                    layout: 'byComponent',
                     install: true,
                     verbose: false,
-                    cleanTargetDir: false,
-                    cleanBowerDir: false,
+                    cleanTargetDir: true,
+                    cleanBowerDir: true,
                     bowerOptions: {}
                 }
             }
@@ -23,14 +23,14 @@ module.exports = function (grunt) {
             main: {
                 expand: true,
                 cwd: './',
-                src: ['**', '!js/*.js', '!**/*.css', '!node_modules/**', '!lib/**'],
+                src: ['**', '!js/*.js', '!**/*.css', '!node_modules/**', '!bower_components/**'],
                 dest: 'dist/'
             }
         },
 
         rev: {
             files: {
-                src: ['dist/**/*.{js,css}']
+                src: ['dist/{js,css}/*.*']
             }
         },
 
