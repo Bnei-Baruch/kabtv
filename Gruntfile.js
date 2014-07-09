@@ -47,6 +47,26 @@ module.exports = function (grunt) {
                 report: 'min',
                 mangle: false
             }
+        },
+
+        ngtemplates: {
+            kabtv: {
+                src: 'views/**.html',
+                dest: 'dist/js/kabtv.templates.js',
+                options: {
+                    usemin: 'dist/js/kabtv.min.js', // <~~ This came from the <!-- build:js --> block
+                    htmlmin: {
+                        collapseBooleanAttributes: true,
+                        collapseWhitespace: true,
+                        removeAttributeQuotes: true,
+                        removeComments: true,
+                        removeEmptyAttributes: true,
+                        removeRedundantAttributes: true,
+                        removeScriptTypeAttributes: true,
+                        removeStyleLinkTypeAttributes: true
+                    }
+                }
+            }
         }
     });
 
@@ -58,9 +78,10 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-rev');
     grunt.loadNpmTasks('grunt-usemin');
     grunt.loadNpmTasks('grunt-bower-task');
+    grunt.loadNpmTasks('grunt-angular-templates');
 
     // Tell Grunt what to do when we type "grunt" into the terminal
     grunt.registerTask('default', [
-        'clean', 'copy', 'useminPrepare', 'concat', 'uglify', 'cssmin', 'rev', 'usemin'
+        'clean', 'copy', 'useminPrepare', 'ngtemplates', 'concat', 'uglify', 'cssmin', 'rev', 'usemin'
     ]);
 };

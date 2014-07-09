@@ -3,14 +3,14 @@
 kabtv.directive("kabtvOnload", function () {
     return {
         scope: {},
-        templateUrl: './views/onload.html',
+        templateUrl: 'views/onload.html',
         controller: kabTvOnLoadCtrl
     };
 });
 
 kabtv.directive("kabtvHeader", function () {
     return {
-        templateUrl: './views/header.html',
+        templateUrl: 'views/header.html',
         controller: kabtvHeaderCtrl
     };
 });
