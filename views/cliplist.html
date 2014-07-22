@@ -5,8 +5,8 @@
 	<div class="clipListContainer">
 		<div ng-repeat="item in clipList" class="item">
 			<div ng-click = "runClip(item)" class="cont clearfix">
-				<img ng-src="{{item.image_url}}" title="{{item.title}}" class="clipImage toL" />
-				<h5>{{item.title}}</h5>
+				<img ng-src="{{item.image_url}}" title="{{item.title}}" alt="{{item.title}}" class="clipImage toL" />
+				<h2>{{item.title}}</h2>
 				<p>{{item.description}}</p>
 			</div>
 			<div class="clipData">{{item.duration}}</div>
