@@ -208,6 +208,7 @@ function kabtvPlayerCtrl($scope, $timeout, $compile, getOnlineMedia, getWMVPlaye
         getClipById($routeParams.mediaId).then(
             function (reqData) {
                 $scope.playerData = reqData.data;
+                document.title = reqData.data.title;
                 setPlayer({url: reqData.data.play_url, format: reqData.data.content_type, width: "100%"});
                 var config = {
                     data_track_addressbar: false,
@@ -224,6 +225,7 @@ function kabtvPlayerCtrl($scope, $timeout, $compile, getOnlineMedia, getWMVPlaye
     } else {
         getOnlineMedia.then(function (reqData) {
             $scope.playerData = reqData.data;
+            document.title = $translate.instant('SITE_TITLE');
             var playObj = getPlayerData(reqData.data);
             setPlayer({url: playObj.url, width: "100%", format: playObj.format});
         });
