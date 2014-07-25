@@ -10,7 +10,8 @@
         "modernizr": "~2.6.2",
         "angular-translate": "~2.1.0",
         "angular-translate-loader-static-files": "~2.1.0",
-        "soundmanager": "GaiaMagic/bower-soundmanager"
+        "soundmanager": "GaiaMagic/bower-soundmanager",
+        "angulartics": "~0.15.20"
     },
     "exportsOverride": {
         "/angular.*/": {

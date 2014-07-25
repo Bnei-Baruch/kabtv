@@ -7,7 +7,7 @@ body{background-color: #00145E; font: normal normal 12px Arial, sans-serif; colo
 .rtl .toR{float: left;}
 
 .textToRight{text-align: right;}
-.textToLeft(text-align: left;)
+.textToLeft{text-align: left;}
 .rtl .textToRight{text-align: left;}
 .rtl .textToLeft{text-align: right;}
 a,a:visited{color:#69B7FF;text-decoration:none;}
@@ -90,13 +90,13 @@ NAV a:first-child {
 .clipList .cont:hover {opacity: 0.8;}
 .clipList .cont img{ margin: 3px 10px 5px 0;}
 .rtl .clipList .cont img{ margin: 3px 0 5px 10px;}
-.clipList .cont h5{color: #FFA302;}
+.clipList .cont h2{color: #FFA302;}
 .clipList .clipIcons{text-align: left; margin: 0 2px; }
 .clipList .clipData {text-align: right;color: #4EA9FF;}
 .clipList .clipImage {width:70px; height:70px;}
 
 .playerPanel {padding:5px 0;}
-.playerPanel .clipTitle {color:#FFA302;}
+.playerPanel .clipTitle {color:#FFA302; display: inline;}
 .playerPanel a{cursor: pointer;}
 .playerDescription {border-top: 1px solid #C6D8F2;}
 /*tabs aside*/
