@@ -8,20 +8,17 @@ kabtv.value('pageSettings', {
     dir: "rtl",
     audioPlayer: null,
     WMVPlayer: null,
-    topMenuData: null,
     detectIE: null
-});
-
-kabtv.config(['$translateProvider', function ($translateProvider) {
+})
+.config(['$translateProvider', function ($translateProvider) {
     $translateProvider
         .useStaticFilesLoader({
             prefix: 'i18n/locale-',
             suffix: '.json'
         })
         .preferredLanguage('he');
-}]);
-
-kabtv.config(function($routeProvider) {
+}])
+.config(function($routeProvider) {
 	$routeProvider
 	///stream
 	.when('/stream',{
@@ -34,4 +31,21 @@ kabtv.config(function($routeProvider) {
 		templateUrl: "views/playerClip.html"
 	})
 	.otherwise({redirectTo:'/stream'})
+})
+.run(function(pageSettings, $location, $filter, detectIE){    
+    var lang = getLang();
+    pageSettings.Lang = lang;
+    pageSettings.LangFullname = $filter('getLangFullname')(lang);
+    pageSettings.dir = getDir();
+    pageSettings.locale = $filter('getLocale')(lang);    
+    pageSettings.detectIE = detectIE();
+
+    function getLang() {
+        var lang = /*window.location.pathname.split("/")[1] || */'HEB';
+        return lang.toUpperCase();
+    }
+
+    function getDir() {
+        return (lang == "HEB") ? "rtl" : "ltr";
+    }
 });

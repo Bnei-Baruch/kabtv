@@ -1,199 +1,5 @@
 'use strict';
 
-function kabTvOnLoadCtrl($scope, $timeout, $translate, initData, pageSettings, detectIE) {
-    var helpImageBase = 'http://live.kab.tv/button.php?image=tech';
-
-    pageSettings.topMenuData = initData.topMenuData;
-
-    $scope.Lang = pageSettings.Lang = getLang();
-    $scope.LangFullname = pageSettings.LangFullname = getLangFullname();
-    $scope.dir = pageSettings.dir = getDir();
-    $scope.locale = pageSettings.locale = getLocale();
-    $translate.use($scope.locale);
-
-    pageSettings.detectIE = detectIE();
-    $scope.helpImage = '';
-
-    function getLang() {
-        var lang = window.location.pathname.split("/")[1] || 'HEB';
-        return lang.toUpperCase();
-    }
-
-    function getLangFullname() {
-        switch ($scope.Lang) {
-            case 'HEB':
-                return 'Hebrew';
-            case 'ENG':
-                return 'English';
-            case 'RUS':
-                return 'Russian';
-            case 'SPA':
-                return 'Spanish';
-            case 'GER':
-                return 'German';
-            case 'ITA':
-                return 'Italian';
-            case 'FRE':
-                return 'French';
-            case 'POR':
-                return 'Portuguese';
-            default:
-                return 'Hebrew';
-        }
-    }
-
-    function getDir() {
-        return ($scope.Lang == "HEB") ? "rtl" : "ltr";
-    }
-
-    function getLocale() {
-        switch ($scope.Lang) {
-            case 'HEB':
-                return 'he';
-            case 'ENG':
-                return 'en';
-            case 'RUS':
-                return 'ru';
-            case 'SPA':
-                return 'es';
-            case 'GER':
-                return 'de';
-            case 'ITA':
-                return 'it';
-            case 'FRE':
-                return 'fr';
-            case 'POR':
-                return 'pt';
-            default:
-                return 'he';
-        }
-    }
-
-    function getHelpLang() {
-        switch ($scope.Lang.toLowerCase()) {
-            case 'heb':
-                return 'he';
-            case 'rus':
-                return 'ru';
-            case 'spa':
-                return 'es';
-        }
-        return 'en';
-    }
-
-    function helpImageUpdate() {
-        var date = new Date();
-        $scope.helpImage = helpImageBase + '&lang=' + getHelpLang() + '&' + '&time=' + date.getTime();
-        $timeout(helpImageUpdate, 60000);
-    }
-
-    helpImageUpdate();
-}
-kabTvOnLoadCtrl.$inject = ["$scope", "$timeout", "$translate", "initData", "pageSettings", "detectIE"];
-
-
-function kabtvHeaderCtrl($scope, getHeadData, pageSettings) {
-    getHeadData.then(function (reqData) {
-        $scope.topMenuData = pageSettings.topMenuData;
-        $scope.linksList = reqData.data;
-    });
-    $scope.currentLang = function (lang) {
-        return (pageSettings.Lang == lang) ? "select" : "";
-    };
-}
-kabtvHeaderCtrl.$inject = ["$scope", "getHeadData", "pageSettings"];
-
-
-/*content controllers*/
-
-
-function kabtvTabsCtrl($scope, $sce) {
-    $scope.tabs = ["TAB_UPDATES", "TAB_SCHEDULE", "TAB_QUESTIONS", "TAB_SKETCHES"];
-    $scope.tabUrls = {
-        "TAB_SCHEDULE": "http://kab.tv/tvlist_gen.php",
-        "TAB_QUESTIONS": "http://kab.tv/q.php",
-        "TAB_SKETCHES": "http://www.kab.tv/classboard/classboard.php"
-    };
-
-    $scope.currentTab = $scope.tabs[0];
-
-    $scope.switchTab = function (item) {
-        $scope.currentTab = item;
-        var url = $scope.tabUrls[$scope.currentTab];
-        if (url) {
-            $scope.currentTabUrl = $sce.trustAsResourceUrl(url + '?lang=' + $scope.$parent.LangFullname);
-        }
-    }
-}
-kabtvTabsCtrl.$inject = ["$scope", "$sce"];
-
-
-function kabtvUpdatesCtrl($scope, $sce, getUpdates) {
-    getUpdates.then(function (reqData) {
-        var updates = [];
-        reqData.data.forEach(function(update) {
-            updates.push({
-                'title': $sce.trustAsHtml(update.title),
-                'description': $sce.trustAsHtml(update.description),
-                'url_caption': $sce.trustAsHtml(update.url_caption),
-                'url': $sce.trustAsHtml(update.url)
-            });
-        });
-        $scope.updates = updates;
-    });
-
-}
-kabtvUpdatesCtrl.$inject = ["$scope", "$sce", "getUpdates"];
-
-
-function kabtvAudioPlayerCtrl($scope, $element, pageSettings) {
-    $scope.isPlay = false;
-    $scope.isMute = false;
-    $scope.toggleMute = function () {
-        $scope.isMute = !$scope.isMute;
-        if ($scope.isMute) {
-            $scope.muteOnOff = "off";
-            pageSettings.audioPlayer.mute();
-        } else {
-            $scope.muteOnOff = "on";
-            pageSettings.audioPlayer.unmute();
-        }
-    };
-    $scope.togglePlay = function () {
-        $scope.isPlay = !$scope.isPlay;
-        if ($scope.isPlay) {
-            $scope.playOnOff = "off";
-            soundManager.setup({
-                'url': "lib/soundmanager/swf",
-                'onready': function() {
-                    pageSettings.audioPlayer = soundManager.createSound({
-                        'id': "kabtvAudioPlayer",
-                        'url': $scope.audioSrc
-                    });
-                    pageSettings.audioPlayer.play();
-                  }
-            });
-        } else {
-            $scope.playOnOff = "on";
-            pageSettings.audioPlayer.destruct();
-        }
-    };
-
-
-    if (pageSettings.audioPlayer === null) {
-        $scope.togglePlay();
-    } else {
-        pageSettings.audioPlayer.url = $scope.audioSrc;
-        $scope.isPlay = false;
-        $scope.togglePlay();
-    }
-
-    $element.bind('$destroy', function () {
-        pageSettings.audioPlayer.stop();
-    });
-}
-kabtvAudioPlayerCtrl.$inject = ["$scope", "$element", "pageSettings"];
-
 
 function kabtvPlayerCtrl($scope, $timeout, $compile, getOnlineMedia, getWMVPlayer,
                          pageSettings, getClipById, $location, $routeParams, $translate) {
@@ -340,38 +146,59 @@ function kabtvPlayerCtrl($scope, $timeout, $compile, getOnlineMedia, getWMVPlaye
     };
     $scope.videoFilter = function (item) {
         return (($scope.isVideo && item.media_type == 'video' ||
-            !$scope.isVideo && item.media_type == 'audio') &&
-            (item.language == 'HEB' ||
-                item.language == 'RUS' ||
-                item.language == 'ENG' ||
-                item.language == 'SPA' ||
-                item.language == 'GER'));
+        !$scope.isVideo && item.media_type == 'audio') &&
+        (item.language == 'HEB' ||
+            item.language == 'RUS' ||
+            item.language == 'ENG' ||
+            item.language == 'SPA' ||
+            item.language == 'GER'));
     }
 }
 
 kabtvPlayerCtrl.$inject = ["$scope", "$timeout", "$compile", "getOnlineMedia",
     "getWMVPlayer", "pageSettings", "getClipById", "$location", "$routeParams", "$translate"];
 
-function kabtvClipListCtrl($scope, $rootScope, $http, setClipListes, $location) {
-    $scope.$http = $http;
-    $scope.selectedClipList = null;
-
-    setClipListes.then(function (reqData) {
-        $scope.clipListes = reqData.data;
-        $scope.selectedClipList = reqData.data[0];
+kabtv.controller("kabtvHeader", function ($scope, getHeadData, pageSettings) {
+    getHeadData.then(function (reqData) {
+        $scope.topMenuData = pageSettings.topMenuData;
+        $scope.linksList = reqData.data;
     });
+    $scope.currentLang = function (lang) {
+        return (pageSettings.Lang == lang) ? "select" : "";
+    };
+})
+.controller("kabtvMain", function($scope, $timeout, $translate, $filter, initData, pageSettings, detectIE, getFooterData) {
+    var helpImageBase = 'http://live.kab.tv/button.php?image=tech';
 
-    $scope.runClip = function (clipData) {
-        $location.path('clip/');
-        $location.search({"mediaId": clipData.id});
-    }
-}
-kabtvClipListCtrl.$inject = ["$scope", "$rootScope", "$http", "setClipListes", "$location"];
+    $scope.topMenuData = initData.topMenuData;
+    $scope.Lang = pageSettings.Lang;
+    $scope.LangFullname = pageSettings.LangFullname;
+    $scope.dir = pageSettings.dir;
+    $scope.locale = pageSettings.locale;
+    $translate.use($scope.locale);
+    $scope.helpImage = '';
 
-/*footer controllers*/
-function kabtvFooterCtrl($scope, getFooterData) {
+    $scope.footMenuData = [];
     getFooterData.then(function (reqData) {
         $scope.footMenuData = reqData.data;
     });
-}
-kabtvFooterCtrl.$inject = ["$scope", "getFooterData"];
+
+    function getHelpLang() {
+        switch ($scope.Lang.toLowerCase()) {
+            case 'heb':
+                return 'he';
+            case 'rus':
+                return 'ru';
+            case 'spa':
+                return 'es';
+        }
+        return 'en';
+    }
+
+    function helpImageUpdate() {
+        var date = new Date();
+        $scope.helpImage = helpImageBase + '&lang=' + getHelpLang() + '&' + '&time=' + date.getTime();
+        $timeout(helpImageUpdate, 60000);
+    };
+    helpImageUpdate();
+})
