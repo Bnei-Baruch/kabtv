@@ -42,7 +42,7 @@ kabtv.value('pageSettings', {
     pageSettings.detectIE = detectIE();
 
     function getLang() {
-        var lang = /*window.location.pathname.split("/")[1] || */'HEB';
+        var lang = window.location.pathname.split("/")[1] || 'HEB';
         return lang.toUpperCase();
     }
 
