@@ -162,7 +162,6 @@ kabtvPlayerCtrl.$inject = ["$scope", "$timeout", "$compile", "getOnlineMedia",
 
 kabtv.controller("kabtvHeader", function ($scope, getHeadData, pageSettings) {
     getHeadData.then(function (reqData) {
-        $scope.topMenuData = pageSettings.topMenuData;
         $scope.linksList = reqData.data;
     });
     $scope.currentLang = function (lang) {
@@ -203,4 +202,36 @@ kabtv.controller("kabtvHeader", function ($scope, getHeadData, pageSettings) {
         $timeout(helpImageUpdate, 60000);
     };
     helpImageUpdate();
+})
+.controller('kabtvTabs', function ($scope, $sce, getUpdates) {
+    $scope.tabs = ["TAB_UPDATES", "TAB_SCHEDULE", "TAB_QUESTIONS", "TAB_SKETCHES"];
+    $scope.tabUrls = {
+        "TAB_SCHEDULE": "http://kab.tv/tvlist_gen.php",
+        "TAB_QUESTIONS": "http://kab.tv/q.php",
+        "TAB_SKETCHES": "http://www.kab.tv/classboard/classboard.php"
+    };
+
+    $scope.currentTab = $scope.tabs[0];
+
+    $scope.switchTab = function (item) {
+        $scope.currentTab = item;
+        var url = $scope.tabUrls[$scope.currentTab];
+        if (url) {
+            $scope.currentTabUrl = $sce.trustAsResourceUrl(url + '?lang=' + $scope.LangFullname);
+        }
+    }
+
+    $scope.updates = [];
+    getUpdates.then(function (reqData) {
+        var updates = [];
+        reqData.data.forEach(function(update) {
+            updates.push({
+                'title': $sce.trustAsHtml(update.title),
+                'description': $sce.trustAsHtml(update.description),
+                'url_caption': $sce.trustAsHtml(update.url_caption),
+                'url': $sce.trustAsHtml(update.url)
+            });
+        });
+        $scope.updates = updates;
+    });
 })

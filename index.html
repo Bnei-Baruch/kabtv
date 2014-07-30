@@ -25,8 +25,9 @@
         <div kabtv-nav></div>
         <div class="content clearfix">
             <div kabtv-clip-list class="aside toR clipList clearfix">111</div>
-            <div kabtv-tabs class="aside toL clearfix">222</div>
-            <div class="mid"  ng-view></div>
+            <div ng-include="'views/tabs.html'" kabtv-tabs class="aside toL clearfix">222</div>
+            <div class="mid"  ng-view="" ></div>
+        <div ></div>
         </div>
         <div ng-include="'views/footer.html'" class="footer"></div>
     </div>

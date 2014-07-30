@@ -1,13 +1,34 @@
-<div class="tabs" id="asideTabIframe">
+<div class="tabs" id="asideTabIframe" ng-controller="kabtvTabs">
 	<div ng-repeat="item in tabs"
          class="tabBtn {{currentTab == item ? 'select': '';}}"
          ng-click="switchTab(item)">
         {{item | translate}}
     </div>
-    <div ng-switch="currentTab" class="forIframe">
-        <div kabtv-updates ng-switch-when="TAB_UPDATES"  class="updates"></div>
-        <iframe ng-switch-when="TAB_SCHEDULE" ng-src="{{currentTabUrl}}" frameborder="0"></iframe>
-        <iframe ng-switch-when="TAB_QUESTIONS" ng-src="{{currentTabUrl}}" frameborder="0" scrolling = "no"></iframe>
-        <iframe ng-switch-when="TAB_SKETCHES" ng-src="{{currentTabUrl}}" frameborder="0"></iframe>
-    </div>
+    <div ng-include="currentTab + '.tpl'"  class="forIframe"></div>
 </div>
+<!-- templates for switcher -->
+<script type="text/ng-template" id="TAB_UPDATES.tpl">
+    <div class="updates">
+        <div ng-repeat="update in updates" class="item claerfix">
+            <h5 ng-bind-html="update.title"></h5>
+            <div class="description" ng-bind-html="update.description"></div>
+            <a ng-href="{{update.url}}" class="url textToR" ng-bind-html="update.url_caption"></a>
+        </div>
+    </div>
+</script>
+<script type="text/ng-template" id="TAB_SCHEDULE.tpl">
+    <iframe ng-src="{{currentTabUrl}}" frameborder="0" scroll></iframe>
+</script>
+<script type="text/ng-template" id="TAB_QUESTIONS.tpl">
+
+    <iframe ng-src="{{currentTabUrl}}" frameborder="0"></iframe>
+</script>
+<script type="text/ng-template" id="TAB_SKETCHES.tpl">
+    <iframe ng-src="{{currentTabUrl}}" frameborder="0"></iframe>
+</script>
+
+<!-- 
+    
+    <iframe ng-src="http://kab.tv/ask.php?lang={{LangFullname}}" frameborder="0" height="132"></iframe>
+    <iframe ng-src="http://kab.tv/question.php?lang={{LangFullname}}" frameborder="0"></iframe
+     -->

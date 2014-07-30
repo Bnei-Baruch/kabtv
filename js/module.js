@@ -40,6 +40,8 @@ kabtv.value('pageSettings', {
     pageSettings.dir = getDir();
     pageSettings.locale = $filter('getLocale')(lang);    
     pageSettings.detectIE = detectIE();
+    if($location.host(). toLowerCase().indexOf('kabfm'))
+        $location.search({"isVideo": false});
 
     function getLang() {
         var lang = window.location.pathname.split("/")[1] || 'HEB';

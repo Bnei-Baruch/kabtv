@@ -73,7 +73,6 @@ kabtv.directive("kabtvFooter", function () {
         }
     };
 });
-*/
 kabtv.directive("kabtvUpdates", function () {
     return {
         templateUrl: 'views/updates.html',
@@ -94,7 +93,6 @@ kabtv.directive("kabtvUpdates", function () {
         }
     };
 });
-
 kabtv.directive("kabtvTabs", function () {
     return {
         scope: {},
@@ -119,6 +117,7 @@ kabtv.directive("kabtvTabs", function () {
         }
     };
 });
+*/
 
 kabtv.directive("kabtvAudioPlayer", function () {
     return {
