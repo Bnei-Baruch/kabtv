@@ -162,6 +162,7 @@ kabtvPlayerCtrl.$inject = ["$scope", "$timeout", "$compile", "getOnlineMedia",
 
 kabtv.controller("kabtvHeader", function ($scope, getHeadData, pageSettings) {
     getHeadData.then(function (reqData) {
+        $scope.topMenuData = pageSettings.topMenuData;
         $scope.linksList = reqData.data;
     });
     $scope.currentLang = function (lang) {
@@ -200,7 +201,8 @@ kabtv.controller("kabtvHeader", function ($scope, getHeadData, pageSettings) {
         var date = new Date();
         $scope.helpImage = helpImageBase + '&lang=' + getHelpLang() + '&' + '&time=' + date.getTime();
         $timeout(helpImageUpdate, 60000);
-    };
+    }
+
     helpImageUpdate();
 })
 .controller('kabtvTabs', function ($scope, $sce, getUpdates) {
@@ -227,6 +229,7 @@ kabtv.controller("kabtvHeader", function ($scope, getHeadData, pageSettings) {
         reqData.data.forEach(function(update) {
             updates.push({
                 'title': $sce.trustAsHtml(update.title),
+                'subtitle': $sce.trustAsHtml(update.subtitle),
                 'description': $sce.trustAsHtml(update.description),
                 'url_caption': $sce.trustAsHtml(update.url_caption),
                 'url': $sce.trustAsHtml(update.url)

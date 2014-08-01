@@ -1,5 +1,8 @@
 'use strict';
 
+var API_BASE = 'http://localhost:3000/api/';
+//var API_BASE = 'http://api.kab.tv/api/';
+
 kabtv.service('initData', function () {
     return {
         "topMenuData": [
@@ -56,7 +59,7 @@ kabtv.service('initData', function () {
 });
 
 kabtv.service('getHeadData', ['$http', 'pageSettings', function ($http, pageSettings) {
-    return $http.get('http://api.kab.tv/api/nav_links', 
+    return $http.get(API_BASE + 'nav_links',
     	{
     		responseType: 'json', 
     		params: {
@@ -71,7 +74,7 @@ kabtv.service('getHeadData', ['$http', 'pageSettings', function ($http, pageSett
 }]);
 
 kabtv.service('setClipListes', ['$http', 'pageSettings', function ($http, pageSettings) {
- 	return $http.get('http://api.kab.tv/api/categories', 
+ 	return $http.get(API_BASE + 'categories',
     	{
     		responseType: 'json', 
     		params: {
@@ -88,7 +91,7 @@ kabtv.service('setClipListes', ['$http', 'pageSettings', function ($http, pageSe
 kabtv.service('setClipList', ['$http', 'pageSettings', function ($http, pageSettings) {
     function setClipList (id) {
         return  (
-            $http.get('http://api.kab.tv/api/categories/'+id+'/vod_media', 
+            $http.get(API_BASE + 'categories/' + id + '/vod_media',
                 {
                     responseType: 'json', 
                      headers: {
@@ -105,7 +108,7 @@ kabtv.service('setClipList', ['$http', 'pageSettings', function ($http, pageSett
 kabtv.service('getClipById', ['$http', function ($http) {
     return function (id) {
         return  (
-            $http.get('http://api.kab.tv/api/vod_media/' + id,
+            $http.get(API_BASE + 'vod_media/' + id,
                 {
                     responseType: 'json',
                      headers: {
@@ -118,7 +121,7 @@ kabtv.service('getClipById', ['$http', function ($http) {
 
 }]);
 kabtv.service('getFooterData', ['$http', 'pageSettings', function ($http, pageSettings) {
-    return $http.get('http://api.kab.tv/api/nav_links',
+    return $http.get(API_BASE + 'nav_links',
         {
             responseType: 'json',
             params: {
@@ -132,7 +135,7 @@ kabtv.service('getFooterData', ['$http', 'pageSettings', function ($http, pageSe
 }]);
 
 kabtv.service('getOnlineMedia', ['$http', 'pageSettings', function ($http, pageSettings) {
-    return $http.get('http://api.kab.tv/api/streams', 
+    return $http.get(API_BASE + 'streams',
         {
             responseType: 'json', 
             headers: {
@@ -144,7 +147,7 @@ kabtv.service('getOnlineMedia', ['$http', 'pageSettings', function ($http, pageS
 }]);
 
 kabtv.service('getUpdates', ['$http', 'pageSettings', function ($http, pageSettings) {
-    return $http.get('http://api.kab.tv/api/updates', 
+    return $http.get(API_BASE + 'updates',
         {
             responseType: 'json', 
             params: {

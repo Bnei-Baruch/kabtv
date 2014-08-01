@@ -1,5 +1,19 @@
 <div ng-repeat="update in updates" class="item claerfix">
-    <h5 ng-bind-html="update.title"></h5>
-    <div class="description" ng-bind-html="update.description"></div>
-    <a ng-href="{{update.url}}" class="url textToR" ng-bind-html="update.url_caption"></a>
+    <div class="ad">
+        <div class="header">
+            <a ng-if="update.url" ng-href="{{update.url}}">
+                <span class="title" ng-bind-html="update.title"></span>
+                <span class="subtitle" ng-bind-html="update.subtitle"></span>
+            </a>
+            <span ng-if="!update.url" class="title" ng-bind-html="update.title"></span>
+            <span ng-if="!update.url" class="subtitle" ng-bind-html="update.subtitle"></span>
+        </div>
+        <div class="body">
+            <div class="description" ng-bind-html="update.description"></div>
+        </div>
+    </div>
+
+    <!--<h5 ng-bind-html="update.title"></h5>-->
+
+    <!--<a ng-href="{{update.url}}" class="url textToR" ng-bind-html="update.url_caption"></a>-->
 </div>
