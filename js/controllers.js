@@ -219,7 +219,7 @@ kabtv.controller("kabtvHeader", function ($scope, getHeadData, pageSettings) {
         if (url) {
             $scope.currentTabUrl = $sce.trustAsResourceUrl(url + '?lang=' + $scope.LangFullname);
         }
-    }
+    };
 
     $scope.updates = [];
     getUpdates.then(function (reqData) {
@@ -234,4 +234,4 @@ kabtv.controller("kabtvHeader", function ($scope, getHeadData, pageSettings) {
         });
         $scope.updates = updates;
     });
-})
+});
