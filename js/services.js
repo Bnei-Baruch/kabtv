@@ -1,7 +1,7 @@
 'use strict';
 
-var API_BASE = 'http://localhost:3000/api/';
-//var API_BASE = 'http://api.kab.tv/api/';
+//var API_BASE = 'http://localhost:3000/api/';
+var API_BASE = 'http://api.kab.tv/api/';
 
 kabtv.service('initData', function () {
     return {

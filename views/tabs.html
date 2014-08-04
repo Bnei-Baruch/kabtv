@@ -7,15 +7,11 @@
     <div ng-include="currentTab + '.tpl'"  class="forIframe"></div>
 </div>
 <!-- templates for switcher -->
+
 <script type="text/ng-template" id="TAB_UPDATES.tpl">
-    <div class="updates">
-        <div ng-repeat="update in updates" class="item claerfix">
-            <h5 ng-bind-html="update.title"></h5>
-            <div class="description" ng-bind-html="update.description"></div>
-            <a ng-href="{{update.url}}" class="url textToR" ng-bind-html="update.url_caption"></a>
-        </div>
-    </div>
+    <div class="updates" ng-include="'views/updates.html'"></div>
 </script>
+
 <script type="text/ng-template" id="TAB_SCHEDULE.tpl">
     <iframe ng-src="{{currentTabUrl}}" frameborder="0" scroll></iframe>
 </script>
@@ -26,9 +22,3 @@
 <script type="text/ng-template" id="TAB_SKETCHES.tpl">
     <iframe ng-src="{{currentTabUrl}}" frameborder="0"></iframe>
 </script>
-
-<!-- 
-    
-    <iframe ng-src="http://kab.tv/ask.php?lang={{LangFullname}}" frameborder="0" height="132"></iframe>
-    <iframe ng-src="http://kab.tv/question.php?lang={{LangFullname}}" frameborder="0"></iframe
-     -->

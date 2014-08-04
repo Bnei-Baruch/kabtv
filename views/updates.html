@@ -1,19 +1,31 @@
-<div ng-repeat="update in updates" class="item claerfix">
-    <div class="ad">
+<div ng-repeat="update in updates" class="item clearfix">
+    <div class="ad" ng-if="update.url">
         <div class="header">
-            <a ng-if="update.url" ng-href="{{update.url}}">
+            <a ng-href="{{update.url}}" target="_blank">
                 <span class="title" ng-bind-html="update.title"></span>
                 <span class="subtitle" ng-bind-html="update.subtitle"></span>
             </a>
-            <span ng-if="!update.url" class="title" ng-bind-html="update.title"></span>
-            <span ng-if="!update.url" class="subtitle" ng-bind-html="update.subtitle"></span>
         </div>
-        <div class="body">
+        <div class="body" ng-if="update.description">
             <div class="description" ng-bind-html="update.description"></div>
         </div>
+        <div class="body" ng-if="update.image_url">
+            <a ng-href="{{update.url}}" target="_blank">
+                <img ng-src="{{update.image_url}}">
+            </a>
+        </div>
+        <a ng-if="update.url_caption" ng-href="{{update.url}}" class="url toR" target="_blank">{{update.url_caption}}>></a>
     </div>
-
-    <!--<h5 ng-bind-html="update.title"></h5>-->
-
-    <!--<a ng-href="{{update.url}}" class="url textToR" ng-bind-html="update.url_caption"></a>-->
+    <div class="ad" ng-if="!update.url">
+        <div class="header">
+            <span class="title" ng-bind-html="update.title"></span>
+            <span class="subtitle" ng-bind-html="update.subtitle"></span>
+        </div>
+        <div class="body" ng-if="update.description">
+            <div class="description" ng-bind-html="update.description"></div>
+        </div>
+        <div class="body" ng-if="update.image_url">
+            <img ng-src="{{update.image_url}}">
+        </div>
+    </div>
 </div>

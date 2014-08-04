@@ -33,15 +33,15 @@ kabtv.value('pageSettings', {
 	})
 	.otherwise({redirectTo:'/stream'})
 })
-.run(function(pageSettings, $location, $filter, detectIE){    
+.run(["pageSettings", "$location", "$filter", "detectIE",
+        function(pageSettings, $location, $filter, detectIE){
     var lang = getLang();
     pageSettings.Lang = lang;
     pageSettings.LangFullname = $filter('getLangFullname')(lang);
     pageSettings.dir = getDir();
     pageSettings.locale = $filter('getLocale')(lang);    
     pageSettings.detectIE = detectIE();
-    if($location.host(). toLowerCase().indexOf('kab.fm') >= 0)
-        $location.search({"isVideo": false});
+    pageSettings.isVideo = $location.host().toLowerCase().indexOf('kab.fm') < 0;
 
     function getLang() {
         var lang = window.location.pathname.split("/")[1] || 'HEB';
@@ -51,4 +51,4 @@ kabtv.value('pageSettings', {
     function getDir() {
         return (lang == "HEB") ? "rtl" : "ltr";
     }
-});
+}]);

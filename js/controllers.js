@@ -79,7 +79,14 @@ function kabtvPlayerCtrl($scope, $timeout, $compile, getOnlineMedia, getWMVPlaye
 
     function getPlayerData(playerList, meaidType) {
         if (!playerList) return null;
-        var mediaType = (typeof $routeParams.isVideo == "undefined" || $routeParams.isVideo) ? "video" : "audio";
+
+        var mediaType = "video";
+        if (typeof $routeParams.isVideo == "undefined") {
+            mediaType = pageSettings.isVideo ? "video" : "audio";
+        } else {
+            mediaType = $routeParams.isVideo ? "video" : "audio";
+        }
+
         for (var i = 0; i < playerList.length; i++) {
             var playerData = playerList[i];
             if (playerData.media_type == mediaType &&
@@ -95,6 +102,7 @@ function kabtvPlayerCtrl($scope, $timeout, $compile, getOnlineMedia, getWMVPlaye
     }
 
     $scope.switchVideoAudio = function (isVideo) {
+        pageSettings.isVideo = isVideo;
         $location.path('stream/');
         $location.search({"mediaLang": currentLang, "isVideo": isVideo});
     };
@@ -162,7 +170,7 @@ kabtvPlayerCtrl.$inject = ["$scope", "$timeout", "$compile", "getOnlineMedia",
 
 kabtv.controller("kabtvHeader", function ($scope, getHeadData, pageSettings) {
     getHeadData.then(function (reqData) {
-        $scope.topMenuData = pageSettings.topMenuData;
+//        $scope.topMenuData = pageSettings.topMenuData;
         $scope.linksList = reqData.data;
     });
     $scope.currentLang = function (lang) {
@@ -232,7 +240,8 @@ kabtv.controller("kabtvHeader", function ($scope, getHeadData, pageSettings) {
                 'subtitle': $sce.trustAsHtml(update.subtitle),
                 'description': $sce.trustAsHtml(update.description),
                 'url_caption': $sce.trustAsHtml(update.url_caption),
-                'url': $sce.trustAsHtml(update.url)
+                'url': $sce.trustAsHtml(update.url),
+                'image_url': update.image_url
             });
         });
         $scope.updates = updates;
