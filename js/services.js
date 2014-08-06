@@ -2,6 +2,7 @@
 
 
 angular.module('kabtv')
+/*data that using on start*/
 .service('initData', function () {
     return {
         "topMenuData": [
@@ -56,6 +57,7 @@ angular.module('kabtv')
         ]
     };
 })
+/*build WMV player - temp*/
 .service('getWMVPlayer', ['detectIE','pageSettings', function (detectIE, pageSettings) {
     return function (src) {
         var param = [];
@@ -188,6 +190,7 @@ angular.module('kabtv')
         return contObj;
     };
 }])
+/*check type of brouser*/
 .service("detectIE", function () {
     return function () {
         var ua = window.navigator.userAgent;
@@ -209,7 +212,7 @@ angular.module('kabtv')
         return false;
     };
 })
-
+/*REST API services*/
 .factory('kabtvHttpSvc', function ($http, pageSettings) {
     var _svc = {}, _param = {};
 

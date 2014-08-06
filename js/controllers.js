@@ -9,7 +9,7 @@ angular.module('kabtv')
     $scope.broadcastTime = '';
 
     var currentLang = ($routeParams.mediaLang) ? $routeParams.mediaLang : $scope.Lang;
-
+/*check stream type depend on url (isvideo and clip)*/
     if ($location.$$path == "/clip") {
         kabtvHttpSvc.getClipById($routeParams.mediaId).then(
             function (reqData) {
@@ -36,7 +36,7 @@ angular.module('kabtv')
             setPlayer({url: playObj.url, width: "100%", format: playObj.format});
         });
     }
-
+/*build player depend on type of stream*/
     function setPlayer(playObj) {
         $scope.playObj = playObj;
         if (pageSettings.audioPlayer != null) {
@@ -140,7 +140,7 @@ angular.module('kabtv')
         $scope.broadcastTime = nowtimeHours + ":" + nowtimeMinutes;
         $timeout(showTime, 30000);
     }
-
+/*full screen for wmv player*/
     $scope.gofs = function () {
         if ($scope.playObj == null || $scope.playObj.format.toLowerCase() != 'wmv')
             return;
