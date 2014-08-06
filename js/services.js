@@ -1,7 +1,6 @@
 'use strict';
 
-//var API_BASE = 'http://localhost:3000/api/';
-var API_BASE = 'http://api.kab.tv/api/';
+
 angular.module('kabtv')
 .service('initData', function () {
     return {
@@ -57,103 +56,6 @@ angular.module('kabtv')
         ]
     };
 })
-.service('getHeadData', ['$http', 'pageSettings', function ($http, pageSettings) {
-    return $http.get(API_BASE + 'nav_links',
-    	{
-    		responseType: 'json', 
-    		params: {
-    			'lang': pageSettings.Lang, 
-    			'placeholder': 'navbar'
-    		},
-    		 headers: {
-		        'Accept': 'application/json'
-		    }
-    	}
-	);
-}])
-.service('setClipListes', ['$http', 'pageSettings', function ($http, pageSettings) {
- 	return $http.get(API_BASE + 'categories',
-    	{
-    		responseType: 'json', 
-    		params: {
-    			'lang': pageSettings.Lang
-    		},
-    		 headers: {
-		        'Accept': 'application/json'
-		    }
-    	}
-	);
-
-}])
-.service('setClipList', ['$http', 'pageSettings', function ($http, pageSettings) {
-    function setClipList (id) {
-        return  (
-            $http.get(API_BASE + 'categories/' + id + '/vod_media',
-                {
-                    responseType: 'json', 
-                     headers: {
-                        'Accept': 'application/json'
-                    }
-                }
-            )
-        );
-    }
-    return setClipList;
-
-}])
-.service('getClipById', ['$http', function ($http) {
-    return function (id) {
-        return  (
-            $http.get(API_BASE + 'vod_media/' + id,
-                {
-                    responseType: 'json',
-                     headers: {
-                        'Accept': 'application/json'
-                    }
-                }
-            )
-        );
-    };
-
-}])
-.service('getFooterData', ['$http', 'pageSettings', function ($http, pageSettings) {
-    return $http.get(API_BASE + 'nav_links',
-        {
-            responseType: 'json',
-            params: {
-                'lang': pageSettings.Lang,
-                'placeholder': 'footer'
-            },
-            headers: {
-                'Accept': 'application/json'
-            }
-        });
-}])
-.service('getOnlineMedia', ['$http', 'pageSettings', function ($http, pageSettings) {
-    return $http.get(API_BASE + 'streams',
-        {
-            responseType: 'json', 
-            headers: {
-                'Accept': 'application/json'
-            }
-        }
-    );
-
-}])
-.service('getUpdates', ['$http', 'pageSettings', function ($http, pageSettings) {
-    return $http.get(API_BASE + 'updates',
-        {
-            responseType: 'json', 
-            params: {
-                'lang': pageSettings.Lang
-            },
-             headers: {
-                'Accept': 'application/json'
-            }
-        }
-    );
-
-}])
 .service('getWMVPlayer', ['detectIE','pageSettings', function (detectIE, pageSettings) {
     return function (src) {
         var param = [];
@@ -310,7 +212,10 @@ angular.module('kabtv')
 
 .factory('kabtvHttpSvc', function ($http, pageSettings) {
     var _svc = {}, _param = {};
-      var defParam = {
+
+    //var API_BASE = 'http://localhost:3000/api/';
+    var API_BASE = 'http://dev.kab.tv/api/';
+    var defParam = {
         params: {
          'lang': pageSettings.Lang, 
         }
@@ -321,31 +226,31 @@ angular.module('kabtv')
             'placeholder': 'navbar'
         }
         angular.extend(_param.params, defParam.params);
-        return $http.get('http://api.kab.tv/api/nav_links', _param);
+        return $http.get(API_BASE + 'nav_links', _param);
     };
 
     _svc.setClipListes = function() {
-        return $http.get('http://api.kab.tv/api/categories', defParam);
+        return $http.get(API_BASE + 'categories', defParam);
     };
 
     _svc.setClipList = function(id) {
-        return $http.get('http://api.kab.tv/api/categories/'+id+'/vod_media');
+        return $http.get(API_BASE + 'categories/'+id+'/vod_media');
     };
     _svc.getClipById = function(id) {
-        return $http.get('http://api.kab.tv/api/vod_media/' + id);
+        return $http.get(API_BASE + 'vod_media/' + id);
     };
     _svc.getFooterData = function(id) {
         _param.params = {
             'placeholder': 'footer'
         }
         angular.extend(_param.params, defParam.params);
-        return $http.get('http://api.kab.tv/api/nav_links', _param);
+        return $http.get(API_BASE + 'nav_links', _param);
     };
     _svc.getOnlineMedia = function(id) {
-        return $http.get('http://api.kab.tv/api/streams');
+        return $http.get(API_BASE + 'api/streams');
     };
     _svc.getUpdates = function(id) {
-        return $http.get('http://api.kab.tv/api/updates', defParam);
+        return $http.get(API_BASE + 'updates', defParam);
     };
     return _svc;
 
