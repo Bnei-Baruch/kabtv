@@ -1,4 +1,7 @@
 'use strict';
+
+//var API_BASE = 'http://localhost:3000/api/';
+var API_BASE = 'http://api.kab.tv/api/';
 angular.module('kabtv')
 .service('initData', function () {
     return {
@@ -54,6 +57,103 @@ angular.module('kabtv')
         ]
     };
 })
+.service('getHeadData', ['$http', 'pageSettings', function ($http, pageSettings) {
+    return $http.get(API_BASE + 'nav_links',
+    	{
+    		responseType: 'json', 
+    		params: {
+    			'lang': pageSettings.Lang, 
+    			'placeholder': 'navbar'
+    		},
+    		 headers: {
+		        'Accept': 'application/json'
+		    }
+    	}
+	);
+}])
+.service('setClipListes', ['$http', 'pageSettings', function ($http, pageSettings) {
+ 	return $http.get(API_BASE + 'categories',
+    	{
+    		responseType: 'json', 
+    		params: {
+    			'lang': pageSettings.Lang
+    		},
+    		 headers: {
+		        'Accept': 'application/json'
+		    }
+    	}
+	);
+
+}])
+.service('setClipList', ['$http', 'pageSettings', function ($http, pageSettings) {
+    function setClipList (id) {
+        return  (
+            $http.get(API_BASE + 'categories/' + id + '/vod_media',
+                {
+                    responseType: 'json', 
+                     headers: {
+                        'Accept': 'application/json'
+                    }
+                }
+            )
+        );
+    }
+    return setClipList;
+
+}])
+.service('getClipById', ['$http', function ($http) {
+    return function (id) {
+        return  (
+            $http.get(API_BASE + 'vod_media/' + id,
+                {
+                    responseType: 'json',
+                     headers: {
+                        'Accept': 'application/json'
+                    }
+                }
+            )
+        );
+    };
+
+}])
+.service('getFooterData', ['$http', 'pageSettings', function ($http, pageSettings) {
+    return $http.get(API_BASE + 'nav_links',
+        {
+            responseType: 'json',
+            params: {
+                'lang': pageSettings.Lang,
+                'placeholder': 'footer'
+            },
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+}])
+.service('getOnlineMedia', ['$http', 'pageSettings', function ($http, pageSettings) {
+    return $http.get(API_BASE + 'streams',
+        {
+            responseType: 'json', 
+            headers: {
+                'Accept': 'application/json'
+            }
+        }
+    );
+
+}])
+.service('getUpdates', ['$http', 'pageSettings', function ($http, pageSettings) {
+    return $http.get(API_BASE + 'updates',
+        {
+            responseType: 'json', 
+            params: {
+                'lang': pageSettings.Lang
+            },
+             headers: {
+                'Accept': 'application/json'
+            }
+        }
+    );
+
+}])
 .service('getWMVPlayer', ['detectIE','pageSettings', function (detectIE, pageSettings) {
     return function (src) {
         var param = [];

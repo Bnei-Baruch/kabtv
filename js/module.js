@@ -30,7 +30,8 @@ angular.module('kabtv', ['ngRoute', 'pascalprecht.translate', 'angulartics', 'an
 	})
 	.otherwise({redirectTo:'/stream'})
 })
-.run(function(pageSettings, $location, $filter, detectIE, $http){    
+.run(["pageSettings", "$location", "$filter", "detectIE", "$http", 
+        function(pageSettings, $location, $filter, detectIE, $http){
     var lang = getLang();
     
     //set page settings 
@@ -47,6 +48,7 @@ angular.module('kabtv', ['ngRoute', 'pascalprecht.translate', 'angulartics', 'an
     //if kabfm start with audio
     if($location.host(). toLowerCase().indexOf('kabfm'))
         $location.search({"isVideo": false});
+    //pageSettings.isVideo = $location.host().toLowerCase().indexOf('kab.fm') < 0;
 
     function getLang() {
         var lang = /*window.location.pathname.split("/")[1] ||*/ 'HEB';
@@ -56,4 +58,4 @@ angular.module('kabtv', ['ngRoute', 'pascalprecht.translate', 'angulartics', 'an
     function getDir() {
         return (lang == "HEB") ? "rtl" : "ltr";
     }
-});
+}]);

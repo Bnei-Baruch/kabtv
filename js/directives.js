@@ -1,6 +1,5 @@
 'use strict';
 
-
 angular.module('kabtv')
 .directive("kabtvAudioPlayer", function (kabtvHttpSvc) {
     return {

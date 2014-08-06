@@ -79,7 +79,14 @@ angular.module('kabtv')
 
     function getPlayerData(playerList, meaidType) {
         if (!playerList) return null;
-        var mediaType = (typeof $routeParams.isVideo == "undefined" || $routeParams.isVideo) ? "video" : "audio";
+
+        var mediaType = "video";
+        if (typeof $routeParams.isVideo == "undefined") {
+            mediaType = pageSettings.isVideo ? "video" : "audio";
+        } else {
+            mediaType = $routeParams.isVideo ? "video" : "audio";
+        }
+
         for (var i = 0; i < playerList.length; i++) {
             var playerData = playerList[i];
             if (playerData.media_type == mediaType &&
@@ -95,6 +102,7 @@ angular.module('kabtv')
     }
 
     $scope.switchVideoAudio = function (isVideo) {
+        pageSettings.isVideo = isVideo;
         $location.path('stream/');
         $location.search({"mediaLang": currentLang, "isVideo": isVideo});
     };
@@ -196,7 +204,8 @@ angular.module('kabtv')
         var date = new Date();
         $scope.helpImage = helpImageBase + '&lang=' + getHelpLang() + '&' + '&time=' + date.getTime();
         $timeout(helpImageUpdate, 60000);
-    };
+    }
+
     helpImageUpdate();
 })
 .controller('kabtvTabs', function ($scope, $sce, kabtvHttpSvc) {
@@ -215,7 +224,7 @@ angular.module('kabtv')
         if (url) {
             $scope.currentTabUrl = $sce.trustAsResourceUrl(url + '?lang=' + $scope.LangFullname);
         }
-    }
+    };
 
     $scope.updates = [];
     kabtvHttpSvc.getUpdates().then(function (reqData) {
@@ -223,11 +232,13 @@ angular.module('kabtv')
         reqData.data.forEach(function(update) {
             updates.push({
                 'title': $sce.trustAsHtml(update.title),
+                'subtitle': $sce.trustAsHtml(update.subtitle),
                 'description': $sce.trustAsHtml(update.description),
                 'url_caption': $sce.trustAsHtml(update.url_caption),
-                'url': $sce.trustAsHtml(update.url)
+                'url': $sce.trustAsHtml(update.url),
+                'image_url': update.image_url
             });
         });
         $scope.updates = updates;
     });
-})
+});
