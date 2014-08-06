@@ -51,7 +51,7 @@ angular.module('kabtv', ['ngRoute', 'pascalprecht.translate', 'angulartics', 'an
     //pageSettings.isVideo = $location.host().toLowerCase().indexOf('kab.fm') < 0;
 
     function getLang() {
-        var lang = /*window.location.pathname.split("/")[1] ||*/ 'HEB';
+        var lang = window.location.pathname.split("/")[1] || 'HEB';
         return lang.toUpperCase();
     }
 
