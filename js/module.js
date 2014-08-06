@@ -1,9 +1,6 @@
 'use strict';
-
-var kabtv = angular.module('kabtv',
-    ['ngRoute', 'pascalprecht.translate', 'angulartics', 'angulartics.google.analytics']);
-
-kabtv.value('pageSettings', {
+angular.module('kabtv', ['ngRoute', 'pascalprecht.translate', 'angulartics', 'angulartics.google.analytics'])
+.value('pageSettings', {
     Lang: 'HEB',
     locale: 'he',
     dir: "rtl",
@@ -33,18 +30,26 @@ kabtv.value('pageSettings', {
 	})
 	.otherwise({redirectTo:'/stream'})
 })
-.run(function(pageSettings, $location, $filter, detectIE){    
+.run(function(pageSettings, $location, $filter, detectIE, $http){    
     var lang = getLang();
+    
+    //set page settings 
     pageSettings.Lang = lang;
     pageSettings.LangFullname = $filter('getLangFullname')(lang);
     pageSettings.dir = getDir();
     pageSettings.locale = $filter('getLocale')(lang);    
     pageSettings.detectIE = detectIE();
+
+    $http.defaults.headers.common.Accept = 'application/json';
+   // $http.defaults.responseType = 'json';
+
+
+    //if kabfm start with audio
     if($location.host(). toLowerCase().indexOf('kabfm'))
         $location.search({"isVideo": false});
 
     function getLang() {
-        var lang = window.location.pathname.split("/")[1] || 'HEB';
+        var lang = /*window.location.pathname.split("/")[1] ||*/ 'HEB';
         return lang.toUpperCase();
     }
 
