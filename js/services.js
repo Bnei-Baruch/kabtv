@@ -227,7 +227,7 @@ angular.module('kabtv')
     _svc.getHeadData = function() {
         _param.params = {
             'placeholder': 'navbar'
-        }
+        };
         angular.extend(_param.params, defParam.params);
         return $http.get(API_BASE + 'nav_links', _param);
     };
@@ -245,12 +245,12 @@ angular.module('kabtv')
     _svc.getFooterData = function(id) {
         _param.params = {
             'placeholder': 'footer'
-        }
+        };
         angular.extend(_param.params, defParam.params);
         return $http.get(API_BASE + 'nav_links', _param);
     };
     _svc.getOnlineMedia = function(id) {
-        return $http.get(API_BASE + 'api/streams');
+        return $http.get(API_BASE + 'streams');
     };
     _svc.getUpdates = function(id) {
         return $http.get(API_BASE + 'updates', defParam);
