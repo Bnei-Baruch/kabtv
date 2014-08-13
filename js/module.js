@@ -46,9 +46,9 @@ angular.module('kabtv', ['ngRoute', 'pascalprecht.translate', 'angulartics', 'an
 
 
     //if kabfm start with audio
-    if($location.host(). toLowerCase().indexOf('kabfm'))
-        $location.search({"isVideo": false});
-    //pageSettings.isVideo = $location.host().toLowerCase().indexOf('kab.fm') < 0;
+//    if($location.host(). toLowerCase().indexOf('kabfm'))
+//        $location.search({"isVideo": false});
+    pageSettings.isVideo = $location.host().toLowerCase().indexOf('kab.fm') < 0;
 
     function getLang() {
         var lang = window.location.pathname.split("/")[1] || 'HEB';
