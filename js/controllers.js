@@ -7,8 +7,13 @@ angular.module('kabtv')
     $scope.playObj = null;
     $scope.showFullScreen = false;
     $scope.broadcastTime = '';
+    $scope.playerQuality = {
+        current: null,
+        change: function(){
+            setPlayer({url: $scope.playObj.url[$scope.playerQuality.current], width: "100%", format: $scope.playObj.format});
+        }
+    };
 
-    var currentLang = ($routeParams.mediaLang) ? $routeParams.mediaLang : $scope.Lang;
 /*check stream type depend on url (isvideo and clip)*/
     if ($location.$$path == "/clip") {
         kabtvHttpSvc.getClipById($routeParams.mediaId).then(
@@ -33,7 +38,7 @@ angular.module('kabtv')
             $scope.playerData = reqData.data;
             document.title = $translate.instant('SITE_TITLE');
             var playObj = getPlayerData(reqData.data);
-            setPlayer({url: playObj.url, width: "100%", format: playObj.format});
+            setPlayer({url: playObj.url[$scope.playerQuality.current], width: "100%", format: playObj.format});
         });
     }
 /*build player depend on type of stream*/
@@ -76,7 +81,6 @@ angular.module('kabtv')
     }
 
     showTime();
-
     function getPlayerData(playerList, meaidType) {
         if (!playerList) return null;
 
@@ -162,6 +166,9 @@ angular.module('kabtv')
             item.language == 'ENG' ||
             item.language == 'SPA' ||
             item.language == 'GER'));
+    }
+    $scope.qualityFilter = function (item) {
+        return ($scope.isVideo && item.quality && (item.language.toLowerCase() == currentLang.toLowerCase()));
     }
 })
 .controller("kabtvHeader", function ($scope, pageSettings, kabtvHttpSvc) {
