@@ -97,8 +97,13 @@ NAV a:first-child {
 
 .playerPanel {padding:5px 0;}
 .playerPanel .clipTitle {color:#FFA302; display: inline;}
-.playerPanel a{cursor: pointer;}
+.playerPanel .langs{cursor: pointer; color: #4EA8FE;}
+.playerPanel .langs.selected{color: #FFA302}
+.playerPanel .langs input{display: none;}
 .playerDescription {border-top: 1px solid #C6D8F2;}
+.playerPanel .qualitySwitcher{background-color: #2b64a7; padding: 5px;}
+
+
 /*tabs aside*/
 
 #asideTabIframe{width: 100%; height: 100%; position: relative;}
