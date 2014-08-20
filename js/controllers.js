@@ -87,6 +87,7 @@ angular.module('kabtv')
             mediaType = ($routeParams.isVideo === true || $routeParams.isVideo === "true") ? "video" : "audio";
         }
         var _player = null;
+        $scope.isVideo = (mediaType == "video") ? true : false;
         for (var i = 0; i < playerList.length; i++) {
             var _playerData = playerList[i];
             if (_playerData.media_type == mediaType && ($scope.currentPlayerLang.toLowerCase() == _playerData.language.toLowerCase())) {
@@ -116,6 +117,9 @@ angular.module('kabtv')
     }
 
     $scope.hasPlayerDataQuality = function() {
+        if (!$scope.isVideo) {
+            return false;
+        }
         var _q = $scope.playerDataQuality || [];
         var _isHas = false;
         for (var i = 0; i < _q.length; i++) {
@@ -130,8 +134,16 @@ angular.module('kabtv')
         $location.search({"mediaLang":  $scope.currentPlayerLang, "isVideo": $scope.isVideo, "playerQuality": quality});
     };
 
+    $scope.hasAudio = function (lang){
+        var _isHas = false;
+        angular.forEach($scope.playerData, function(item, key){
+            if(item.language ==  lang && item.media_type == "audio")
+                _isHas = true;
+        });
+        return _isHas;
+    };
     $scope.switchVideoAudio = function (isVideo) {
-        pageSettings.isVideo = isVideo;
+        $scope.isVideo = isVideo;
         $location.path('stream/');
         $location.search({"mediaLang": $scope.currentPlayerLang, "isVideo": isVideo});
     };
@@ -139,7 +151,6 @@ angular.module('kabtv')
     $scope.switchPlayerLang = function (lang) {
         $location.search({"mediaLang": lang, "isVideo": $scope.isVideo});
     };
-
 
     $scope.getStream = function () {
         $location.path('stream/');

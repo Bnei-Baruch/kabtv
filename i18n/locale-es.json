@@ -16,5 +16,9 @@
     "TAB_UPDATES": "anuncios",
     "TAB_SCHEDULE": "programa",
     "TAB_QUESTIONS": "preguntas",
-    "TAB_SKETCHES": "dibujos"
+    "TAB_SKETCHES": "dibujos",
+  
+    "HIGH": "Alto",
+    "MEDIUM": "Medium",
+    "LOW": "Baja",
 }
