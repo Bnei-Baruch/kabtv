@@ -15,6 +15,9 @@
     "TAB_UPDATES": "עדכונים",
     "TAB_SCHEDULE": "לוח זמנים",
     "TAB_QUESTIONS": "שאלות",
-    "TAB_SKETCHES": "שרטוטים"
-
+    "TAB_SKETCHES": "שרטוטים",
+  
+    "HIGH": "גבוה",
+    "MEDIUM": "בינוני",
+    "LOW": "נמוך"
 }

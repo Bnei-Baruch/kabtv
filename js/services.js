@@ -251,6 +251,7 @@ angular.module('kabtv')
     };
     _svc.getOnlineMedia = function(id) {
         return $http.get(API_BASE + 'streams');
+        //return $http.get('C:\Users\davgur\Desktop\test_json.txt');
     };
     _svc.getUpdates = function(id) {
         return $http.get(API_BASE + 'updates', defParam);

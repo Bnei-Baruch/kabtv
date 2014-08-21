@@ -48,7 +48,8 @@ angular.module('kabtv')
             }
 
             $element.bind('$destroy', function () {
-                pageSettings.audioPlayer.stop();
+                if(pageSettings.audioPlayer)
+                    pageSettings.audioPlayer.stop();
             });
         },
         link: function ($scope, el, attrs) {
