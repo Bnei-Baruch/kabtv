@@ -11,10 +11,15 @@
     "PLAYER_EXIT_FULLSCREEN": "Press ESC to exit full screen",
     "PLAYER_NO_FULLSCREEN": "To enable a full-screen mode please double click inside the player",
 
+
     "VOD_DOWNLOAD": "Download",
 
     "TAB_UPDATES": "Updates",
     "TAB_SCHEDULE": "Schedule",
     "TAB_QUESTIONS": "Questions",
-    "TAB_SKETCHES": "Sketches"
+    "TAB_SKETCHES": "Sketches",
+    
+    "HIGH": "High",
+    "MEDIUM": "Medium",
+    "LOW": "Low"
 }

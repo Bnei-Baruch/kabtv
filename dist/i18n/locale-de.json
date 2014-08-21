@@ -16,5 +16,9 @@
     "TAB_UPDATES": "Promo",
     "TAB_SCHEDULE": "Programm",
     "TAB_QUESTIONS": "Fragen",
-    "TAB_SKETCHES": "Zeichnungen"
+    "TAB_SKETCHES": "Zeichnungen",
+ 
+    "HIGH": "Hoch",
+    "MEDIUM": "Medium",
+    "LOW": "Niedrig"
 }

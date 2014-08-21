@@ -16,5 +16,9 @@
     "TAB_UPDATES": "анонс",
     "TAB_SCHEDULE": "расписание",
     "TAB_QUESTIONS": "вопросы",
-    "TAB_SKETCHES": "чертежи"
+    "TAB_SKETCHES": "чертежи",
+  
+    "HIGH": "Высокое",
+    "MEDIUM": "Среднее",
+    "LOW": "Низкое"
 }
