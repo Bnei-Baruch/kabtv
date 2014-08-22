@@ -60,132 +60,52 @@ angular.module('kabtv')
 /*build WMV player - temp*/
 .service('getWMVPlayer', ['detectIE','pageSettings', function (detectIE, pageSettings) {
     return function (src) {
-        var param = [];
-        var contObj = angular.element("<object>").attr({
-            type: "application/x-ms-wmp",
+        var attrs = {
             id: "playerObj",
             name: "playerObj",
             width: "100%",
             height: "305"
-        });
+        };
+
+        var params = {
+            autostart: "true",
+            controller: "true",
+            volume: "50",
+            uiMode: "full",
+            animationAtStart: "true",
+            showDisplay: "false",
+            ShowAudioControls: "true",
+            ShowPositionControls: "false",
+            transparentAtStart: "false",
+            ShowControls: "true",
+            ShowStatusBar: "true",
+            ShowTracker: "false",
+            ClickToPlay: "false",
+            DisplayBackColor: "#000000",
+            DisplayForeColor: "#ffffff",
+            balance: "false"
+        };
 
         if (detectIE()) {
-            contObj.attr({ classid: "CLSID:6BF52A52-394A-11d3-B153-00C04F79FAA6"});
+            attrs['classid'] = "CLSID:6BF52A52-394A-11d3-B153-00C04F79FAA6";
+            attrs['style'] = "background-color: #000000;";
+            params['url'] = src;
+            params['enabled'] = "true";
+            params['mute'] = "false";
+            params['bgcolor'] = "#000000";
+            params['windowlessVideo'] = "1";
+        } else {
+            attrs['type'] = "application/x-ms-wmp";
+            params['src'] = src;
         }
-        param.push(
-            angular.element("<param>").attr({
-                name: "src",
-                value: src
-            })
-        );
-        param.push(
-            angular.element("<param>").attr({
-                name: "URL",
-                value: src
-            })
-        );
-        param.push(
-            angular.element("<param>").attr({
-                name: "controller",
-                value: "true"
-            })
-        );
-        param.push(
-            angular.element("<param>").attr({
-                name: "balance",
-                value: false
-            })
-        );
-        param.push(
-            angular.element("<param>").attr({
-                name: "autostart",
-                value: "true"
-            })
-        );
 
-
-        param.push(
-            angular.element("<param>").attr({
-                name: "volume",
-                value: "50"
-            })
-        );
-        param.push(
-            angular.element("<param>").attr({
-                name: "uiMode",
-                value: "full"
-            })
-        );
-        param.push(
-            angular.element("<param>").attr({
-                name: "animationAtStart",
-                value: "false"
-            })
-        );
-        param.push(
-            angular.element("<param>").attr({
-                name: "showDisplay",
-                value: "false"
-            })
-        );
-        param.push(
-            angular.element("<param>").attr({
-                name: "ShowAudioControls",
-                value: true
-            })
-        );
-        param.push(
-            angular.element("<param>").attr({
-                name: "ShowPositionControls",
-                value: false
-            })
-        );
-        param.push(
-            angular.element("<param>").attr({
-                name: "transparentAtStart",
-                value: false
-            })
-        );
-        param.push(
-            angular.element("<param>").attr({
-                name: "ShowControls",
-                value: true
-            })
-        );
-        param.push(
-            angular.element("<param>").attr({
-                name: "ShowStatusBar",
-                value: true
-            })
-        );
-        param.push(
-            angular.element("<param>").attr({
-                name: "ShowTracker",
-                value: false
-            })
-        );
-        param.push(
-            angular.element("<param>").attr({
-                name: "ClickToPlay",
-                value: false
-            })
-        );
-        param.push(
-            angular.element("<param>").attr({
-                name: "DisplayBackColor",
-                value: "#000000"
-            })
-        );
-        param.push(
-            angular.element("<param>").attr({
-                name: "DisplayForeColor",
-                value: "#ffffff"
-            })
-        );
-
-        for (var i = 0; i < param.length; i++) {
-            contObj.append(param[i]);
+        var contObj = angular.element("<object>").attr(attrs);
+        for (var p in params) {
+            if (params.hasOwnProperty(p)) {
+                contObj.append(angular.element("<param>").attr({name: p, value: params[p]}));
+            }
         }
+
         pageSettings.WMVPlayer = contObj;
         return contObj;
     };
