@@ -45,9 +45,12 @@ angular.module('kabtv')
         }
         var $el = angular.element(document.querySelector('#player'));
 
+        if (pageSettings.detectIE && pageSettings.WMVPlayer != null) {
+            pageSettings.WMVPlayer[0].close();
+        }
+        $el.empty();
         switch (playObj.format.toLowerCase()) {
             case "hls":
-                $el.empty();
                 $el.append('<div id="jwPlayerCont">');
                 jwplayer("jwPlayerCont").setup({
                     file: playObj.url,
@@ -58,16 +61,17 @@ angular.module('kabtv')
                 $scope.showFullScreen = false;
                 break;
             case "wmv":
-                if (pageSettings.WMVPlayer == null || !pageSettings.detectIE) {
-                    $el.empty();
-                    $el.append(getWMVPlayer(playObj.url));
+                $el.append(getWMVPlayer(playObj.url));
+                /*if (pageSettings.WMVPlayer == null || !pageSettings.detectIE) {
                 } else {
-                    pageSettings.WMVPlayer[0].object.URL = playObj.url;
-                }
+                    pageSettings.WMVPlayer[0].close();
+                    pageSettings.WMVPlayer[0].object.newMedia( playObj.url );
+                    //pageSettings.WMVPlayer[0].object.URL = playObj.url;
+                    pageSettings.WMVPlayer[0].object.controls.play();
+                }*/
                 $scope.showFullScreen = true;
                 break;
             case "icecast":
-                $el.empty();
                 $el.append(getAudioPlayer(playObj.url));
                 $scope.showFullScreen = false;
                 break;
