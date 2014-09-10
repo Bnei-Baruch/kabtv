@@ -220,7 +220,7 @@ angular.module('kabtv')
     var API_BASE = 'http://dev.kab.tv/api/';
     var defParam = {
         params: {
-         'lang': pageSettings.Lang, 
+         'lang': pageSettings.Lang
         }
     };
 
