@@ -137,8 +137,8 @@ angular.module('kabtv')
     var _svc = {}, _param = {};
 
     //var API_BASE = 'http://localhost:3000/api/';
-    var API_BASE = 'http://cryptic-thicket-2657.herokuapp.com/api/';
-//    var API_BASE = 'http://kab.tv/api/';
+//    var API_BASE = 'http://cryptic-thicket-2657.herokuapp.com/api/';
+    var API_BASE = 'http://kab.tv/api/';
     var defParam = {
         params: {
          'lang': pageSettings.Lang
