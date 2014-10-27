@@ -31,7 +31,6 @@ angular.module('kabtv', ['ngRoute', 'pascalprecht.translate', 'angulartics', 'an
             }
             k = Math.max(n >= 0 ? n : len - Math.abs(n), 0);
             while (k < len) {
-                var kValue;
                 if (k in O && O[k] === searchElement) {
                     return k;
                 }
@@ -43,7 +42,7 @@ angular.module('kabtv', ['ngRoute', 'pascalprecht.translate', 'angulartics', 'an
             String.prototype.trim = function () {
                 return this.replace(/^\s+|\s+$/g, '');
             };
-        };
+        }
     }
 
     $translateProvider.useStaticFilesLoader({
@@ -54,12 +53,10 @@ angular.module('kabtv', ['ngRoute', 'pascalprecht.translate', 'angulartics', 'an
 }])
 .config(function($routeProvider) {
 	$routeProvider
-	///stream
 	.when('/stream',{
 		controller: "kabtvPlayerCtrl",
 		templateUrl: "views/playerStream.html"
 	})
-	///clip 
 	.when('/clip',{
 		controller: "kabtvPlayerCtrl",
 		templateUrl: "views/playerClip.html"
@@ -68,30 +65,17 @@ angular.module('kabtv', ['ngRoute', 'pascalprecht.translate', 'angulartics', 'an
 })
 .run(["pageSettings", "$location", "$filter", "detectIE", "$http", 
         function(pageSettings, $location, $filter, detectIE, $http){
-    var lang = getLang();
-    
-    //set page settings 
-    pageSettings.Lang = lang;
-    pageSettings.LangFullname = $filter('getLangFullname')(lang);
-    pageSettings.dir = getDir();
-    pageSettings.locale = $filter('getLocale')(lang);    
-    pageSettings.detectIE = detectIE();
 
     $http.defaults.headers.common.Accept = 'application/json';
-   // $http.defaults.responseType = 'json';
 
+    //set page settings
+    var lang = (window.location.pathname.split("/")[1] || 'HEB').toUpperCase();
+    pageSettings.Lang = lang;
+    pageSettings.LangFullname = $filter('getLangFullname')(lang);
+    pageSettings.locale = $filter('getLocale')(lang);
+    pageSettings.dir = (lang == "HEB") ? "rtl" : "ltr";
+    pageSettings.detectIE = detectIE();
 
     //if kabfm start with audio
-//    if($location.host(). toLowerCase().indexOf('kabfm'))
-//        $location.search({"isVideo": false});
     pageSettings.isVideo = $location.host().toLowerCase().indexOf('kab.fm') < 0;
-
-    function getLang() {
-        var lang = window.location.pathname.split("/")[1] || 'HEB';
-        return lang.toUpperCase();
-    }
-
-    function getDir() {
-        return (lang == "HEB") ? "rtl" : "ltr";
-    }
 }]);

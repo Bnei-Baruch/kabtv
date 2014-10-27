@@ -110,7 +110,7 @@ angular.module('kabtv')
         return contObj;
     };
 }])
-/*check type of brouser*/
+/*check type of browser*/
 .service("detectIE", function () {
     return function () {
         var ua = window.navigator.userAgent;
