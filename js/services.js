@@ -137,8 +137,8 @@ angular.module('kabtv')
     var _svc = {}, _param = {};
 
     //var API_BASE = 'http://localhost:3000/api/';
-//    var API_BASE = 'http://cryptic-thicket-2657.herokuapp.com/api/';
-    var API_BASE = 'http://kab.tv/api/';
+    var API_BASE = 'http://cryptic-thicket-2657.herokuapp.com/api/';
+   // var API_BASE = 'http://kab.tv/api/';
     var defParam = {
         params: {
          'lang': pageSettings.Lang
@@ -163,21 +163,35 @@ angular.module('kabtv')
     _svc.getClipById = function(id) {
         return $http.get(API_BASE + 'vod_media/' + id);
     };
-    _svc.getFooterData = function(id) {
+    _svc.getFooterData = function() {
         _param.params = {
             'placeholder': 'footer'
         };
         angular.extend(_param.params, defParam.params);
         return $http.get(API_BASE + 'nav_links', _param);
     };
-    _svc.getOnlineMedia = function(id) {
+    _svc.getOnlineMedia = function() {
         return $http.get(API_BASE + 'streams');
         //return $http.get('C:\Users\davgur\Desktop\test_json.txt');
     };
-    _svc.getUpdates = function(id) {
+    _svc.getUpdates = function() {
         return $http.get(API_BASE + 'updates', defParam);
     };
+    _svc.getEventStatus = function() {
+        return $http.get(API_BASE + 'event_status', defParam);
+    };
+    _svc.getDynamicGeoStream = function(pObj) {
+        var url = "http://streams.kab.tv/kabtv-" + pObj.language.toLowerCase() + "-" + pObj.quality + ".js";
+        var conf = {
+           // callback: DynamicGeoStreamLocator 
+        };
+        return $http.jsonp(url, conf).success(function(e){
+            return e;
+        });
+       /* return $http.jsonp(url, conf).then(function(e){
+            return e;
+        });*/
+    };
     return _svc;
-
 });
 
