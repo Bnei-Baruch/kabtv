@@ -67,7 +67,33 @@ module.exports = function (grunt) {
                     }
                 }
             }
+        },
+
+        ngconstant: {
+            options: {
+                name: 'kabtvConfig',
+                dest: 'js/consts.js',
+                constants: {
+                    API_BASE: 'http://kab.tv/api/'
+                }
+            },
+            dev: {
+                constants: {
+                    API_BASE: 'http://cryptic-thicket-2657.herokuapp.com/api/'
+                }
+            },
+            staging: {
+                constants: {
+                    API_BASE: 'http://cryptic-thicket-2657.herokuapp.com/api/'
+                }
+            },
+            production: {
+                constants: {
+                    API_BASE: 'http://kab.tv/api/'
+                }
+            }
         }
+
     });
 
     grunt.loadNpmTasks('grunt-contrib-clean');
@@ -79,9 +105,34 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-usemin');
     grunt.loadNpmTasks('grunt-bower-task');
     grunt.loadNpmTasks('grunt-angular-templates');
+    grunt.loadNpmTasks('grunt-ng-constant');
 
     // Tell Grunt what to do when we type "grunt" into the terminal
     grunt.registerTask('default', [
-        'clean', 'copy', 'useminPrepare', 'ngtemplates', 'concat', 'uglify', 'cssmin', 'rev', 'usemin'
+        'clean',
+        'ngconstant:production',
+        'copy',
+        'useminPrepare',
+        'ngtemplates',
+        'concat',
+        'uglify',
+        'cssmin',
+        'rev',
+        'usemin',
+        'ngconstant:dev'
+    ]);
+
+    grunt.registerTask('staging', [
+        'clean',
+        'ngconstant:staging',
+        'copy',
+        'useminPrepare',
+        'ngtemplates',
+        'concat',
+        'uglify',
+        'cssmin',
+        'rev',
+        'usemin',
+        'ngconstant:dev'
     ]);
 };

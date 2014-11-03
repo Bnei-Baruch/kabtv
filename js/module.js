@@ -1,5 +1,6 @@
 'use strict';
-angular.module('kabtv', ['ngRoute', 'pascalprecht.translate', 'angulartics', 'angulartics.google.analytics'])
+angular.module('kabtv',
+    ['ngRoute', 'pascalprecht.translate', 'angulartics', 'angulartics.google.analytics', 'kabtvConfig'])
 .value('pageSettings', {
     Lang: 'HEB',
     locale: 'he',
