@@ -22,7 +22,7 @@
             <input type="radio" ng-model="currentPlayerLang" value="item.language" ng-change="switchPlayerLang(item.language)" name="switcherLang-{{item.language}}" />
         </label>
 
-        <div class="qualitySwitcher" ng-if="hasPlayerDataQuality()">
+        <div class="qualitySwitcher" ng-if="hasPlayerDataQuality()" ng-show="isOnlineTran">
             <label ng-repeat="item in playerDataQuality | orderBy: item.quality" ng-if="currentPlayerLang == item.language"  class="langs {{(currentPlayerQuality == item.quality) ? 'selected': '';}}">
                 {{item.quality.toUpperCase() | translate}}
                 <input type="radio" ng-model="currentPlayerQuality" value="item.quality" name="switcherQuality-{{item.language}}" ng-change="playerQualityChange(item.quality)" />

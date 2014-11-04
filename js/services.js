@@ -177,6 +177,21 @@ angular.module('kabtv')
             _svc.getUpdates = function (id) {
                 return $http.get(API_BASE + 'updates', defParam);
             };
+            _svc.getEventStatus = function() {
+                return $http.get(API_BASE + 'event_status', defParam);
+            };
+            _svc.getDynamicGeoStream = function(pObj) {
+                var url = "http://streams.kab.tv/kabtv-" + pObj.language.toLowerCase() + "-" + pObj.quality + ".js";
+                var conf = {
+                    // callback: DynamicGeoStreamLocator 
+                };
+                return $http.jsonp(url, conf).success(function(e){
+                    return e;
+                });
+                /* return $http.jsonp(url, conf).then(function(e){
+                 return e;
+                 });*/
+            };
             return _svc;
 
         }]);

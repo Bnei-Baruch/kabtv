@@ -27,16 +27,45 @@ angular.module('kabtv')
                 addthis.toolbox('#addthis-toolbox', config, share);
             });
     } else {
+        $scope.currentPlayerLang = $routeParams.mediaLang || $scope.Lang;
+        $scope.currentPlayerQuality = $routeParams.playerQuality || "high";
         kabtvHttpSvc.getOnlineMedia().then(function (reqData) {
+            getEventStatus();
             $scope.playerData = reqData.data;
             $scope.playerDataQuality = setPlayerDataQuality(reqData.data);
             document.title = $translate.instant('SITE_TITLE');
             var playObj = getPlayerData(reqData.data);
-            setPlayer({url: playObj.url, width: "100%", format: playObj.format});
+            //befor we check if have DynamicGeoStreamLocator if no get default
+            if(playObj.is_dynamic) {
+                kabtvHttpSvc.getDynamicGeoStream(playObj).then(function (reqData) {
+                    setPlayer({url: reqData.hlsUrl, width: "100%", format: "hls"});
+                });
+            } else {
+                setPlayer({url: playObj.url, width: "100%", format: playObj.format});
+            }
+
         });
-        $scope.currentPlayerLang = $routeParams.mediaLang || $scope.Lang;
-        $scope.currentPlayerQuality = $routeParams.playerQuality || "high";
     }
+    $scope.buildDynamicGeoStream = function(url){
+        setPlayer({url: url, width: "100%", format: "hls"});
+    };
+    //check if have online translation - if not dont show quality switcher
+    var timerObj;
+    function getEventStatus(){
+        var timerInt = 60000;
+        if ($scope.isOnlineTran === undefined) 
+            timerInt = 0;
+        timerObj = $timeout(function() {
+            kabtvHttpSvc.getEventStatus().then(function(r){
+                $scope.isOnlineTran = r.data.is_live;
+                getEventStatus();
+            });
+        }, timerInt);
+    }
+    $scope.$on( "$destroy", function( event ) { 
+        $timeout.cancel( timerObj ); 
+    });
+
 /*build player depend on type of stream*/
     function setPlayer(playObj) {
         $scope.playObj = playObj;
