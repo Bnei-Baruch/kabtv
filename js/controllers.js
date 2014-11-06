@@ -62,7 +62,7 @@ angular.module('kabtv')
             });
         }, timerInt);
     }
-    $scope.$on( "$destroy", function( event ) { 
+    $scope.$on("$destroy", function(event) {
         $timeout.cancel( timerObj ); 
     });
 
@@ -110,7 +110,7 @@ angular.module('kabtv')
     }
 
     showTime();
-    function getPlayerData(playerList, mediaType) {
+    function getPlayerData(playerList) {
         if (!playerList) return null;
 
         var mediaType = "video";
@@ -120,7 +120,7 @@ angular.module('kabtv')
             mediaType = ($routeParams.isVideo === true || $routeParams.isVideo === "true") ? "video" : "audio";
         }
         var _player = null;
-        $scope.isVideo = (mediaType == "video") ? true : false;
+        $scope.isVideo = (mediaType == "video");
         for (var i = 0; i < playerList.length; i++) {
             var _playerData = playerList[i];
             if (_playerData.media_type == mediaType && ($scope.currentPlayerLang.toLowerCase() == _playerData.language.toLowerCase())) {
@@ -160,7 +160,7 @@ angular.module('kabtv')
                 _isHas = true;
                 break;
             }
-        };
+        }
         return _isHas;
     };
     $scope.playerQualityChange = function(quality){        
@@ -241,7 +241,7 @@ angular.module('kabtv')
                 item.language == 'SPA' || 
                 item.language == 'GER'
             );    
-        };
+        }
         
         return isShow;
     }
