@@ -35,18 +35,16 @@ angular.module('kabtv')
             $scope.playerDataQuality = setPlayerDataQuality(reqData.data);
             document.title = $translate.instant('SITE_TITLE');
             var playObj = getPlayerData(reqData.data);
-            //befor we check if have DynamicGeoStreamLocator if no get default
+            //before we check if have DynamicGeoStreamLocator if no get default
             if(playObj.is_dynamic) {
-                kabtvHttpSvc.getDynamicGeoStream(playObj).then(function (reqData) {
-                    setPlayer({url: reqData.hlsUrl, width: "100%", format: "hls"});
-                });
+                kabtvHttpSvc.getDynamicGeoStream(playObj);
             } else {
                 setPlayer({url: playObj.url, width: "100%", format: playObj.format});
             }
-
         });
     }
-    $scope.buildDynamicGeoStream = function(url){
+    $scope.buildDynamicGeoStream = function(reqData){
+        var url = reqData.hlsUrl || reqData.netUrl;
         setPlayer({url: url, width: "100%", format: "hls"});
     };
     //check if have online translation - if not dont show quality switcher

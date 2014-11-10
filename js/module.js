@@ -3,7 +3,7 @@
 //geo location callback
 function DynamicGeoStreamLocator(r){
     var scope = angular.element(document.getElementById('player')).scope();
-    scope.buildDynamicGeoStream(r.hlsUrl);
+    scope.buildDynamicGeoStream(r);
 }
 
 angular.module('kabtv',
