@@ -1,5 +1,13 @@
 'use strict';
-angular.module('kabtv', ['ngRoute', 'pascalprecht.translate', 'angulartics', 'angulartics.google.analytics'])
+
+//geo location callback
+function DynamicGeoStreamLocator(r){
+    var scope = angular.element(document.getElementById('player')).scope();
+    scope.buildDynamicGeoStream(r.hlsUrl);
+}
+
+angular.module('kabtv',
+    ['ngRoute', 'pascalprecht.translate', 'angulartics', 'angulartics.google.analytics', 'kabtvConfig'])
 .value('pageSettings', {
     Lang: 'HEB',
     locale: 'he',
