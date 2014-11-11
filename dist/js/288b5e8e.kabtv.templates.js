@@ -21,11 +21,6 @@ angular.module('kabtv').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('views/onload.html',
-    ""
-  );
-
-
   $templateCache.put('views/playerClip.html',
     "<div class=clearfix><div class=backToOnLine ng-click=getStream()>{{ 'PLAYER_BACK_TO_LIVE' | translate}}</div><div id=player></div><a ng-show=showFullScreen class=\"textToRight fullScreenButton\" ng-click=gofs()><img src=images/fs.gif alt=\"{{ 'PLAYER_FULLSCREEN' | translate}}\" width=14 height=14> {{ 'PLAYER_FULLSCREEN' | translate}}</a><div class=\"playerPanel playerDescription\"><h1 class=clipTitle>{{playerData.title}}</h1><div id=clip-save-button><a ng-href={{playerData.download_url}} class=\"downloadIcon clipIconBig\"><img src=images/save-big.gif title=\"{{ 'VOD_DOWNLOAD' | translate}}\" alt=\"{{ 'VOD_DOWNLOAD' | translate}}\"> {{ 'VOD_DOWNLOAD' | translate}}</a></div><p>{{playerData.description}}</p><br><div id=addthis-toolbox class=\"addthis_toolbox addthis_default_style addthis_16x16_style\"><a class=addthis_button_twitter></a> <a class=addthis_button_google_plusone_share></a> <a class=addthis_button_email></a></div></div></div>"
   );

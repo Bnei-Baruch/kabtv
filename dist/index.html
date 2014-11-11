@@ -1,12 +1,10 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html lang="en" ng-app="kabtv" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html lang="en" ng-app="kabtv" class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html lang="en" ng-app="kabtv" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html lang="en" ng-app="kabtv" class="no-js"> <!--<![endif]-->
+<!--[if IE 8]>         <html lang="en" id="ng-app" ng-app="kabtv" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" id="ng-app" ng-app="kabtv" class="no-js"> <!--<![endif]-->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title ng-bind="'SITE_TITLE' | translate"></title>
+    <title ng-bind="'SITE_TITLE' | translate">Kab TV</title>
     <meta name="description" content="{{ 'SITE_DESCRIPTION' | translate}}">
     <meta name="keywords" content="{{ 'SITE_KEYWORDS' | translate}}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,7 +14,7 @@
 
 </head>
 <body ng-controller="kabtvMain">
-    <!--[if lt IE 7]>
+    <!--[if lt IE 8]>
     <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
         your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to
         improve your experience.</p>
@@ -36,7 +34,7 @@
         </div>
     </div>
 
-    <script src="js/dffbdc5a.kabtv.min.js"></script>
+    <script src="js/e97e79d1.kabtv.min.js"></script>
 
     <script async type="text/javascript" src="http://jwpsrv.com/library/ElAvGDL5EeKp9yIACp8kUw.js"></script>
     <script async type="text/javascript" src="lib/soundmanager/soundmanager2-nodebug-jsmin.js"></script>
