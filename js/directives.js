@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('kabtv')
-.directive("kabtvAudioPlayer", function (kabtvHttpSvc) {
+.directive("kabtvAudioPlayer", function () {
     return {
         replace: true,
         templateUrl: 'views/audioPlayer.html',
@@ -38,7 +38,6 @@ angular.module('kabtv')
                 }
             };
 
-
             if (pageSettings.audioPlayer === null) {
                 $scope.togglePlay();
             } else {
@@ -56,7 +55,7 @@ angular.module('kabtv')
         }
     };
 })
-.directive("kabtvClipList", function ( kabtvHttpSvc ) {
+.directive("kabtvClipList", function (kabtvHttpSvc) {
     return {
         scope: {},
         replace: true,
