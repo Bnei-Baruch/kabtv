@@ -250,7 +250,7 @@ angular.module('kabtv')
     kabtvHttpSvc.getHeadData().then(function (reqData) {
         $scope.linksList = reqData.data;
     });
-    $scope.currentLang = function (lang) {
+    $scope.isCurrentLang = function (lang) {
         return ($scope.Lang == lang) ? "select" : "";
     };
 })

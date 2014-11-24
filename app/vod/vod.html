@@ -1,0 +1,17 @@
+﻿<div data-ng-controller="Vod as vm">
+    <select data-ng-model="vm.selectedCategory" data-ng-options="item.name for item in vm.categories" class="selectTag">
+        <option value="" data-ng-hide="vm.selectedCategory.id == item.id">{{vm.selectedCategory.title}}</option>
+    </select>
+    <div class="clipListContainer">
+        <div data-ng-repeat="item in vm.selectedCategory" class="item">
+            <div data-ng-click = "vm.playVod(item)" class="cont clearfix">
+                <img data-ng-src="{{item.image_url}}" title="{{item.title}}" alt="{{item.title}}" class="clipImage toL" />
+                <h2>{{item.title}}</h2>
+                <p>{{item.description}}</p>
+            </div>
+            <div class="clipData">{{item.duration}}</div>
+        </div>
+    </div>
+</div>
+
+
