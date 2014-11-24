@@ -15,6 +15,7 @@
             getLanguages: getLanguages,
             getHeaderLinks: getHeaderLinks,
             getFooterLinks: getFooterLinks,
+            getTabs: getTabs,
             getVodCategories: getVodCategories,
             //getAvengerCount: getAvengerCount,
             ready: ready
@@ -106,6 +107,28 @@
             ];
 
             return $q.when(languages);
+        }
+
+        function getTabs() {
+            var tabs = [
+                {
+                    "name": "TAB_UPDATES",
+                    "url": ""
+                },
+                {
+                    "name": "TAB_SCHEDULE",
+                    "url": "http://kab.tv/tvlist_gen.php"
+                },
+                {
+                    "name": "TAB_QUESTIONS",
+                    "url": "http://kab.tv/q.php"
+                },
+                {
+                    "name": "TAB_SKETCHES",
+                    "url": "http://www.kab.tv/classboard/classboard.php"
+                }
+            ];
+            return $q.when(tabs);
         }
 
         //

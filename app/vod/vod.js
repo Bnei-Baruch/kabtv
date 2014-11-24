@@ -12,6 +12,7 @@
         var vm = this;
         vm.categories = [];
         vm.selectedCategory = {};
+        vm.playVod = playVod;
 
         activate();
 
