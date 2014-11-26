@@ -12,6 +12,8 @@
         var vm = this;
         vm.categories = [];
         vm.selectedCategory = {};
+        vm.vodItems = [];
+        vm.changeCategory = changeCategory;
         vm.playVod = playVod;
 
         activate();
@@ -19,6 +21,8 @@
         function activate() {
             return getCategories().then(function () {
                 logger.info('Loaded VOD categories');
+                vm.selectedCategory = vm.categories[0];
+                changeCategory();
             });
         }
 
@@ -29,8 +33,16 @@
             });
         }
 
-        function playVod(item) {
+        function changeCategory() {
+            return dataservice.getVodItems(vm.selectedCategory.id).then(function (data) {
+                vm.vodItems = data;
+                return vm.vodItems;
+            });
+        }
 
+        function playVod(item) {
+            $location.path('clip/');
+            $location.search({"mediaId": item.id});
         }
 
     }

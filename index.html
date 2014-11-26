@@ -24,26 +24,7 @@
         improve your experience.</p>
     <![endif]-->
 
-    <div>
-        <div data-ng-include="'app/layout/shell.html'"></div>
-        <div id="splash-page" data-ng-show="false">
-            Kab Tv Splash page
-        </div>
-    </div>
-
-    <!--<div class="{{dir}} allContent">-->
-        <!--<div class="container">-->
-            <!--<div ng-include="'views/header.html'"></div>-->
-            <!--<div kabtv-nav></div>-->
-            <!--<div class="content clearfix">-->
-                <!--<div kabtv-clip-list class="aside toR clipList clearfix">111</div>-->
-                <!--<div ng-include="'views/tabs.html'" kabtv-tabs class="aside toL clearfix">222</div>-->
-                <!--<div class="mid"  ng-view="" ></div>-->
-            <!--<div ></div>-->
-            <!--</div>-->
-            <!--<div ng-include="'views/footer.html'" class="footer"></div>-->
-        <!--</div>-->
-    <!--</div>-->
+    <div id="container" data-ng-include="'app/layout/shell.html'"></div>
 
     <!-- build:js js/kabtv.vendor.min.js -->
     <script type="text/javascript" src="lib/modernizr/modernizr.js"></script>

@@ -17,6 +17,7 @@
             getFooterLinks: getFooterLinks,
             getTabs: getTabs,
             getVodCategories: getVodCategories,
+            getVodItems: getVodItems,
             //getAvengerCount: getAvengerCount,
             ready: ready
         };
@@ -53,6 +54,18 @@
                 return data.data;
             }
         }
+
+        function getVodItems(category_id) {
+            return $http.get(API_BASE + 'categories/' + category_id + '/vod_media')
+                .then(getVodItemsComplete)
+                .catch(function(message) {exception.catcher('XHR Failed for getVodItems')(message); });
+
+            function getVodItemsComplete(data, status, headers, config) {
+                return data.data;
+            }
+        }
+
+
 
         function getLanguages() {
             var languages = [
