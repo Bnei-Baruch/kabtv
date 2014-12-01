@@ -5,9 +5,9 @@
         .module('kabtv.vod')
         .controller('Vod', Vod);
 
-    Vod.$inject = ['dataservice', 'logger'];
+    Vod.$inject = ['$location', 'dataservice', 'logger'];
 
-    function Vod(dataservice, logger) {
+    function Vod($location, dataservice, logger) {
         /*jshint validthis: true */
         var vm = this;
         vm.categories = [];

@@ -3,7 +3,7 @@
         <div data-ng-include="'app/layout/header.html'"></div>
     </header>
 
-    <div id="main-panel" class="clearfix">
+    <div id="main-panel" class="clearfix" data-ng-style="vm.mainPanelStyle()">
         <div id="left-panel" data-ng-include="'app/vod/vod.html'"></div>
         <div id="center-panel" >
             Center panel content
@@ -11,7 +11,7 @@
         <div id="right-panel" data-ng-include="'app/tabs/tabs.html'"></div>
     </div>
 
-    <footer id="footer" class="clearfix toL">
+    <footer id="footer" class="clearfix">
         <div data-ng-include="'app/layout/footer.html'"></div>
     </footer>
 </div>
