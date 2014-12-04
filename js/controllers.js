@@ -83,6 +83,7 @@ angular.module('kabtv')
                     file: playObj.url,
                     type:'hls',
                     autostart: true,
+                    aspectratio: '16:9',
                     width: "100%"
                 });
                 $scope.showFullScreen = false;
