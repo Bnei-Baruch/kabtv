@@ -7,15 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="favicon.ico" type="image/x-icon" rel="icon"/>
 </head>
-<body style="width:100%; height:100%;">
+<body>
 
-<div id="player">
-    <object width="100%" height="100%"
-            type="video/x-ms-asf"
-            classid="CLSID:6BF52A52-394A-11d3-B153-00C04F79FAA6">
-        <param name="url" value="http://streams.kab.tv/rus.asx">
-    </object>
-</div>
+<div id="player"></div>
 
+<script type="text/javascript" src="http://jwpsrv.com/library/ElAvGDL5EeKp9yIACp8kUw.js"></script>
+
+<script type="text/javascript">
+    jwplayer("player").setup({
+        type: 'hls',
+        file: "http://edge1.il.kab.tv/rtplive/kabtv-rus-medium.stream/playlist.m3u8",
+        autostart: true,
+        aspectratio: '16:9',
+        width: "80%"
+    });
+</script>
 </body>
 </html>
