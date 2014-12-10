@@ -18,6 +18,7 @@
             getTabs: getTabs,
             getVodCategories: getVodCategories,
             getVodItems: getVodItems,
+            getUpdates: getUpdates,
             //getAvengerCount: getAvengerCount,
             ready: ready
         };
@@ -65,7 +66,15 @@
             }
         }
 
+        function getUpdates() {
+            return $http.get(API_BASE + 'updates', {'params': {'lang': config.lang}})
+                .then(getUpdatesComplete)
+                .catch(function(message) {exception.catcher('XHR Failed for getUpdates')(message); });
 
+            function getUpdatesComplete(data, status, headers, config) {
+                return data.data;
+            }
+        }
 
         function getLanguages() {
             var languages = [

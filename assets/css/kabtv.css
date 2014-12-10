@@ -189,42 +189,43 @@ nav a:first-child {
     height: 100%;
 }
 
-#tabs .updates {
+#updates {
     overflow: auto;
     height: 100%;
 }
 /*todo: must do for all tabs when we start use not iframes*/
-#tabs .updates .item {
+#updates .update-item {
     font-size: 12px;
     border-top: 1px solid #2B64A7;
     background-color: #000C37;
 }
-#tabs .updates .item .header,
-#tabs .updates .item .header a,
-#tabs .updates .item .header a:visited,
-#tabs .updates .item .header a:hover {
+#updates .update-item .header,
+#updates .update-item .header a,
+#updates .update-item .header a:visited,
+#updates .update-item .header a:hover {
     color: #FFD800;
     height: 100%;
     text-decoration: none;
     display: block;
 }
-#tabs .updates .item .header {
+#updates .update-item .header {
     margin: 15px 10px;
 }
-#tabs .updates .item .header .title {
+#updates .update-item .header .title {
     font-size: 18px;
 }
-#tabs .updates .item .body {
+#updates .update-item .body {
     color: white;
     padding: 0 10px 15px;
     height: 100%;
 }
-#tabs .updates .item a.url, #asideTabIframe .updates .item a.url:visited {
+#updates .update-item a.url, 
+#updates .update-item a.url:visited {
     color: #69B7FF;
     text-decoration: none;
     margin: 0 10px 10px;
 }
-#tabs .updates .item a.url:hover {
+#updates .update-item a.url:hover {
     text-decoration: underline;
 }
 
