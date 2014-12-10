@@ -12,15 +12,11 @@ body {
 /* Layout */
 
 #container {
-    /*height: 100%;*/
     width: 100%;
     max-width: 980px;
     margin: 0 auto;
 }
 #shell {
-    /*height: 100%;*/
-    /*overflow: auto;*/
-    /*width: 100%;*/
 }
 
 /*Header*/
@@ -130,6 +126,7 @@ nav a:first-child {
 #vod-categories {
     width: 100%;
     margin-bottom: 1px;
+    display: block;
 }
 #vod-items {
     height: 100%;

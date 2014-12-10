@@ -5,9 +5,9 @@
         .module('kabtv.vod')
         .controller('Vod', Vod);
 
-    Vod.$inject = ['$location', 'dataservice', 'logger'];
+    Vod.$inject = ['$location', '$window', '$scope', 'dataservice', 'logger'];
 
-    function Vod($location, dataservice, logger) {
+    function Vod($location, $window, $scope, dataservice, logger) {
         /*jshint validthis: true */
         var vm = this;
         vm.categories = [];
@@ -15,15 +15,33 @@
         vm.vodItems = [];
         vm.changeCategory = changeCategory;
         vm.playVod = playVod;
+        vm.vodItemsHeight = null;
+        vm.vodItemsStyle = vodItemsStyle;
 
         activate();
 
         function activate() {
+            calcVodItemsHeight();
+
+            angular.element($window).bind('resize', function () {
+                calcVodItemsHeight();
+                $scope.$apply();
+            });
+
             return getCategories().then(function () {
                 logger.info('Loaded VOD categories');
                 vm.selectedCategory = vm.categories[0];
                 changeCategory();
             });
+        }
+
+        function calcVodItemsHeight() {
+            vm.vodItemsHeight = document.getElementById('vod').clientHeight -
+            document.getElementById('vod-categories').clientHeight - 5;
+        }
+
+        function vodItemsStyle() {
+            return {'height': vm.vodItemsHeight + 'px'};
         }
 
         function getCategories() {

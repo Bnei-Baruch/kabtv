@@ -2,7 +2,7 @@
     <select id="vod-categories" data-ng-model="vm.selectedCategory" data-ng-change="vm.changeCategory()"
             data-ng-options="item.name for item in vm.categories">
     </select>
-    <div id="vod-items">
+    <div id="vod-items" data-ng-style="vm.vodItemsStyle()">
         <div data-ng-repeat="item in vm.vodItems" class="vod-item">
             <div data-ng-click="vm.playVod(item)" class="clearfix">
                 <img data-ng-src="{{item.image_url}}" class="vod-item-image toL"
