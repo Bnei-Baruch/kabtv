@@ -5,7 +5,7 @@
         .module('kabtv.tabs')
         .controller('Updates', Updates);
 
-    Updates.$inject = ['$sce', 'dataservice', 'config', 'logger'];
+    Updates.$inject = ['$sce', 'dataservice', 'logger'];
 
     function Updates($sce, dataservice, logger) {
         /*jshint validthis: true */
