@@ -184,9 +184,7 @@ angular.module('kabtv')
             };
 
             _svc.getDynamicGeoStream = function(pObj) {
-                return $http.jsonp(pObj.url, {}).success(function(e){
-                    return e;
-                });
+                return $http.jsonp(pObj.url, {});
             };
 
             return _svc;

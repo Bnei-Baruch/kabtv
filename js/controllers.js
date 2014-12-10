@@ -35,18 +35,16 @@ angular.module('kabtv')
             $scope.playerDataQuality = setPlayerDataQuality(reqData.data);
             document.title = $translate.instant('SITE_TITLE');
             var playObj = getPlayerData(reqData.data);
-            //befor we check if have DynamicGeoStreamLocator if no get default
+            //before we check if have DynamicGeoStreamLocator if no get default
             if(playObj.is_dynamic) {
-                kabtvHttpSvc.getDynamicGeoStream(playObj).then(function (reqData) {
-                    setPlayer({url: reqData.hlsUrl, width: "100%", format: "hls"});
-                });
+                kabtvHttpSvc.getDynamicGeoStream(playObj);
             } else {
                 setPlayer({url: playObj.url, width: "100%", format: playObj.format});
             }
-
         });
     }
-    $scope.buildDynamicGeoStream = function(url){
+    $scope.buildDynamicGeoStream = function(reqData){
+        var url = reqData.hlsUrl || reqData.netUrl;
         setPlayer({url: url, width: "100%", format: "hls"});
     };
     //check if have online translation - if not dont show quality switcher
@@ -62,7 +60,7 @@ angular.module('kabtv')
             });
         }, timerInt);
     }
-    $scope.$on( "$destroy", function( event ) { 
+    $scope.$on("$destroy", function(event) {
         $timeout.cancel( timerObj ); 
     });
 
@@ -85,6 +83,7 @@ angular.module('kabtv')
                     file: playObj.url,
                     type:'hls',
                     autostart: true,
+                    aspectratio: '16:9',
                     width: "100%"
                 });
                 $scope.showFullScreen = false;
@@ -110,7 +109,7 @@ angular.module('kabtv')
     }
 
     showTime();
-    function getPlayerData(playerList, mediaType) {
+    function getPlayerData(playerList) {
         if (!playerList) return null;
 
         var mediaType = "video";
@@ -120,7 +119,7 @@ angular.module('kabtv')
             mediaType = ($routeParams.isVideo === true || $routeParams.isVideo === "true") ? "video" : "audio";
         }
         var _player = null;
-        $scope.isVideo = (mediaType == "video") ? true : false;
+        $scope.isVideo = (mediaType == "video");
         for (var i = 0; i < playerList.length; i++) {
             var _playerData = playerList[i];
             if (_playerData.media_type == mediaType && ($scope.currentPlayerLang.toLowerCase() == _playerData.language.toLowerCase())) {
@@ -160,7 +159,7 @@ angular.module('kabtv')
                 _isHas = true;
                 break;
             }
-        };
+        }
         return _isHas;
     };
     $scope.playerQualityChange = function(quality){        
@@ -241,7 +240,7 @@ angular.module('kabtv')
                 item.language == 'SPA' || 
                 item.language == 'GER'
             );    
-        };
+        }
         
         return isShow;
     }
