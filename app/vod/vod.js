@@ -13,9 +13,9 @@
         vm.categories = [];
         vm.selectedCategory = {};
         vm.vodItems = [];
+        vm.vodItemsHeight = null;
         vm.changeCategory = changeCategory;
         vm.playVod = playVod;
-        vm.vodItemsHeight = null;
         vm.vodItemsStyle = vodItemsStyle;
 
         activate();

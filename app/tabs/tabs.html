@@ -1,10 +1,11 @@
 ﻿<div id="tabs" data-ng-controller="Tabs as vm">
-    <div data-ng-repeat="item in vm.tabs"
+    <div id="tabs-header" data-ng-repeat="item in vm.tabs"
          data-ng-class="{'tabBtn': true, 'select': vm.isSelectedTab(item)}"
          data-ng-click="vm.switchTab($index)">
         {{item.name | translate}}
     </div>
-    <div data-ng-include="vm.selectedTab.name + '.tpl'"  class="forIframe"></div>
+    <div data-ng-include="vm.selectedTab.name + '.tpl'" class="forIframe"
+         data-ng-style="vm.tabContentStyle()"></div>
 </div>
 <!-- templates for switcher -->
 
