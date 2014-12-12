@@ -51,7 +51,7 @@ module.exports = function (grunt) {
 
         ngtemplates: {
             kabtv: {
-                src: 'views/**.html',
+                src: 'app/**/*.html',
                 dest: 'dist/js/kabtv.templates.js',
                 options: {
                     usemin: 'dist/js/kabtv.min.js', // <~~ This came from the <!-- build:js --> block
@@ -71,10 +71,13 @@ module.exports = function (grunt) {
 
         ngconstant: {
             options: {
-                name: 'kabtvConfig',
-                dest: 'js/consts.js',
+                name: 'app.core',
+                dest: 'app/core/constants.js',
+                deps: false,
+                wrap: true,
                 constants: {
-                    API_BASE: 'http://kab.tv/api/'
+                    API_BASE: 'http://kab.tv/api/',
+                    HELP_IMAGE_BASE: 'http://live.kab.tv/button.php?image=tech'
                 }
             },
             dev: {
