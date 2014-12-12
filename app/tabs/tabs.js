@@ -39,7 +39,7 @@
         function switchTab(index) {
             vm.selectedTab = vm.tabs[index];
             if (vm.selectedTab.url) {
-                vm.selectedTabUrl = $sce.trustAsResourceUrl(vm.selectedTab.url + '?lang=' + config.langFullname);
+                vm.selectedTabUrl = $sce.trustAsResourceUrl(vm.selectedTab.url + '?lang=' + config.lang.fullName);
             }
         }
     }
