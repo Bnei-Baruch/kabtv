@@ -4,7 +4,8 @@
     angular.module('kabtv', [
         'app.core',
         'app.layout',
-        'kabtv.vod'
+        'kabtv.vod',
+        'kabtv.player'
 
     ])
         .run(runBlock);
@@ -15,7 +16,8 @@
         $http.defaults.headers.common.Accept = 'application/json';
 
         //set page settings
-        var lang = ($location.path().split("/")[1] || 'HEB').toUpperCase();
+        //var lang = ($location.path().split("/")[1] || 'HEB').toUpperCase();
+        var lang = 'HEB';
         config.lang = lang;
         //config.langFullname = $filter('getLangFullname')(lang);
         //config.locale = $filter('getLocale')(lang);
