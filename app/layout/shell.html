@@ -1,19 +1,17 @@
-﻿<div class="{{vm.pageDirection}} allContent" data-ng-controller="Shell as vm">
-    <div id="splash-page" data-ng-show="vm.showSplash">
-        Kab Tv Splash page
-    </div>
-
+﻿<div id="shell" class="{{vm.pageDirection}}" data-ng-controller="Shell as vm">
     <header class="clearfix">
         <div data-ng-include="'app/layout/header.html'"></div>
     </header>
 
-    <section id="content" class="content">
-        <div data-ng-include="'app/vod/vod.html'"></div>
-        <div data-ng-view></div>
-        <div data-ng-include="'app/tabs/tabs.html'"></div>
-    </section>
+    <div id="main-panel" class="clearfix" data-ng-style="vm.mainPanelStyle()">
+        <div id="left-panel" data-ng-include="'app/vod/vod.html'"></div>
+        <div id="center-panel" >
+            Center panel content
+        </div>
+        <div id="right-panel" data-ng-include="'app/tabs/tabs.html'"></div>
+    </div>
 
-    <footer id="footer" class="clearfix toL">
+    <footer id="footer" class="clearfix">
         <div data-ng-include="'app/layout/footer.html'"></div>
     </footer>
 </div>

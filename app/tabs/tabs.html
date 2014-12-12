@@ -1,0 +1,24 @@
+﻿<div id="tabs" data-ng-controller="Tabs as vm">
+    <div id="tabs-header" data-ng-repeat="item in vm.tabs"
+         data-ng-class="{'tabBtn': true, 'select': vm.isSelectedTab(item)}"
+         data-ng-click="vm.switchTab($index)">
+        {{item.name | translate}}
+    </div>
+    <div data-ng-include="vm.selectedTab.name + '.tpl'" class="forIframe"
+         data-ng-style="vm.tabContentStyle()"></div>
+</div>
+<!-- templates for switcher -->
+
+<script type="text/ng-template" id="TAB_UPDATES.tpl">
+    <div id="tabs-content" data-ng-include="'app/tabs/updates.html'"></div>
+</script>
+
+<script type="text/ng-template" id="TAB_SCHEDULE.tpl">
+    <iframe data-ng-src="{{vm.selectedTabUrl}}" frameborder="0"></iframe>
+</script>
+<script type="text/ng-template" id="TAB_QUESTIONS.tpl">
+    <iframe data-ng-src="{{vm.selectedTabUrl}}" frameborder="0"></iframe>
+</script>
+<script type="text/ng-template" id="TAB_SKETCHES.tpl">
+    <iframe data-ng-src="{{vm.selectedTabUrl}}" frameborder="0"></iframe>
+</script>

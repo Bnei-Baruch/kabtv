@@ -18,32 +18,13 @@
 
 </head>
 <body>
-    <!--[if lt IE 8]>
-    <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
-        your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to
-        improve your experience.</p>
+    <!--[if lt IE 9]>
+    <script type="text/javascript">
+        window.location.href = 'http://' + window.location.host + '/ie8_index.html';
+    </script>
     <![endif]-->
 
-    <div>
-        <div data-ng-include="'app/layout/shell.html'"></div>
-        <div id="splash-page" data-ng-show="false">
-            Kab Tv Splash page
-        </div>
-    </div>
-
-    <!--<div class="{{dir}} allContent">-->
-        <!--<div class="container">-->
-            <!--<div ng-include="'views/header.html'"></div>-->
-            <!--<div kabtv-nav></div>-->
-            <!--<div class="content clearfix">-->
-                <!--<div kabtv-clip-list class="aside toR clipList clearfix">111</div>-->
-                <!--<div ng-include="'views/tabs.html'" kabtv-tabs class="aside toL clearfix">222</div>-->
-                <!--<div class="mid"  ng-view="" ></div>-->
-            <!--<div ></div>-->
-            <!--</div>-->
-            <!--<div ng-include="'views/footer.html'" class="footer"></div>-->
-        <!--</div>-->
-    <!--</div>-->
+    <div id="container" data-ng-include="'app/layout/shell.html'"></div>
 
     <!-- build:js js/kabtv.vendor.min.js -->
     <script type="text/javascript" src="lib/modernizr/modernizr.js"></script>
@@ -69,14 +50,13 @@
     <script src="app/blocks/router/routehelper.js"></script>
 
     <!-- core module -->
-    <script type="text/javascript" src="app/core/core.module.js"></script>
-    <script type="text/javascript" src="app/core/constants.js"></script>
-    <script type="text/javascript" src="app/core/config.js"></script>
-    <script type="text/javascript" src="app/core/dataservice.js"></script>
+    <script src="app/core/core.module.js"></script>
+    <script src="app/core/constants.js"></script>
+    <script src="app/core/config.js"></script>
+    <script src="app/core/dataservice.js"></script>
 
-    <!-- application components -->
+    <!-- Common application components -->
     <script src="app/vod/vod.module.js"></script>
-    <script src="app/vod/vod.js"></script>
 
     <!-- layout -->
     <script src="app/layout/layout.module.js"></script>

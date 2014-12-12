@@ -33,7 +33,7 @@
             return fullLang;
 		}
     })
-    .filter( 'getLocale', function() {
+    .filter('getLocale', function() {
 		return function (lang) {
 			var urlLang;
             switch (lang) {
@@ -67,6 +67,5 @@
             return urlLang;
 		}
     })
-    
 
 }(angular.module('kabtv')));

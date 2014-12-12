@@ -79,12 +79,12 @@ module.exports = function (grunt) {
             },
             dev: {
                 constants: {
-                    API_BASE: 'http://cryptic-thicket-2657.herokuapp.com/api/'
+                    API_BASE: 'http://dev.kab.tv/api/'
                 }
             },
             staging: {
                 constants: {
-                    API_BASE: 'http://cryptic-thicket-2657.herokuapp.com/api/'
+                    API_BASE: 'http://dev.kab.tv/api/'
                 }
             },
             production: {

@@ -29,10 +29,11 @@
         }
 
         function getLanguages() {
-            return dataservice.getLanguages().then(function (data) {
-                vm.languages = data;
-                return vm.languages;
+            vm.languages = [];
+            angular.forEach(Object.keys(config.languages), function(value, i) {
+                vm.languages.push(config.languages[value]);
             });
+            return vm.languages;
         }
 
         function getHeaderLinks() {
@@ -43,11 +44,11 @@
         }
 
         function isCurrentLang(lang) {
-            return (config.lang == lang) ? "select" : "";
+            return (config.lang.key == lang.key) ? "select" : "";
         }
 
         function onLanguageChanged() {
-            vm.logoImage = '/assets/images/kab_tv_' + config.lang.toLowerCase() +'.gif';
+            vm.logoImage = '/assets/images/kab_tv_' + config.lang.key.toLowerCase() +'.gif';
         }
 
         function helpImageUpdate() {
@@ -57,7 +58,7 @@
         }
 
         function getHelpLang() {
-            switch (config.lang.toLowerCase()) {
+            switch (config.lang.key.toLowerCase()) {
                 case 'heb':
                     return 'he';
                 case 'rus':
