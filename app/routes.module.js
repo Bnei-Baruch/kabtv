@@ -9,8 +9,8 @@
     function configure($routeProvider) {
         $routeProvider
             .when('/stream',{
-                controller: "kabtvPlayerCtrl",
-                templateUrl: "views/playerStream.html"
+                controller: "Stream",
+                templateUrl: "app/player/stream.html"
             })
             .when('/clip',{
                 controller: "kabtvPlayerCtrl",
