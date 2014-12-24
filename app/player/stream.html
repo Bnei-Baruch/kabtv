@@ -1,5 +1,5 @@
 ﻿<div class="clearfix" ng-controller="Stream as vm">
-    <div class="tabs">      
+    <div class="tabs">
         <div class="tabBtn select">
             {{'PLAYER_VIDEO' | translate}}
         </div>
@@ -8,24 +8,27 @@
         </div>
         <div class="broadcastTime" translate="PLAYER_BROADCAST_TIME" translate-value-time="{{broadcastTime}}"></div>
     </div>
-
-    <!--<div id="player"></div>-->
-    <kabtv-player ng-if = "vm.playObj.type == 'hls'" data-url = "vm.playObj"></kabtv-player>
-    <kabtv-wmv-player data-url = 'vm.playObj.url' ng-if = "vm.playObj.type == 'wmv'">
-
+    <kabtv-jw-player ng-if="vm.streamObj[vm.currentPlayerLang.key][vm.currentPlayerQuality].format == 'hls'"
+                  data-url="vm.streamObj[vm.currentPlayerLang.key][vm.currentPlayerQuality].url"></kabtv-jw-player>
+    <kabtv-wmv-player ng-if="vm.streamObj[vm.currentPlayerLang.key][vm.currentPlayerQuality].format == 'wmv'"
+                      data-url='vm.url'>
     </kabtv-wmv-player>
 
-    
+
     <div class="playerPanel">
-        <label ng-repeat="item in vm.streamObj"  class="langs {{(vm.currentPlayerLang == item.language) ? 'selected': '';}}">
-            {{item.language}}
-            <input type="radio" ng-model="vm.currentPlayerLang" ng-value="item.language" ng-change="vm.switchPlayerLang(item.language)" name="vm.switcherLang-{{item.language}}" />
+        <label ng-repeat="item in vm.streamObj"
+               class="langs {{(vm.currentPlayerLang.key == item.language.key) ? 'selected': '';}}">
+            {{item.language.caption}}
+            <input type="radio" ng-model="vm.currentPlayerLang" ng-value="item.language"
+                   ng-change="vm.switchPlayerLang(item.language)" name="vm.switcherLang-{{item.language.key}}"/>
         </label>
 
-        <div class="qualitySwitcher" ng-if="vm.streamObj[vm.currentPlayerLang].length > 0" ng-show="vm.isOnlineTran">
-            <label ng-repeat="itemStream in vm.streamObj[vm.currentPlayerLang] | orderBy: itemStream.quality"  class="langs {{(vm.currentPlayerQuality == item.quality) ? 'selected': '';}}">
+        <div class="qualitySwitcher" ng-if="vm.streamObj[vm.currentPlayerLang].length > 0" ng-show="$root.isOnlineTran">
+            <label ng-repeat="itemStream in vm.streamObj[vm.currentPlayerLang] | orderBy: itemStream.quality"
+                   class="langs {{(vm.currentPlayerQuality == item.quality) ? 'selected': '';}}">
                 {{itemStream.quality.toUpperCase() | translate}}
-                    <input type="radio" ng-model="vm.currentPlayerQuality" value="itemStream.quality" name="vm.switcherQuality-{{item.language}}" ng-change="vm.playerQualityChange(item.quality)" />
+                <input type="radio" ng-model="vm.currentPlayerQuality" value="itemStream.quality"
+                       name="vm.switcherQuality-{{item.language}}" ng-change="vm.playerQualityChange(item.quality)"/>
             </label>
         </div>
     </div>

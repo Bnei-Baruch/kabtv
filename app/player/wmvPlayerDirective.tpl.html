@@ -1,0 +1,77 @@
+<div>
+
+    <object id="player" name="player" width="100%" height="305" type="application/x-ms-wmp" ng-if="!vm.isIE">
+        <param name="autostart" value="true">
+        <param name="controller" value="true">
+        <param name="volume" value="50">
+        <param name="uiMode" value="full">
+        <param name="animationAtStart" value="true">
+        <param name="showDisplay" value="false">
+        <param name="ShowAudioControls" value="true">
+        <param name="ShowPositionControls" value="false">
+        <param name="transparentAtStart" value="false">
+        <param name="ShowControls" value="true">
+        <param name="ShowStatusBar" value="true">
+        <param name="ShowTracker" value="false">
+        <param name="ClickToPlay" value="false">
+        <param name="DisplayBackColor" value="#000000">
+        <param name="DisplayForeColor" value="#ffffff">
+        <param name="balance" value="false">
+        <param name="src" value="{{vm.url}}">
+        <param name="fullScreen" value="{{vm.fullScreen}}">
+        <param name="type" value="application/x-ms-wmp" ng-if="!isIE">
+    </object>
+
+    <object name="player" width="100%" height="305" classid="CLSID:6BF52A52-394A-11d3-B153-00C04F79FAA6"
+            style="background-color: rgb(0, 0, 0);" ng-if="vm.isIE">
+        <PARAM NAME="URL" VALUE="{{vm.url}}">
+        <PARAM NAME="rate" VALUE="1">
+        <PARAM NAME="balance" VALUE="0">
+        <PARAM NAME="defaultFrame" VALUE="">
+        <PARAM NAME="playCount" VALUE="1">
+        <PARAM NAME="autoStart" VALUE="1">
+        <PARAM NAME="currentMarker" VALUE="0">
+        <PARAM NAME="invokeURLs" VALUE="-1">
+        <PARAM NAME="baseURL" VALUE="">
+        <PARAM NAME="volume" VALUE="50">
+        <PARAM NAME="mute" VALUE="0">
+        <PARAM NAME="uiMode" VALUE="full">
+        <PARAM NAME="stretchToFit" VALUE="0">
+        <PARAM NAME="windowlessVideo" VALUE="-1">
+        <PARAM NAME="enabled" VALUE="-1">
+        <PARAM NAME="enableContextMenu" VALUE="-1">
+        <PARAM NAME="fullScreen" VALUE="0">
+        <PARAM NAME="SAMIStyle" VALUE="">
+        <PARAM NAME="SAMILang" VALUE="">
+        <PARAM NAME="SAMIFilename" VALUE="">
+        <PARAM NAME="captioningID" VALUE="">
+        <PARAM NAME="enableErrorDialogs" VALUE="0">
+        <param name="autostart" value="true">
+        <param name="controller" value="true">
+        <param name="volume" value="50">
+        <param name="uiMode" value="full">
+        <param name="animationAtStart" value="true">
+        <param name="showDisplay" value="false">
+        <param name="ShowAudioControls" value="true">
+        <param name="ShowPositionControls" value="false">
+        <param name="transparentAtStart" value="false">
+        <param name="ShowControls" value="true">
+        <param name="ShowStatusBar" value="true">
+        <param name="ShowTracker" value="false">
+        <param name="ClickToPlay" value="false">
+        <param name="DisplayBackColor" value="#000000">
+        <param name="DisplayForeColor" value="#ffffff">
+        <param name="balance" value="false">
+        <param name="url" value="{{vm.url}}">
+        <param name="enabled" value="true">
+        <param name="mute" value="false">
+        <param name="bgcolor" value="#000000">
+        <param name="windowlessVideo" value="1">
+    </object>
+
+
+    <a class="fullScreenButton" ng-click="gofs()">
+        <img src="./assets/images/fs.gif" alt="{{ 'PLAYER_FULLSCREEN' | translate}}" width="14" height="14"/>
+        {{ 'PLAYER_FULLSCREEN' | translate}}
+    </a>
+</div>

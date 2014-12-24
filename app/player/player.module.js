@@ -3,14 +3,13 @@
 
     angular.module('kabtv.player', [])
         .config(configure)
-        .value('streamObj', {});
+        .value('streamObj', {data: null});
 
     configure.$inject = ['$routeProvider'];
 
     function configure($routeProvider) {
         $routeProvider
             .when('/stream',{
-                controller: "Stream",
                 templateUrl: "app/player/stream.html"
             })
             .when('/clip',{
