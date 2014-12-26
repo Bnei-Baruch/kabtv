@@ -13,7 +13,7 @@
             scope: {
                 url: "=url"
             },
-            controller: PlayerBuilderController,
+            controller: WmvPlayerBuilderController,
             controllerAs: 'vm',
             replace: true,
             link: linkFunction
@@ -21,11 +21,26 @@
         return directive;
         function linkFunction(scope, el, attr, vm) {
 
+            var player = el.find("object")[0];
+
+
+            scope.$watch('url', function (newVal, oldVal) {
+                if (!vm.isIE)
+                    return;
+                player.newMedia(vm.url);
+                //pageSettings.WMVPlayer[0].object.URL = playObj.url;
+                player.object.controls.play();
+
+            });
+
+            scope.$on('destroy', function () {
+                player.close();
+            });
+
             /*full screen for wmv player*/
             scope.gofs = function () {
                 if (!vm.url)
                     return;
-                var player = el.find("object")[0];
                 if (player && player.playState == 3) {
                     player.fullScreen = true;
                 } else {
@@ -35,32 +50,12 @@
         }
     }
 
-    PlayerBuilderController.$inject = ['$scope'];
-    function PlayerBuilderController($scope) {
+    WmvPlayerBuilderController.$inject = ['$scope', 'isIE'];
+    function WmvPlayerBuilderController($scope, isIE) {
         var vm = this;
 
         vm.url = $scope.url
         vm.showFullScreen = false;
-        vm.isIE = isIE();
-    }
-
-    function isIE() {
-        var ua = window.navigator.userAgent;
-        var msie = ua.indexOf('MSIE ');
-        var trident = ua.indexOf('Trident/');
-
-        if (msie > 0) {
-            // IE 10 or older => return version number
-            return parseInt(ua.substring(msie + 5, ua.indexOf('.', msie)), 10);
-        }
-
-        if (trident > 0) {
-            // IE 11 (or newer) => return version number
-            var rv = ua.indexOf('rv:');
-            return parseInt(ua.substring(rv + 3, ua.indexOf('.', rv)), 10);
-        }
-
-        // other browser
-        return false;
+        vm.isIE = isIE.value;
     }
 }());

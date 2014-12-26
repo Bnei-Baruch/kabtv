@@ -3,6 +3,7 @@
 
     angular.module('kabtv.player', [])
         .config(configure)
+        .value('isIE', {value: null})
         .value('streamObj', {data: null});
 
     configure.$inject = ['$routeProvider'];

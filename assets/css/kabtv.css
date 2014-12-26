@@ -273,27 +273,27 @@ nav a:first-child {
 
 
 
-/*.playerPanel {*/
-    /*padding: 5px 0;*/
-/*}*/
+.playerPanel {
+    padding: 5px 0;
+}
 
-/*.playerPanel .clipTitle {*/
-    /*color: #FFA302;*/
-    /*display: inline;*/
-/*}*/
+.playerPanel .clipTitle {
+    color: #FFA302;
+    display: inline;
+}
 
-/*.playerPanel .langs {*/
-    /*cursor: pointer;*/
-    /*color: #4EA8FE;*/
-/*}*/
+.playerPanel .langs {
+    cursor: pointer;
+    color: #4EA8FE;
+}
 
-/*.playerPanel .langs.selected {*/
-    /*color: #FFA302*/
-/*}*/
+.playerPanel .langs.selected {
+    color: #FFA302
+}
 
-/*.playerPanel .langs input {*/
-    /*display: none;*/
-/*}*/
+.playerPanel .langs input {
+    display: none;
+}
 
 /*.playerDescription {*/
     /*border-top: 1px solid #C6D8F2;*/
