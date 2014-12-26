@@ -9,7 +9,7 @@
         <div class="broadcastTime" translate="PLAYER_BROADCAST_TIME" translate-value-time="{{broadcastTime}}"></div>
     </div>
     <kabtv-jw-player ng-if="vm.streamObj[vm.currentPlayerLang.key][vm.currentPlayerQuality].format == 'hls'"
-                  data-url="vm.streamObj[vm.currentPlayerLang.key][vm.currentPlayerQuality].url"></kabtv-jw-player>
+                  data-url="{{vm.streamObj[vm.currentPlayerLang.key][vm.currentPlayerQuality].url}}"></kabtv-jw-player>
     <kabtv-wmv-player ng-if="vm.streamObj[vm.currentPlayerLang.key][vm.currentPlayerQuality].format == 'wmv'"
                       data-url='vm.url'>
     </kabtv-wmv-player>

@@ -42,12 +42,7 @@
                     language: config.languages[itemLang]
                 };
             }
-            //befor we check if have DynamicGeoStreamLocator if no get default
-            if (_streamObj.is_dynamic)
-                kabtvHttpSvc.getDynamicGeoStream(_streamObj).then(function (reqData) {
-                });
-            else
-                _streamObj[itemLang][streamItem.quality] = streamItem;
+            _streamObj[itemLang][streamItem.quality] = streamItem;
         }
 
 

@@ -56,8 +56,8 @@
             return $http.get(API_BASE + 'event_status', defParam);
         };
 
-        _svc.getDynamicGeoStream = function (pObj) {
-            return $http.jsonp(pObj.url, {}).success(function (e) {
+        _svc.getDynamicGeoStream = function (pUrl) {
+            return $http.jsonp(pUrl, {}).success(function (e) {
                 return e;
             });
         };

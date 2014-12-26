@@ -1,3 +1,10 @@
+//geo location callback
+function DynamicGeoStreamLocator(r){
+    var scope = angular.element(document.getElementById('player')).scope();
+    scope.buildDynamicGeoStream(r.hlsUrl);
+}
+
+
 (function () {
     'use strict';
 
@@ -29,8 +36,12 @@
             vm.currentPlayerLang = config.languages[_langKey.toUpperCase()];
 
             vm.currentPlayerQuality = $location.$$search.playerQuality || "high";
-            vm.url = vm.streamObj[vm.currentPlayerLang.key][vm.currentPlayerQuality].url;
+           // vm.url = vm.streamObj[vm.currentPlayerLang.key][vm.currentPlayerQuality].url;
         }
+
+        vm.playerQualityChange = function (quality) {
+            $location.search({"mediaLang": $scope.currentPlayerLang, "isVideo": $scope.isVideo, "playerQuality": quality});
+        };
 
 
         /*
@@ -58,9 +69,6 @@
          return _player;
          }*/
 
-        vm.playerQualityChange = function (quality) {
-            $location.search({"mediaLang": $scope.currentPlayerLang, "isVideo": $scope.isVideo, "playerQuality": quality});
-        };
 
         /*  vm.$on("$destroy", function (event) {
          $timeout.cancel(timerObj);
