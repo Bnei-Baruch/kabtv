@@ -11,7 +11,7 @@
     <kabtv-jw-player ng-if="vm.streamObj[vm.currentPlayerLang.key][vm.currentPlayerQuality].format == 'hls'"
                   data-url="{{vm.streamObj[vm.currentPlayerLang.key][vm.currentPlayerQuality].url}}"></kabtv-jw-player>
     <kabtv-wmv-player ng-if="vm.streamObj[vm.currentPlayerLang.key][vm.currentPlayerQuality].format == 'wmv'"
-                      data-url='vm.url'>
+                      data-url='vm.streamObj[vm.currentPlayerLang.key][vm.currentPlayerQuality].url'>
     </kabtv-wmv-player>
 
 

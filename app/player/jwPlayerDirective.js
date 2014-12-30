@@ -19,29 +19,26 @@
         return directive;
         function linkFunction(scope, el, attr, vm) {
             var jwPlayer = jwplayer("player");
-            jwPlayer.setup({
-                file: '',
-                type: 'hls',
-                autostart: true,
-                width: "100%"
-            });
             scope.$watch('url', function (newVal, oldVal) {
-               var _urlArr = newVal.split('.');
+                var _urlArr = newVal.split('.');
                 if (!newVal || _urlArr[_urlArr.length - 1].replace(' ', '') == 'js')
                     return;
-                jwPlayer.load([
-                    { file: newVal }
-                ]);
-                jwPlayer().play();
+                jwPlayer.setup({
+                    file: newVal,
+                    type: 'hls',
+                    autostart: true,
+                    width: "100%"
+                });
+               // jwPlayer().play();
             });
         }
     }
 
-    JwPlayerBuilderController.$inject = ['$scope', 'PlayerDataService'];
-    function JwPlayerBuilderController($scope, PlayerDataService) {
+    JwPlayerBuilderController.$inject = ['$scope', '$timeout', 'PlayerDataService'];
+    function JwPlayerBuilderController($scope, $timeout, PlayerDataService) {
         var _urlArr;
         _urlArr = $scope.url.split('.');
-        if (_urlArr[_urlArr.length - 1].replace(' ', '') == 'js'){
+        if (_urlArr[_urlArr.length - 1].replace(' ', '') == 'js') {
             PlayerDataService.getDynamicGeoStream($scope.url);
         }
 
@@ -49,6 +46,12 @@
             $scope.url = url;
         };
 
+       /* $scope.$on('$destroy', function () {
+            $timeout(function () {
+                jwplayer("player").remove();
+
+            }, 0);
+        });*/
     }
 
 }());
