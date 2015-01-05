@@ -3,29 +3,26 @@
 
 
     angular.module('kabtv.player')
-        .service('ShowTime', ShowTime);
+        .service('JerusalemTime', JerusalemTime);
 
-    function ShowTime() {
+    function JerusalemTime() {
         return function () {
-            var broadcastTime, off, d, localTime , localOffset, Jerusalem, nowtime, nowtimeHours, nowtimeMinutes;
-            off = parseInt(10800000);
-            d = new Date();
-            localTime = d.getTime();
-            localOffset = d.getTimezoneOffset() * 60000;
-            Jerusalem = localTime + localOffset + off;
+            // Jerusalem time = localTime + localOffset + Jerusalem offset;
+            var now = new Date();
+            var jerusalem = now.getTime() + now.getTimezoneOffset() * 60000 + 10800000;
 
-            nowtime = new Date(Jerusalem);
-            nowtimeHours = nowtime.getHours();
-            nowtimeMinutes = nowtime.getMinutes();
+            var jerusalemNow = new Date(jerusalem);
+            var hours = jerusalemNow.getHours();
+            var minutes = jerusalemNow.getMinutes();
 
-            if (parseInt(nowtimeHours) <= 9) {
-                nowtimeHours = "0" + nowtimeHours
+            if (parseInt(hours) <= 9) {
+                hours = "0" + hours
             }
-            if (parseInt(nowtimeMinutes) <= 9) {
-                nowtimeMinutes = "0" + nowtimeMinutes
+            if (parseInt(minutes) <= 9) {
+                minutes = "0" + minutes
             }
-            broadcastTime = nowtimeHours + ":" + nowtimeMinutes;
-            return broadcastTime;
+
+            return hours + ":" + minutes;
         }
     }
 }());

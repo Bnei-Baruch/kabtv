@@ -5,9 +5,9 @@
         .module('app.core')
         .factory('dataservice', dataservice);
 
-    dataservice.$inject = ['$http', '$q', 'config', 'exception', 'API_BASE'];
+    dataservice.$inject = ['$http', '$q', 'config', 'exception', 'logger', 'API_BASE'];
 
-    function dataservice($http, $q, config, exception, API_BASE) {
+    function dataservice($http, $q, config, exception, logger, API_BASE) {
         var isPrimed = false;
         var primePromise;
 
@@ -18,6 +18,9 @@
             getVodCategories: getVodCategories,
             getVodItems: getVodItems,
             getUpdates: getUpdates,
+            getStreams: getStreams,
+            getDynamicStream: getDynamicStream,
+            getEventStatus: getEventStatus,
             ready: ready
         };
 
@@ -74,6 +77,31 @@
             }
         }
 
+        function getStreams() {
+            return $http.get(API_BASE + 'streams')
+                .then(getStreamsComplete)
+                .catch(function(message) {exception.catcher('XHR Failed for getStreams')(message); });
+
+            function getStreamsComplete(data, status, headers, config) {
+                return (data.data);
+            }
+        }
+
+        function getDynamicStream(url) {
+            return $http.jsonp(url, {});
+                //.catch(function(message) {exception.catcher('JSONP Failed for getDynamicStream')(message); });
+        }
+
+        function getEventStatus() {
+            return $http.get(API_BASE + 'event_status')
+                .then(getEventStatusComplete)
+                .catch(function(message) {exception.catcher('XHR Failed for getEventStatus')(message); });
+
+            function getEventStatusComplete(data, status, headers, config) {
+                return (data.data.is_live);
+            }
+        }
+
         function getTabs() {
             var tabs = [
                 {
@@ -103,6 +131,7 @@
             }
             primePromise = $q.when(true).then(success);
             return primePromise;
+
             function success() {
                 isPrimed = true;
                 logger.info('Primed data');

@@ -8,7 +8,6 @@
     Tabs.$inject = ['$sce', '$window', '$scope', 'dataservice', 'config', 'logger'];
 
     function Tabs($sce, $window, $scope, dataservice, config, logger) {
-        /*jshint validthis: true */
         var vm = this;
         vm.tabs = [];
         vm.selectedTab = {};

@@ -8,7 +8,6 @@
     Header.$inject = ['$timeout', 'dataservice', 'config', 'logger', 'HELP_IMAGE_BASE'];
 
     function Header($timeout, dataservice, config, logger, HELP_IMAGE_BASE) {
-        /*jshint validthis: true */
         var vm = this;
         vm.links = [];
         vm.languages = [];

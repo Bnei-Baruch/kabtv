@@ -8,7 +8,6 @@
     Footer.$inject = ['dataservice', 'logger'];
 
     function Footer(dataservice, logger) {
-        /*jshint validthis: true */
         var vm = this;
         vm.links = [];
 

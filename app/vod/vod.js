@@ -8,7 +8,6 @@
     Vod.$inject = ['$location', '$window', '$scope', 'dataservice', 'logger'];
 
     function Vod($location, $window, $scope, dataservice, logger) {
-        /*jshint validthis: true */
         var vm = this;
         vm.categories = [];
         vm.selectedCategory = {};

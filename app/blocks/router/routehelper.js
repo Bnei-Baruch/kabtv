@@ -93,14 +93,14 @@
         }
 
         function updateDocTitle() {
-            $rootScope.$on('$routeChangeSuccess',
-                function(event, current, previous) {
-                    routeCounts.changes++;
-                    handlingRouteChangeError = false;
-                    var title = routehelperConfig.config.docTitle + ' ' + (current.title || '');
-                    $rootScope.title = title; // data bind to <title>
-                }
-            );
+            //$rootScope.$on('$routeChangeSuccess',
+            //    function(event, current, previous) {
+            //        routeCounts.changes++;
+            //        handlingRouteChangeError = false;
+            //        var title = routehelperConfig.config.docTitle + ' ' + (current.title || '');
+            //        $rootScope.title = title; // data bind to <title>
+            //    }
+            //);
         }
     }
 })();

@@ -13,7 +13,7 @@
 			<!-- / mibew button -->
 		</div>
 		<nav class="headLangNav">
-		    <a data-ng-repeat="item in vm.languages" data-ng-href="{{item.key|lowercase}}"
+		    <a data-ng-repeat="item in vm.languages" data-ng-href="/{{item.key|lowercase}}/"
 			   data-ng-class="vm.isCurrentLang(item)">
                 {{item.caption}}
             </a>

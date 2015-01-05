@@ -8,7 +8,6 @@
     Updates.$inject = ['$sce', 'dataservice', 'logger'];
 
     function Updates($sce, dataservice, logger) {
-        /*jshint validthis: true */
         var vm = this;
         vm.updates = [];
 

@@ -4,199 +4,178 @@
     angular.module('kabtv.player')
         .controller('Stream', Stream);
 
+    Stream.$inject = ['$scope', '$routeParams', '$location', '$timeout', 'streams', 'dataservice',
+        'JerusalemTime', 'config', 'logger'];
 
-    Stream.$inject = ['$scope', 'PlayerDataService', '$location', 'config', '$translate', 'streamObj'];
-
-
-    function Stream($scope, PlayerDataService, $location, config, $translate, streamObj) {
+    function Stream($scope, $routeParams, $location, $timeout, streams, dataservice,
+                    JerusalemTime, config, logger) {
         var vm = this;
-        vm.url = '11';
-        //if loadeng first one - wait data from playerRun, if not - take data from variable
-        if (streamObj.data)
-            _init()
-        else
-            $scope.$on('streamInitialized', _init);
+        vm.isVideo = true;
+        vm.isLive = null;
+        vm.isHLS = null;
+        vm.isWMV = null;
+        vm.isAudio = null;
+        vm.stream = null;
+        vm.audioStream = null;
+        vm.currentPlayerLang = config.lang;
+        vm.currentPlayerQuality = $routeParams.playerQuality || "high";
+        vm.alternateLanguages = [];
+        vm.alternateQualities = [];
+        vm.hasAudio = null;
+        vm.jerusalemTime = null;
+        vm.isLiveTimer = null;
+        vm.jerusalemTimeTimer = null;
+        vm.changeLanguage = changeLanguage;
+        vm.changeQuality = changeQuality;
+        vm.playVideo = playVideo;
+        vm.playAudio = playAudio;
+        vm.buildDynamicGeoStream = buildDynamicGeoStream;
 
-        vm.switchPlayerLang = function (lang) {
-            $location.search({"mediaLang": lang.key});
-        };
+        activate();
 
+        function activate() {
+            if ($routeParams.mediaLang) {
+                vm.currentPlayerLang = config.languages[$routeParams.mediaLang.toUpperCase()];
+            }
 
-        function _init() {
-            var _langKey;
-            vm.streamObj = streamObj.data;
-            _langKey = $location.$$search.mediaLang || config.lang.key;
-            vm.currentPlayerLang = config.languages[_langKey.toUpperCase()];
+            getEventStatus();
+            getJerusalemTime();
 
-            vm.currentPlayerQuality = $location.$$search.playerQuality || "high";
-            vm.url = vm.streamObj[vm.currentPlayerLang.key][vm.currentPlayerQuality].url;
+            $scope.$on("$destroy", handleDestroy);
+
+            if (Object.keys(streams).length === 0) {
+                logger.info('Loading streams from server');
+                return dataservice.getStreams().then(function (data) {
+                    logger.info('Streams loaded');
+                    buildStreams(data);
+                    identifyStreams();
+                });
+            } else {
+                logger.info('Streams are already loaded');
+                identifyStreams();
+            }
         }
 
+        function buildStreams(data) {
+            angular.forEach(data, function (item, index) {
+                var lang = item.language.toUpperCase();
+                item.language = config.languages[lang];
+                if (!streams[lang]) {
+                    streams[lang] = {};
+                }
 
-        /*
-         function getPlayerData(playerList, mediaType) {
-         if (!playerList) return null;
+                if (item.is_dynamic) {
+                    item.resolved = false;
+                }
 
-         var mediaType = "video";
-         if (typeof $routeParams.isVideo == "undefined") {
-         mediaType = pageSettings.isVideo ? "video" : "audio";
-         } else {
-         mediaType = ($routeParams.isVideo === true || $routeParams.isVideo === "true") ? "video" : "audio";
-         }
-         var _player = null;
-         $scope.isVideo = (mediaType == "video") ? true : false;
-         for (var i = 0; i < playerList.length; i++) {
-         var _playerData = playerList[i];
-         if (_playerData.media_type == mediaType && ($scope.currentPlayerLang.toLowerCase() == _playerData.language.toLowerCase())) {
-         if (mediaType == "audio") {
-         _player = _playerData;
-         } else if (($scope.currentPlayerQuality == _playerData.quality) || (_playerData.quality == null)) {
-         _player = _playerData;
-         }
-         }
-         }
-         return _player;
-         }*/
+                if (item.media_type == 'video') {
+                    streams[lang][item.quality] = item;
+                } else {
+                    streams[lang]['audio'] = item;
+                }
+            });
+        }
 
-        vm.playerQualityChange = function (quality) {
-            $location.search({"mediaLang": $scope.currentPlayerLang, "isVideo": $scope.isVideo, "playerQuality": quality});
-        };
+        function identifyStreams() {
+            vm.stream = null;
+            vm.alternateLanguages = [];
+            vm.alternateQualities = [];
 
-        /*  vm.$on("$destroy", function (event) {
-         $timeout.cancel(timerObj);
-         });*/
+            var langStreams = streams[vm.currentPlayerLang.key];
+            angular.forEach(Object.keys(langStreams), function(value, i) {
+                var s = langStreams[value];
+                if (value == 'audio') {
+                    vm.audioStream = s;
+                    vm.hasAudio = true;
+                } else {
+                    if (s.quality == vm.currentPlayerQuality) {
+                        vm.stream = s;
+                    } else {
+                        vm.alternateQualities.push(s);
+                    }
+                }
+
+            });
+
+            if (!vm.stream) { return; }
+
+            if (vm.stream.is_dynamic && !vm.stream.resolved) {
+                logger.info("Loading dynamic stream for " + vm.stream.language.key + " " + vm.stream.quality);
+                dataservice.getDynamicStream(vm.stream.url);
+                // We can't use angular jsonp promise because our endpoint doesn't respect the JSONP protocol.
+                // Allowing to set the callback name...
+            }
+
+            vm.isHLS = vm.stream.format.toLowerCase() == 'hls';
+            vm.isWMV = vm.stream.format.toLowerCase() == 'wmv';
+
+            // calc alternate stream with same quality in different languages
+            angular.forEach(Object.keys(config.languages), function(value, i) {
+                if (value != vm.currentPlayerLang.key) {
+                    langStreams = streams[value];
+                    angular.forEach(Object.keys(langStreams), function(value, i) {
+                        var s = langStreams[value];
+                        if (s.quality == vm.currentPlayerQuality ) {
+                            vm.alternateLanguages.push(s);
+                        }
+                    });
+                }
+            });
+        }
+
+        // This is called by the global scoped JSONP callback. DynamicGeoStreamLocator
+        function buildDynamicGeoStream(r) {
+            logger.info("Dynamic stream for " + vm.stream.language.key + " " + vm.stream.quality + " loaded.");
+            vm.stream.url = r.hlsUrl || r.netUrl;
+            vm.stream.resolved = true;
+        }
+
+        function getEventStatus() {
+            vm.isLiveTimer = $timeout(function () {
+                dataservice.getEventStatus().then(function (isLive) {
+                    vm.isLive = isLive;
+                    getEventStatus();
+                });
+            }, (vm.isLiveTimer == null) ? 0 : 60000);
+        }
+
+        function getJerusalemTime() {
+            vm.jerusalemTimeTimer = $timeout(function () {
+                vm.jerusalemTime = JerusalemTime();
+                getJerusalemTime();
+            }, (vm.jerusalemTimeTimer == null) ? 0 : 30000);
+        }
+
+        function changeLanguage(lang) {
+            $location.search({"mediaLang": lang.key});
+        }
+
+        function changeQuality(quality) {
+            $location.search({"mediaLang": vm.currentPlayerLang.key, "isVideo": vm.isVideo, "playerQuality": quality});
+        }
+
+        function playVideo() {
+            vm.isVideo = true;
+            vm.isAudio = false;
+        }
+
+        function playAudio() {
+            if (vm.hasAudio) {
+                vm.isVideo = false;
+                vm.isAudio = true;
+            }
+        }
+
+        function handleDestroy(event) {
+            $timeout.cancel(vm.isLiveTimer);
+            $timeout.cancel(vm.jerusalemTimeTimer);
+        }
+
     }
-}())
 
-/*
+}());
 
- .controller("kabtvPlayerCtrl", function ($scope, $timeout, $compile, $location, $routeParams, $translate, getWMVPlayer, pageSettings, kabtvHttpSvc) {
- $scope.isVideo = true;
- $scope.playObj = null;
- $scope.showFullScreen = false;
- $scope.broadcastTime = '';
- */
-/*check stream type depend on url (isvideo and clip)*//*
-
- if ($location.$$path == "/clip") {
- kabtvHttpSvc.getClipById($routeParams.mediaId).then(
- function (reqData) {
- $scope.playerData = reqData.data;
- document.title = reqData.data.title;
- setPlayer({url: reqData.data.play_url, format: reqData.data.content_type, width: "100%"});
- var config = {
- data_track_addressbar: false,
- data_track_clickback: false
- };
- var share = {
- title: $scope.playerData.title,
- description: $scope.playerData.description,
- email_vars: {description: $scope.playerData.description}
- };
- addthis.init();
- addthis.toolbox('#addthis-toolbox', config, share);
- });
- } else {
- }
- $scope.buildDynamicGeoStream = function (url) {
- setPlayer({url: url, width: "100%", format: "hls"});
- };
-
- */
-/*build player depend on type of stream*//*
-
- function setPlayer(playObj) {
- $scope.playObj = playObj;
- if (pageSettings.audioPlayer != null) {
- pageSettings.audioPlayer.destruct();
- }
- var $el = angular.element(document.querySelector('#player'));
-
- if (pageSettings.detectIE && pageSettings.WMVPlayer != null) {
- pageSettings.WMVPlayer[0].close();
- }
- $el.empty();
- switch (playObj.format.toLowerCase()) {
- case "hls":
- $el.append('<div id="jwPlayerCont">');
- jwplayer("jwPlayerCont").setup({
- file: playObj.url,
- type: 'hls',
- autostart: true,
- width: "100%"
- });
- $scope.showFullScreen = false;
- break;
- case "wmv":
- $el.append(getWMVPlayer(playObj.url));
- */
-/*if (pageSettings.WMVPlayer == null || !pageSettings.detectIE) {
- } else {
- pageSettings.WMVPlayer[0].close();
- pageSettings.WMVPlayer[0].object.newMedia( playObj.url );
- //pageSettings.WMVPlayer[0].object.URL = playObj.url;
- pageSettings.WMVPlayer[0].object.controls.play();
- }*//*
-
- $scope.showFullScreen = true;
- break;
- case "icecast":
- $el.append(getAudioPlayer(playObj.url));
- $scope.showFullScreen = false;
- break;
- default:
- console.error('unknown media type: ' + playObj.format.toLowerCase());
- }
- }
-
- showTime();
- function getAudioPlayer(src) {
- $scope.audioSrc = src;
- return $compile('<div kabtv-audio-player>')($scope);
- }
-
-
- $scope.hasAudio = function (lang) {
- var _isHas = false;
- angular.forEach($scope.playerData, function (item, key) {
- if (item.language == lang && item.media_type == "audio")
- _isHas = true;
- });
- return _isHas;
- };
- $scope.switchVideoAudio = function (isVideo) {
- $scope.isVideo = isVideo;
- $location.path('stream/');
- $location.search({"mediaLang": $scope.currentPlayerLang, "isVideo": isVideo});
- };
-
- $scope.switchPlayerLang = function (lang) {
- $location.search({"mediaLang": lang, "isVideo": $scope.isVideo});
- };
-
- $scope.getStream = function () {
- $location.path('stream/');
- $location.search({"mediaLang": $scope.currentPlayerLang, "isVideo": $scope.isVideo});
- };
-
-
- $scope.videoFilter = function (item) {
- var isShow = false;
- if ($scope.isVideo && item.media_type == 'video') {
- isShow = true;
- if (item.quality)
- isShow = (item.quality == "high");
- } else if (!$scope.isVideo && item.media_type == 'audio') {
- isShow = (
- item.language == 'HEB' ||
- item.language == 'RUS' ||
- item.language == 'ENG' ||
- item.language == 'SPA' ||
- item.language == 'GER'
- );
- }
- ;
-
- return isShow;
- }
- })*/
+// Geo location callback. Must be in the global scope !
+function DynamicGeoStreamLocator(r){
+    angular.element(document.getElementById('player')).controller().buildDynamicGeoStream(r);
+}
