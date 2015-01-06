@@ -80,10 +80,19 @@ angular.module('kabtv')
             case "hls":
                 $el.append('<div id="jwPlayerCont">');
                 jwplayer("jwPlayerCont").setup({
-                    file: playObj.url,
+                    file: playObj.url.trim(),
                     type:'hls',
                     autostart: true,
                     aspectratio: '16:9',
+                    width: "100%"
+                });
+                $scope.showFullScreen = false;
+                break;
+            case "mp4":
+                $el.append('<div id="jwPlayerCont">');
+                jwplayer("jwPlayerCont").setup({
+                    file: playObj.url.trim(),
+                    autostart: true,
                     width: "100%"
                 });
                 $scope.showFullScreen = false;
