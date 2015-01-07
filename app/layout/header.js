@@ -43,7 +43,7 @@
         }
 
         function isCurrentLang(lang) {
-            return (config.lang.key == lang.key) ? "select" : "";
+            return (config.lang.key == lang.key);
         }
 
         function onLanguageChanged() {

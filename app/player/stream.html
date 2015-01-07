@@ -1,12 +1,12 @@
 <div class="clearfix">
     <div class="tabs">
-        <div data-ng-click="vm.playVideo()" class="tabBtn select">
+        <div data-ng-click="vm.playVideo()" class="tab-button select">
             {{'PLAYER_VIDEO' | translate}}
         </div>
-        <div data-ng-click="vm.playAudio()" class="tabBtn" data-ng-if="vm.hasAudio">
+        <div data-ng-click="vm.playAudio()" class="tab-button" data-ng-if="vm.hasAudio">
             {{'PLAYER_AUDIO' | translate}}
         </div>
-        <div class="broadcastTime" translate="PLAYER_BROADCAST_TIME" translate-value-time="{{vm.jerusalemTime}}"></div>
+        <div class="jerusalem-time" translate="PLAYER_BROADCAST_TIME" translate-value-time="{{vm.jerusalemTime}}"></div>
     </div>
 
     <div id="player">

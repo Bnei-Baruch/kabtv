@@ -1,6 +1,6 @@
 ﻿<div id="tabs" data-ng-controller="Tabs as vm">
     <div id="tabs-header" data-ng-repeat="item in vm.tabs"
-         data-ng-class="{'tabBtn': true, 'select': vm.isSelectedTab(item)}"
+         data-ng-class="{'tab-button': true, 'select': vm.isSelectedTab(item)}"
          data-ng-click="vm.switchTab($index)">
         {{item.name | translate}}
     </div>

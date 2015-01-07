@@ -9,14 +9,51 @@ body {
     color: #FFF;
 }
 
+/* Reusable classes */
+
+.toL {
+    float: left;
+}
+.toR {
+    float: right;
+}
+.rtl {
+    direction: rtl;
+}
+.rtl .toL {
+    float: right;
+}
+.rtl .toR {
+    float: left;
+}
+
+.nav-link {
+    padding: 0 3px;
+    display: inline-block;
+}
+.rtl .nav-link {
+    border-right: 1px solid #FFFFFF;
+    border-left: 0 none;
+}
+.ltr .nav-link {
+    border-right: 0 none;
+    border-left: 1px solid #FFFFFF;
+}
+.nav-link:first-child {
+    border-left: 0 none;
+    border-right: 0 none;
+}
+
+.langs {
+    margin: 5px 5px 5px 0;
+}
+
 /* Layout */
 
 #container {
     width: 100%;
     max-width: 980px;
     margin: 0 auto;
-}
-#shell {
 }
 
 /*Header*/
@@ -27,56 +64,36 @@ body {
 #header .tree {
     display: block;
 }
-#header .whiteWrappwer {
+#header .white-wrappwer {
     background-color: #FFFFFF;
     height: 50px;
 }
-.headLangNav {
+#header .langs-nav {
     display: block;
     text-align: center;
     padding-left: 40px;
     color: #00145E;
 }
-.headLangNav a {
-    display: inline-block;
+#header .langs-nav .nav-link {
     color: #000;
     line-height: 14px;
     margin: 14px 0 0;
     font-weight: bold;
     border-color: #000000 !important;
 }
-.headLangNav a:first-child {
-    padding-left: 2px;
-    padding-right: 2px;
-    font-weight: bold;
-}
-.headLangNav a.select {
+#header .langs-nav .nav-link.selected {
     color: #D32020;
 }
-.headLinksNav {
+#header .links-nav {
     display: block;
     padding: 5px 0;
     text-align: center;
 }
-.headLinksNav a {
-    display: inline-block;
+#header .links-nav .nav-link {
     color: #FFFFFF;
 }
-
-.rtl nav a {
-    border-right: 1px solid #FFFFFF;
-    border-left: 0 none;
-}
-.ltr nav a {
-    border-right: 0 none;
-    border-left: 1px solid #FFFFFF;
-}
-nav a {
-    padding: 0 3px;
-}
-nav a:first-child {
-    border-left: 0 none;
-    border-right: 0 none;
+.ltr #tech-support {
+    float: right;
 }
 
 /* Footer */
@@ -89,13 +106,12 @@ nav a:first-child {
     max-width: 980px;
     background-color: #000078;
 }
-#footer nav {
+#footer .links-nav {
     padding-top: 10px;
 }
-#footer a {
+#footer .nav-link {
     color: #FFF;
     font-size: 11px;
-    display: inline-block;
 }
 
 /* Main Panel */
@@ -164,28 +180,6 @@ nav a:first-child {
 #tabs {
     height: 100%;
 }
-#tabs .tabBtn {
-    display: inline-block;
-    font-size: 11px;
-    margin: 0 1px;
-    padding: 5px;
-    cursor: pointer;
-    background-color: #384B92;
-    color: #FFA200;
-}
-#tabs .tabBtn.select {
-    margin-top: -1px;
-    padding-bottom: 6px;
-    background-color: #DFE7F2;
-    color: #000;
-}
-.tabBtn:first-child {
-    margin-left: 0;
-}
-.rtl .tabBtn:first-child {
-    margin-right: 0;
-}
-
 #tabs .forIframe {
     height: 100%;
     overflow: auto;
@@ -195,15 +189,37 @@ nav a:first-child {
     height: 99%;
 }
 
+.tab-button {
+    display: inline-block;
+    font-size: 11px;
+    margin: 0 1px;
+    padding: 5px;
+    cursor: pointer;
+    background-color: #384B92;
+    color: #FFA200;
+}
+.tab-button.select {
+    margin-top: -1px;
+    padding-bottom: 6px;
+    background-color: #DFE7F2;
+    color: #000;
+}
+.tab-button:first-child {
+    margin-left: 0;
+}
+.rtl .tab-button:first-child {
+    margin-right: 0;
+}
+
+/* Updates Tab */
+
 #updates .update-item {
     font-size: 12px;
     border-top: 1px solid #2B64A7;
     background-color: #000C37;
 }
 #updates .update-item .header,
-#updates .update-item .header a,
-#updates .update-item .header a:visited,
-#updates .update-item .header a:hover {
+#updates .update-item .header .link {
     color: #FFD800;
     height: 100%;
     text-decoration: none;
@@ -220,35 +236,62 @@ nav a:first-child {
     padding: 0 10px 15px;
     height: 100%;
 }
-#updates .update-item a.url, 
-#updates .update-item a.url:visited {
+#updates .update-item .url {
     color: #69B7FF;
     text-decoration: none;
     margin: 0 10px 10px;
 }
-#updates .update-item a.url:hover {
+#updates .update-item .url:hover {
     text-decoration: underline;
 }
 
-.disableSelect {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-/* Player */
+/* Stream Player */
 
 #player > div {
     width: 100%;
     height: 100%;
 }
-
 #player object {
     width: 100%;
     height: 100%;
 }
+.player-panel {
+    padding: 5px;
+}
+.player-panel .clipTitle {
+    color: #FFA302;
+    display: inline;
+}
+.player-panel .langs {
+    cursor: pointer;
+    color: #4EA8FE;
+}
+.player-panel .langs.selected {
+    color: #FFA302
+}
+.player-panel .langs input {
+    display: none;
+}
+.player-panel .quality-switcher {
+    background-color: #2b64a7;
+    padding: 5px;
+}
 
+.jerusalem-time {
+    display: inline;
+    height: 18px;
+    margin: 0 30px;
+    color: #FFA200;
+    font-weight: bold;
+    text-align: center;
+}
+
+.full-screen-button {
+    color: #4EA8FE;
+    padding: 5px;
+    cursor: pointer;
+    display: block;
+}
 
 /* Audio Player */
 
@@ -326,70 +369,10 @@ nav a:first-child {
 
 
 
-.playerPanel {
-    padding: 5px 0;
-}
-
-.playerPanel .clipTitle {
-    color: #FFA302;
-    display: inline;
-}
-
-.playerPanel .langs {
-    cursor: pointer;
-    color: #4EA8FE;
-}
-
-.playerPanel .langs.selected {
-    color: #FFA302
-}
-
-.playerPanel .langs input {
-    display: none;
-}
-
 /*.playerDescription {*/
     /*border-top: 1px solid #C6D8F2;*/
 /*}*/
 
-/*.playerPanel .qualitySwitcher {*/
-    /*background-color: #2b64a7;*/
-    /*padding: 5px;*/
-/*}*/
-
-/*tabs aside*/
-
-
-
-
-/*.langs {*/
-    /*margin: 5px 5px 5px 0;*/
-/*}*/
-
-/*#help-e {*/
-    /*font: normal normal 12px Arial, sans-serif;*/
-    /*color: blue;*/
-    /*text-decoration: underline;*/
-/*}*/
-/*#help-e .ltr {*/
-    /*float: right;*/
-/*}*/
-
-/*.fullScreenButton {*/
-    /*color: #4EA8FE;*/
-    /*padding: 5px 5px 5px 0;*/
-    /*cursor: pointer;*/
-    /*display: block;*/
-/*}*/
-
-/*.broadcastTime {*/
-    /*display: inline;*/
-    /*height: 18px;*/
-    /*margin: 0 30px;*/
-    /*color: #FFA200;*/
-    /*font-weight: bold;*/
-    /*text-align: center;*/
-/*}*/
 
 /*#clip-save-button {*/
     /*display: inline;*/
@@ -399,9 +382,6 @@ nav a:first-child {
 /*#addthis-toolbox {*/
     /*float: left*/
 /*}*/
-
-
-
 
 /* Clearfix */
 
@@ -415,34 +395,4 @@ nav a:first-child {
 /* For IE 6/7 (trigger hasLayout) */
 .clearfix {
     zoom: 1;
-}
-
-/* Helpers */
-
-.toL {
-    float: left;
-}
-.toR {
-    float: right;
-}
-.rtl {
-    direction: rtl;
-}
-.rtl .toL {
-    float: right;
-}
-.rtl .toR {
-    float: left;
-}
-.textToRight {
-    text-align: right;
-}
-.textToLeft {
-    text-align: left;
-}
-.rtl .textToRight {
-    text-align: left;
-}
-.rtl .textToLeft {
-    text-align: right;
 }

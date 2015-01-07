@@ -2,7 +2,7 @@
     <div data-ng-repeat="update in vm.updates" class="update-item clearfix">
         <div class="ad" data-ng-if="update.url">
             <div class="header">
-                <a data-ng-href="{{update.url}}" target="_blank">
+                <a data-ng-href="{{update.url}}" class="link" target="_blank">
                     <span class="title" data-ng-bind-html="update.title"></span>
                     <span class="subtitle" data-ng-bind-html="update.subtitle"></span>
                 </a>
