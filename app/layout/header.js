@@ -5,14 +5,15 @@
         .module('app.layout')
         .controller('Header', Header);
 
-    Header.$inject = ['$timeout', 'dataservice', 'config', 'logger', 'HELP_IMAGE_BASE'];
+    Header.$inject = ['$scope', '$timeout', 'dataservice', 'config', 'logger', 'HELP_IMAGE_BASE'];
 
-    function Header($timeout, dataservice, config, logger, HELP_IMAGE_BASE) {
+    function Header($scope, $timeout, dataservice, config, logger, HELP_IMAGE_BASE) {
         var vm = this;
         vm.links = [];
         vm.languages = [];
         vm.logoImage = '';
         vm.helpImage = '';
+        vm.helpImageTimer = null;
         vm.isCurrentLang = isCurrentLang;
 
         activate();
@@ -21,6 +22,8 @@
             getLanguages();
             onLanguageChanged();
             helpImageUpdate();
+
+            $scope.$on("$destroy", handleDestroy);
 
             return getHeaderLinks().then(function () {
                 logger.info('Loaded top navigation links');
@@ -53,7 +56,7 @@
         function helpImageUpdate() {
             var date = new Date();
             vm.helpImage = HELP_IMAGE_BASE + '&lang=' + getHelpLang() + '&' + '&time=' + date.getTime();
-            $timeout(helpImageUpdate, 60000);
+            vm.helpImageTimer = $timeout(helpImageUpdate, 60000);
         }
 
         function getHelpLang() {
@@ -66,6 +69,10 @@
                     return 'es';
             }
             return 'en';
+        }
+
+        function handleDestroy(event) {
+            $timeout.cancel(vm.helpImageTimer);
         }
 
     }
