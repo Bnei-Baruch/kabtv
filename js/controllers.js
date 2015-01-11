@@ -202,7 +202,7 @@ angular.module('kabtv')
         if ($scope.isClip)
             return;
 
-        var off = parseInt(10800000);
+        var off = parseInt(7200000); // 2 * 60 * 60 * 1000
         var d = new Date();
         var localTime = d.getTime();
         var localOffset = d.getTimezoneOffset() * 60000;
