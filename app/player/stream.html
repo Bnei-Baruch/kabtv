@@ -1,9 +1,9 @@
 <div class="clearfix">
     <div class="tabs">
-        <div data-ng-click="vm.playVideo()" class="tab-button select">
+        <div data-ng-click="vm.playVideo()" data-ng-class="{'tab-button': true, 'select': vm.isVideo}">
             {{'PLAYER_VIDEO' | translate}}
         </div>
-        <div data-ng-click="vm.playAudio()" class="tab-button" data-ng-if="vm.hasAudio">
+        <div data-ng-click="vm.playAudio()" data-ng-class="{'tab-button': true, 'select': vm.isAudio}" data-ng-if="vm.hasAudio">
             {{'PLAYER_AUDIO' | translate}}
         </div>
         <div class="jerusalem-time" translate="PLAYER_BROADCAST_TIME" translate-value-time="{{vm.jerusalemTime}}"></div>

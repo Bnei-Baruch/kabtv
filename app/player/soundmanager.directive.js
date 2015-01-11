@@ -27,10 +27,8 @@
             scope.toggleMute = function () {
                 scope.isMute = !scope.isMute;
                 if (scope.isMute) {
-                    //scope.muteOnOff = "off";
                     scope.audioPlayer.mute();
                 } else {
-                    //scope.muteOnOff = "on";
                     scope.audioPlayer.unmute();
                 }
             };
@@ -38,7 +36,6 @@
             scope.togglePlay = function () {
                 scope.isPlay = !scope.isPlay;
                 if (scope.isPlay) {
-                    //scope.playOnOff = "off";
                     soundManager.setup({
                         'url': "lib/soundmanager/swf",
                         'onready': function() {
@@ -50,7 +47,6 @@
                         }
                     });
                 } else {
-                    //scope.playOnOff = "on";
                     scope.audioPlayer.destruct();
                 }
             };
