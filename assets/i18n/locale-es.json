@@ -17,7 +17,8 @@
     "TAB_SCHEDULE": "programa",
     "TAB_QUESTIONS": "preguntas",
     "TAB_SKETCHES": "dibujos",
-  
+
+    "STREAM_QUALITY": "Calidad Broadcast",
     "HIGH": "Alto",
     "MEDIUM": "Medium",
     "LOW": "Baja"

@@ -18,7 +18,8 @@
     "TAB_SCHEDULE": "Schedule",
     "TAB_QUESTIONS": "Questions",
     "TAB_SKETCHES": "Sketches",
-    
+
+    "STREAM_QUALITY": "Broadcast Quality",
     "HIGH": "High",
     "MEDIUM": "Medium",
     "LOW": "Low"

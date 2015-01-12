@@ -7,9 +7,6 @@
         lang: {},
         pageDirection: "rtl",
         isVideo: true,
-        audioPlayer: null,
-        WMVPlayer: null,
-        detectIE: null,
         appTitle: 'Kab.tv',
         appErrorPrefix: '[Kab.tv Error] ',
         languages: {

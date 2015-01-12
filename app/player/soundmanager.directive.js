@@ -64,8 +64,10 @@
             });
 
             el.bind('$destroy', function () {
-                if(scope.audioPlayer)
+                if(scope.audioPlayer) {
                     scope.audioPlayer.stop();
+                    scope.audioPlayer.destruct();
+                }
             });
         }
 

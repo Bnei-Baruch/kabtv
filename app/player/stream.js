@@ -121,6 +121,10 @@
                     });
                 }
             });
+
+            if (!config.isVideo) {
+                vm.playAudio();
+            }
         }
 
         // This is called by the global scoped JSONP callback. DynamicGeoStreamLocator
@@ -151,7 +155,7 @@
         }
 
         function changeQuality(quality) {
-            $location.search({"mediaLang": vm.currentPlayerLang.key, "isVideo": vm.isVideo, "playerQuality": quality});
+            $location.search({"mediaLang": vm.currentPlayerLang.key, "playerQuality": quality});
         }
 
         function playVideo() {

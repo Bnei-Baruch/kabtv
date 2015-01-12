@@ -23,12 +23,15 @@
                    data-ng-change="vm.changeLanguage(item.language)" name="vm.switcher-language-{{item.language.key}}"/>
         </label>
 
-        <div class="quality-switcher" data-ng-show="vm.isLive">
-            <label data-ng-repeat="item in vm.alternateQualities | orderBy: item.quality"
-                   class="langs {{(vm.currentPlayerQuality == item.quality) ? 'selected': '';}}">
+        <div class="quality-switcher" data-ng-show="vm.isVideo && vm.isLive">
+            <span>{{'STREAM_QUALITY' | translate}}: </span>
+            <label data-ng-repeat="item in vm.alternateQualities | orderBy: item.quality" class="langs">
                 {{item.quality.toUpperCase() | translate}}
                 <input type="radio" data-ng-model="vm.currentPlayerQuality" value="item.quality"
                        name="vm.switcher-quality-{{item.quality}}" data-ng-change="vm.changeQuality(item.quality)"/>
+            </label>
+            <label class="langs selected">
+                {{vm.currentPlayerQuality.toUpperCase() | translate}}
             </label>
         </div>
     </div>

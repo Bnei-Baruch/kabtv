@@ -17,7 +17,8 @@
     "TAB_SCHEDULE": "расписание",
     "TAB_QUESTIONS": "вопросы",
     "TAB_SKETCHES": "чертежи",
-  
+
+    "STREAM_QUALITY": "Качество Вещания",
     "HIGH": "Высокое",
     "MEDIUM": "Среднее",
     "LOW": "Низкое"
