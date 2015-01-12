@@ -8,8 +8,9 @@
     function JerusalemTime() {
         return function () {
             // Jerusalem time = localTime + localOffset + Jerusalem offset;
+            var jarusalemOffset = 2 * 60 * 60 * 100;
             var now = new Date();
-            var jerusalem = now.getTime() + now.getTimezoneOffset() * 60000 + 10800000;
+            var jerusalem = now.getTime() + now.getTimezoneOffset() * 60000 + jarusalemOffset;
 
             var jerusalemNow = new Date(jerusalem);
             var hours = jerusalemNow.getHours();
