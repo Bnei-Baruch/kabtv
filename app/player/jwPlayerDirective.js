@@ -6,10 +6,10 @@
         .directive('kabtvJwPlayer', PlayerBuilder);
 
 
-    function PlayerBuilder() {
+    function PlayerBuilder($rootScope) {
         var directive = {
             restrict: 'AE',
-            template: '<div><div id="player"></div></div>',
+            template: '<div>{{url}}<div id="player"></div></div>',
             scope: {url: '@'},
             controller: JwPlayerBuilderController,
             controllerAs: 'vm',
@@ -27,7 +27,16 @@
                     file: newVal,
                     type: 'hls',
                     autostart: true,
-                    width: "100%"
+                    width: "100%",
+                    events:{
+                        onComplete: function() {
+                            if ($rootScope.isOnlineTran) {
+                                $location.path('/stream');
+                                return;
+                            }
+                            $rootScope.$broadcast("the player is end" );
+                        }
+                    }
                 });
                // jwPlayer().play();
             });

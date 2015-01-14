@@ -1,0 +1,15 @@
+<div class="clearfix" ng-controller="ClipController as vm">
+    <kabtv-jw-player ng-if="vm.currentClip.content_type == 'HLS'"
+                     data-url="{{vm.currentClip.play_url}}"></kabtv-jw-player>
+
+    <kabtv-wmv-player ng-if="vm.currentClip.content_type == 'WMV'"
+                      data-url='vm.currentClip.play_url'>
+    </kabtv-wmv-player>
+
+    <div class="playerPanel">
+        <h2 class="vod-item-title">{{vm.currentClip.title}}</h2>
+        <label>
+            {{vm.currentClip.caption}}
+        </label>
+    </div>
+</div>

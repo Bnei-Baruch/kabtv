@@ -14,16 +14,10 @@
                 templateUrl: "app/player/stream.html"
             })
             .when('/clip',{
-                controller: "clip",
-                templateUrl: "app/player/clip.html"
-            })
-            .when('/audio',{
-                controller: "audio",
-                templateUrl: "app/player/audio.html"
+                templateUrl: "app/player/clip.tpl.html"
             })
             .when('/playlist',{
-                controller: "playlist",
-                templateUrl: "app/player/playlist.html"
+                templateUrl: "app/player/playlist.tpl.html"
             })
             .otherwise({redirectTo:'/stream'})
     }

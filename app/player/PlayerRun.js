@@ -4,8 +4,8 @@
     angular.module('kabtv.player')
         .run(PlayerRun);
 
-    function PlayerRun($rootScope, $timeout, $translate, streamObj, config, PlayerDataService, isIE) {
-        var _streamObj = {};
+    function PlayerRun($rootScope, $timeout, $translate, streamObj, config, PlayerDataService, $location, isIE) {
+        var _streamObj = {}, getEventStatusTimer;
         PlayerDataService.getOnlineMedia().then(function (reqData) {
             getEventStatus();
             document.title = $translate.instant('SITE_TITLE');
@@ -16,18 +16,32 @@
             streamObj.data = _streamObj;
             $rootScope.$broadcast('streamInitialized');
         });
-        //check if have online translation - if not dont show quality switcher
 
+
+        $rootScope.$on('destroy', function () {
+            if (getEventStatusTimer)
+                getEventStatusTimer.cancel();
+        });
+        //check if have online translation - if not dont show quality switcher
         function getEventStatus() {
             var timerInt = 60000;
             if ($rootScope.isOnlineTran === undefined)
                 timerInt = 0;
-            $timeout(function () {
+            getEventStatusTimer = $timeout(function () {
                 PlayerDataService.getEventStatus().then(function (r) {
                     $rootScope.isOnlineTran = r.data.is_live;
+                    goToDefaultMode();
                     getEventStatus();
                 });
             }, timerInt);
+        }
+
+        function goToDefaultMode() {
+            $location.path('playlist');
+            /*if ($rootScope.isOnlineTran && $location.$$path.toLowerCase() == '/stream')
+             $location.path('playList');
+             else if ($location.$$path.toLowerCase() == '/playlist')
+             $location.path('stream');*/
         }
 
         function addStreamItem(streamItem) {
@@ -42,9 +56,11 @@
                     language: config.languages[itemLang]
                 };
             }
-            _streamObj[itemLang][streamItem.quality] = streamItem;
+            if (streamItem.media_type == 'audio')
+                _streamObj[itemLang].audio = streamItem;
+            else
+                _streamObj[itemLang][streamItem.quality] = streamItem;
         }
-
 
         isIE.value = isIE();
 
