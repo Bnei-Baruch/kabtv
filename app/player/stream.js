@@ -30,6 +30,7 @@
         vm.playVideo = playVideo;
         vm.playAudio = playAudio;
         vm.buildDynamicGeoStream = buildDynamicGeoStream;
+        vm.showQualitySelection = showQualitySelection;
 
         activate();
 
@@ -168,6 +169,11 @@
                 vm.isVideo = false;
                 vm.isAudio = true;
             }
+        }
+
+        function showQualitySelection() {
+            return (vm.isVideo &&
+            (vm.isLive || vm.currentPlayerLang.key == 'HEB' || vm.currentPlayerLang.key == 'RUS'));
         }
 
         function handleDestroy(event) {

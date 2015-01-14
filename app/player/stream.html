@@ -23,7 +23,7 @@
                    data-ng-change="vm.changeLanguage(item.language)" name="vm.switcher-language-{{item.language.key}}"/>
         </label>
 
-        <div class="quality-switcher" data-ng-show="vm.isVideo && vm.isLive">
+        <div class="quality-switcher" data-ng-show="vm.showQualitySelection()">
             <span>{{'STREAM_QUALITY' | translate}}: </span>
             <label data-ng-repeat="item in vm.alternateQualities | orderBy: item.quality" class="langs">
                 {{item.quality.toUpperCase() | translate}}
