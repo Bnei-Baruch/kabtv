@@ -6,10 +6,27 @@
                       data-url='vm.currentClip.play_url'>
     </kabtv-wmv-player>
 
-    <div class="playerPanel">
-        <h2 class="vod-item-title">{{vm.currentClip.title}}</h2>
-        <label>
-            {{vm.currentClip.caption}}
-        </label>
+    <div class="playerPanel playerDescription">
+        <h1 class="clipTitle">{{vm.currentClip.title}}</h1>
+
+        <div id="clip-save-button">
+            <a ng-href="{{vm.currentClip.download_url}}" class="downloadIcon clipIconBig">
+                <img src="./assets/images/save-big.gif" title="{{ 'VOD_DOWNLOAD' | translate}}"
+                     alt="{{ 'VOD_DOWNLOAD' | translate}}">
+                {{ 'VOD_DOWNLOAD' | translate}}
+            </a>
+        </div>
+        <p> {{vm.currentClip.caption}} </p>
+        <br/>
+
+        <!-- AddThis Button BEGIN -->
+        <div id="addthis-toolbox"
+             class="addthis_toolbox addthis_default_style addthis_16x16_style">
+            <!--<a class="addthis_button_facebook"></a>-->
+            <a class="addthis_button_twitter"></a>
+            <a class="addthis_button_google_plusone_share"></a>
+            <a class="addthis_button_email"></a>
+        </div>
+        <!-- AddThis Button END -->
     </div>
 </div>

@@ -6,7 +6,7 @@
         .directive('kabtvJwPlayer', PlayerBuilder);
 
 
-    function PlayerBuilder($rootScope) {
+    function PlayerBuilder($rootScope, $location) {
         var directive = {
             restrict: 'AE',
             template: '<div>{{url}}<div id="player"></div></div>',
@@ -19,26 +19,29 @@
         return directive;
         function linkFunction(scope, el, attr, vm) {
             var jwPlayer = jwplayer("player");
+            var jwPlayerSetupObj = {
+                autostart: true,
+                width: "100%",
+                events: {
+                    onComplete: onFinishedFile
+                }
+            };
+            function onFinishedFile() {
+                if ($rootScope.isOnlineTran) {
+                    scope.$apply($location.path('/stream'));
+                    return;
+                }
+                $rootScope.$broadcast("the player is end");
+            }
             scope.$watch('url', function (newVal, oldVal) {
                 var _urlArr = newVal.split('.');
                 if (!newVal || _urlArr[_urlArr.length - 1].replace(' ', '') == 'js')
                     return;
-                jwPlayer.setup({
-                    file: newVal,
-                    type: 'hls',
-                    autostart: true,
-                    width: "100%",
-                    events:{
-                        onComplete: function() {
-                            if ($rootScope.isOnlineTran) {
-                                $location.path('/stream');
-                                return;
-                            }
-                            $rootScope.$broadcast("the player is end" );
-                        }
-                    }
-                });
-               // jwPlayer().play();
+                jwPlayerSetupObj.file = newVal;
+                if ($location.$$path.toLowerCase() == '/stream')
+                    jwPlayerSetupObj.type = 'hls';
+
+                jwPlayer.setup(jwPlayerSetupObj);
             });
         }
     }
@@ -55,12 +58,12 @@
             $scope.url = url;
         };
 
-       /* $scope.$on('$destroy', function () {
-            $timeout(function () {
-                jwplayer("player").remove();
+        /* $scope.$on('$destroy', function () {
+         $timeout(function () {
+         jwplayer("player").remove();
 
-            }, 0);
-        });*/
+         }, 0);
+         });*/
     }
 
 }());

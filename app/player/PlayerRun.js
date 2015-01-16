@@ -17,6 +17,7 @@
             $rootScope.$broadcast('streamInitialized');
         });
 
+        isIE.data = _isIE();
 
         $rootScope.$on('destroy', function () {
             if (getEventStatusTimer)
@@ -30,6 +31,9 @@
             getEventStatusTimer = $timeout(function () {
                 PlayerDataService.getEventStatus().then(function (r) {
                     $rootScope.isOnlineTran = r.data.is_live;
+                    if(r.data.is_live && $location.$$path.toLowerCase() == '/playlist')
+                        $location.path('/stream');
+
                     goToDefaultMode();
                     getEventStatus();
                 });
@@ -62,9 +66,7 @@
                 _streamObj[itemLang][streamItem.quality] = streamItem;
         }
 
-        isIE.value = isIE();
-
-        function isIE() {
+        function _isIE() {
             var ua = window.navigator.userAgent;
             var msie = ua.indexOf('MSIE ');
             var trident = ua.indexOf('Trident/');

@@ -6,7 +6,7 @@
         .directive('kabtvWmvPlayer', PlayerBuilder);
 
 
-    function PlayerBuilder() {
+    function PlayerBuilder($timeout, $rootScope, $location) {
         var directive = {
             restrict: 'AE',
             templateUrl: './app/player/wmvPlayerDirective.tpl.html',
@@ -20,11 +20,14 @@
         };
         return directive;
         function linkFunction(scope, el, attr, vm) {
-
-            var player = el.find("object")[0];
-
+            var _timeoutCheckFinished;
+            var player;
 
             scope.$watch('url', function (newVal, oldVal) {
+                if (!player)
+                    player = el.find("object")[0];
+                checkIsFinished();
+
                 if (!vm.isIE)
                     return;
                 player.newMedia(vm.url);
@@ -32,8 +35,35 @@
                 player.object.controls.play();
 
             });
+            /*  function definePlayerObj() {
+             var _player = el.find("object")[0];
+             _player.addEventListener("MediaEnded", function () {
+             alert('asdasd');
+             }, false);
+             //_player.currentMedia
+             el.find("object").bind('playStateChange', function () {
+             alert('asdasd');
 
-            scope.$on('destroy', function () {
+             });
+             return _player;
+             }*/
+
+            function checkIsFinished() {
+                console.log(player.playState);
+                if (player.playState == 1) {
+
+                    if ($rootScope.isOnlineTran) {
+                        scope.$apply($location.path('/stream'));
+                        return;
+                    }
+                    $rootScope.$broadcast("the player is end");
+                    return;
+                }
+                _timeoutCheckFinished = $timeout(checkIsFinished, 5000);
+            }
+
+            scope.$on('$destroy', function () {
+                $timeout.cancel(_timeoutCheckFinished);
                 player.close();
             });
 
@@ -56,6 +86,6 @@
 
         vm.url = $scope.url
         vm.showFullScreen = false;
-        vm.isIE = isIE.value;
+        vm.isIE = isIE.data;
     }
 }());
