@@ -26,6 +26,18 @@ body {
 .rtl .toR {
     float: left;
 }
+.text-to-right {
+    text-align: right;
+}
+.text-to-left {
+    text-align: left;
+}
+.rtl .text-to-right {
+    text-align: left;
+}
+.rtl .text-to-left {
+    text-align: right;
+}
 
 .nav-link {
     padding: 0 3px;
@@ -331,6 +343,24 @@ body {
     background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABsAAAAcCAYAAACQ0cTtAAACOUlEQVR42u3WS2sTURjG8ZqJuTSJTW1T26YqrWmN1jt2ISpWTb1ABS3iRkS84WUndlNQFN34Fdy5d+U36MJVQVroKgnmvgqBZBV3Gf8DTyQMzMggRZC+8CNnJsn75CRnzqRvu/6/Mk1zRw8fwBhbEeSDAT92ih+cU7D8dYiahxFFTPoR1HOG+Fxm7h6kRiE1H8Y49iKJEcQRRRghhQegmTuFKkQMBBDBbkwgjVOY0+Mh7McoEhjSa+OIIawehluYgSB2YQ9SOI0MbuEFfuCizs8ijYOYwRSSCo8g0J2hU9AAkmp0AbfxDJ/RhlV3sYgFZPR4GedwApMKDMNvD+v+RlGM4aga3McKvqO3XuKhxt/wFI+xClOBScTU12dfEEEMIqUZudU7vMKajjewrvGqZjiFOAL2MANhJHAENzqdjumE+ojXeMvxJkyxAh/hEqYxiKBT2AiOY6lQKJhOesNqtdpm93y1WvUUlsAsFrPZrOmEeo/lcrm8Zh1XKpUNxuvWuFgsun6N9t/sAM43Go0PzWbzU6vV+sInztvClvHEGpdKpd8LxArinPMCsa9GjGp287iD51ip1+tfc7ncTzV7gJu4igVc8bL07Rf0GGYwhwyWcI9Zvsnn80XG13EGx3AYafzxonYKjOoNE2pyEmcx3263r2nLmu7ZJ4e9b1ew7fQxhY5jUgEp7FPIAPq9bcTut5cQoohjSOKIIKjGhrjeYryEBhWMnnuZ9+buoaJgUcjW/xeRvu36F/ULlStUoyVtQSYAAAAASUVORK5CYII=");
 }
 
+/* VOD Player */
+
+.back-to-stream {
+    display: inline-block;
+    padding: 0 25px 0 0;
+    background-color: #FFA200;
+    color: #000;
+    cursor: pointer;
+}
+#clip-save-button {
+    display: inline;
+    padding: 0 5px;
+}
+
+#addthis-toolbox {
+    float: left
+}
+
 /*BUTTONS*/
 /*.btn {*/
     /*background-color: #555;*/
@@ -355,30 +385,10 @@ body {
 
 
 
-
-/*.backToOnLine {*/
-    /*display: inline-block;*/
-    /*padding: 0 25px 0 0;*/
-    /*background-color: #FFA200;*/
-    /*color: #000;*/
-    /*cursor: pointer;*/
-/*}*/
-
-
-
 /*.playerDescription {*/
     /*border-top: 1px solid #C6D8F2;*/
 /*}*/
 
-
-/*#clip-save-button {*/
-    /*display: inline;*/
-    /*padding: 0 5px;*/
-/*}*/
-
-/*#addthis-toolbox {*/
-    /*float: left*/
-/*}*/
 
 /* Clearfix */
 

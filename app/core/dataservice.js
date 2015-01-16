@@ -17,6 +17,7 @@
             getTabs: getTabs,
             getVodCategories: getVodCategories,
             getVodItems: getVodItems,
+            getVodItem: getVodItem,
             getUpdates: getUpdates,
             getStreams: getStreams,
             getDynamicStream: getDynamicStream,
@@ -63,6 +64,16 @@
                 .catch(function(message) {exception.catcher('XHR Failed for getVodItems')(message); });
 
             function getVodItemsComplete(data, status, headers, config) {
+                return data.data;
+            }
+        }
+
+        function getVodItem(clip_id) {
+            return $http.get(API_BASE + 'vod_media/' + clip_id)
+                .then(getVodItemComplete)
+                .catch(function(message) {exception.catcher('XHR Failed for getVodItem')(message); });
+
+            function getVodItemComplete(data, status, headers, config) {
                 return data.data;
             }
         }

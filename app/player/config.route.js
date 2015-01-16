@@ -19,6 +19,14 @@
                     controller: 'Stream',
                     controllerAs: 'vm'
                 }
+            },
+            {
+                url: '/clip',
+                config: {
+                    templateUrl: 'app/player/clip.html',
+                    controller: 'Clip',
+                    controllerAs: 'vm'
+                }
             }
         ];
     }

@@ -34,7 +34,7 @@
                 if (player && player.playState == 3) {
                     player.fullScreen = true;
                 } else {
-                    alert("nofs_str");
+                    alert("Full Screen is only available when player is running");
                 }
             };
 

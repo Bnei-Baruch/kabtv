@@ -10,7 +10,8 @@
             restrict: 'AE',
             templateUrl: 'app/player/jwplayer.directive.html',
             scope: {
-                url: "=url"
+                url: "=url",
+                file: "=file"
             },
             replace: true,
             link: linkFunction
@@ -31,6 +32,16 @@
                     });
                 }
             });
+
+            scope.$watch('file', function(value){
+                if(value){
+                    jwplayer("jwplayer-container").setup({
+                        file: value,
+                        autostart: true,
+                        width: "100%"
+                    });
+                }
+            })
         }
 
     }

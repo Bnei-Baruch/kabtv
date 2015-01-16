@@ -15,7 +15,8 @@
          */
         'pascalprecht.translate',
         'angulartics',
-        'angulartics.google.analytics'
+        'angulartics.google.analytics',
+        'angularSpinner'
     ]);
 
 })();
