@@ -1,6 +1,7 @@
-<div class="clearfix" ng-controller="PlayListController as vm">{{vm.currentPlayListItem.content_type}}
+<div class="clearfix">
+    {{vm.currentPlayListItem.content_type}}
     <kabtv-jw-player ng-if="vm.currentPlayListItem.content_type == 'HLS'"
-                     data-url="{{vm.currentPlayListItem.play_url}}"></kabtv-jw-player>
+                     data-url="vm.currentPlayListItem.play_url"></kabtv-jw-player>
 
     <kabtv-wmv-player ng-if="vm.currentPlayListItem.content_type == 'WMV'"
                       data-url='vm.currentPlayListItem.play_url'>

@@ -2,13 +2,13 @@
     'use strict';
 
     angular.module('kabtv.player')
-        .controller('PlayListController', PlayListController);
+        .controller('Playlist', Playlist);
 
 
-    PlayListController.$inject = ['$rootScope', 'PlayerDataService', '$location', 'config', '$translate'];
+    Playlist.$inject = ['$rootScope', '$location', '$translate', 'dataservice', 'config'];
 
 
-    function PlayListController($rootScope, PlayerDataService, $location, config, $translate) {
+    function Playlist($rootScope, $location, $translate, dataservice, config) {
         var vm = this, playListObj = {};
         vm.currentPlayListItem = {};
         vm.runNextItem = runNextItem;
@@ -16,7 +16,7 @@
 
         $rootScope.$on("the player is end", runNextItem);
         function _refresh() {
-            PlayerDataService.getPlayList(config.lang.key).then(function (reqData) {
+            dataservice.getPlaylist(config.lang.key).then(function (reqData) {
                 if (!reqData)
                     return;
 

@@ -27,6 +27,14 @@
                     controller: 'Clip',
                     controllerAs: 'vm'
                 }
+            },
+            {
+                url: '/playlist',
+                config: {
+                    templateUrl: 'app/player/playlist.html',
+                    controller: 'Playlist',
+                    controllerAs: 'vm'
+                }
             }
         ];
     }
