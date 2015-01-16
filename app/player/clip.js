@@ -4,9 +4,9 @@
     angular.module('kabtv.player')
         .controller('Clip', Clip);
 
-    Clip.$inject = ['$scope', '$routeParams', '$location', 'usSpinnerService', 'dataservice', 'logger'];
+    Clip.$inject = ['$rootScope', '$routeParams', '$location', 'usSpinnerService', 'dataservice', 'config', 'logger'];
 
-    function Clip($scope, $routeParams, $location, usSpinnerService, dataservice, logger) {
+    function Clip($rootScope, $routeParams, $location, usSpinnerService, dataservice, config, logger) {
         var vm = this;
         vm.isWMV = null;
         vm.clip = null;
@@ -26,7 +26,8 @@
         }
 
         function gotoStream() {
-            $location.path('/');
+            $location.path('stream');
+            $location.url($location.path());
         }
 
         function getClip() {

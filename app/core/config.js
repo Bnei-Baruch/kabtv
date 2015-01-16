@@ -57,7 +57,7 @@
         }).preferredLanguage('he');
     }
 
-    runBlock.$inject = ['$translate', '$location', '$http', 'config' ];
+    runBlock.$inject = ['$translate', '$location', '$http', 'config'];
 
     function runBlock($translate, $location, $http, config) {
         $http.defaults.headers.common.Accept = 'application/json';

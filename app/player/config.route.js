@@ -13,7 +13,7 @@
     function getRoutes() {
         return [
             {
-                url: '/',
+                url: '/stream',
                 config: {
                     templateUrl: 'app/player/stream.html',
                     controller: 'Stream',

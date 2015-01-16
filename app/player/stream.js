@@ -4,14 +4,13 @@
     angular.module('kabtv.player')
         .controller('Stream', Stream);
 
-    Stream.$inject = ['$scope', '$routeParams', '$location', '$timeout', 'streams', 'dataservice',
+    Stream.$inject = ['$scope', '$rootScope', '$routeParams', '$location', '$timeout', 'streams', 'dataservice',
         'JerusalemTime', 'config', 'logger'];
 
-    function Stream($scope, $routeParams, $location, $timeout, streams, dataservice,
+    function Stream($scope, $rootScope, $routeParams, $location, $timeout, streams, dataservice,
                     JerusalemTime, config, logger) {
         var vm = this;
         vm.isVideo = true;
-        vm.isLive = null;
         vm.isHLS = null;
         vm.isWMV = null;
         vm.isAudio = null;
@@ -23,7 +22,6 @@
         vm.alternateQualities = [];
         vm.hasAudio = null;
         vm.jerusalemTime = null;
-        vm.isLiveTimer = null;
         vm.jerusalemTimeTimer = null;
         vm.changeLanguage = changeLanguage;
         vm.changeQuality = changeQuality;
@@ -39,10 +37,11 @@
                 vm.currentPlayerLang = config.languages[$routeParams.mediaLang.toUpperCase()];
             }
 
-            getEventStatus();
             getJerusalemTime();
 
             $scope.$on("$destroy", handleDestroy);
+
+            $rootScope.$watch('isLive', handleLiveStateChange);
 
             if (Object.keys(streams).length === 0) {
                 logger.info('Loading streams from server');
@@ -135,15 +134,6 @@
             vm.stream.resolved = true;
         }
 
-        function getEventStatus() {
-            vm.isLiveTimer = $timeout(function () {
-                dataservice.getEventStatus().then(function (isLive) {
-                    vm.isLive = isLive;
-                    getEventStatus();
-                });
-            }, (vm.isLiveTimer == null) ? 0 : 60000);
-        }
-
         function getJerusalemTime() {
             vm.jerusalemTimeTimer = $timeout(function () {
                 vm.jerusalemTime = JerusalemTime();
@@ -173,12 +163,19 @@
 
         function showQualitySelection() {
             return (vm.isVideo &&
-            (vm.isLive || vm.currentPlayerLang.key == 'HEB' || vm.currentPlayerLang.key == 'RUS'));
+            ($rootScope.isLive || vm.currentPlayerLang.key == 'HEB' || vm.currentPlayerLang.key == 'RUS'));
         }
 
         function handleDestroy(event) {
-            $timeout.cancel(vm.isLiveTimer);
             $timeout.cancel(vm.jerusalemTimeTimer);
+        }
+
+        function handleLiveStateChange(newVal, oldVal) {
+            if (vm.currentPlayerLang.key != 'HEB' && vm.currentPlayerLang.key != 'RUS') {
+                if (!newVal && oldVal) {
+                    $location.path('playlist');
+                }
+            }
         }
 
     }
