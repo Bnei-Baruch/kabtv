@@ -38,10 +38,21 @@
                     jwplayer("jwplayer-container").setup({
                         file: value,
                         autostart: true,
-                        width: "100%"
+                        width: "100%",
+                        events: {
+                            onComplete: onFinishedFile
+                        }
                     });
                 }
-            })
+            });
+
+            function onFinishedFile() {
+                if ($rootScope.isLive) {
+                    scope.$apply($location.path('/stream'));
+                    return;
+                }
+                $rootScope.$broadcast("the player is end");
+            }
         }
 
     }
