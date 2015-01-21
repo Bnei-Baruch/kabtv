@@ -50,7 +50,7 @@
         }
 
         function onLanguageChanged() {
-            vm.logoImage = '/assets/images/kab_tv_' + config.lang.key.toLowerCase() +'.gif';
+            vm.logoImage = './assets/images/kab_tv_' + config.lang.key.toLowerCase() +'.gif';
         }
 
         function helpImageUpdate() {
