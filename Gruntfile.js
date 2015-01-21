@@ -23,7 +23,7 @@ module.exports = function (grunt) {
             main: {
                 expand: true,
                 cwd: './',
-                src: ['**', '!js/*.js', '!**/*.css', '!node_modules/**', '!bower_components/**'],
+                src: ['**', '!js/*.js', '!**/*.css', '!app/**' ,'!views/**', '!node_modules/**', '!bower_components/**'],
                 dest: 'dist/'
             }
         },
@@ -31,6 +31,12 @@ module.exports = function (grunt) {
         rev: {
             files: {
                 src: ['dist/{js,css}/*.*']
+            }
+        },
+
+        concat: {
+            options: {
+                separator: ';'
             }
         },
 
@@ -138,4 +144,5 @@ module.exports = function (grunt) {
         'usemin',
         'ngconstant:dev'
     ]);
+
 };
