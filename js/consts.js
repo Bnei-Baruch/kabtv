@@ -1,5 +1,5 @@
 angular.module('kabtvConfig', [])
 
-.constant('API_BASE', 'http://dev.kab.tv/api/')
+.constant('API_BASE', 'http://cryptic-thicket-2657.herokuapp.com/api/')
 
 ;

@@ -1,0 +1,18 @@
+﻿<div id="vod" data-ng-controller="Vod as vm">
+    <select id="vod-categories" data-ng-model="vm.selectedCategory" data-ng-change="vm.changeCategory()"
+            data-ng-options="item.name for item in vm.categories">
+    </select>
+    <div id="vod-items" data-ng-style="vm.vodItemsStyle()">
+        <div data-ng-repeat="item in vm.vodItems" class="vod-item">
+            <div data-ng-click="vm.playVod(item)" class="clearfix">
+                <img data-ng-src="{{item.image_url}}" class="vod-item-image toL"
+                     title="{{item.title}}" alt="{{item.title}}" width="70" height="70"/>
+                <h2 class="vod-item-title">{{item.title}}</h2>
+                <p class="vod-item-description">{{item.description}}</p>
+                <p class="vod-item-duration">{{item.duration}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
