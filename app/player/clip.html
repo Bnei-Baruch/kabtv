@@ -1,0 +1,35 @@
+<div class="clearfix">
+    <div class="back-to-stream" data-ng-click="vm.gotoStream()" data-ng-if="isLive">
+        {{ 'PLAYER_BACK_TO_LIVE' | translate}}
+    </div>
+
+    <span us-spinner spinner-key="spinner-1" spinner-start-active="true"></span>
+
+    <div id="player">
+        <kabtv-jw-player data-ng-if="!vm.isWMV" data-file="vm.clip.play_url"></kabtv-jw-player>
+        <kabtv-wmv-player data-ng-if="vm.isWMV" data-url='vm.clip.play_url'></kabtv-wmv-player>
+    </div>
+
+    <div class="player-panel">
+        <h1 class="clip-title">{{vm.clip.title}}</h1>
+        <div id="clip-save-button">
+            <a data-ng-href="{{vm.clip.download_url}}" class="download-icon clip-icon-big">
+                <img src="assets/images/save-big.gif" title="{{ 'VOD_DOWNLOAD' | translate}}"
+                     alt="{{ 'VOD_DOWNLOAD' | translate}}">
+                {{ 'VOD_DOWNLOAD' | translate}}
+            </a>
+        </div>
+        <p>{{vm.clip.description}}</p>
+        <br/>
+
+        <!-- AddThis Button BEGIN -->
+        <div id="addthis-toolbox"
+             class="addthis_toolbox addthis_default_style addthis_16x16_style">
+            <!--<a class="addthis_button_facebook"></a>-->
+            <a class="addthis_button_twitter"></a>
+            <a class="addthis_button_google_plusone_share"></a>
+            <a class="addthis_button_email"></a>
+        </div>
+        <!-- AddThis Button END -->
+    </div>
+</div>

@@ -11,7 +11,9 @@
         "angular-translate": "~2.1.0",
         "angular-translate-loader-static-files": "~2.1.0",
         "soundmanager": "scottschiller/SoundManager2",
-        "angulartics": "~0.15.20"
+        "angulartics": "~0.15.20",
+        "angular-spinner": "~0.6.1"
+
     },
     "exportsOverride": {
         "/angular.*/": {
