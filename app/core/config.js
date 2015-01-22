@@ -52,7 +52,7 @@
 
         // Configure the translation provider
         $translateProvider.useStaticFilesLoader({
-            prefix: 'assets/i18n/locale-',
+            prefix: 'static/i18n/locale-',
             suffix: '.json'
         }).preferredLanguage('he');
     }
