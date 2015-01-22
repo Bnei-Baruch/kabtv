@@ -17,7 +17,8 @@
 
     <div class="player-panel">
         <label data-ng-repeat="item in vm.alternateLanguages"
-               class="langs {{(vm.currentPlayerLang.key == item.language.key) ? 'selected': '';}}">
+               class="langs {{(vm.currentPlayerLang.key == item.language.key) ? 'selected': '';}}"
+                data-ng-if="isLive || !item.is_live_only">
             {{item.language.caption}}
             <input type="radio" data-ng-model="vm.currentPlayerLang" data-ng-value="item.language.key"
                    data-ng-change="vm.changeLanguage(item.language)" name="vm.switcher-language-{{item.language.key}}"/>

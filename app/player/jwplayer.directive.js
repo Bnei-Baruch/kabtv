@@ -46,11 +46,17 @@
                 }
             });
 
+            scope.$on("$destroy", function(event) {
+                var jwp = jwplayer("jwplayer-container");
+                jwp.stop();
+                jwp.remove();
+            });
+
             function onFinishedFile() {
-                if ($rootScope.isLive) {
-                    scope.$apply($location.path('/stream'));
-                    return;
-                }
+                //if ($rootScope.isLive) {
+                //    scope.$apply($location.path('/stream'));
+                //    return;
+                //}
                 $rootScope.$broadcast("the player is end");
             }
         }

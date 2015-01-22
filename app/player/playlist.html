@@ -1,16 +1,9 @@
 <div class="clearfix">
-    {{vm.currentPlayListItem.content_type}}
-    <kabtv-jw-player ng-if="vm.currentPlayListItem.content_type == 'HLS'"
-                     data-url="vm.currentPlayListItem.play_url"></kabtv-jw-player>
 
-    <kabtv-wmv-player ng-if="vm.currentPlayListItem.content_type == 'WMV'"
-                      data-url='vm.currentPlayListItem.play_url'>
-    </kabtv-wmv-player>
+    <kabtv-jw-player data-file="vm.currentPlayListItem.play_url"></kabtv-jw-player>
 
-    <div class="playerPanel">
-        <h2 class="vod-item-title">{{vm.currentPlayListItem.title}}</h2>
-        <label>
-            {{vm.currentPlayListItem.caption}}
-        </label>
+    <div class="player-panel">
+        <h1 class="vod-item-title">{{vm.currentPlayListItem.title}}</h1>
+        <p>{{vm.currentPlayListItem.description}}</p>
     </div>
 </div>

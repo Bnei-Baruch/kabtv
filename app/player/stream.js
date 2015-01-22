@@ -87,7 +87,7 @@
                 if (value == 'audio') {
                     vm.audioStream = s;
                     vm.hasAudio = true;
-                } else {
+                } else if (!s.is_live_only || $rootScope.isLive) {
                     if (s.quality == vm.currentPlayerQuality) {
                         vm.stream = s;
                     } else {
@@ -115,7 +115,7 @@
                     langStreams = streams[value];
                     angular.forEach(Object.keys(langStreams), function(value, i) {
                         var s = langStreams[value];
-                        if (s.quality == vm.currentPlayerQuality ) {
+                        if (s.quality == vm.currentPlayerQuality) {
                             vm.alternateLanguages.push(s);
                         }
                     });

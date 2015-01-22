@@ -5,18 +5,21 @@
         .controller('Playlist', Playlist);
 
 
-    Playlist.$inject = ['$rootScope', '$location', '$translate', 'dataservice', 'config'];
+    Playlist.$inject = ['$rootScope', '$location', 'dataservice', 'config'];
 
 
-    function Playlist($rootScope, $location, $translate, dataservice, config) {
+    function Playlist($rootScope, $location, dataservice, config) {
         var vm = this, playListObj = {};
         vm.currentPlayListItem = {};
         vm.runNextItem = runNextItem;
-        _refresh();
+
+        activate();
 
         $rootScope.$on("the player is end", runNextItem);
-        function _refresh() {
-            dataservice.getPlaylist(config.lang.key).then(function (reqData) {
+        $rootScope.$watch('isLive', handleLiveStateChange);
+
+        function activate() {
+            dataservice.getPlaylist().then(function (reqData) {
                 if (!reqData)
                     return;
 
@@ -29,7 +32,7 @@
             var _playListObj = {}, _playedPlayList = [], _playedPlayListName = 'playedPlayList' + config.lang.key;
 
             if (!localStorage.getItem(_playedPlayListName))
-                localStorage.setItem(_playedPlayListName, '')
+                localStorage.setItem(_playedPlayListName, '');
 
             if (listData.date == new Date().getDate()) {
                 _playedPlayList = localStorage.getItem(_playedPlayListName).split(',');
@@ -49,7 +52,7 @@
             var _item = getRandomItem();
             if (!_item) {
                 localStorage.setItem(_playedPlayListName, '');
-                _refresh();
+                activate();
                 return;
             }
             //add to deleted in the localStorage
@@ -70,5 +73,12 @@
             });
             return item;
         }
+
+        function handleLiveStateChange(newVal, oldVal) {
+            if (newVal && !oldVal) {
+                $location.path('stream');
+            }
+        }
+
     }
-}())
+}());

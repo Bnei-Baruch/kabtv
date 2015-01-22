@@ -27,7 +27,7 @@
                     }
                     getEventStatus();
                 });
-            }, (isLiveTimer == null) ? 0 : 60000);
+            }, (isLiveTimer == null) ? 0 : 5000);
         }
 
         function handleDestroy(event) {
