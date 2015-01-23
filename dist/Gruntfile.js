@@ -34,12 +34,6 @@ module.exports = function (grunt) {
             }
         },
 
-        concat: {
-            options: {
-                separator: ';'
-            }
-        },
-
         useminPrepare: {
             html: 'index.html'
         },
@@ -123,9 +117,9 @@ module.exports = function (grunt) {
         'copy',
         'useminPrepare',
         'ngtemplates',
-        'concat',
-        'uglify',
-        'cssmin',
+        'concat:generated',
+        'uglify:generated',
+        'cssmin:generated',
         'rev',
         'usemin',
         'ngconstant:dev'
@@ -137,9 +131,9 @@ module.exports = function (grunt) {
         'copy',
         'useminPrepare',
         'ngtemplates',
-        'concat',
-        'uglify',
-        'cssmin',
+        'concat:generated',
+        'uglify:generated',
+        'cssmin:generated',
         'rev',
         'usemin',
         'ngconstant:dev'
