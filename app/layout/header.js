@@ -15,6 +15,7 @@
         vm.helpImage = '';
         vm.helpImageTimer = null;
         vm.isCurrentLang = isCurrentLang;
+        vm.gotoHelpMessage = gotoHelpMessage;
 
         activate();
 
@@ -69,6 +70,49 @@
                     return 'es';
             }
             return 'en';
+        }
+
+        function gotoHelpMessage() {
+            var locale = 'en';
+            var style = 'silver';
+            switch (config.lang.key.toLowerCase()) {
+                case 'heb':
+                    locale = 'he';
+                    style = 'silver_he';
+                    break;
+                case 'rus':
+                    locale = 'ru';
+                    break;
+                case 'eng':
+                    locale = 'en';
+                    break;
+                case 'spa':
+                    locale = 'es';
+                    break;
+                case 'fre':
+                    locale = 'fr';
+                    break;
+                case 'ita':
+                    locale = 'it';
+                    break;
+                case 'ger':
+                    locale = 'de';
+                    break;
+                case 'por':
+                    locale = 'pt';
+                    break;
+            }
+
+            // The code below was given from the old site. Maintain with care...
+            if(navigator.userAgent.toLowerCase().indexOf('opera') != -1 && window.event.preventDefault)
+                window.event.preventDefault();
+            var newWindow = window.open('http://live.kab.tv/client.php?locale=' + locale +
+                '&style=' + style + '&group=3&url=' + escape(document.location.href) +
+                '&referrer=' + escape(document.referrer),
+                'mibew', 'toolbar=0,scrollbars=0,location=0,status=1,menubar=0,width=640,height=480,resizable=1');
+            newWindow.focus();
+            newWindow.opener = window;
+            return false;
         }
 
         function handleDestroy(event) {
