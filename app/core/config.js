@@ -47,6 +47,8 @@
 
         routehelperConfigProvider.config.resolveAlways = resolveAlways;
 
+        routehelperConfigProvider.config.otherwise = {redirectTo: '/stream'};
+
         // Configure the common exception handler
         exceptionHandlerProvider.configure(config.appErrorPrefix);
 
@@ -62,7 +64,7 @@
     function runBlock($translate, $location, $http, config) {
         $http.defaults.headers.common.Accept = 'application/json';
 
-        var lang = $location.absUrl().split("/")[3].toUpperCase();
+        var lang = $location.absUrl().split("/")[3].toUpperCase().substring(0, 3);
         if (!config.languages.hasOwnProperty(lang)) {
              lang = 'HEB';
         }
