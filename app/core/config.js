@@ -47,6 +47,8 @@
 
         routehelperConfigProvider.config.resolveAlways = resolveAlways;
 
+        routehelperConfigProvider.config.otherwise = {redirectTo: '/stream'};
+
         // Configure the common exception handler
         exceptionHandlerProvider.configure(config.appErrorPrefix);
 
