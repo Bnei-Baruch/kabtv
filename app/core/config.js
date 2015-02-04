@@ -59,22 +59,27 @@
         }).preferredLanguage('he');
     }
 
-    runBlock.$inject = ['$translate', '$location', '$http', 'config'];
+    runBlock.$inject = ['$translate', '$location', '$http', '$rootScope', 'config'];
 
-    function runBlock($translate, $location, $http, config) {
+    function runBlock($translate, $location, $http, $rootScope, config) {
         $http.defaults.headers.common.Accept = 'application/json';
 
-        var lang = $location.absUrl().split("/")[3].toUpperCase().substring(0, 3);
-        if (!config.languages.hasOwnProperty(lang)) {
-             lang = 'HEB';
-        }
-
-        config.lang = config.languages[lang];
-        config.pageDirection = (lang == "HEB") ? "rtl" : "ltr";
         config.isVideo = $location.host().toLowerCase().indexOf('kab.fm') < 0;
 
-        $translate.use(config.lang.locale);
-        document.title = $translate.instant('SITE_TITLE');
+        function setLanguageConfig() {
+            var lang = $location.absUrl().split("/")[3].toUpperCase().substring(0, 3);
+            if (!config.languages.hasOwnProperty(lang)) {
+                 lang = 'HEB';
+            }
+            config.lang = config.languages[lang];
+            config.pageDirection = (lang == "HEB") ? "rtl" : "ltr";
+            $translate.use(config.lang.locale);
+            document.title = $translate.instant('SITE_TITLE');
+        }
+
+        setLanguageConfig();
+
+        $rootScope.$on('routeChangeSuccess', function () { setLanguageConfig(); });
     }
 
 })();
