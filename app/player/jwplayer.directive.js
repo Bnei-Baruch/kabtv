@@ -54,10 +54,6 @@
             });
 
             function onFinishedFile() {
-                //if ($rootScope.isLive) {
-                //    scope.$apply($location.path('/stream'));
-                //    return;
-                //}
                 $rootScope.$broadcast("the player is end");
             }
         }
