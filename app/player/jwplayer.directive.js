@@ -5,7 +5,8 @@
         .directive('kabtvJwPlayer', KabtvJwPlayer);
 
 
-    function KabtvJwPlayer() {
+    KabtvJwPlayer.$inject = ['$rootScope'];
+    function KabtvJwPlayer($rootScope) {
         var directive = {
             restrict: 'AE',
             templateUrl: 'app/player/jwplayer.directive.html',

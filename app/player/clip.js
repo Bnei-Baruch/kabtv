@@ -15,6 +15,8 @@
 
         activate();
 
+        $rootScope.$on("the player is end", gotoStream);
+
         function activate() {
             vm.clipId = $routeParams.mediaId;
 
