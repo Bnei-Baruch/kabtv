@@ -16,6 +16,7 @@
             // $routeProvider: undefined
             // docTitle: ''
             // resolveAlways: {ready: function(){ } }
+            // otherwise: {redirectTo: '/'}
         };
 
         this.$get = function() {
@@ -51,7 +52,7 @@
                     angular.extend(route.config.resolve || {}, routehelperConfig.config.resolveAlways);
                 $routeProvider.when(route.url, route.config);
             });
-            $routeProvider.otherwise({redirectTo: '/'});
+            $routeProvider.otherwise(routehelperConfig.config.otherwise || {redirectTo: '/'});
         }
 
         function handleRoutingErrors() {

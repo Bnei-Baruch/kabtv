@@ -97,7 +97,9 @@
 
             });
 
-            if (!vm.stream) { return; }
+            if (!vm.stream) {
+                $location.path('playlist');
+            }
 
             if (vm.stream.is_dynamic && !vm.stream.resolved) {
                 logger.info("Loading dynamic stream for " + vm.stream.language.key + " " + vm.stream.quality);
