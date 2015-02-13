@@ -94,38 +94,37 @@
                         vm.alternateQualities.push(s);
                     }
                 }
-
             });
 
-            if (!vm.stream) {
-                $location.path('playlist');
-            }
-
-            if (vm.stream.is_dynamic && !vm.stream.resolved) {
-                logger.info("Loading dynamic stream for " + vm.stream.language.key + " " + vm.stream.quality);
-                dataservice.getDynamicStream(vm.stream.url);
-                // We can't use angular jsonp promise because our endpoint doesn't respect the JSONP protocol.
-                // Allowing to set the callback name...
-            }
-
-            vm.isHLS = vm.stream.format.toLowerCase() == 'hls';
-            vm.isWMV = vm.stream.format.toLowerCase() == 'wmv';
-
-            // calc alternate stream with same quality in different languages
-            angular.forEach(Object.keys(config.languages), function(value, i) {
-                if (value != vm.currentPlayerLang.key) {
-                    langStreams = streams[value];
-                    angular.forEach(Object.keys(langStreams), function(value, i) {
-                        var s = langStreams[value];
-                        if (s.quality == vm.currentPlayerQuality) {
-                            vm.alternateLanguages.push(s);
-                        }
-                    });
+            if (vm.stream) {
+                if (vm.stream.is_dynamic && !vm.stream.resolved) {
+                    logger.info("Loading dynamic stream for " + vm.stream.language.key + " " + vm.stream.quality);
+                    dataservice.getDynamicStream(vm.stream.url);
+                    // We can't use angular jsonp promise because our endpoint doesn't respect the JSONP protocol.
+                    // Allowing to set the callback name...
                 }
-            });
 
-            if (!config.isVideo) {
-                vm.playAudio();
+                vm.isHLS = vm.stream.format.toLowerCase() == 'hls';
+                vm.isWMV = vm.stream.format.toLowerCase() == 'wmv';
+
+                // calc alternate stream with same quality in different languages
+                angular.forEach(Object.keys(config.languages), function(value, i) {
+                    if (value != vm.currentPlayerLang.key) {
+                        langStreams = streams[value];
+                        angular.forEach(Object.keys(langStreams), function(value, i) {
+                            var s = langStreams[value];
+                            if (s.quality == vm.currentPlayerQuality) {
+                                vm.alternateLanguages.push(s);
+                            }
+                        });
+                    }
+                });
+
+                if (!config.isVideo) {
+                    vm.playAudio();
+                }
+            } else {
+                $location.path('playlist');
             }
         }
 

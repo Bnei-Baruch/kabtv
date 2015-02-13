@@ -4,9 +4,9 @@
     angular.module('kabtv.player')
         .directive('kabtvJwPlayer', KabtvJwPlayer);
 
-    KabtvJwPlayer.$inject = ['$rootScope', 'CLIP_ON_FINISH_EVENT'];
+    KabtvJwPlayer.$inject = ['$rootScope', 'logger', 'CLIP_ON_FINISH_EVENT'];
 
-    function KabtvJwPlayer($rootScope, CLIP_ON_FINISH_EVENT) {
+    function KabtvJwPlayer($rootScope, logger, CLIP_ON_FINISH_EVENT) {
         var directive = {
             restrict: 'AE',
             templateUrl: 'app/player/jwplayer.directive.html',
@@ -48,9 +48,13 @@
             });
 
             scope.$on("$destroy", function(event) {
-                var jwp = jwplayer("jwplayer-container");
-                jwp.stop();
-                jwp.remove();
+                try {
+                    var jwp = jwplayer("jwplayer-container");
+                    jwp.stop();
+                    jwp.remove();
+                } catch (e) {
+                    logger.error("Error destroying jwplayer: " + e.message);
+                }
             });
 
             function onFinishedFile() {
