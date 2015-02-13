@@ -30,11 +30,7 @@
         }
 
         function gotoStream() {
-            var _path = '/playlist';
-            if ($rootScope.isLive)
-                _path = '/stream';
-            if ($location.url() != _path)
-                $rootScope.$apply($location.url(_path));
+            $location.path('stream');
         }
 
         function getClip() {
