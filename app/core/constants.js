@@ -7,5 +7,7 @@ angular.module('app.core')
 
 .constant('HELP_IMAGE_BASE', 'http://live.kab.tv/button.php?image=tech')
 
+.constant('CLIP_ON_FINISH_EVENT', 'the player is end')
+
 ;
 })(angular);

@@ -5,17 +5,17 @@
         .controller('Playlist', Playlist);
 
 
-    Playlist.$inject = ['$rootScope', '$location', 'dataservice', 'config'];
+    Playlist.$inject = ['$rootScope', '$location', 'dataservice', 'config', 'CLIP_ON_FINISH_EVENT'];
 
 
-    function Playlist($rootScope, $location, dataservice, config) {
+    function Playlist($rootScope, $location, dataservice, config, CLIP_ON_FINISH_EVENT) {
         var vm = this, playListObj = {};
         vm.currentPlayListItem = {};
         vm.runNextItem = runNextItem;
 
         activate();
 
-        $rootScope.$on("the player is end", runNextItem);
+        $rootScope.$on(CLIP_ON_FINISH_EVENT, runNextItem);
         $rootScope.$watch('isLive', handleLiveStateChange);
 
         function activate() {

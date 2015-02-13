@@ -4,9 +4,9 @@
     angular.module('kabtv.player')
         .directive('kabtvJwPlayer', KabtvJwPlayer);
 
+    KabtvJwPlayer.$inject = ['$rootScope', 'CLIP_ON_FINISH_EVENT'];
 
-    KabtvJwPlayer.$inject = ['$rootScope'];
-    function KabtvJwPlayer($rootScope) {
+    function KabtvJwPlayer($rootScope, CLIP_ON_FINISH_EVENT) {
         var directive = {
             restrict: 'AE',
             templateUrl: 'app/player/jwplayer.directive.html',
@@ -54,7 +54,7 @@
             });
 
             function onFinishedFile() {
-                $rootScope.$broadcast("the player is end");
+                $rootScope.$broadcast(CLIP_ON_FINISH_EVENT);
             }
         }
 
