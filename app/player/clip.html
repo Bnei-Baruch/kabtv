@@ -1,6 +1,6 @@
 <div class="clearfix">
     <div class="back-to-stream" data-ng-click="vm.gotoStream()"
-         data-ng-if="isLive || config.lang.key == 'HEB' || config.lang.key == 'RUS'">
+         data-ng-if="$root.isLive || $root.config.lang.key == 'HEB' || $root.config.lang.key == 'RUS'">
         {{ 'PLAYER_BACK_TO_LIVE' | translate}}
     </div>
 
