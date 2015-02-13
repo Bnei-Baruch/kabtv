@@ -10,6 +10,7 @@
     function runBlock($rootScope, $timeout, $location, dataservice, config) {
         var isLiveTimer = null;
 
+        $rootScope.config = config;
         $rootScope.$on('$destroy', handleDestroy);
 
         function getEventStatus() {
