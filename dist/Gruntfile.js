@@ -77,7 +77,8 @@ module.exports = function (grunt) {
                 wrap: true,
                 constants: {
                     API_BASE: 'http://kab.tv/api/',
-                    HELP_IMAGE_BASE: 'http://live.kab.tv/button.php?image=tech'
+                    HELP_IMAGE_BASE: 'http://live.kab.tv/button.php?image=tech',
+                    CLIP_ON_FINISH_EVENT: 'the player is end'
                 }
             },
             dev: {
