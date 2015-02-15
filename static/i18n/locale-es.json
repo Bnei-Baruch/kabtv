@@ -1,0 +1,25 @@
+{
+    "SITE_TITLE": "Kab.tv - Academia internacional de Cabalá",
+    "SITE_DESCRIPTION": "¡La Academia Internacional de La Cabalá, bajo la dirección de Michael Laitman, PhD, da la bienvenida a todos los oyentes y espectadores de su señal! Las conferencias son traducidas en formato de vídeo y audio, con demostración esquemática y con la posibilidad de hacer preguntas y obtener respuestas en línea.",
+    "SITE_KEYWORDS": "Cabalá, Cabalá para todos, TV, transmisión en vivo, buenos días, bnei baruj, bnei baruch, la ciencia de la Cabalá, lecciones de Cabalá, clases de Cabalá",
+
+    "PLAYER_BACK_TO_LIVE": "Volver a: Transmisión en vivo",
+    "PLAYER_FULLSCREEN": "Pantalla completa",
+    "PLAYER_BROADCAST_TIME": "Programación según la hora de Israel ({{time}})",
+    "PLAYER_VIDEO": "Video",
+    "PLAYER_AUDIO": "Audio",
+    "PLAYER_EXIT_FULLSCREEN": "Para salir del modo de plena pantalla presione Esc",
+    "PLAYER_NO_FULLSCREEN": "Para activar un modo de pantalla completa haga doble clic en el player",
+
+    "VOD_DOWNLOAD": "Descargar",
+
+    "TAB_UPDATES": "anuncios",
+    "TAB_SCHEDULE": "programa",
+    "TAB_QUESTIONS": "preguntas",
+    "TAB_SKETCHES": "dibujos",
+
+    "STREAM_QUALITY": "Calidad Broadcast",
+    "HIGH": "Alto",
+    "MEDIUM": "Medium",
+    "LOW": "Baja"
+}

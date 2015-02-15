@@ -1,60 +1,90 @@
 <!DOCTYPE html>
-<!--[if IE 8]>         <html lang="en" id="ng-app" ng-app="kabtv" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html lang="en" id="ng-app" ng-app="kabtv" class="no-js"> <!--<![endif]-->
+<!--[if IE 8]>         <html lang="en" id="ng-app" data-ng-app="kabtv" ng-strict-di class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" id="ng-app" data-ng-app="kabtv" ng-strict-di class="no-js"> <!--<![endif]-->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title ng-bind="'SITE_TITLE' | translate">Kab TV</title>
     <meta name="description" content="{{ 'SITE_DESCRIPTION' | translate}}">
     <meta name="keywords" content="{{ 'SITE_KEYWORDS' | translate}}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title data-ng-bind="'SITE_TITLE' | translate">Kab TV</title>
+
     <link href="favicon.ico" type="image/x-icon" rel="icon"/>
 
     <!-- build:css css/kabtv.min.css -->
-    <link type="text/css" rel="stylesheet" media="all" href="css/cssreset-min.css">
-    <link type="text/css" rel="stylesheet" media="all" href="css/kabtv.css">
+    <link type="text/css" rel="stylesheet" media="all" href="static/css/cssreset-min.css">
+    <link type="text/css" rel="stylesheet" media="all" href="static/css/kabtv.css">
     <!-- endbuild -->
 
 </head>
-<body ng-controller="kabtvMain">
+<body>
     <!--[if lt IE 9]>
     <script type="text/javascript">
         window.location.href = 'http://' + window.location.host + '/ie8_index.html';
     </script>
     <![endif]-->
 
-    <div class="{{dir}} allContent">
-        <div class="container">
-            <div ng-include="'views/header.html'"></div>
-            <div kabtv-nav></div>
-            <div class="content clearfix">
-                <div kabtv-clip-list class="aside toR clipList clearfix">111</div>
-                <div ng-include="'views/tabs.html'" kabtv-tabs class="aside toL clearfix">222</div>
-                <div class="mid"  ng-view="" ></div>
-            <div ></div>
-            </div>
-            <div ng-include="'views/footer.html'" class="footer"></div>
-        </div>
-    </div>
+    <div id="container" data-ng-include="'app/layout/shell.html'"></div>
+
+    <!-- build:js js/kabtv.vendor.min.js -->
+    <script type="text/javascript" src="lib/modernizr/modernizr.js"></script>
+    <script type="text/javascript" src="lib/angular/angular.js"></script>
+    <script type="text/javascript" src="lib/angular-route/angular-route.js"></script>
+    <script type="text/javascript" src="lib/angular-translate/angular-translate.js"></script>
+    <script type="text/javascript" src="lib/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+    <script type="text/javascript" src="lib/angulartics/angulartics.js"></script>
+    <script type="text/javascript" src="lib/angulartics/angulartics-ga.js"></script>
+    <script type="text/javascript" src="lib/spin.js/spin.js"></script>
+    <script type="text/javascript" src="lib/angular-spinner/angular-spinner.js"></script>
+    <script type="text/javascript" src="lib/soundmanager/soundmanager2-nodebug.js"></script>
+    <!-- endbuild -->
 
     <!-- build:js js/kabtv.min.js -->
-    <script type="text/javascript" src="lib/modernizr/modernizr.js"></script>
-    <script type="text/javascript" src="lib/angular/angular.min.js"></script>
-    <script type="text/javascript" src="lib/angular-route/angular-route.min.js"></script>
-    <script type="text/javascript" src="lib/angular-translate/angular-translate.min.js"></script>
-    <script type="text/javascript" src="lib/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
-    <script type="text/javascript" src="lib/angulartics/angulartics.min.js"></script>
-    <script type="text/javascript" src="lib/angulartics/angulartics-ga.min.js"></script>
-    <script type="text/javascript" src="js/consts.js"></script>
-    <script type="text/javascript" src="js/module.js"></script>
-    <script type="text/javascript" src="js/services.js"></script>
-    <script type="text/javascript" src="js/filters.js"></script>
-    <script type="text/javascript" src="js/controllers.js"></script>
-    <script type="text/javascript" src="js/directives.js"></script>
+    <!-- Bootstrapping -->
+    <script type="text/javascript" src="app/app.module.js"></script>
+
+    <!-- Reusable Blocks/Modules -->
+    <script src="app/blocks/exception/exception.module.js"></script>
+    <script src="app/blocks/exception/exception-handler.provider.js"></script>
+    <script src="app/blocks/exception/exception.js"></script>
+    <script src="app/blocks/logger/logger.module.js"></script>
+    <script src="app/blocks/logger/logger.js"></script>
+    <script src="app/blocks/router/router.module.js"></script>
+    <script src="app/blocks/router/routehelper.js"></script>
+
+    <!-- core module -->
+    <script src="app/core/core.module.js"></script>
+    <script src="app/core/constants.js"></script>
+    <script src="app/core/config.js"></script>
+    <script src="app/core/dataservice.js"></script>
+
+    <!-- Common application components -->
+    <script src="app/vod/vod.module.js"></script>
+    <script src="app/vod/vod.js"></script>
+    <script src="app/tabs/tabs.module.js"></script>
+    <script src="app/tabs/tabs.js"></script>
+    <script src="app/tabs/updates.js"></script>
+
+    <!-- layout -->
+    <script src="app/layout/layout.module.js"></script>
+    <script src="app/layout/shell.js"></script>
+    <script src="app/layout/header.js"></script>
+    <script src="app/layout/footer.js"></script>
+
+    <!-- player  -->
+    <script src="app/player/player.module.js"></script>
+    <script src="app/player/config.route.js"></script>
+    <script src="app/player/playerService.js"></script>
+    <script src="app/player/jwplayer.directive.js"></script>
+    <script src="app/player/wmvplayer.directive.js"></script>
+    <script src="app/player/soundmanager.directive.js"></script>
+    <script src="app/player/stream.js"></script>
+    <script src="app/player/playlist.js"></script>
+    <script src="app/player/clip.js"></script>
+
     <!-- endbuild -->
 
     <script async type="text/javascript" src="http://jwpsrv.com/library/ElAvGDL5EeKp9yIACp8kUw.js"></script>
-    <script async type="text/javascript" src="lib/soundmanager/soundmanager2-nodebug-jsmin.js"></script>
 
     <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5369cd60201a7122"></script>
     <script>

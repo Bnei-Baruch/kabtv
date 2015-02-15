@@ -1,0 +1,35 @@
+<div id="updates" data-ng-controller="Updates as vm">
+    <div data-ng-repeat="update in vm.updates" class="update-item clearfix">
+        <div class="ad" data-ng-if="update.url">
+            <div class="header">
+                <a data-ng-href="{{update.url}}" class="link" target="_blank">
+                    <span class="title" data-ng-bind-html="update.title"></span>
+                    <span class="subtitle" data-ng-bind-html="update.subtitle"></span>
+                </a>
+            </div>
+            <div class="body" data-ng-if="update.description">
+                <div class="description" data-ng-bind-html="update.description"></div>
+            </div>
+            <div class="body" data-ng-if="update.image_url">
+                <a data-ng-href="{{update.url}}" target="_blank">
+                    <img data-ng-src="{{update.image_url}}" >
+                </a>
+            </div>
+            <a data-ng-if="update.url_caption" data-ng-href="{{update.url}}" class="url toR" target="_blank">
+                {{update.url_caption}}>>
+            </a>
+        </div>
+        <div class="ad" data-ng-if="!update.url">
+            <div class="header">
+                <span class="title" data-ng-bind-html="update.title"></span>
+                <span class="subtitle" data-ng-bind-html="update.subtitle"></span>
+            </div>
+            <div class="body" data-ng-if="update.description">
+                <div class="description" data-ng-bind-html="update.description"></div>
+            </div>
+            <div class="body" data-ng-if="update.image_url">
+                <img data-ng-src="{{update.image_url}}">
+            </div>
+        </div>
+    </div>
+</div>
