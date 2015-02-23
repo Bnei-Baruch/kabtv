@@ -16,7 +16,7 @@
         activate();
 
         $rootScope.$on(CLIP_ON_FINISH_EVENT, runNextItem);
-        $rootScope.$watch('isLive', handleLiveStateChange);
+        $rootScope.$watch('$root.isLive', handleLiveStateChange);
 
         function activate() {
             dataservice.getPlaylist().then(function (reqData) {
@@ -48,6 +48,11 @@
 
 
         function runNextItem() {
+            if ($rootScope.isLive) {
+                $location.path('stream');
+                return;
+            }
+
             var _playedPlayListName = 'playedPlayList' + config.lang.key;
             var _item = getRandomItem();
             if (!_item) {

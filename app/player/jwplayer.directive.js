@@ -27,6 +27,7 @@
                     jwplayer("jwplayer-container").setup({
                         file: value,
                         type:'hls',
+                        androidhls: true,
                         autostart: true,
                         aspectratio: '16:9',
                         width: "100%"
