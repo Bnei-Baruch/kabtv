@@ -16,6 +16,7 @@
         'pascalprecht.translate',
         'angulartics',
         'angulartics.google.analytics',
+        'angulartics.google.tagmanager',
         'angularSpinner'
     ]);
 
