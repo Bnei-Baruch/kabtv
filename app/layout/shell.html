@@ -1,17 +1,17 @@
-﻿<div id="shell" class="{{vm.pageDirection}}" data-ng-controller="Shell as vm">
+﻿<div id="shell" class=" container {{vm.pageDirection}}" data-ng-controller="Shell as vm">
     <header class="clearfix">
         <div data-ng-include="'app/layout/header.html'"></div>
     </header>
 
-    <div id="main-panel" class="clearfix" data-ng-style="vm.mainPanelStyle()">
-        <div id="left-panel" data-ng-include="'app/vod/vod.html'"></div>
-        <div id="center-panel" data-ng-view="" >
+    <div id="main-panel" class="clearfix row" data-ng-style="vm.mainPanelStyle()">
+        <aside data-ng-include="'app/vod/vod.html'" class="col-md-3 hidden-xs aside"></aside>
+        <div data-ng-view="" class="col-md-6">
             Center panel content
         </div>
-        <div id="right-panel" data-ng-include="'app/tabs/tabs.html'"></div>
+        <aside data-ng-include="'app/tabs/tabs.html'" class="col-md-3 aside"></aside>
     </div>
 
-    <footer id="footer" class="clearfix">
+    <footer id="footer" class="clearfix modal-footer navbar-fixed-bottom">
         <div data-ng-include="'app/layout/footer.html'"></div>
     </footer>
 </div>
