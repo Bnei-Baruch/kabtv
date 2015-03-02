@@ -11,7 +11,7 @@
             restrict: 'AE',
             templateUrl: 'app/player/jwplayer.directive.html',
             scope: {
-                url: "=url",
+                stream: "=stream",
                 file: "=file"
             },
             replace: true,
@@ -22,11 +22,16 @@
         return directive;
 
         function linkFunction(scope, el, attr, vm) {
-            scope.$watch('url', function(value){
-                if(value && value.indexOf('.js', value.length - 3) == -1){
+            scope.$watch('stream.resolved', function(value){
+                if(value){
                     jwplayer("jwplayer-container").setup({
-                        file: value,
-                        type:'hls',
+                        playlist: [{
+                            sources: [
+                                { type: 'hls', file: scope.stream.hlsUrl},
+                                { type: 'flash', file: scope.stream.rtmpUrl}
+                            ]
+                        }],
+                        primary: 'flash',
                         androidhls: true,
                         autostart: true,
                         aspectratio: '16:9',

@@ -16,6 +16,7 @@
         vm.isAudio = null;
         vm.stream = null;
         vm.audioStream = null;
+        //vm.streamFormats = ['RTMP', 'HLS'];
         vm.currentPlayerLang = config.lang;
         vm.currentPlayerQuality = $routeParams.playerQuality || "high";
         vm.alternateLanguages = [];
@@ -44,6 +45,12 @@
             $rootScope.$watch('isLive', handleLiveStateChange);
 
             if (Object.keys(streams).length === 0) {
+                //logger.info('Loading preferred streams formats');
+                //dataservice.getStreamFormats().then(function (data) {
+                //    logger.info('Stream formats loaded');
+                //    vm.streamFormats = data
+                //});
+
                 logger.info('Loading streams from server');
                 return dataservice.getStreams().then(function (data) {
                     logger.info('Streams loaded');
@@ -133,6 +140,8 @@
         function buildDynamicGeoStream(r) {
             logger.info("Dynamic stream for " + vm.stream.language.key + " " + vm.stream.quality + " loaded.");
             vm.stream.url = r.hlsUrl || r.netUrl;
+            vm.stream.hlsUrl = r.hlsUrl;
+            vm.stream.rtmpUrl = r.netUrl + ":" + r.streamName;
             vm.stream.resolved = true;
         }
 

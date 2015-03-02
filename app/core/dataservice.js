@@ -23,6 +23,7 @@
             getPlaylist: getPlaylist,
             getDynamicStream: getDynamicStream,
             getEventStatus: getEventStatus,
+            getStreamFormats: getStreamFormats,
             ready: ready
         };
 
@@ -131,6 +132,18 @@
         function getDynamicStream(url) {
             return $http.jsonp(url, {});
             //.catch(function(message) {exception.catcher('JSONP Failed for getDynamicStream')(message); });
+        }
+
+        function getStreamFormats() {
+            return $http.get(API_BASE + 'device/stream_formats')
+                .then(getStreamFormatsComplete)
+                .catch(function (message) {
+                    exception.catcher('XHR Failed for getStreamFormats')(message);
+                });
+
+            function getStreamFormatsComplete(data, status, headers, config) {
+                return (data.data.formats);
+            }
         }
 
         function getEventStatus() {
