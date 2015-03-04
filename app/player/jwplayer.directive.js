@@ -27,8 +27,8 @@
                     jwplayer("jwplayer-container").setup({
                         playlist: [{
                             sources: [
-                                { type: 'hls', file: scope.stream.hlsUrl},
-                                { type: 'flash', file: scope.stream.rtmpUrl}
+                                { file: scope.stream.rtmpUrl },
+                                { file: scope.stream.hlsUrl }
                             ]
                         }],
                         primary: 'flash',

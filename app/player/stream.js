@@ -139,9 +139,9 @@
         // This is called by the global scoped JSONP callback. DynamicGeoStreamLocator
         function buildDynamicGeoStream(r) {
             logger.info("Dynamic stream for " + vm.stream.language.key + " " + vm.stream.quality + " loaded.");
-            vm.stream.url = r.hlsUrl || r.netUrl;
+            //vm.stream.url = r.hlsUrl || r.netUrl;
             vm.stream.hlsUrl = r.hlsUrl;
-            vm.stream.rtmpUrl = r.netUrl + ":" + r.streamName;
+            vm.stream.rtmpUrl = r.netUrl + "/" + r.streamName;
             vm.stream.resolved = true;
         }
 
