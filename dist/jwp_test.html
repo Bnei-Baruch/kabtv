@@ -25,16 +25,15 @@
             playlist: [{
                 sources: [
                     {
-                        type:'hls',
-                        file: 'http://edge1.il.kab.tv/rtplive/tv66-heb-high.stream/playlist.m3u8',
-                        default: true
-                    },
-                    {
-                        type:'flash',
                         file: 'rtmp://edge1.il.kab.tv/rtplive/tv66-heb-high.stream'
-                    }
+                    },
+//                    {
+//                        type:'hls',
+//                        file: 'http://edge1.il.kab.tv/rtplive/tv66-heb-high.stream/playlist.m3u8'
+//                    }
                 ]
             }],
+            primary: "flash",
             autostart: true,
             height: 360,
             width: 640
