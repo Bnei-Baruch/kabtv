@@ -171,29 +171,13 @@ footer.modal-footer {
     overflow: auto;
 }
 
-#left-panel, #center-panel, #right-panel {
-    float: left;
-    height: 100%;
-    padding: 0;
-}
-
 .ltr #left-panel, .ltr #center-panel, .ltr #right-panel {
     float: right;
 }
-
-#left-panel {
-    width: 25%;
-}
-
-#center-panel {
-    width: 48%;
+.center-panel {
+    height: 100%;
     background-color: #384B92;
 }
-
-#right-panel {
-    width: 27%;
-}
-
 /* VOD List */
 
 #vod {
