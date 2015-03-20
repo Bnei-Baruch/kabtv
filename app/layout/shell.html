@@ -3,12 +3,12 @@
         <div data-ng-include="'app/layout/header.html'"></div>
     </header>
 
-    <div id="main-panel" class="clearfix row" data-ng-style="vm.mainPanelStyle()">
-        <aside data-ng-include="'app/vod/vod.html'" class="col-md-3 hidden-xs aside"></aside>
-        <div data-ng-view="" class="col-md-6">
+    <div id="main-panel" class="clearfix row">
+        <aside data-ng-include="'app/vod/vod.html'" class="col-md-3 hidden-xs hidden-sm aside"></aside>
+        <div data-ng-view="" class="col-md-6 col-sm-8">
             Center panel content
         </div>
-        <aside data-ng-include="'app/tabs/tabs.html'" class="col-md-3 aside"></aside>
+        <aside data-ng-include="'app/tabs/tabs.html'" class="col-md-3  col-sm-4 aside"></aside>
     </div>
 
     <footer id="footer" class="clearfix modal-footer navbar-fixed-bottom">

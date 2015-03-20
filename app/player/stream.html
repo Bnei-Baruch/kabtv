@@ -1,16 +1,13 @@
 <div class="clearfix">
-    <ul class="nav nav-tabs">
-        <li role="presentation" data-ng-class="{'active': vm.isVideo}">
-            <a href="" data-ng-click="vm.playVideo()">
+    <ul class="tabs text-to-right clearfix">
+        <li role="presentation" data-ng-class="{'tab-button': true, 'select': vm.isVideo}" data-ng-click="vm.playVideo()">
                 {{'PLAYER_VIDEO' | translate}}
-            </a>
         </li>
-        <li data-ng-if="vm.hasAudio" role="presentation" data-ng-class="{'active': !vm.isVideo}">
-            <a href="" data-ng-click="vm.playAudio()">
+        <li data-ng-if="vm.hasAudio" role="presentation" data-ng-click="vm.playAudio()" data-ng-class="{'tab-button': true, 'select': !vm.isVideo}">
                 {{'PLAYER_AUDIO' | translate}}
-            </a>
         </li>
-        <li class="tab-right btn btn-sm btn-default" translate="PLAYER_BROADCAST_TIME" translate-value-time="{{vm.jerusalemTime}}"></li>
+        <li class="tab-right btn btn-xs btn-warning toL" translate="PLAYER_BROADCAST_TIME"
+            translate-value-time="{{vm.jerusalemTime}}"></li>
     </ul>
 
     <div id="player">
@@ -20,14 +17,15 @@
     </div>
 
     <div class="player-panel">
-        <div class=" btn-group btn-group-sm" role="group" >
+        <div class=" btn-group btn-group-xs" role="group">
 
             <label data-ng-repeat="item in vm.alternateLanguages"
-                   class="langs btn-default" role="toolbar"
+                   class="langs btn  btn-default" role="toolbar"
                    data-ng-if="isLive || !item.is_live_only">
                 {{item.language.caption}}
                 <input type="radio" data-ng-model="vm.currentPlayerLang" data-ng-value="item.language.key"
-                       data-ng-change="vm.changeLanguage(item.language)" name="vm.switcher-language-{{item.language.key}}"/>
+                       data-ng-change="vm.changeLanguage(item.language)"
+                       name="vm.switcher-language-{{item.language.key}}"/>
             </label>
         </div>
 

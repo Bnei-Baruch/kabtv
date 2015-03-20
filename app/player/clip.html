@@ -1,7 +1,10 @@
 <div class="clearfix">
-    <div class="back-to-stream" data-ng-click="vm.gotoStream()"
-         data-ng-if="$root.isLive || $root.config.lang.key == 'HEB' || $root.config.lang.key == 'RUS'">
-        {{ 'PLAYER_BACK_TO_LIVE' | translate}}
+    <div class="tabs clearfix">
+
+        <div class="back-to-stream  btn btn-xs btn-warning toL" data-ng-click="vm.gotoStream()"
+             data-ng-if="$root.isLive || $root.config.lang.key == 'HEB' || $root.config.lang.key == 'RUS'">
+            {{ 'PLAYER_BACK_TO_LIVE' | translate}}
+        </div>
     </div>
 
     <span us-spinner spinner-key="spinner-1" spinner-start-active="true"></span>
@@ -12,7 +15,7 @@
     </div>
 
     <div class="player-panel">
-        <h1 class="clip-title">{{vm.clip.title}}</h1>
+        <h4 class="clip-title">{{vm.clip.title}}</h4>
         <div id="clip-save-button">
             <a data-ng-href="{{vm.clip.download_url}}" class="download-icon clip-icon-big">
                 <img src="static/images/save-big.gif" title="{{ 'VOD_DOWNLOAD' | translate}}"

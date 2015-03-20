@@ -4,9 +4,18 @@ html, body {
 }
 
 body {
+}
+
+#container {
     background-color: #00145E;
     font: normal normal 12px Arial, sans-serif;
     color: #FFF;
+    height: 100%;
+}
+
+#shell {
+    height: 100%;
+    position: relative;
 }
 
 /* Reusable classes */
@@ -78,10 +87,14 @@ body {
 #header {
     width: 100%;
 }
+#header .navbar-default{
+    background-color: #fff;
+}
 
 #header .navbar {
     margin-bottom: 0;
 }
+
 #header .navbar-brand {
     padding: 0;
 }
@@ -149,7 +162,6 @@ footer.modal-footer {
 #main-panel {
     background-color: #000C37;
 }
-
 .aside {
     /*position: absolute;
     top: 0;
@@ -225,6 +237,10 @@ footer.modal-footer {
 }
 
 /* Tabs */
+.tabs {
+    margin-bottom: 0;
+    padding: 5px 0 0;
+}
 
 #tabs {
     height: 100%;
@@ -246,6 +262,7 @@ footer.modal-footer {
     cursor: pointer;
     background-color: #384B92;
     color: #FFA200;
+    vertical-align: bottom;
 }
 
 .tab-button.select {
@@ -335,6 +352,7 @@ footer.modal-footer {
 .player-panel .quality-switcher {
     background-color: #2b64a7;
     padding: 5px;
+    margin-top: 10px;
 }
 
 .jerusalem-time {
@@ -436,4 +454,31 @@ footer.modal-footer {
 /* For IE 6/7 (trigger hasLayout) */
 .clearfix {
     zoom: 1;
+}
+
+
+
+@media (min-width: 768px) {
+    #main-panel {
+        position: absolute;
+        top: 80px;
+        bottom: 36px;
+        left: 30px;
+        right: 30px;
+    }
+    #header .white-wrappwer.ng-hide{display: block !important;}
+
+}
+
+@media (max-width: 768px) {
+    #header .langs-nav {
+        padding-left: 0;
+    }
+    #header .navbar{
+        margin-bottom: 30px;
+    }
+
+    #header .white-wrappwer {
+        position: relative;
+    }
 }
