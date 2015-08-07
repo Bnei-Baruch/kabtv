@@ -16,7 +16,7 @@
             </div>
 
             <div class="white-wrappwer" data-ng-show="vm.topNavLang">
-                <nav class="nav langs-nav">
+                <nav class="nav langs-nav hidden-sm  hidden-xs">
                     <a data-ng-repeat="item in vm.languages" data-ng-href="/{{item.key|lowercase}}"
                        data-ng-class="{'nav-link': true, active: vm.isCurrentLang(item)}">
                         {{item.caption}}
@@ -32,7 +32,7 @@
             </div>
         </div>
     </nav>
-    <nav class="links-nav hidden-sm">
+    <nav class="links-nav hidden-sm hidden-xs">
         <a data-ng-repeat="item in vm.links" data-ng-href="{{item.url}}" class="nav-link" title="{{item.title}}">
             {{item.caption}}
         </a>
