@@ -12,8 +12,8 @@
         "angular-translate-loader-static-files": "~2.1.0",
         "soundmanager": "scottschiller/SoundManager2",
         "angulartics": "~0.15.20",
-        "angular-spinner": "~0.6.1"
-
+        "angular-spinner": "~0.6.1",
+        "bootstrap": "~3.3.5"
     },
     "exportsOverride": {
         "/angular.*/": {
@@ -21,6 +21,9 @@
         },
         "modernizr": {
             "": "modernizr.js"
+        },
+        "bootstrap": {
+            "css": "**/*.css"
         },
         "soundmanager": {
             "": "script/*.js",
