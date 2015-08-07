@@ -1,13 +1,14 @@
 <div class="clearfix">
-    <div class="tabs">
-        <div data-ng-click="vm.playVideo()" data-ng-class="{'tab-button': true, 'select': vm.isVideo}">
-            {{'PLAYER_VIDEO' | translate}}
-        </div>
-        <div data-ng-click="vm.playAudio()" data-ng-class="{'tab-button': true, 'select': vm.isAudio}" data-ng-if="vm.hasAudio">
-            {{'PLAYER_AUDIO' | translate}}
-        </div>
-        <div class="jerusalem-time" translate="PLAYER_BROADCAST_TIME" translate-value-time="{{vm.jerusalemTime}}"></div>
-    </div>
+    <ul class="tabs text-to-right clearfix">
+        <li role="presentation" data-ng-class="{'tab-button': true, 'select': vm.isVideo}" data-ng-click="vm.playVideo()">
+                {{'PLAYER_VIDEO' | translate}}
+        </li>
+        <li data-ng-if="vm.hasAudio" role="presentation" data-ng-click="vm.playAudio()" data-ng-class="{'tab-button': true, 'select': !vm.isVideo}">
+                {{'PLAYER_AUDIO' | translate}}
+        </li>
+        <li class="tab-right btn btn-xs btn-warning toL" translate="PLAYER_BROADCAST_TIME"
+            translate-value-time="{{vm.jerusalemTime}}"></li>
+    </ul>
 
     <div id="player">
         <kabtv-jw-player data-ng-if="vm.isVideo && vm.isHLS" data-stream="vm.stream"></kabtv-jw-player>
@@ -16,13 +17,17 @@
     </div>
 
     <div class="player-panel">
-        <label data-ng-repeat="item in vm.alternateLanguages"
-               class="langs {{(vm.currentPlayerLang.key == item.language.key) ? 'selected': '';}}"
-                data-ng-if="isLive || !item.is_live_only">
-            {{item.language.caption}}
-            <input type="radio" data-ng-model="vm.currentPlayerLang" data-ng-value="item.language.key"
-                   data-ng-change="vm.changeLanguage(item.language)" name="vm.switcher-language-{{item.language.key}}"/>
-        </label>
+        <div class=" btn-group btn-group-xs" role="group">
+
+            <label data-ng-repeat="item in vm.alternateLanguages"
+                   class="langs btn  btn-default" role="toolbar"
+                   data-ng-if="isLive || !item.is_live_only">
+                {{item.language.caption}}
+                <input type="radio" data-ng-model="vm.currentPlayerLang" data-ng-value="item.language.key"
+                       data-ng-change="vm.changeLanguage(item.language)"
+                       name="vm.switcher-language-{{item.language.key}}"/>
+            </label>
+        </div>
 
         <div class="quality-switcher" data-ng-show="vm.showQualitySelection()">
             <span>{{'STREAM_QUALITY' | translate}}: </span>
