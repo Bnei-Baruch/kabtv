@@ -1,42 +1,36 @@
-(function() {
-    'use strict';
+Shell.$inject = ['$window', '$scope', 'config', 'logger'];
 
-    angular
-        .module('app.layout')
-        .controller('Shell', Shell);
+function Shell($window, $scope, config, logger) {
+    var vm = this;
+    vm.pageDirection = config.pageDirection;
+    vm.title = config.appTitle;
+    vm.busyMessage = 'Please wait ...';
+    vm.isBusy = true;
+    vm.showSplash = true;
+    vm.mainPanelHeight = null;
+    vm.mainPanelStyle = mainPanelStyle;
 
-    Shell.$inject = ['$window', '$scope', 'config', 'logger'];
+    activate();
 
-    function Shell($window, $scope, config, logger) {
-        var vm = this;
-        vm.pageDirection = config.pageDirection;
-        vm.title = config.appTitle;
-        vm.busyMessage = 'Please wait ...';
-        vm.isBusy = true;
-        vm.showSplash = true;
-        vm.mainPanelHeight = null;
-        vm.mainPanelStyle = mainPanelStyle;
+    function activate() {
+        calcMainPanelHeight();
 
-        activate();
-
-        function activate() {
+        angular.element($window).bind('resize', function () {
             calcMainPanelHeight();
+            $scope.$apply();
+        });
 
-            angular.element($window).bind('resize', function () {
-                calcMainPanelHeight();
-                $scope.$apply();
-            });
-
-            logger.success(vm.title + ' loaded!', null);
-        }
-
-        function calcMainPanelHeight() {
-            vm.mainPanelHeight = $window.innerHeight - 112; // 112 = header.height + footer.height
-        }
-
-        function mainPanelStyle() {
-            return {'height': vm.mainPanelHeight + 'px'};
-        }
-
+        logger.success(vm.title + ' loaded!', null);
     }
-})();
+
+    function calcMainPanelHeight() {
+        vm.mainPanelHeight = $window.innerHeight - 112; // 112 = header.height + footer.height
+    }
+
+    function mainPanelStyle() {
+        return {'height': vm.mainPanelHeight + 'px'};
+    }
+
+}
+
+export default Shell;

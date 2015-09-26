@@ -1,22 +1,13 @@
 <!DOCTYPE html>
-<!--[if IE 8]>         <html lang="en" id="ng-app" data-ng-app="kabtv" ng-strict-di class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html lang="en" id="ng-app" data-ng-app="kabtv" ng-strict-di class="no-js"> <!--<![endif]-->
+<html lang="en" id="ng-app" data-ng-app="kabtv" ng-strict-di>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="{{ 'SITE_DESCRIPTION' | translate}}">
     <meta name="keywords" content="{{ 'SITE_KEYWORDS' | translate}}">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title data-ng-bind="'SITE_TITLE' | translate">Kab TV</title>
-
     <link href="favicon.ico" type="image/x-icon" rel="icon"/>
-
-    <!-- build:css css/kabtv.min.css -->
-    <link type="text/css" rel="stylesheet" media="all" href="static/css/cssreset-min.css">
-    <link type="text/css" rel="stylesheet" media="all" href="lib/bootstrap/css/bootstrap.css">
-    <link type="text/css" rel="stylesheet" media="all" href="static/css/kabtv.css">
-    <!-- endbuild -->
-
 </head>
 <body>
     <!--[if lt IE 9]>
@@ -26,65 +17,6 @@
     <![endif]-->
 
     <div id="container" data-ng-include="'app/layout/shell.html'"></div>
-
-    <!-- build:js js/kabtv.vendor.min.js -->
-    <script type="text/javascript" src="lib/modernizr/modernizr.js"></script>
-    <script type="text/javascript" src="lib/angular/angular.js"></script>
-    <script type="text/javascript" src="lib/angular-route/angular-route.js"></script>
-    <script type="text/javascript" src="lib/angular-translate/angular-translate.js"></script>
-    <script type="text/javascript" src="lib/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
-    <script type="text/javascript" src="lib/angulartics/angulartics.js"></script>
-    <script type="text/javascript" src="lib/angulartics/angulartics-ga.js"></script>
-    <script type="text/javascript" src="lib/angulartics/angulartics-gtm.js"></script>
-    <script type="text/javascript" src="lib/spin.js/spin.js"></script>
-    <script type="text/javascript" src="lib/angular-spinner/angular-spinner.js"></script>
-    <script type="text/javascript" src="lib/soundmanager/soundmanager2-nodebug.js"></script>
-    <!-- endbuild -->
-
-    <!-- build:js js/kabtv.min.js -->
-    <!-- Bootstrapping -->
-    <script type="text/javascript" src="app/app.module.js"></script>
-
-    <!-- Reusable Blocks/Modules -->
-    <script src="app/blocks/exception/exception.module.js"></script>
-    <script src="app/blocks/exception/exception-handler.provider.js"></script>
-    <script src="app/blocks/exception/exception.js"></script>
-    <script src="app/blocks/logger/logger.module.js"></script>
-    <script src="app/blocks/logger/logger.js"></script>
-    <script src="app/blocks/router/router.module.js"></script>
-    <script src="app/blocks/router/routehelper.js"></script>
-
-    <!-- core module -->
-    <script src="app/core/core.module.js"></script>
-    <script src="app/core/constants.js"></script>
-    <script src="app/core/config.js"></script>
-    <script src="app/core/dataservice.js"></script>
-
-    <!-- Common application components -->
-    <script src="app/vod/vod.module.js"></script>
-    <script src="app/vod/vod.js"></script>
-    <script src="app/tabs/tabs.module.js"></script>
-    <script src="app/tabs/tabs.js"></script>
-    <script src="app/tabs/updates.js"></script>
-
-    <!-- layout -->
-    <script src="app/layout/layout.module.js"></script>
-    <script src="app/layout/shell.js"></script>
-    <script src="app/layout/header.js"></script>
-    <script src="app/layout/footer.js"></script>
-
-    <!-- player  -->
-    <script src="app/player/player.module.js"></script>
-    <script src="app/player/config.route.js"></script>
-    <script src="app/player/playerService.js"></script>
-    <script src="app/player/jwplayer.directive.js"></script>
-    <script src="app/player/wmvplayer.directive.js"></script>
-    <script src="app/player/soundmanager.directive.js"></script>
-    <script src="app/player/stream.js"></script>
-    <script src="app/player/playlist.js"></script>
-    <script src="app/player/clip.js"></script>
-
-    <!-- endbuild -->
 
     <script async type="text/javascript" src="http://jwpsrv.com/library/ElAvGDL5EeKp9yIACp8kUw.js"></script>
 

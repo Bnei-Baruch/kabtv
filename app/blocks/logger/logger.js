@@ -1,42 +1,36 @@
-(function() {
-    'use strict';
+logger.$inject = ['$log'];
 
-    angular
-        .module('blocks.logger')
-        .factory('logger', logger);
+function logger($log) {
 
-    logger.$inject = ['$log'];
+    var service = {
+        showToasts: true,
 
-    function logger($log) {
+        error: error,
+        info: info,
+        success: success,
+        warning: warning,
 
-        var service = {
-            showToasts: true,
+        log: $log.log
+    };
 
-            error   : error,
-            info    : info,
-            success : success,
-            warning : warning,
+    return service;
+    /////////////////////
 
-            log     : $log.log
-        };
-
-        return service;
-        /////////////////////
-
-        function error(message, data, title) {
-            $log.error('Error: ' + message, data);
-        }
-
-        function info(message, data, title) {
-            $log.info('Info: ' + message, data);
-        }
-
-        function success(message, data, title) {
-            $log.info('Success: ' + message, data);
-        }
-
-        function warning(message, data, title) {
-            $log.warn('Warning: ' + message, data);
-        }
+    function error(message, data, title) {
+        $log.error('Error: ' + message, data);
     }
-}());
+
+    function info(message, data, title) {
+        $log.info('Info: ' + message, data);
+    }
+
+    function success(message, data, title) {
+        $log.info('Success: ' + message, data);
+    }
+
+    function warning(message, data, title) {
+        $log.warn('Warning: ' + message, data);
+    }
+}
+
+export default logger;

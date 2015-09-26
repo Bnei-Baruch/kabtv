@@ -1,11 +1,12 @@
-(function() {
-    'use strict';
+//import 'bootstrap-less/dist/css/bootstrap.min.css';
 
-    angular.module('kabtv', [
-        'app.core',
-        'app.layout',
-        'kabtv.vod',
-        'kabtv.player'
+import angular from 'angular';
+//window.angular = angular;
 
-    ])
-})();
+import core from './core/core.module';
+import layout from './layout/layout.module';
+import vod from './vod/vod.module';
+import player from './player/player.module';
+
+angular.module('kabtv', [core, layout, vod, player]);
+

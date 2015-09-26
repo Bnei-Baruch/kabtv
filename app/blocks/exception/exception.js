@@ -1,23 +1,17 @@
-(function() {
-    'use strict';
+exception.$inject = ['logger'];
 
-    angular
-        .module('blocks.exception')
-        .factory('exception', exception);
+function exception(logger) {
+    var service = {
+        catcher: catcher
+    };
 
-    exception.$inject = ['logger'];
+    return service;
 
-    function exception(logger) {
-        var service = {
-            catcher: catcher
+    function catcher(message) {
+        return function(reason) {
+            logger.error(message, reason);
         };
-
-        return service;
-
-        function catcher(message) {
-            return function(reason) {
-                logger.error(message, reason);
-            };
-        }
     }
-})();
+}
+
+export default exception;

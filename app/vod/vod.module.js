@@ -1,6 +1,6 @@
-(function() {
-    'use strict';
+import angular from 'angular';
+import Vod from './vod';
 
-    angular.module('kabtv.vod', []);
-
-})();
+export default angular.module('kabtv.vod', [])
+    .controller('Vod', Vod)
+    .name;

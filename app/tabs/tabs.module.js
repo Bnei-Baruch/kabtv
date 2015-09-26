@@ -1,5 +1,8 @@
-(function() {
-    'use strict';
+import angular from 'angular';
+import Tabs from './tabs';
+import Updates from './updates';
 
-    angular.module('kabtv.tabs', []);
-})();
+export default angular.module('kabtv.tabs', [])
+    .controller('Tabs', Tabs)
+    .controller('Updates', Updates)
+    .name;
