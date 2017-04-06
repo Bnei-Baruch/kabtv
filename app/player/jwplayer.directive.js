@@ -27,12 +27,12 @@
                     jwplayer("jwplayer-container").setup({
                         playlist: [{
                             sources: [
-                                { file: scope.stream.rtmpUrl },
-                                { file: scope.stream.hlsUrl }
+                                { file: scope.stream.hlsUrl },
+                                { file: scope.stream.rtmpUrl }
                             ]
                         }],
-                        primary: 'flash',
-                        androidhls: true,
+                        // primary: 'flash',  -- the world is moving away from flash...
+                        // androidhls: true,  -- new versions on jwplayer has this true on default
                         autostart: true,
                         aspectratio: '16:9',
                         width: "100%"
