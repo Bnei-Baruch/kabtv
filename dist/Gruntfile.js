@@ -96,6 +96,18 @@ module.exports = function (grunt) {
                     API_BASE: 'http://kab.tv/api/'
                 }
             }
+        },
+
+        'http-server': {
+            'dev': {
+                root: process.cwd(),
+                port: 8282,
+                host: "0.0.0.0",
+                showDir: true,
+                autoIndex: true,
+                ext: "html",
+                runInBackground: false
+            }
         }
 
     });
@@ -110,6 +122,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-bower-task');
     grunt.loadNpmTasks('grunt-angular-templates');
     grunt.loadNpmTasks('grunt-ng-constant');
+    grunt.loadNpmTasks('grunt-http-server');
 
     // Tell Grunt what to do when we type "grunt" into the terminal
     grunt.registerTask('default', [
