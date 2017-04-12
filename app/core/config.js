@@ -22,7 +22,7 @@
     };
 
     core.value('config', config);
-    var _eng = 'asdasdasd'; //'Kabbalah TV is part of the family of websites owned by the Bnei Baruch Kabbalah Education & Research Institute - <a href="http://www.kabbalah.info" target="_blank">http://www.kabbalah.info</a> - the world\'s largest authentic Kabbalah resource. On Kabbalah TV, you\'ll find live streams the Daily Kabbalah Lesson with Kabbalist Dr. Michael Laitman, where you can ask questions on lesson topics and get them answered live (click the "Questions" tab to do this), as well as view stills of lesson sketches (see the "Sketches" tab during the lessons for the latest sketches stills). In addition to the Daily Kabbalah Lessons, Kabbalah TV streams weekly friends\' gatherings, Kabbalah conventions and other events (see "Schedule" for most updated details).';
+    var _eng = 'Kabbalah TV is part of the family of websites owned by the Bnei Baruch Kabbalah Education & Research Institute - <a href="http://www.kabbalah.info" target="_blank">http://www.kabbalah.info</a> - the world\'s largest authentic Kabbalah resource. On Kabbalah TV, you\'ll find live streams the Daily Kabbalah Lesson with Kabbalist Dr. Michael Laitman, where you can ask questions on lesson topics and get them answered live (click the "Questions" tab to do this), as well as view stills of lesson sketches (see the "Sketches" tab during the lessons for the latest sketches stills). In addition to the Daily Kabbalah Lessons, Kabbalah TV streams weekly friends\' gatherings, Kabbalah conventions and other events (see "Schedule" for most updated details).';
     var siteDescription = {
         'ENG': _eng
     };
