@@ -268,6 +268,11 @@ body {
 .player-panel {
     padding: 5px;
 }
+.player-panel .siteDescription{
+    padding: 15px 5px 0;
+    line-height: 18px;
+}
+
 .player-panel .clipTitle {
     color: #FFA302;
     display: inline;
