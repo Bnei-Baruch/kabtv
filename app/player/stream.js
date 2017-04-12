@@ -5,10 +5,10 @@
         .controller('Stream', Stream);
 
     Stream.$inject = ['$scope', '$rootScope', '$routeParams', '$location', '$timeout', 'streams', 'dataservice',
-        'JerusalemTime', 'config', 'logger'];
+        'JerusalemTime', 'config', 'logger', 'siteDescription'];
 
     function Stream($scope, $rootScope, $routeParams, $location, $timeout, streams, dataservice,
-                    JerusalemTime, config, logger) {
+                    JerusalemTime, config, logger, siteDescription) {
         var vm = this;
         vm.isVideo = true;
         vm.isHLS = null;
@@ -61,6 +61,7 @@
                 logger.info('Streams are already loaded');
                 identifyStreams();
             }
+            vm.siteDescription = siteDescription[config.lang.key];
         }
 
         function buildStreams(data) {

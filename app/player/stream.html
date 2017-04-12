@@ -3,7 +3,8 @@
         <div data-ng-click="vm.playVideo()" data-ng-class="{'tab-button': true, 'select': vm.isVideo}">
             {{'PLAYER_VIDEO' | translate}}
         </div>
-        <div data-ng-click="vm.playAudio()" data-ng-class="{'tab-button': true, 'select': vm.isAudio}" data-ng-if="vm.hasAudio">
+        <div data-ng-click="vm.playAudio()" data-ng-class="{'tab-button': true, 'select': vm.isAudio}"
+             data-ng-if="vm.hasAudio">
             {{'PLAYER_AUDIO' | translate}}
         </div>
         <div class="jerusalem-time" translate="PLAYER_BROADCAST_TIME" translate-value-time="{{vm.jerusalemTime}}"></div>
@@ -18,7 +19,7 @@
     <div class="player-panel">
         <label data-ng-repeat="item in vm.alternateLanguages"
                class="langs {{(vm.currentPlayerLang.key == item.language.key) ? 'selected': '';}}"
-                data-ng-if="isLive || !item.is_live_only">
+               data-ng-if="isLive || !item.is_live_only">
             {{item.language.caption}}
             <input type="radio" data-ng-model="vm.currentPlayerLang" data-ng-value="item.language.key"
                    data-ng-change="vm.changeLanguage(item.language)" name="vm.switcher-language-{{item.language.key}}"/>
@@ -36,4 +37,5 @@
             </label>
         </div>
     </div>
+    <p ng-if="vm.siteDescription">{{ vm.siteDescription }} </p>
 </div>
