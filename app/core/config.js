@@ -80,6 +80,17 @@
         setLanguageConfig();
 
         $rootScope.$on('routeChangeSuccess', function () { setLanguageConfig(); });
+
+        var x = document.createElement('script');
+        x.setAttribute("id", "andipath");
+        x.setAttribute("type", "text/javascript");
+        x.setAttribute("async", "true");
+        if (config.isVideo) {
+          x.setAttribute("src", "//testua.user-a.co.il/Customers/_kab_tv/andifn1.js");
+        } else {
+          x.setAttribute("src", "//testua.user-a.co.il/Customers/_kab_fm/andifn1.js");
+        }
+        document.getElementsByTagName('body')[0].appendChild(x);
     }
 
 })();
