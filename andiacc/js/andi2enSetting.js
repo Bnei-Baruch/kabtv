@@ -1,4 +1,4 @@
-UASJmAPGWA = function(){										UA.UAtGnLO = {										UAPobCgT:false,										UAKPDJhbW :false,										UAksLNA :'1.3',										UAObMHNm:  UA.UAObMHNm,										UAgBWTY: UA.UAObMHNm,										TUA2skipAreaAutomate:false,										TUAfindjsevents:false,										UAASiQCryx: ('*'),										UAsofYCWsD: ('[role="link"],[role="button"],a, area, input, select, textarea, button, *[tabindex], *[contenteditable]'),										UAarcAp: ('outline'),										UAMPoAOs: ('select,option,textarea,button,[role="button"], .active, :active , input'),										UAvbsGD: ('a ,a *,h1 ,h2 ,h3 ,h4 ,h5 ,h6 ,h1 *,h2 *,h3 *,h4 *,h5 *,h6 *,[role="heading"],[role="heading"] *'),										UAdJnAJgG: ('button,[role="button"],[type="button"],[type="submit"],[type="image"]'),										UAFVrfNr:'img,[role="img"],svg',										UAedhAwEgG:28,										UAGoVoEFQq:'object , embed',										UAwjFqAO:'h1,h2,h3,h4,h5,h6,[role="heading"],[class*="title"]',										UAmPiqnLVc:'a,[role="link"]',										UAgruRSA :'div,span,button,input[type="button"],a',										UAmogGAo:'',										UAZJuqomJL : ('div.header_bg_wrapper, div.header_bg_wrapper *'),										UAusEiVBwO:('#player, #player *'),										UADayhTD: false,										UAjLksH: false,										UAZRsZC :false,										UAIeNtqnd :false,										UAYdrSZY :false,										UAjmAOuC :true,										UAAgrtkgC :'',										UAmrFtJ :false,										UAleSwzUmj :false,										UAbptxsAkj :'4',										UAOXcjV :true,										UApgVQG :false,										UApgVQGIframe :true,										UAeOOhOe :false,										UATtLRwMz :'',UAfEEIsbS : {										backgroundColor: '#3f64ec',										UAuppUcnTv:'#FFFFFF',										UAroEKD:'left',										UADJMdqymj: 40,										UAaMsPW: 40,										UAIsysqU: '#ANDISELECTORopenSetItAccessibilityBar *',										UArteSHs: 'left',										UATNIzh:50,										UASQyUtRZz:4,										UARQcrMF:'left',										UAdfdZSn :50,										UAEamgQzm:4,										UAbCvXBoej : 'left',										UAwhWxGAjg:50,										UAEgtEG: 4,										UAPiGyuXs: 'left',										UAfErNYsaf :50,										UABOUrfxy :4,										UARFGHZM :'left',										UAYKTPiml :50,										UAkpJwGLO :4,										UAtwJFlbR :'left',										UApuexAc :50,										UAMrnTF :4},UAarODG : [],UAqlJMoz : [],UAZSdutS : [],UAqvweC : [],UAAqBdDZCK : [],UAvpgZA : [],UAjYCVrc : [{											UAIHocl :'div[role="article"]',											UApZrfLUUh:true,											UAYytLpAy:true}],UAocVwnI : [],UAlAoZOxNs : [],UAkMixWyv : [{											UAbmThdqIg :'#tabs',											UApZrfLUUh:true,											UAYytLpAy:true}],UAsFCELp : [{											UAZRqYYwl :'[src="http://files.kab.tv/vod/eng/img/Kabbalah-Quiz-banner-224x60.gif"]',											UAecLeJkVc :'kabbalah Quiz, test your kabbalah Knowledge',											UApZrfLUUh:true,											UAYytLpAy:true},{											UAZRqYYwl :'[src="http://files.kab.tv/vod/eng/img/224x60_fall2012_20off.jpg"]',											UAecLeJkVc :'Fall Special 20% OFF storewide',											UApZrfLUUh:true,											UAYytLpAy:true},{											UAZRqYYwl :'[src="http://files.kab.tv/vod/eng/img/BB-JLTV-Banner-224x50.jpg"]',											UAecLeJkVc :'Authentic wisdom of kabbalah, fridays, 8:00 pm EDT on JLTV',											UApZrfLUUh:true,											UAYytLpAy:true},{											UAZRqYYwl :'[src="http://files.kab.tv/vod/eng/img/zohar-daily-lesson.jpg"]',											UAecLeJkVc :'daily zohar lesson',											UApZrfLUUh:true,											UAYytLpAy:true},{											UAZRqYYwl :'[src="http://files.kab.tv/vod/rus/mix/eshivat_50_4.jpg"]',											UAecLeJkVc :'Global Assembly of Friends',											UApZrfLUUh:true,											UAYytLpAy:true},{											UAZRqYYwl :'[src="http://files.kab.tv/vod/eng/img/social_networks_banner.jpg"]',											UAecLeJkVc :'Kabbalah.info on the Web',											UApZrfLUUh:true,											UAYytLpAy:true},{											UAZRqYYwl :'[src="http://files.kab.tv/vod/eng/img/KL_LP_en_Banners_B410_225x60.jpg"]',											UAecLeJkVc :'take control of your life',											UApZrfLUUh:true,											UAYytLpAy:true}],UAZyJQlt : [],UALgpPwL : [],UAFXaEo : {										UAbcSOcgc :'left',										UAKcmUfgh :10,										UAQMhDEhu :10,										UAzvSzeEuJ :'select:not(#vod-categories),input,textarea,button,[role="button"],[type="button"],[type="submit"],[type="image"]',										UAkjOzWh :'[type="radio"],[type="checkbox"]',										UACNPYbfWa :250,										UApZrfLUUh:true,										UAYytLpAy:true},UACZoXZfX : [],UAIfPJJBN : [],UABgGPvNDD : [],UAlylatukLuWUv : [],UAnwzVXMJ : [],UATlQbWnwZ :{										UAistvEAdf :''} }; }	;UASJmAPGWA();UA.UAxLWTBKxn = function(){ };UA.UAIMPphCu = function(){
+UAFGpPRbyb = function(){										andiUA.UAbUCbcZ = {										UAvIGFfOau:false,										UAdcyZzol :false,										UAyEaEMuph :'1.3',										UAthKNVO:  andiUA.UAthKNVO,										UAIBuxzll: andiUA.UAthKNVO,										UAmQLwrEhhxMCUZL:false,										TUAfindjsevents:false,										UAqROMhN: ('*'),										UAAUCEne: ('[role="link"],[role="button"],a, area, input, select, textarea, button, *[tabindex], *[contenteditable]'),										UArRkRGd: ('outline'),										UAAMnVGsp: ('select,option,textarea,button,[role="button"], .active, :active , input'),										UABifnRVMV: ('a ,a *,h1 ,h2 ,h3 ,h4 ,h5 ,h6 ,h1 *,h2 *,h3 *,h4 *,h5 *,h6 *,[role="heading"],[role="heading"] *'),										UAUQOeaZy: ('button,[role="button"],[type="button"],[type="submit"],[type="image"]'),										UAvKGhUiCX:'img,[role="img"],svg',										UACzcYk:28,										UAZcjOqKiL:'object , embed',										UAfXDmRDc:'h1,h2,h3,h4,h5,h6,[role="heading"],[class*="title"]',										UAwMboGFEu:'a,[role="link"]',										UAzuDthHF :'div,span,button,input[type="button"],a',										UAXKBlpQ:'',										UADIVjKzc : ('div.header_bg_wrapper, div.header_bg_wrapper *'),										UATEgDr:('#player, #player *'),										UAqLlvA: false,										UATmOrySr: false,										UATHhsqT :false,										UAXfQJCzP :false,										UAiNWUMAe :false,										UAmZMZapvO :true,										UAhdmvEMyW :'',										UAcSElMq :false,										UAICLck :false,										UAtUVYTWuq :'4',										UAJgZUme :true,										UAsVELvJP :false,										UAsVELvJPIframe :true,										UAeCHraY :false,										UAaFedmPS :'',UAoisGYOcT : {										backgroundColor: '#3f64ec',										UALMLWgmZx:'#FFFFFF',										UAzlJinPl:'left',										UAGNzsGF: 40,										UAKDGwo: 40,										UAtdGEhub: '#ANDISELECTORopenSetItAccessibilityBar *',										UAOtkJCcQ: 'left',										UAIBUJF:50,										UAlCuvZ:4,										UAvdIophim:'left',										UAHrjGJC :50,										UAWHTQyH:4,										UAwXzChj : 'left',										UAuGIdBKkJ:50,										UAxgwgWLbf: 4,										UAFTylr: 'left',										UAHQWyec :50,										UAFMZyToG :4,										UApMaqz :'left',										UAnPJmaU :50,										UAWYnOmncj :4,										UAlBjKVdM :'left',										UAcuazceU :50,										UATmUPm :4},UANkqYsO : [],UAWsebF : [],UAJMKqv : [],UANOMOF : [],UAgGLGO : [],UAfdbTH : [],UAuTIsftxR : [{											UAGzPRWJb :'div[role="article"]',											UAXWZMKi:true,											UAGaCuPxZ:true}],UAVkjEhNwH : [],UAAFHvDbf : [],UAMxqvA : [{											UAwpPtZfFg :'#tabs',											UAXWZMKi:true,											UAGaCuPxZ:true}],UAyrAaZcD : [{											UAIpPYNw :'[src="http://files.kab.tv/vod/eng/img/Kabbalah-Quiz-banner-224x60.gif"]',											UAvgCSjTel :'kabbalah Quiz, test your kabbalah Knowledge',											UAXWZMKi:true,											UAGaCuPxZ:true},{											UAIpPYNw :'[src="http://files.kab.tv/vod/eng/img/224x60_fall2012_20off.jpg"]',											UAvgCSjTel :'Fall Special 20% OFF storewide',											UAXWZMKi:true,											UAGaCuPxZ:true},{											UAIpPYNw :'[src="http://files.kab.tv/vod/eng/img/BB-JLTV-Banner-224x50.jpg"]',											UAvgCSjTel :'Authentic wisdom of kabbalah, fridays, 8:00 pm EDT on JLTV',											UAXWZMKi:true,											UAGaCuPxZ:true},{											UAIpPYNw :'[src="http://files.kab.tv/vod/eng/img/zohar-daily-lesson.jpg"]',											UAvgCSjTel :'daily zohar lesson',											UAXWZMKi:true,											UAGaCuPxZ:true},{											UAIpPYNw :'[src="http://files.kab.tv/vod/rus/mix/eshivat_50_4.jpg"]',											UAvgCSjTel :'Global Assembly of Friends',											UAXWZMKi:true,											UAGaCuPxZ:true},{											UAIpPYNw :'[src="http://files.kab.tv/vod/eng/img/social_networks_banner.jpg"]',											UAvgCSjTel :'Kabbalah.info on the Web',											UAXWZMKi:true,											UAGaCuPxZ:true},{											UAIpPYNw :'[src="http://files.kab.tv/vod/eng/img/KL_LP_en_Banners_B410_225x60.jpg"]',											UAvgCSjTel :'take control of your life',											UAXWZMKi:true,											UAGaCuPxZ:true}],UAyszhNo : [],UAilVgHCSetting : [],UAsWGmZiHP : {										UArSbtS :'left',										UAxcBtr :10,										UACAZUFufA :10,										UASzuXCrOU :'select:not(#vod-categories),input,textarea,button,[role="button"],[type="button"],[type="submit"],[type="image"]',										UAOKYSEkmX :'[type="radio"],[type="checkbox"]',										UAyFCYs :250,										UAXWZMKi:true,										UAGaCuPxZ:true},UAaomEfH : [],UACbHefF : [],UAhKbUwreadcrumbs : [],UAFojEJMEjEj : [],UALIimzk : [],UAdglaH :{										UAVSKNjk :''} }; }	;UAFGpPRbyb();andiUA.UAXIqHcI = function(){ };andiUA.UARwnETZM = function(){
     	
 	   
         	tabsControl = andizxc('#tabs [data-ng-repeat="item in vm.tabs"]');
@@ -32,7 +32,7 @@ UASJmAPGWA = function(){										UA.UAtGnLO = {										UAPobCgT:false,							
 	    }
 	});
 	andizxc('#center-panel .tabs  .tab-button , #tabs [data-ng-repeat="item in vm.tabs"]').click(function(){
-	    UA.UAnznxXs('Content changed');
+	    andiUA.UACRNKt('Content changed');
 	});
 	
 	andizxc('#tabs [data-ng-repeat="item in vm.tabs').each(function(i){
@@ -63,7 +63,7 @@ UASJmAPGWA = function(){										UA.UAtGnLO = {										UAPobCgT:false,							
                 }
             });
             andizxc('[src="http://kab.tv/tvlist_gen.php?lang=Hebrew"]').contents().find('#menu a').click(function(){
-                UA.UAnznxXs('תוכן הישתנה');
+                andiUA.UACRNKt('תוכן הישתנה');
             });
         	
              andizxc('[src="http://kab.tv/tvlist_gen.php?lang=Hebrew"]').contents().find('#Counter').find('.line1').each(function(){
@@ -130,10 +130,10 @@ UASJmAPGWA = function(){										UA.UAtGnLO = {										UAPobCgT:false,							
 	
 	//#player, #player *
 
-	andizxc('#UAKBYshNDI2BGcolor').click(function(){
+	andizxc('#UAdNQlyANDI2BGcolor').click(function(){
 	    setTimeout(function(){
 	        
-	            andizxc('#UAOQlAG .UAEUlTLbColor').each(function(){
+	            andizxc('#UAwBGzZ .UARhfCdXBoColor').each(function(){
             	   var that = andizxc(this);
             	    andizxc(that).click(function(){
             	        setTimeout(function(){
@@ -152,7 +152,7 @@ UASJmAPGWA = function(){										UA.UAtGnLO = {										UAPobCgT:false,							
 
 
 	
-andizxc('#UAmUvJygQW').click(function(){
+andizxc('#UALqixIOol').click(function(){
 	andizxc('iframe[src="http://kab.tv/tvlist_gen.php?lang=Hebrew"]').contents().find('*').each(function(){
     	var that = andizxc(this);
 		if(andizxc(that).text() != '' && andizxc(that).text() != undefined){
@@ -161,7 +161,7 @@ andizxc('#UAmUvJygQW').click(function(){
     });
 
 });
-andizxc('#UAJmGBAbFhiteContrast').click(function(){
+andizxc('#UADKHqtOIhiteContrast').click(function(){
 	andizxc('iframe[src="http://kab.tv/tvlist_gen.php?lang=Hebrew"]').contents().find('*').each(function(){
     	var that = andizxc(this);
 		if(andizxc(that).text() != '' && andizxc(that).text() != undefined){
@@ -172,7 +172,7 @@ andizxc('#UAJmGBAbFhiteContrast').click(function(){
 	
 	andizxc('#tabs-header[anditab="tab1"]').click(function(){
 	    setTimeout(function(){
-	        if(localStorage.getItem('UAmUvJygQW') == 'yes'){
+	        if(localStorage.getItem('UALqixIOol') == 'yes'){
     	        console.log('black');
     	        andizxc('iframe[src="http://kab.tv/tvlist_gen.php?lang=Hebrew"]').contents().find('*').each(function(){
                 	var that = andizxc(this);
@@ -180,7 +180,7 @@ andizxc('#UAJmGBAbFhiteContrast').click(function(){
             			andizxc(that).attr({'style':'color:#fff !important;'});
             		}
                 });
-    	    }else if(localStorage.getItem('UAJmGBAbFhiteContrast') == 'yes'){
+    	    }else if(localStorage.getItem('UADKHqtOIhiteContrast') == 'yes'){
     	         console.log('white');
 	         	andizxc('iframe[src="http://kab.tv/tvlist_gen.php?lang=Hebrew"]').contents().find('*').each(function(){
                 	var that = andizxc(this);
@@ -205,4 +205,4 @@ andizxc('#UAJmGBAbFhiteContrast').click(function(){
 	
 	
 	
-	};UA.UAjFhZnl = function(){}; UA.UAAaCKN = function(){ };UA.UAjmfwD = function () { var ANDIcss = '::selection {color: black; background: yellow;}'; if(ANDIcss != ''){ andizxc('head').append('<style>'+ANDIcss+'</style>'); } };
+	};andiUA.UAfrcCsqX = function(){}; andiUA.UAoVqPk = function(){ };andiUA.UAeYlQyG = function () { var ANDIcss = ''; if(ANDIcss != ''){ andizxc('head').append('<style>'+ANDIcss+'</style>'); } };
